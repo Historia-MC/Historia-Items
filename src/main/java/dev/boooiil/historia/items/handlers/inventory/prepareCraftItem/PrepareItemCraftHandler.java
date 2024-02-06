@@ -1,17 +1,18 @@
 package dev.boooiil.historia.items.handlers.inventory.prepareCraftItem;
 
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 
 public class PrepareItemCraftHandler {
 
     PrepareItemCraftEvent event;
-    Inventory craftingInventory;
+    CraftingInventory craftingInventory;
 
     public PrepareItemCraftHandler(PrepareItemCraftEvent event) {
         this.event = event;
         this.craftingInventory = event.getInventory();
+
     }
 
     public void parseInventoryAndGiveResult() {
@@ -27,7 +28,7 @@ public class PrepareItemCraftHandler {
 
     private ItemStack parseInventory() {
 
-        PrepareItemCraftInventoryHelper helper = new PrepareItemCraftInventoryHelper(craftingInventory.getContents());
+        PrepareItemCraftInventoryHelper helper = new PrepareItemCraftInventoryHelper(craftingInventory.getMatrix());
         PrepareItemCraftItemHelper itemHelper = new PrepareItemCraftItemHelper(helper);
 
         itemHelper.doMatch();
