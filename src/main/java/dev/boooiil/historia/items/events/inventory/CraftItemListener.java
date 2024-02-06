@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.events.crafting;
+package dev.boooiil.historia.items.events.inventory;
 
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
 import dev.boooiil.historia.core.database.internal.PlayerStorage;
@@ -33,39 +33,41 @@ public class CraftItemListener implements Listener {
             Logging.debugToConsole("[onCraftResult] Crafting a weapon");
 
             craftingResult = new CraftingResult(
-            event.getInventory(), 
-            item, 
-            weaponConfig.getObject(item.getItemMeta().getLocalizedName()), 
-            historiaPlayer);
+                    event.getInventory(),
+                    item,
+                    weaponConfig.getObject(item.getItemMeta().getLocalizedName()),
+                    historiaPlayer);
 
         } else if (armorConfig.isValid(item.getItemMeta().getLocalizedName())) {
 
             Logging.debugToConsole("[onCraftResult] Crafting an armor");
 
             craftingResult = new CraftingResult(
-            event.getInventory(), 
-            item, 
-            armorConfig.getObject(item.getItemMeta().getLocalizedName()), 
-            historiaPlayer);
+                    event.getInventory(),
+                    item,
+                    armorConfig.getObject(item.getItemMeta().getLocalizedName()),
+                    historiaPlayer);
 
         } else {
 
             Logging.debugToConsole("[onCraftResult] Crafting a custom item");
 
             craftingResult = new CraftingResult(
-            event.getInventory(), 
-            item, 
-            customItemConfig.getObject(item.getItemMeta().getLocalizedName()), 
-            historiaPlayer);
+                    event.getInventory(),
+                    item,
+                    customItemConfig.getObject(item.getItemMeta().getLocalizedName()),
+                    historiaPlayer);
 
         }
 
         if (craftingResult != null) {
 
-            if (!craftingResult.getCraftedItem().canCraft(historiaPlayer.getProficiency().getName())) event.setCancelled(true);
-            else craftingResult.generateRandomModifiers();
+            if (!craftingResult.getCraftedItem().canCraft(historiaPlayer.getProficiency().getName()))
+                event.setCancelled(true);
+            else
+                craftingResult.generateRandomModifiers();
 
         }
     }
-    
+
 }

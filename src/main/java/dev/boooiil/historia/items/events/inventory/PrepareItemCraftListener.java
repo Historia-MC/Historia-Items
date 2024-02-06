@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.events.crafting;
+package dev.boooiil.historia.items.events.inventory;
 
 import dev.boooiil.historia.items.handlers.crafting.CraftingItemManager;
 import dev.boooiil.historia.items.handlers.crafting.CraftingTableInspector;
@@ -23,25 +23,26 @@ public class PrepareItemCraftListener implements Listener {
         CraftingItemManager cim = new CraftingItemManager(inspector);
         cim.doMatch();
 
-        if (cim.getResult() != null) resultItem = cim.getResult();
-        else if (event.getRecipe() != null) resultItem = event.getRecipe().getResult();
-        else resultItem = null;
+        if (cim.getResult() != null)
+            resultItem = cim.getResult();
+        else if (event.getRecipe() != null)
+            resultItem = event.getRecipe().getResult();
+        else
+            resultItem = null;
 
         if (resultItem != null) {
             if (resultItem.getItemMeta() != null) {
-                
-                Logging.debugToConsole("Result: " + resultItem.getItemMeta().getLocalizedName() + " " + resultItem.getAmount());
 
-            }
-            else {
-                    
+                Logging.debugToConsole(
+                        "Result: " + resultItem.getItemMeta().getLocalizedName() + " " + resultItem.getAmount());
+
+            } else {
+
                 Logging.debugToConsole("Result: " + resultItem.getType() + " " + resultItem.getAmount());
-            
+
             }
-        }
-        else Logging.debugToConsole("Result: null");
-
-
+        } else
+            Logging.debugToConsole("Result: null");
 
         event.getInventory().setResult(resultItem);
 
