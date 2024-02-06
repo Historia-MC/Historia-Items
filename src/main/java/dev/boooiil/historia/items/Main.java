@@ -2,7 +2,7 @@ package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
-import dev.boooiil.historia.items.events.crafting.CraftItemListener;
+import dev.boooiil.historia.items.events.inventory.CraftItemListener;
 import dev.boooiil.historia.items.file.FileIO;
 
 import org.bukkit.Server;
