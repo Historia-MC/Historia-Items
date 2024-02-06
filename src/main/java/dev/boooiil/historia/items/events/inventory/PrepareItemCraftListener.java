@@ -1,8 +1,8 @@
 package dev.boooiil.historia.items.events.inventory;
 
-import dev.boooiil.historia.items.handlers.inventory.CraftItemManager;
 import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftHandler;
 import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftInventoryHelper;
+import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftItemHelper;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,7 +25,7 @@ public class PrepareItemCraftListener implements Listener {
         Logging.debugToConsole("[PICE] Materials: " + inspector.getMaterials());
         Logging.debugToConsole("[PICE] Full Materials: " + inspector.getFullMaterials());
 
-        CraftItemManager cim = new CraftItemManager(inspector);
+        PrepareItemCraftItemHelper cim = new PrepareItemCraftItemHelper(inspector);
         cim.doMatch();
 
         if (cim.getResult() != null)
