@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.events.inventory;
 
-import dev.boooiil.historia.items.handlers.crafting.CraftingItemManager;
-import dev.boooiil.historia.items.handlers.crafting.CraftingTableInspector;
+import dev.boooiil.historia.items.handlers.inventory.CraftingItemManager;
+import dev.boooiil.historia.items.handlers.inventory.CraftingTableInspector;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

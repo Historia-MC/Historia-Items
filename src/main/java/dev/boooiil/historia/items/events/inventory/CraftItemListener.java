@@ -6,7 +6,7 @@ import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.configuration.specific.ArmorConfig;
 import dev.boooiil.historia.items.configuration.specific.CustomItemConfig;
 import dev.boooiil.historia.items.configuration.specific.WeaponConfig;
-import dev.boooiil.historia.items.handlers.crafting.CraftingResult;
+import dev.boooiil.historia.items.handlers.inventory.CraftingResult;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
