@@ -8,14 +8,14 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CraftingItemManager {
+public class CraftItemManager {
 
     private ItemStack result;
     private final List<CraftedItem> matchingItems;
     private final ArrayList<String> materials;
     private final ArrayList<String> fullMaterials;
 
-    public CraftingItemManager(CraftingTableInspector inspector) {
+    public CraftItemManager(CraftingTableInspector inspector) {
 
         ArrayList<String> patterns = inspector.getPattern();
         materials = inspector.getMaterials();
