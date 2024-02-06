@@ -60,7 +60,7 @@ public class PrepareItemCraftItemHelper {
     }
 
     private ItemStack getItemMatchingMaterials(CraftedItem item, List<String> materials) {
-        String replace = "LOW_|MEDIUM_|HIGH_";
+        String replace = "POOR_|COMMON_|PERFECT_";
 
         int need = materials.size();
         int matched = 0;
