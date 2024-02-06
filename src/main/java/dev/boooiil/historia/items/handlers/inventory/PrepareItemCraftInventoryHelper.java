@@ -5,13 +5,13 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-public class CraftingTableInspector {
+public class PrepareItemCraftInventoryHelper {
 
     private final ArrayList<String> pattern = new ArrayList<>();
     private final ArrayList<String> materials = new ArrayList<>();
     private final ArrayList<String> fullMaterials = new ArrayList<>();
 
-    public CraftingTableInspector(ItemStack[] craftingTableInventory) {
+    public PrepareItemCraftInventoryHelper(ItemStack[] craftingTableInventory) {
 
         Logging.debugToConsole("[CTI] Table Size: " + craftingTableInventory.length);
 

@@ -15,7 +15,7 @@ public class CraftItemManager {
     private final ArrayList<String> materials;
     private final ArrayList<String> fullMaterials;
 
-    public CraftItemManager(CraftingTableInspector inspector) {
+    public CraftItemManager(PrepareItemCraftInventoryHelper inspector) {
 
         ArrayList<String> patterns = inspector.getPattern();
         materials = inspector.getMaterials();

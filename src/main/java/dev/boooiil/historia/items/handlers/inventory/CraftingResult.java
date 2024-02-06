@@ -65,7 +65,7 @@ public class CraftingResult {
 
     private void generateArmorModifiers() {
 
-        CraftingTableInspector inspector = new CraftingTableInspector(inventory.getContents());
+        PrepareItemCraftInventoryHelper inspector = new PrepareItemCraftInventoryHelper(inventory.getContents());
         List<String> allMaterials = inspector.getFullMaterials();
         Armor armor = (Armor) craftedItem;
 
@@ -102,7 +102,7 @@ public class CraftingResult {
 
     private void generateWeaponModifiers() {
 
-        CraftingTableInspector inspector = new CraftingTableInspector(inventory.getContents());
+        PrepareItemCraftInventoryHelper inspector = new PrepareItemCraftInventoryHelper(inventory.getContents());
         List<String> allMaterials = inspector.getFullMaterials();
         Weapon weapon = (Weapon) craftedItem;
 

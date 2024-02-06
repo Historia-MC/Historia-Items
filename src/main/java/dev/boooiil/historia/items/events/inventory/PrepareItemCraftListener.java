@@ -1,7 +1,8 @@
 package dev.boooiil.historia.items.events.inventory;
 
 import dev.boooiil.historia.items.handlers.inventory.CraftItemManager;
-import dev.boooiil.historia.items.handlers.inventory.CraftingTableInspector;
+import dev.boooiil.historia.items.handlers.inventory.PrepareItemCraftInventoryHelper;
+import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftHandler;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,8 +14,12 @@ public class PrepareItemCraftListener implements Listener {
     @EventHandler
     public void onPrepareItemCraft(PrepareItemCraftEvent event) {
 
-        CraftingTableInspector inspector = new CraftingTableInspector(event.getInventory().getContents());
-        ItemStack resultItem;
+        PrepareItemCraftInventoryHelper inspector = new PrepareItemCraftInventoryHelper(
+                event.getInventory().getContents());
+
+        // should be all we need moving forward
+        // remove all other code
+        ItemStack resultItem = new PrepareItemCraftHandler(event).parseInventoryAndGiveResult();
 
         Logging.debugToConsole("[PICE] Pattern: " + inspector.getPattern());
         Logging.debugToConsole("[PICE] Materials: " + inspector.getMaterials());
