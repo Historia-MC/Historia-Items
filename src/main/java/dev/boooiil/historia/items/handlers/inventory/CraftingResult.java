@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.handlers.crafting;
+package dev.boooiil.historia.items.handlers.inventory;
 
 import dev.boooiil.historia.core.classes.enums.experience.CraftingSources;
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;

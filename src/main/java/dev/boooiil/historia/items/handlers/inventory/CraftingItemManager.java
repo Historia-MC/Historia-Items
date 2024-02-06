@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.handlers.crafting;
+package dev.boooiil.historia.items.handlers.inventory;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.items.craftable.CraftedItem;
