@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.classes.items.craftable;
+package dev.boooiil.historia.items.items.craftable;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.util.Construct;
@@ -37,14 +37,14 @@ public class CustomItem extends CraftedItem {
 
         }
     }
-    
+
     /**
      * It returns the name of the item.
      * 
      * @return The name of the item.
      */
     public String getItemName() {
-        
+
         return this.itemName;
 
     }

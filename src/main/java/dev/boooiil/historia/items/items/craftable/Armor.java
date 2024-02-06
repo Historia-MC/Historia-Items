@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.classes.items.craftable;
+package dev.boooiil.historia.items.items.craftable;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.util.Construct;

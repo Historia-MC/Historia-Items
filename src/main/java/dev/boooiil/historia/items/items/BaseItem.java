@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.classes.items;
+package dev.boooiil.historia.items.items;
 
 import org.bukkit.inventory.ItemStack;
 
@@ -52,4 +52,3 @@ public abstract class BaseItem {
 
     }
 }
-

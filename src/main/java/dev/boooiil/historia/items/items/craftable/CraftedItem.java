@@ -1,6 +1,6 @@
-package dev.boooiil.historia.items.classes.items.craftable;
+package dev.boooiil.historia.items.items.craftable;
 
-import dev.boooiil.historia.items.classes.items.BaseItem;
+import dev.boooiil.historia.items.items.BaseItem;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.List;
@@ -36,6 +36,7 @@ public class CraftedItem extends BaseItem {
 
     /**
      * Validate recipe of items to see if it matches an armor.
+     * 
      * @param inputItems List of recipe items.
      * @param inputShape Recipe shape.
      *
@@ -61,6 +62,7 @@ public class CraftedItem extends BaseItem {
 
     /**
      * It returns whether the given proficiency can craft this item.
+     * 
      * @param proficiency The proficiency to check.
      * @return If the proficiency can craft the item.
      */
@@ -68,9 +70,10 @@ public class CraftedItem extends BaseItem {
 
         Logging.debugToConsole("[CraftedItem] Proficiencies: " + this.proficiencies.toString());
 
-        if (this.proficiencies.contains("ALL")) return true;
-        else return this.proficiencies.contains(proficiency);
+        if (this.proficiencies.contains("ALL"))
+            return true;
+        else
+            return this.proficiencies.contains(proficiency);
 
     }
 }
-

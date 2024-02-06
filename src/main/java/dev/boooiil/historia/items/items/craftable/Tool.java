@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.classes.items.craftable;
+package dev.boooiil.historia.items.items.craftable;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.util.Construct;
@@ -10,9 +10,9 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 /**
- * It's a class that represents a weapon in the game.
+ * It's a class that represents tools in the game.
  */
-public class Weapon extends CraftedItem {
+public class Tool extends CraftedItem {
 
     private String weightClass;
 
@@ -27,20 +27,17 @@ public class Weapon extends CraftedItem {
     private List<Double> knockbackRange;
     private double knockback;
 
-    private List<Double> sweepRange;
-    private double sweep;
-
     private List<Integer> durabilityRange;
     private int durability;
 
     private final ItemStack itemStack;
 
     // It's a constructor.
-    public Weapon(String localizedName) {
+    public Tool(String localizedName) {
 
-        YamlConfiguration configuration = ConfigurationLoader.getWeaponConfig().getConfiguration();
+        YamlConfiguration configuration = ConfigurationLoader.getToolConfig().getConfiguration();
 
-        valid = ConfigurationLoader.getWeaponConfig().isValid(localizedName);
+        valid = ConfigurationLoader.getToolConfig().isValid(localizedName);
 
         if (valid) {
 
@@ -54,26 +51,21 @@ public class Weapon extends CraftedItem {
 
             this.recipeItems = configuration.getStringList(localizedName + ".recipe-items");
             this.recipeShape = configuration.getStringList(localizedName + ".recipe-shape");
+            this.proficiencies = configuration.getStringList(localizedName + ".canCraft");
 
             this.weightClass = configuration.getString(localizedName + ".type");
             this.damageRange = configuration.getDoubleList(localizedName + ".damage");
             this.speedRange = configuration.getDoubleList(localizedName + ".speed");
             this.knockbackRange = configuration.getDoubleList(localizedName + ".knockback");
-            this.sweepRange = configuration.getDoubleList(localizedName + ".sweeping");
             this.durabilityRange = configuration.getIntegerList(localizedName + ".durability");
-
-            this.isShaped = configuration.getBoolean(localizedName + ".requireShape");
-            
-            this.proficiencies = configuration.getStringList(localizedName + ".canCraft");
 
         } else {
             itemStack = new ItemStack(Material.AIR);
         }
-    }
-    
-    public void updateWeaponStats(List<String> lore) {
 
-        
+    }
+
+    public void updateWeaponStats(List<String> lore) {
 
     }
 
@@ -85,7 +77,7 @@ public class Weapon extends CraftedItem {
     public List<Double> getDamageRange() {
         return damageRange;
     }
-    
+
     /**
      * This function returns the first element of the damageRange ArrayList
      * 
@@ -176,34 +168,6 @@ public class Weapon extends CraftedItem {
     }
 
     /**
-     * This function returns a list of doubles that represent the sweep range
-     * 
-     * @return The sweepRange list is being returned.
-     */
-    public List<Double> getSweepRange() {
-        return sweepRange;
-    }
-
-    public double getMinSweepValue() {
-        return sweepRange.get(0);
-    }
-
-    public double getMaxSweepValue() {
-        return sweepRange.get(1);
-    }
-
-    /**
-     * It returns a random integer between the minimum and maximum durability values
-     * 
-     * @return A random number between the min and max durability values.
-     */
-    public double getSweepRandomValue() {
-
-        return NumberUtils.random(getMinSweepValue(), getMaxSweepValue());
-
-    }
-
-    /**
      * This function returns a list of integers that represent the durability range
      * of the item
      * 
@@ -212,7 +176,7 @@ public class Weapon extends CraftedItem {
     public List<Integer> getDurabilityRange() {
         return durabilityRange;
     }
-    
+
     /**
      * This function returns the first value in the durabilityRange array
      * 
@@ -284,12 +248,8 @@ public class Weapon extends CraftedItem {
         return knockback;
     }
 
-    public double getSweep() {
-        return sweep;
-    }
-
     public int getDurability() {
         return durability;
     }
-    
+
 }
