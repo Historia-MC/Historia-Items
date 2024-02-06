@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.handlers.inventory;
+package dev.boooiil.historia.items.handlers.inventory.prepareCraftItem;
 
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.inventory.ItemStack;
