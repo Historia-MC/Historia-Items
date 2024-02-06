@@ -24,7 +24,7 @@ public class PrepareItemCraftItemHelper {
         // Getting all the items that match the pattern.
         matchingItems = ConfigurationLoader.getArmorConfig().getAllMatchingShape(patterns);
         matchingItems.addAll(ConfigurationLoader.getWeaponConfig().getAllMatchingShape(patterns));
-        matchingItems.addAll(ConfigurationLoader.getCustomItemConfig().getAllMatchingShape(materials));
+        matchingItems.addAll(ConfigurationLoader.getCustomItemConfig().getAllMatchingShape(patterns));
 
     }
 
