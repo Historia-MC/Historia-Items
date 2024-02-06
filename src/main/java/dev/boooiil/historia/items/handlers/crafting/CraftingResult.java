@@ -2,9 +2,9 @@ package dev.boooiil.historia.items.handlers.crafting;
 
 import dev.boooiil.historia.core.classes.enums.experience.CraftingSources;
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
-import dev.boooiil.historia.items.classes.items.craftable.Armor;
-import dev.boooiil.historia.items.classes.items.craftable.CraftedItem;
-import dev.boooiil.historia.items.classes.items.craftable.Weapon;
+import dev.boooiil.historia.items.items.craftable.Armor;
+import dev.boooiil.historia.items.items.craftable.CraftedItem;
+import dev.boooiil.historia.items.items.craftable.Weapon;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 import org.bukkit.attribute.Attribute;
@@ -26,7 +26,7 @@ public class CraftingResult {
     private final HistoriaPlayer historiaPlayer;
 
     public CraftingResult(Inventory inventory, ItemStack result, CraftedItem craftedItem,
-                          HistoriaPlayer historiaPlayer) {
+            HistoriaPlayer historiaPlayer) {
         this.inventory = inventory;
         this.result = result;
         this.historiaPlayer = historiaPlayer;
@@ -48,7 +48,7 @@ public class CraftingResult {
             Logging.debugToConsole("[generateRandomModifiers] Generating Weapon Modifiers");
 
             generateWeaponModifiers();
-            
+
             historiaPlayer.increaseExperience(CraftingSources.WEAPON_CRAFT.getKey());
 
         }
@@ -127,10 +127,10 @@ public class CraftingResult {
                 "",
                 "§7Class - " + weapon.getWeightClass(),
                 "",
-                "§7Damage - " + NumberUtils.roundDouble( rolledDamage, 2),
-                "§7Attack Speed - " + NumberUtils.roundDouble( rolledAttackSpeed, 2),
-                "§7Knockback - " + NumberUtils.roundDouble( rolledKnockback, 2),
-                "§7Sweeping - " + NumberUtils.roundDouble( rolledSweeping, 2),
+                "§7Damage - " + NumberUtils.roundDouble(rolledDamage, 2),
+                "§7Attack Speed - " + NumberUtils.roundDouble(rolledAttackSpeed, 2),
+                "§7Knockback - " + NumberUtils.roundDouble(rolledKnockback, 2),
+                "§7Sweeping - " + NumberUtils.roundDouble(rolledSweeping, 2),
                 "§7Weight - " + weapon.getWeight());
 
         damageable.setDamage(adjustedDurability);
