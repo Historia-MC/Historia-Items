@@ -1,8 +1,8 @@
 package dev.boooiil.historia.items.configuration.specific;
 
-import dev.boooiil.historia.items.classes.items.craftable.CraftedItem;
-import dev.boooiil.historia.items.classes.items.craftable.Weapon;
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
+import dev.boooiil.historia.items.items.craftable.CraftedItem;
+import dev.boooiil.historia.items.items.craftable.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +25,13 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
 
     }
 
-
-
     /**
-     * It takes a list of items and a list of shapes, and returns a weapon if the items and shapes
+     * It takes a list of items and a list of shapes, and returns a weapon if the
+     * items and shapes
      * match a weapon recipe
      * 
-     * @param inputItems A list of strings that represent the items used to craft the weapon.
+     * @param inputItems A list of strings that represent the items used to craft
+     *                   the weapon.
      * @param inputShape A list of strings that represent the shape of the weapon.
      * @return A Weapon object.
      */
@@ -43,28 +43,34 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
 
             boolean armorValid = entry.getValue().isValidRecipe(inputItems, inputShape);
 
-            if (armorValid) { weapon = entry.getValue(); break; }
+            if (armorValid) {
+                weapon = entry.getValue();
+                break;
+            }
 
         }
 
         return weapon;
-        
+
     }
 
     /**
-     * If the weapon name is valid, return the weapon object from the map. Otherwise, return null
+     * If the weapon name is valid, return the weapon object from the map.
+     * Otherwise, return null
      * 
      * @param weaponName The name of the weapon you want to get.
      * @return A Weapon object.
      */
     public Weapon getObject(String weaponName) {
 
-        if (isValid(weaponName)) return map.get(weaponName);
-        else return null;
+        if (isValid(weaponName))
+            return map.get(weaponName);
+        else
+            return null;
 
     }
 
-        /**
+    /**
      * It checks if the shape of the recipe is valid
      * 
      * @param shape The shape of the recipe.
@@ -74,7 +80,7 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
 
         boolean found = false;
 
-        for(Weapon weapon : map.values()) {
+        for (Weapon weapon : map.values()) {
 
             if (weapon.getRecipeShape().equals(shape)) {
 
@@ -97,7 +103,7 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
 
         List<List<String>> set = new ArrayList<>();
 
-        for(Weapon weapon : map.values()) {
+        for (Weapon weapon : map.values()) {
 
             set.add(weapon.getRecipeShape());
         }
@@ -107,7 +113,8 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
     }
 
     /**
-     * It returns a list of all the items that have the same recipe shape as the one passed in
+     * It returns a list of all the items that have the same recipe shape as the one
+     * passed in
      * 
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the weapon items that match the shape.
@@ -115,8 +122,8 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
     public List<CraftedItem> getAllMatchingShape(List<String> shape) {
 
         List<CraftedItem> set = new ArrayList<>();
-        
-        for(Weapon weapon : map.values()) {
+
+        for (Weapon weapon : map.values()) {
 
             if (weapon.getRecipeShape().equals(shape)) {
 

@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.handlers.crafting;
 
-import dev.boooiil.historia.items.classes.items.craftable.CraftedItem;
+import dev.boooiil.historia.items.items.craftable.CraftedItem;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,7 +14,7 @@ public class GetItemMatchingMaterials {
     /**
      * It takes a list of items, and returns an item.
      * 
-     * @param item     The item you are comparing against.
+     * @param item      The item you are comparing against.
      * @param materials The list of materials to compare.
      */
     GetItemMatchingMaterials(CraftedItem item, List<String> materials) {
@@ -29,7 +29,8 @@ public class GetItemMatchingMaterials {
             for (String material : materials) {
 
                 Logging.debugToConsole(
-                        "[GIMM] Contains Material? " + item.getRecipeItems() + " " + material.replaceFirst(replace, ""));
+                        "[GIMM] Contains Material? " + item.getRecipeItems() + " "
+                                + material.replaceFirst(replace, ""));
 
                 if (item.getRecipeItems().contains(material.replaceFirst(replace, "")))
                     matched++;

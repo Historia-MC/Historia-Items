@@ -1,12 +1,13 @@
 package dev.boooiil.historia.items.commands;
 
-import dev.boooiil.historia.items.classes.items.craftable.Armor;
-import dev.boooiil.historia.items.classes.items.craftable.CustomItem;
-import dev.boooiil.historia.items.classes.items.craftable.Weapon;
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.configuration.specific.ArmorConfig;
 import dev.boooiil.historia.items.configuration.specific.CustomItemConfig;
 import dev.boooiil.historia.items.configuration.specific.WeaponConfig;
+import dev.boooiil.historia.items.items.craftable.Armor;
+import dev.boooiil.historia.items.items.craftable.CustomItem;
+import dev.boooiil.historia.items.items.craftable.Weapon;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,8 +36,8 @@ public class CommandGive implements CommandExecutor {
             }
 
             else {
-                    
-                    sender.sendMessage("Invalid item name.");
+
+                sender.sendMessage("Invalid item name.");
             }
 
         } else if (args[0].equalsIgnoreCase("armor")) {
@@ -51,8 +52,8 @@ public class CommandGive implements CommandExecutor {
             }
 
             else {
-                    
-                    sender.sendMessage("Invalid item name.");
+
+                sender.sendMessage("Invalid item name.");
             }
 
         } else if (args[0].equalsIgnoreCase("other")) {
@@ -67,8 +68,8 @@ public class CommandGive implements CommandExecutor {
             }
 
             else {
-                    
-                    sender.sendMessage("Invalid item name.");
+
+                sender.sendMessage("Invalid item name.");
             }
 
         } else {

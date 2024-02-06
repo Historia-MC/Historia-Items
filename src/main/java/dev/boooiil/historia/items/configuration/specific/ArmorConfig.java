@@ -1,8 +1,8 @@
 package dev.boooiil.historia.items.configuration.specific;
 
-import dev.boooiil.historia.items.classes.items.craftable.Armor;
-import dev.boooiil.historia.items.classes.items.craftable.CraftedItem;
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
+import dev.boooiil.historia.items.items.craftable.Armor;
+import dev.boooiil.historia.items.items.craftable.CraftedItem;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.ArrayList;
@@ -71,7 +71,7 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
 
         boolean found = false;
 
-        for(Armor armor : map.values()) {
+        for (Armor armor : map.values()) {
 
             if (armor.getRecipeShape().equals(shape)) {
 
@@ -94,7 +94,7 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
 
         List<List<String>> set = new ArrayList<>();
 
-        for(Armor armor : map.values()) {
+        for (Armor armor : map.values()) {
 
             set.add(armor.getRecipeShape());
         }
@@ -104,7 +104,8 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
     }
 
     /**
-     * It returns a list of all the items that have the same recipe shape as the one passed in
+     * It returns a list of all the items that have the same recipe shape as the one
+     * passed in
      * 
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the armor items that match the shape.
@@ -113,7 +114,7 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
 
         List<CraftedItem> set = new ArrayList<>();
 
-        for(Armor armor : map.values()) {
+        for (Armor armor : map.values()) {
 
             if (armor.getRecipeShape().equals(shape)) {
 

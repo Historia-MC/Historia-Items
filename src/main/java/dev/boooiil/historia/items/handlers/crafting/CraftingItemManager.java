@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.handlers.crafting;
 
-import dev.boooiil.historia.items.classes.items.craftable.CraftedItem;
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
+import dev.boooiil.historia.items.items.craftable.CraftedItem;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.inventory.ItemStack;
 
@@ -39,15 +39,15 @@ public class CraftingItemManager {
                 if (item.isShapeDependent()) {
 
                     result = new GetItemMatchingMaterials(item, materials).getItem();
-                    
-                }
-                else {
+
+                } else {
 
                     result = new GetItemMatchingMaterials(item, fullMaterials).getItem();
 
                 }
 
-                if (result != null) break;
+                if (result != null)
+                    break;
 
             }
 
@@ -58,5 +58,5 @@ public class CraftingItemManager {
     public ItemStack getResult() {
         return result;
     }
-        
+
 }
