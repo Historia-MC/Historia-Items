@@ -1,0 +1,12 @@
+target/
+historia-development.code-workspace
+.settings/
+.classpath
+.project
+.factorypath
+Maven/
+.vscode/
+historia.code-workspace
+.idea/
+Historia-Ores.iml
+Historia-Items.iml
