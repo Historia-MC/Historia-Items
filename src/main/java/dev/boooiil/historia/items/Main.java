@@ -3,12 +3,14 @@ package dev.boooiil.historia.items;
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.events.crafting.CraftItemListener;
+import dev.boooiil.historia.items.file.FileIO;
+
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import dev.boooiil.historia.items.util.FileIO;
+
 import dev.boooiil.historia.items.util.Logging;
 
 public class Main extends JavaPlugin {
@@ -68,7 +70,6 @@ public class Main extends JavaPlugin {
         return instance;
 
     }
-
 
     public static Server server() {
 

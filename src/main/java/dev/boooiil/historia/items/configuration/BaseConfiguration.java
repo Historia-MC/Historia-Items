@@ -1,7 +1,8 @@
 package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.util.FileIO;
+import dev.boooiil.historia.items.file.FileIO;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
