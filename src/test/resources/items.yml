@@ -167,7 +167,7 @@ SADDLE:
   recipe-shape: ["AAA", "B B", "   "]
   canCraft: [Huntsman]
 
-COKE:
+CHARCOAL_COKE:
   item:
     type: COAL
     amount: 1
@@ -185,5 +185,26 @@ COKE:
 
   requireShape: true
   recipe-items: ["CHARCOAL"]
+  recipe-shape: ["AAA", "A A", "AAA"]
+  canCraft: [Blacksmith]
+
+COAL_COKE:
+  item:
+    type: COAL
+    amount: 1
+    display-name: §7Coke
+    loc-name: COKE
+    lore:
+      - ""
+      - "§7A lump of coke"
+      - ""
+      - "§oI could combine this"
+      - "$owith something..."
+      - ""
+      - "§9--------------------"
+      - ""
+
+  requireShape: true
+  recipe-items: ["COAL"]
   recipe-shape: ["AAA", "A A", "AAA"]
   canCraft: [Blacksmith]
