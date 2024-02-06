@@ -1,6 +1,8 @@
 package dev.boooiil.historia.items.handlers.inventory.prepareCraftItem;
 
 import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.ores.classes.items.generic.Ingot;
+
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -25,20 +27,26 @@ public class PrepareItemCraftInventoryHelper {
         // so matlab rules apply on this array
         for (int i = 1; i < craftingTableInventory.length; i++) {
 
+            // if item in slot i is null or the item meta is null then set item to null
             ItemStack item = (craftingTableInventory[i] == null || craftingTableInventory[i].getItemMeta() == null)
                     ? null
                     : craftingTableInventory[i];
             String materialName = null;
 
+            // check if the item could be a custom item
             if (item != null && item.getItemMeta() != null) {
 
-                if (!item.getItemMeta().getLocalizedName().isEmpty())
-                    materialName = item.getItemMeta().getLocalizedName();
-                else
+                Ingot ingot = new Ingot(item);
+
+                if (ingot.isValid()) {
+                    materialName = ingot.generateReadableName();
+                } else {
                     materialName = item.getType().toString();
+                }
 
             }
 
+            // add the item to the full material list if it is not null
             if (item != null) {
 
                 Logging.debugToConsole("[CTI] Item: (" + i + ") " + materialName);
