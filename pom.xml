@@ -32,6 +32,12 @@
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
+
+    <repository>
+      <id>historia-releases</id>
+      <name>Historia Repository</name>
+      <url>http://boooiil.sytes.net:1200/releases</url>
+    </repository>
   </repositories>
 
   <dependencies>
