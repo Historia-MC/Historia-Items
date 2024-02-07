@@ -18,6 +18,8 @@ public class CraftItemListener implements Listener {
     @EventHandler
     public void onCraftItem(CraftItemEvent event) {
 
+        System.out.println("CraftItemEvent triggered");
+
         HistoriaPlayer historiaPlayer = PlayerStorage.getPlayer(event.getWhoClicked().getUniqueId(), false);
         WeaponConfig weaponConfig = ConfigurationLoader.getWeaponConfig();
         ArmorConfig armorConfig = ConfigurationLoader.getArmorConfig();
