@@ -11,7 +11,9 @@ public enum FileKeys {
     /** tools.yml */
     TOOLS("tools.yml"),
     /** customitems.yml */
-    CUSTOM_ITEMS("items.yml");
+    CUSTOM_ITEMS("items.yml"),
+    /** ingots.yml */
+    INGOTS("ingots.yml");
 
     private final String key;
 
