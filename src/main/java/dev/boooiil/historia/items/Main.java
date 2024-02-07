@@ -5,6 +5,7 @@ import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.events.inventory.CraftItemListener;
 import dev.boooiil.historia.items.file.FileIO;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -80,6 +81,12 @@ public class Main extends JavaPlugin {
     public static void disable(Plugin plugin) {
 
         plugin.getServer().getPluginManager().disablePlugin(plugin);
+
+    }
+
+    public static NamespacedKey getNamespacedKey(String key) {
+
+        return new NamespacedKey(plugin(), key);
 
     }
 
