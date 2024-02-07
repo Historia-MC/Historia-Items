@@ -21,7 +21,7 @@ import dev.boooiil.historia.items.configuration.specific.*;
  * It loads the configuration files.
  */
 public class ConfigurationLoader {
-    
+
     private static final ArmorConfig armorConfig = new ArmorConfig();
     private static final WeaponConfig weaponConfig = new WeaponConfig();
     private static final GeneralConfig generalConfig = new GeneralConfig();
@@ -76,11 +76,11 @@ public class ConfigurationLoader {
 
         armorConfig.loadConfiguration("armor.yml");
         weaponConfig.loadConfiguration("weapons.yml");
-        customItemConfig.loadConfiguration("customitems.yml");
+        customItemConfig.loadConfiguration("items.yml");
         toolConfig.loadConfiguration("tools.yml");
-        
+
     }
-    
+
     /**
      * It's a function that reloads the config file
      */
@@ -89,5 +89,5 @@ public class ConfigurationLoader {
         init();
 
     }
-    
+
 }

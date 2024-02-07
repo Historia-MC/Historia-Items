@@ -2,13 +2,16 @@ package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
-import dev.boooiil.historia.items.events.crafting.CraftItemListener;
+import dev.boooiil.historia.items.events.inventory.CraftItemListener;
+import dev.boooiil.historia.items.file.FileIO;
+
+import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import dev.boooiil.historia.items.util.FileIO;
+
 import dev.boooiil.historia.items.util.Logging;
 
 public class Main extends JavaPlugin {
@@ -69,7 +72,6 @@ public class Main extends JavaPlugin {
 
     }
 
-
     public static Server server() {
 
         return plugin().getServer();
@@ -79,6 +81,12 @@ public class Main extends JavaPlugin {
     public static void disable(Plugin plugin) {
 
         plugin.getServer().getPluginManager().disablePlugin(plugin);
+
+    }
+
+    public static NamespacedKey getNamespacedKey(String key) {
+
+        return new NamespacedKey(plugin(), key);
 
     }
 

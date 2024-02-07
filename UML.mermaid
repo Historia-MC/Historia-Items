@@ -35,19 +35,6 @@ classDiagram
 
     }
 
-    class BaseConfiguration~T~ {
-
-        +loadConfiguration(String) : void
-        +getConfiguration() : YamlConfiguration
-        +getSet() : Set~String~
-        +getMap() : HashMap&lt;String, T>
-        +isValid(String) : boolean
-        +createNew(String) : T*
-        +getObject(String) : T*
-        -populateMap() : void
-
-    }
-
     class ConfigurationLoader {
 
         -ArmorConfig armorConfig$

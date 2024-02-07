@@ -1,14 +1,18 @@
 package dev.boooiil.historia.items.util;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.Warning;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.HashMap;
-import java.util.List;
+import net.kyori.adventure.text.Component;
 
 /**
  * Construct various Bukkit types.
@@ -23,13 +27,14 @@ public class Construct {
     /**
      * It creates an ItemStack with the given parameters
      * 
-     * @param material The material of the item.
-     * @param amount The amount of the item
-     * @param displayName The name that will be displayed on the item.
+     * @param material      The material of the item.
+     * @param amount        The amount of the item
+     * @param displayName   The name that will be displayed on the item.
      * @param localizedName The name of the item in the language file.
-     * @param lore The lore of the item.
+     * @param lore          The lore of the item.
      * @return An ItemStack
      */
+    @Warning(reason = "This method only works with Spigot!")
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName,
             List<String> lore) {
 
@@ -38,14 +43,7 @@ public class Construct {
                 + " loc-name: "
                 + localizedName + " lore: " + lore);
 
-        Material providedMaterial = Material.getMaterial(material, false);
-
-        if (providedMaterial == null) {
-            Logging.errorToConsole("Material " + material + " is not a valid material.");
-            return new ItemStack(Material.AIR);
-        }
-
-        ItemStack item = new ItemStack(providedMaterial, amount);
+        ItemStack item = new ItemStack(Material.getMaterial(material, false), amount);
 
         ItemMeta meta = item.getItemMeta();
 
@@ -62,6 +60,7 @@ public class Construct {
 
     }
 
+    @Warning(reason = "This method only works with Spigot!")
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
@@ -69,14 +68,7 @@ public class Construct {
                 + " loc-name: "
                 + localizedName);
 
-        Material providedMaterial = Material.getMaterial(material, false);
-
-        if (providedMaterial == null) {
-            Logging.errorToConsole("Material " + material + " is not a valid material.");
-            return new ItemStack(Material.AIR);
-        }
-
-        ItemStack item = new ItemStack(providedMaterial, amount);
+        ItemStack item = new ItemStack(Material.getMaterial(material, false), amount);
 
         ItemMeta meta = item.getItemMeta();
 
@@ -91,14 +83,39 @@ public class Construct {
 
     }
 
+    @Warning(reason = "This method only works with PaperSpigot!")
+    public static ItemStack itemStack(Material material, int amount, String displayName, List<String> lore) {
+
+        // LOGGING TO BE REMOVED AFTER PUBLISH
+        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+                + " lore: " + lore);
+
+        ItemStack item = new ItemStack(material, amount);
+
+        ItemMeta meta = item.getItemMeta();
+
+        List<Component> loreComponent = new ArrayList<>();
+        Component nameComponent = Component.text("My Custom Sword");
+        meta.displayName(nameComponent);
+
+        for (String line : lore) {
+            loreComponent.add(Component.text(line));
+        }
+
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
     /**
      * It takes a list of items, and replaces the drops of a block with those items
      * 
-     * @param player The player who broke the block
+     * @param player      The player who broke the block
      * @param brokenBlock The block that was broken
-     * @param newBlock The material of the block that will replace the broken block
-     * @param sound The sound to be played when the block is broken
-     * @param givenItems A list of HashMaps that contain the following keys:
+     * @param newBlock    The material of the block that will replace the broken
+     *                    block
+     * @param sound       The sound to be played when the block is broken
+     * @param givenItems  A list of HashMaps that contain the following keys:
      * @return A boolean value.
      */
     public static boolean blockReplacement(Player player, Block brokenBlock, Material newBlock, Sound sound,
@@ -106,7 +123,7 @@ public class Construct {
 
         // If the size of the list is greater than 0
         // IE, if there are items to be given to the player
-        if (!givenItems.isEmpty()) {
+        if (givenItems.size() > 0) {
 
             brokenBlock.getDrops().clear();
 
@@ -116,8 +133,10 @@ public class Construct {
                 Integer amount = Integer.getInteger(item.get("amount"));
                 String displayName = item.get("display-name");
                 String localizedName = item.get("localized-name");
+                List<String> lore = null;
 
-                ItemStack droppedItem = Construct.itemStack(item.get("material"), amount, displayName, localizedName, null);
+                ItemStack droppedItem = Construct.itemStack(item.get("material"), amount, displayName, localizedName,
+                        lore);
 
                 brokenBlock.getDrops().add(droppedItem);
 
