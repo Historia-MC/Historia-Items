@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.crafted;
+package dev.boooiil.historia.items.crafted.armor;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 
 public class Armor extends BaseItem {
