@@ -3,7 +3,7 @@ package dev.boooiil.historia.items.commands;
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
-import dev.boooiil.historia.items.configuration.items.CustomItemConfig;
+import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.WeaponConfig;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
@@ -58,7 +58,7 @@ public class CommandGive implements CommandExecutor {
 
         } else if (args[0].equalsIgnoreCase("other")) {
 
-            CustomItemConfig customItemConfig = ConfigurationLoader.getCustomItemConfig();
+            CustomItemConfigurationLoader customItemConfig = ConfigurationLoader.getCustomItemConfig();
 
             if (customItemConfig.isValid(args[1])) {
 
