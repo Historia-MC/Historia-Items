@@ -17,19 +17,6 @@ import dev.boooiil.historia.items.items.BaseItem;
 import dev.boooiil.historia.items.util.Construct;
 
 /**
- * **********************************
- * There are currently two ways we are
- * tracking ingots. The first way is
- * through the ConfigurationLoader and
- * the second way is through the
- * PersistentDataContainer. These both
- * are redundant and should ideally
- * be merged into one implentation.
- * TODO: Decide which implementation
- * **********************************
- */
-
-/**
  * This class represents an ingot as a child of the
  * BaseItem class. It contains all the information
  * that is needed to create and smelt an ingot.
@@ -52,8 +39,7 @@ public class Ingot extends BaseItem {
         if (!itemStack.hasItemMeta()) {
             this.valid = false;
             return;
-        } else
-            this.valid = true;
+        }
 
         this.itemStack = itemStack;
 
@@ -61,7 +47,7 @@ public class Ingot extends BaseItem {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         if (container.has(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING)) {
-
+            this.valid = true;
             this.material = itemStack.getType();
             this.weight = Weight
                     .getWeight(container.get(Main.getNamespacedKey("ingot-weight"), PersistentDataType.STRING));
