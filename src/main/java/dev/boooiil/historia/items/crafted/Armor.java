@@ -51,6 +51,8 @@ public class Armor extends BaseItem {
     public Armor(Material material, String displayName, double defense, int durability, Weight weight,
             int weightValue, List<String> lore) {
 
+        this.valid = true;
+
         this.defense = defense;
 
         this.durability = durability;
