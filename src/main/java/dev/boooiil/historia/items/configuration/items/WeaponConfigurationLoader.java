@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * It's a class that gets information from a configuration file.
  */
-public class WeaponConfig extends BaseConfiguration<WeaponConfiguration> {
+public class WeaponConfigurationLoader extends BaseConfiguration<WeaponConfiguration> {
 
     /**
      * Used to create a new instance of Weapon.
