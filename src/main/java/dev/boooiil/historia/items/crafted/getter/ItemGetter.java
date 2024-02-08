@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.items.getter;
+package dev.boooiil.historia.items.crafted.getter;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;

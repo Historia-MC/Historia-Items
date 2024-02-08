@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.items.generic;
+package dev.boooiil.historia.items.generic;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.items.modifiers.Quality;
-import dev.boooiil.historia.items.items.modifiers.Weight;
-import dev.boooiil.historia.items.items.BaseItem;
+import dev.boooiil.historia.items.crafted.BaseItem;
+import dev.boooiil.historia.items.crafted.modifiers.Quality;
+import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 
 /**

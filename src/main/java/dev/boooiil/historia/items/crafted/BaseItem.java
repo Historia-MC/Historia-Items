@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.items;
+package dev.boooiil.historia.items.crafted;
 
 import org.bukkit.inventory.ItemStack;
 
