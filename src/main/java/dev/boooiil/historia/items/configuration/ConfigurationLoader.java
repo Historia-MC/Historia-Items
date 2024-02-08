@@ -5,7 +5,7 @@
  * methods to initialize and reload the configuration files.
  * The configuration files are loaded from the plugin's resources folder and are in YAML format.
  * 
- * @see ArmorConfig
+ * @see ArmorConfigurationLoader
  * @see IngotConfig
  * @see OreConfig
  * @see WeaponConfig
@@ -22,7 +22,7 @@ import dev.boooiil.historia.items.configuration.specific.*;
  */
 public class ConfigurationLoader {
 
-    private static final ArmorConfig armorConfig = new ArmorConfig();
+    private static final ArmorConfigurationLoader armorConfig = new ArmorConfigurationLoader();
     private static final WeaponConfig weaponConfig = new WeaponConfig();
     private static final GeneralConfig generalConfig = new GeneralConfig();
     private static final CustomItemConfig customItemConfig = new CustomItemConfig();
@@ -33,7 +33,7 @@ public class ConfigurationLoader {
      * 
      * @return The armorConfig variable.
      */
-    public static ArmorConfig getArmorConfig() {
+    public static ArmorConfigurationLoader getArmorConfig() {
         return armorConfig;
     }
 

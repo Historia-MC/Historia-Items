@@ -12,7 +12,7 @@ import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.file.FileKeys;
-import dev.boooiil.historia.items.items.craftable.Armor;
+import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
 import dev.boooiil.historia.items.items.craftable.CustomItem;
 import dev.boooiil.historia.items.items.craftable.Tool;
 import dev.boooiil.historia.items.items.craftable.Weapon;
@@ -59,7 +59,7 @@ public class ItemGetterTest {
             if (key.equals("version"))
                 continue;
             System.out.println("Testing key: " + key);
-            Armor item = ItemGetter.getArmor(key);
+            ArmorConfiguration item = ItemGetter.getArmor(key);
 
             System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
 

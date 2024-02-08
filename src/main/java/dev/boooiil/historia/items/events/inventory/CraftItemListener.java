@@ -3,7 +3,7 @@ package dev.boooiil.historia.items.events.inventory;
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
 import dev.boooiil.historia.core.database.internal.PlayerStorage;
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
-import dev.boooiil.historia.items.configuration.specific.ArmorConfig;
+import dev.boooiil.historia.items.configuration.specific.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.specific.CustomItemConfig;
 import dev.boooiil.historia.items.configuration.specific.WeaponConfig;
 import dev.boooiil.historia.items.handlers.inventory.CraftingResult;
@@ -22,7 +22,7 @@ public class CraftItemListener implements Listener {
 
         HistoriaPlayer historiaPlayer = PlayerStorage.getPlayer(event.getWhoClicked().getUniqueId(), false);
         WeaponConfig weaponConfig = ConfigurationLoader.getWeaponConfig();
-        ArmorConfig armorConfig = ConfigurationLoader.getArmorConfig();
+        ArmorConfigurationLoader armorConfig = ConfigurationLoader.getArmorConfig();
         CustomItemConfig customItemConfig = ConfigurationLoader.getCustomItemConfig();
         CraftingResult craftingResult;
 

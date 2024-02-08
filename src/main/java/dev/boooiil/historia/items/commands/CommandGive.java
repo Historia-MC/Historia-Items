@@ -1,10 +1,10 @@
 package dev.boooiil.historia.items.commands;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
-import dev.boooiil.historia.items.configuration.specific.ArmorConfig;
+import dev.boooiil.historia.items.configuration.specific.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.specific.CustomItemConfig;
 import dev.boooiil.historia.items.configuration.specific.WeaponConfig;
-import dev.boooiil.historia.items.items.craftable.Armor;
+import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
 import dev.boooiil.historia.items.items.craftable.CustomItem;
 import dev.boooiil.historia.items.items.craftable.Weapon;
 
@@ -42,11 +42,11 @@ public class CommandGive implements CommandExecutor {
 
         } else if (args[0].equalsIgnoreCase("armor")) {
 
-            ArmorConfig armorConfig = ConfigurationLoader.getArmorConfig();
+            ArmorConfigurationLoader armorConfig = ConfigurationLoader.getArmorConfig();
 
             if (armorConfig.isValid(args[1])) {
 
-                Armor armor = armorConfig.getObject(args[1]);
+                ArmorConfiguration armor = armorConfig.getObject(args[1]);
                 player.getWorld().dropItemNaturally(player.getLocation(), armor.getItemStack());
 
             }

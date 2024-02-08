@@ -3,7 +3,7 @@ package dev.boooiil.historia.items.handlers.inventory;
 import dev.boooiil.historia.core.classes.enums.experience.CraftingSources;
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
 import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftInventoryHelper;
-import dev.boooiil.historia.items.items.craftable.Armor;
+import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
 import dev.boooiil.historia.items.items.craftable.CraftedItem;
 import dev.boooiil.historia.items.items.craftable.Weapon;
 import dev.boooiil.historia.items.util.Logging;
@@ -36,7 +36,7 @@ public class CraftingResult {
 
     public void generateRandomModifiers() {
 
-        if (craftedItem instanceof Armor) {
+        if (craftedItem instanceof ArmorConfiguration) {
 
             Logging.debugToConsole("[generateRandomModifiers] Generating Armor Modifiers");
 
@@ -68,7 +68,7 @@ public class CraftingResult {
 
         PrepareItemCraftInventoryHelper inspector = new PrepareItemCraftInventoryHelper(inventory.getContents());
         List<String> allMaterials = inspector.getFullMaterials();
-        Armor armor = (Armor) craftedItem;
+        ArmorConfiguration armor = (ArmorConfiguration) craftedItem;
 
         float qualityBonus = getQualityBonus(allMaterials);
         float levelBonus = getLevelBonus(historiaPlayer.getLevel());
@@ -85,10 +85,10 @@ public class CraftingResult {
 
         List<String> lore = List.of(
                 "",
-                "§7Class - " + armor.getWeightClass(),
+                "§7Class - " + armor.getWeight(),
                 "",
                 "§7Armor - " + NumberUtils.roundDouble(rolledArmor, 2),
-                "§7Weight - " + armor.getWeight());
+                "§7Weight - " + armor.getWeightValue());
 
         damageable.setDamage(adjustedDurability);
         meta.setLore(lore);
