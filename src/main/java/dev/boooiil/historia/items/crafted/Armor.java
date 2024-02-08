@@ -14,12 +14,12 @@ import dev.boooiil.historia.items.crafted.modifiers.Weight;
 
 public class Armor extends BaseItem {
 
-    public double defense;
+    private double defense;
 
-    public int durability;
-    public int weightValue;
+    private int durability;
+    private int weightValue;
 
-    Weight weight;
+    private Weight weight;
 
     public Armor(ItemStack item) {
         super(item);
