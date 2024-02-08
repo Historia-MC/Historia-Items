@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.configuration.specific;
+package dev.boooiil.historia.items.configuration.general;
 
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.file.FileKeys;
