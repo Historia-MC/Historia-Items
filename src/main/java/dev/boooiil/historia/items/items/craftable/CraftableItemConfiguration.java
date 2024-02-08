@@ -1,16 +1,19 @@
 package dev.boooiil.historia.items.items.craftable;
 
-import dev.boooiil.historia.items.items.BaseItem;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.List;
 
-public class CraftedItem extends BaseItem {
+import org.bukkit.inventory.ItemStack;
+
+public class CraftableItemConfiguration {
 
     protected List<String> recipeShape;
     protected List<String> recipeItems;
     protected List<String> proficiencies;
     protected boolean isShaped;
+
+    protected ItemStack itemStack;
 
     /**
      * This function returns the list of items that are required to craft the item
@@ -75,5 +78,14 @@ public class CraftedItem extends BaseItem {
         else
             return this.proficiencies.contains(proficiency);
 
+    }
+
+    /**
+     * It returns the item stack of the item.
+     *
+     * @return The item stack.
+     */
+    public ItemStack getItemStack() {
+        return itemStack;
     }
 }
