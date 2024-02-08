@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.handlers.inventory.prepareCraftItem;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
-import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
+import dev.boooiil.historia.items.configuration.items.CraftableItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.inventory.ItemStack;
 

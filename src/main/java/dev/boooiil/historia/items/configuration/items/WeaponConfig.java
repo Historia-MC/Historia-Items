@@ -1,8 +1,6 @@
 package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
-import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
-import dev.boooiil.historia.items.items.craftable.WeaponConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

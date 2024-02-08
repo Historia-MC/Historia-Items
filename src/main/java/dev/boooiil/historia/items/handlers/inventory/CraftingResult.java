@@ -2,10 +2,10 @@ package dev.boooiil.historia.items.handlers.inventory;
 
 import dev.boooiil.historia.core.classes.enums.experience.CraftingSources;
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
+import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.items.CraftableItemConfiguration;
+import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
 import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftInventoryHelper;
-import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
-import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
-import dev.boooiil.historia.items.items.craftable.WeaponConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 import org.bukkit.attribute.Attribute;
