@@ -20,25 +20,26 @@ import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.ToolConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
+import dev.boooiil.historia.items.file.FileKeys;
 
 /**
  * It loads the configuration files.
  */
-public class ConfigurationLoader {
+public class ConfigurationFactory {
 
-    private static final ArmorConfigurationLoader armorConfig = new ArmorConfigurationLoader();
-    private static final WeaponConfigurationLoader weaponConfig = new WeaponConfigurationLoader();
+    private static final ArmorConfigurationLoader armorConfigurationLoader = new ArmorConfigurationLoader();
+    private static final WeaponConfigurationLoader weaponConfigurationLoader = new WeaponConfigurationLoader();
     private static final GeneralConfig generalConfig = new GeneralConfig();
-    private static final CustomItemConfigurationLoader customItemConfig = new CustomItemConfigurationLoader();
-    private static final ToolConfigurationLoader toolConfig = new ToolConfigurationLoader();
+    private static final CustomItemConfigurationLoader customItemConfigurationLoader = new CustomItemConfigurationLoader();
+    private static final ToolConfigurationLoader toolConfigurationLoader = new ToolConfigurationLoader();
 
     /**
      * It returns the armorConfig variable
      * 
      * @return The armorConfig variable.
      */
-    public static ArmorConfigurationLoader getArmorConfig() {
-        return armorConfig;
+    public static ArmorConfigurationLoader getArmorConfigurationLoader() {
+        return armorConfigurationLoader;
     }
 
     /**
@@ -46,8 +47,8 @@ public class ConfigurationLoader {
      * 
      * @return The weaponConfig object.
      */
-    public static WeaponConfigurationLoader getWeaponConfig() {
-        return weaponConfig;
+    public static WeaponConfigurationLoader getWeaponConfigurationLoader() {
+        return weaponConfigurationLoader;
     }
 
     /**
@@ -64,13 +65,13 @@ public class ConfigurationLoader {
      * 
      * @return The customItemConfig variable.
      */
-    public static CustomItemConfigurationLoader getCustomItemConfig() {
-        return customItemConfig;
+    public static CustomItemConfigurationLoader getCustomItemConfigurationLoader() {
+        return customItemConfigurationLoader;
     }
 
-    public static ToolConfigurationLoader getToolConfig() {
+    public static ToolConfigurationLoader getToolConfigurationLoader() {
 
-        return toolConfig;
+        return toolConfigurationLoader;
     }
 
     /**
@@ -78,10 +79,10 @@ public class ConfigurationLoader {
      */
     public static void init() {
 
-        armorConfig.loadConfiguration("armor.yml");
-        weaponConfig.loadConfiguration("weapons.yml");
-        customItemConfig.loadConfiguration("items.yml");
-        toolConfig.loadConfiguration("tools.yml");
+        armorConfigurationLoader.loadConfiguration(FileKeys.ARMOR);
+        weaponConfigurationLoader.loadConfiguration(FileKeys.WEAPONS);
+        customItemConfigurationLoader.loadConfiguration(FileKeys.CUSTOM_ITEMS);
+        toolConfigurationLoader.loadConfiguration(FileKeys.TOOLS);
 
     }
 
