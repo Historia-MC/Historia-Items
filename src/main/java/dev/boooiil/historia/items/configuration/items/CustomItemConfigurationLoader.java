@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class CustomItemConfig extends BaseConfiguration<CustomItemConfiguration> {
+public class CustomItemConfigurationLoader extends BaseConfiguration<CustomItemConfiguration> {
 
     @Override
     public CustomItemConfiguration createNew(String itemName) {
