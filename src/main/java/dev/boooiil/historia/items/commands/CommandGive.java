@@ -1,9 +1,9 @@
 package dev.boooiil.historia.items.commands;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
-import dev.boooiil.historia.items.configuration.specific.ArmorConfigurationLoader;
-import dev.boooiil.historia.items.configuration.specific.CustomItemConfig;
-import dev.boooiil.historia.items.configuration.specific.WeaponConfig;
+import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
+import dev.boooiil.historia.items.configuration.items.CustomItemConfig;
+import dev.boooiil.historia.items.configuration.items.WeaponConfig;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
 import dev.boooiil.historia.items.items.craftable.CustomItem;
 import dev.boooiil.historia.items.items.craftable.Weapon;

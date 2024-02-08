@@ -15,7 +15,11 @@
  */
 package dev.boooiil.historia.items.configuration;
 
-import dev.boooiil.historia.items.configuration.specific.*;
+import dev.boooiil.historia.items.configuration.general.GeneralConfig;
+import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
+import dev.boooiil.historia.items.configuration.items.CustomItemConfig;
+import dev.boooiil.historia.items.configuration.items.ToolConfig;
+import dev.boooiil.historia.items.configuration.items.WeaponConfig;
 
 /**
  * It loads the configuration files.
