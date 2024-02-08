@@ -5,8 +5,8 @@ import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfig;
 import dev.boooiil.historia.items.configuration.items.WeaponConfig;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
-import dev.boooiil.historia.items.items.craftable.CustomItem;
-import dev.boooiil.historia.items.items.craftable.Weapon;
+import dev.boooiil.historia.items.items.craftable.CustomItemConfiguration;
+import dev.boooiil.historia.items.items.craftable.WeaponConfiguration;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,7 +30,7 @@ public class CommandGive implements CommandExecutor {
 
             if (weaponConfig.isValid(args[1])) {
 
-                Weapon weapon = weaponConfig.getObject(args[1]);
+                WeaponConfiguration weapon = weaponConfig.getObject(args[1]);
                 player.getWorld().dropItemNaturally(player.getLocation(), weapon.getItemStack());
 
             }
@@ -62,7 +62,7 @@ public class CommandGive implements CommandExecutor {
 
             if (customItemConfig.isValid(args[1])) {
 
-                CustomItem item = customItemConfig.getObject(args[1]);
+                CustomItemConfiguration item = customItemConfig.getObject(args[1]);
                 player.getWorld().dropItemNaturally(player.getLocation(), item.getItemStack());
 
             }

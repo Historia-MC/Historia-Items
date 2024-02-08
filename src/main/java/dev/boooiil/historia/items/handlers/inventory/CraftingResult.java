@@ -5,7 +5,7 @@ import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
 import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftInventoryHelper;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
 import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
-import dev.boooiil.historia.items.items.craftable.Weapon;
+import dev.boooiil.historia.items.items.craftable.WeaponConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 import org.bukkit.attribute.Attribute;
@@ -44,7 +44,7 @@ public class CraftingResult {
 
             historiaPlayer.increaseExperience(CraftingSources.ARMOR_CRAFT.getKey());
 
-        } else if (craftedItem instanceof Weapon) {
+        } else if (craftedItem instanceof WeaponConfiguration) {
 
             Logging.debugToConsole("[generateRandomModifiers] Generating Weapon Modifiers");
 
@@ -105,7 +105,7 @@ public class CraftingResult {
 
         PrepareItemCraftInventoryHelper inspector = new PrepareItemCraftInventoryHelper(inventory.getContents());
         List<String> allMaterials = inspector.getFullMaterials();
-        Weapon weapon = (Weapon) craftedItem;
+        WeaponConfiguration weapon = (WeaponConfiguration) craftedItem;
 
         float qualityBonus = getQualityBonus(allMaterials);
         float levelBonus = getLevelBonus(historiaPlayer.getLevel());

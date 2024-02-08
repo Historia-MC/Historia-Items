@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
 import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
-import dev.boooiil.historia.items.items.craftable.CustomItem;
+import dev.boooiil.historia.items.items.craftable.CustomItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.ArrayList;
@@ -10,15 +10,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class CustomItemConfig extends BaseConfiguration<CustomItem> {
+public class CustomItemConfig extends BaseConfiguration<CustomItemConfiguration> {
 
     @Override
-    public CustomItem createNew(String itemName) {
-        return new CustomItem(this.configuration.getConfigurationSection(itemName));
+    public CustomItemConfiguration createNew(String itemName) {
+        return new CustomItemConfiguration(this.configuration.getConfigurationSection(itemName));
     }
 
     @Override
-    public CustomItem getObject(String objectName) {
+    public CustomItemConfiguration getObject(String objectName) {
 
         if (isValid(objectName))
             return map.get(objectName);
@@ -33,11 +33,11 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
      * @param inputShape Recipe shape.
      * @return CustomItem object.
      */
-    public CustomItem getItem(List<String> inputItems, List<String> inputShape) {
+    public CustomItemConfiguration getItem(List<String> inputItems, List<String> inputShape) {
 
-        CustomItem item = null;
+        CustomItemConfiguration item = null;
 
-        for (Map.Entry<String, CustomItem> entry : map.entrySet()) {
+        for (Map.Entry<String, CustomItemConfiguration> entry : map.entrySet()) {
 
             boolean valid = entry.getValue().isValidRecipe(inputItems, inputShape);
 
@@ -62,7 +62,7 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
 
         boolean found = false;
 
-        for (CustomItem item : map.values()) {
+        for (CustomItemConfiguration item : map.values()) {
 
             if (item.getRecipeShape().equals(shape)) {
 
@@ -85,7 +85,7 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
 
         List<List<String>> set = new ArrayList<>();
 
-        for (CustomItem customItem : map.values()) {
+        for (CustomItemConfiguration customItem : map.values()) {
 
             set.add(customItem.getRecipeShape());
         }
@@ -105,7 +105,7 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
 
         List<CraftableItemConfiguration> set = new ArrayList<>();
 
-        for (CustomItem customItem : map.values()) {
+        for (CustomItemConfiguration customItem : map.values()) {
 
             if (!customItem.isShapeDependent())
                 set.add(customItem);
@@ -126,7 +126,7 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
 
         List<CraftableItemConfiguration> set = new ArrayList<>();
 
-        for (CustomItem customItem : map.values()) {
+        for (CustomItemConfiguration customItem : map.values()) {
 
             if (new HashSet<>(customItem.getRecipeItems()).containsAll(materials)) {
 

@@ -13,9 +13,9 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.file.FileKeys;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
-import dev.boooiil.historia.items.items.craftable.CustomItem;
-import dev.boooiil.historia.items.items.craftable.Tool;
-import dev.boooiil.historia.items.items.craftable.Weapon;
+import dev.boooiil.historia.items.items.craftable.CustomItemConfiguration;
+import dev.boooiil.historia.items.items.craftable.ToolConfiguration;
+import dev.boooiil.historia.items.items.craftable.WeaponConfiguration;
 import dev.boooiil.historia.items.items.getter.ItemGetter;
 import dev.boooiil.historia.items.Main;
 
@@ -78,7 +78,7 @@ public class ItemGetterTest {
             if (key.equals("version"))
                 continue;
             System.out.println("Testing key: " + key);
-            Weapon item = ItemGetter.getWeapon(key);
+            WeaponConfiguration item = ItemGetter.getWeapon(key);
 
             System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
 
@@ -97,7 +97,7 @@ public class ItemGetterTest {
             if (key.equals("version"))
                 continue;
             System.out.println("Testing key: " + key);
-            CustomItem item = ItemGetter.getCustomItem(key);
+            CustomItemConfiguration item = ItemGetter.getCustomItem(key);
 
             System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
 
@@ -116,7 +116,7 @@ public class ItemGetterTest {
             if (key.equals("version"))
                 continue;
             System.out.println("Testing key: " + key);
-            Tool item = ItemGetter.getTool(key);
+            ToolConfiguration item = ItemGetter.getTool(key);
 
             System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
 

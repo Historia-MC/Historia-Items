@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
 import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
-import dev.boooiil.historia.items.items.craftable.Weapon;
+import dev.boooiil.historia.items.items.craftable.WeaponConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * It's a class that gets information from a configuration file.
  */
-public class WeaponConfig extends BaseConfiguration<Weapon> {
+public class WeaponConfig extends BaseConfiguration<WeaponConfiguration> {
 
     /**
      * Used to create a new instance of Weapon.
@@ -19,9 +19,9 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
      * @param weaponName - Name of the weapon to create.
      * @return Returns a Weapon object.
      */
-    public Weapon createNew(String weaponName) {
+    public WeaponConfiguration createNew(String weaponName) {
 
-        return new Weapon(this.configuration.getConfigurationSection(weaponName));
+        return new WeaponConfiguration(this.configuration.getConfigurationSection(weaponName));
 
     }
 
@@ -35,11 +35,11 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
      * @param inputShape A list of strings that represent the shape of the weapon.
      * @return A Weapon object.
      */
-    public Weapon getObject(List<String> inputItems, List<String> inputShape) {
+    public WeaponConfiguration getObject(List<String> inputItems, List<String> inputShape) {
 
-        Weapon weapon = null;
+        WeaponConfiguration weapon = null;
 
-        for (Map.Entry<String, Weapon> entry : map.entrySet()) {
+        for (Map.Entry<String, WeaponConfiguration> entry : map.entrySet()) {
 
             boolean armorValid = entry.getValue().isValidRecipe(inputItems, inputShape);
 
@@ -61,7 +61,7 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
      * @param weaponName The name of the weapon you want to get.
      * @return A Weapon object.
      */
-    public Weapon getObject(String weaponName) {
+    public WeaponConfiguration getObject(String weaponName) {
 
         if (isValid(weaponName))
             return map.get(weaponName);
@@ -80,7 +80,7 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
 
         boolean found = false;
 
-        for (Weapon weapon : map.values()) {
+        for (WeaponConfiguration weapon : map.values()) {
 
             if (weapon.getRecipeShape().equals(shape)) {
 
@@ -103,7 +103,7 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
 
         List<List<String>> set = new ArrayList<>();
 
-        for (Weapon weapon : map.values()) {
+        for (WeaponConfiguration weapon : map.values()) {
 
             set.add(weapon.getRecipeShape());
         }
@@ -123,7 +123,7 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
 
         List<CraftableItemConfiguration> set = new ArrayList<>();
 
-        for (Weapon weapon : map.values()) {
+        for (WeaponConfiguration weapon : map.values()) {
 
             if (weapon.getRecipeShape().equals(shape)) {
 

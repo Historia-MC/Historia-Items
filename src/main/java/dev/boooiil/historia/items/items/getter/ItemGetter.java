@@ -2,9 +2,9 @@ package dev.boooiil.historia.items.items.getter;
 
 import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
-import dev.boooiil.historia.items.items.craftable.CustomItem;
-import dev.boooiil.historia.items.items.craftable.Tool;
-import dev.boooiil.historia.items.items.craftable.Weapon;
+import dev.boooiil.historia.items.items.craftable.CustomItemConfiguration;
+import dev.boooiil.historia.items.items.craftable.ToolConfiguration;
+import dev.boooiil.historia.items.items.craftable.WeaponConfiguration;
 
 public class ItemGetter {
 
@@ -26,7 +26,7 @@ public class ItemGetter {
      * @param localizedName The localizedName of the custom item.
      * @return The custom item object.
      */
-    public static CustomItem getCustomItem(String localizedName) {
+    public static CustomItemConfiguration getCustomItem(String localizedName) {
 
         return ConfigurationLoader.getCustomItemConfig().getObject(localizedName);
 
@@ -38,7 +38,7 @@ public class ItemGetter {
      * @param localizedName The localizedName of the weapon.
      * @return The weapon object.
      */
-    public static Weapon getWeapon(String localizedName) {
+    public static WeaponConfiguration getWeapon(String localizedName) {
 
         return ConfigurationLoader.getWeaponConfig().getObject(localizedName);
 
@@ -50,7 +50,7 @@ public class ItemGetter {
      * @param localizedName The localizedName of the tool.
      * @return The tool object.
      */
-    public static Tool getTool(String localizedName) {
+    public static ToolConfiguration getTool(String localizedName) {
 
         return ConfigurationLoader.getToolConfig().getObject(localizedName);
 

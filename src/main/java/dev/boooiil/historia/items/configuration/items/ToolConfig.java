@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
 import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
-import dev.boooiil.historia.items.items.craftable.Tool;
+import dev.boooiil.historia.items.items.craftable.ToolConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +11,17 @@ import java.util.Map;
 /**
  * It's a class that gets information from a configuration file.
  */
-public class ToolConfig extends BaseConfiguration<Tool> {
+public class ToolConfig extends BaseConfiguration<ToolConfiguration> {
 
     /**
-     * Used to create a new instance of Tool.
+     * Used to create a new instance of ToolConfiguration.
      * 
      * @param toolName - Name of the tool to create.
-     * @return Returns a Tool object.
+     * @return Returns a ToolConfiguration object.
      */
-    public Tool createNew(String toolName) {
+    public ToolConfiguration createNew(String toolName) {
 
-        return new Tool(this.configuration.getConfigurationSection(toolName));
+        return new ToolConfiguration(this.configuration.getConfigurationSection(toolName));
 
     }
 
@@ -33,24 +33,24 @@ public class ToolConfig extends BaseConfiguration<Tool> {
      * @param inputItems A list of strings that represent the items used to craft
      *                   the tool.
      * @param inputShape A list of strings that represent the shape of the tool.
-     * @return A Tool object.
+     * @return A ToolConfiguration object.
      */
-    public Tool getObject(List<String> inputItems, List<String> inputShape) {
+    public ToolConfiguration getObject(List<String> inputItems, List<String> inputShape) {
 
-        Tool tool = null;
+        ToolConfiguration toolConfiguration = null;
 
-        for (Map.Entry<String, Tool> entry : map.entrySet()) {
+        for (Map.Entry<String, ToolConfiguration> entry : map.entrySet()) {
 
             boolean armorValid = entry.getValue().isValidRecipe(inputItems, inputShape);
 
             if (armorValid) {
-                tool = entry.getValue();
+                toolConfiguration = entry.getValue();
                 break;
             }
 
         }
 
-        return tool;
+        return toolConfiguration;
 
     }
 
@@ -59,9 +59,9 @@ public class ToolConfig extends BaseConfiguration<Tool> {
      * return null
      * 
      * @param toolName The name of the tool you want to get.
-     * @return A Tool object.
+     * @return A ToolConfiguration object.
      */
-    public Tool getObject(String toolName) {
+    public ToolConfiguration getObject(String toolName) {
 
         if (isValid(toolName))
             return map.get(toolName);
@@ -80,9 +80,9 @@ public class ToolConfig extends BaseConfiguration<Tool> {
 
         boolean found = false;
 
-        for (Tool tool : map.values()) {
+        for (ToolConfiguration toolConfiguration : map.values()) {
 
-            if (tool.getRecipeShape().equals(shape)) {
+            if (toolConfiguration.getRecipeShape().equals(shape)) {
 
                 found = true;
                 break;
@@ -103,9 +103,9 @@ public class ToolConfig extends BaseConfiguration<Tool> {
 
         List<List<String>> set = new ArrayList<>();
 
-        for (Tool tool : map.values()) {
+        for (ToolConfiguration toolConfiguration : map.values()) {
 
-            set.add(tool.getRecipeShape());
+            set.add(toolConfiguration.getRecipeShape());
         }
 
         return set;
@@ -123,11 +123,11 @@ public class ToolConfig extends BaseConfiguration<Tool> {
 
         List<CraftableItemConfiguration> set = new ArrayList<>();
 
-        for (Tool tool : map.values()) {
+        for (ToolConfiguration toolConfiguration : map.values()) {
 
-            if (tool.getRecipeShape().equals(shape)) {
+            if (toolConfiguration.getRecipeShape().equals(shape)) {
 
-                set.add(tool);
+                set.add(toolConfiguration);
 
             }
         }
