@@ -16,8 +16,8 @@ import java.util.Map;
  */
 public class ArmorConfig extends BaseConfiguration<Armor> {
 
-    public Armor createNew(String armourName) {
-        return new Armor(armourName);
+    public Armor createNew(String armorName) {
+        return new Armor(this.configuration.getConfigurationSection(armorName));
     }
 
     /**
