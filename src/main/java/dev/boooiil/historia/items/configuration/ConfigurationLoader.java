@@ -18,7 +18,7 @@ package dev.boooiil.historia.items.configuration;
 import dev.boooiil.historia.items.configuration.general.GeneralConfig;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
-import dev.boooiil.historia.items.configuration.items.ToolConfig;
+import dev.boooiil.historia.items.configuration.items.ToolConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.WeaponConfig;
 
 /**
@@ -30,7 +30,7 @@ public class ConfigurationLoader {
     private static final WeaponConfig weaponConfig = new WeaponConfig();
     private static final GeneralConfig generalConfig = new GeneralConfig();
     private static final CustomItemConfigurationLoader customItemConfig = new CustomItemConfigurationLoader();
-    private static final ToolConfig toolConfig = new ToolConfig();
+    private static final ToolConfigurationLoader toolConfig = new ToolConfigurationLoader();
 
     /**
      * It returns the armorConfig variable
@@ -68,7 +68,7 @@ public class ConfigurationLoader {
         return customItemConfig;
     }
 
-    public static ToolConfig getToolConfig() {
+    public static ToolConfigurationLoader getToolConfig() {
 
         return toolConfig;
     }
