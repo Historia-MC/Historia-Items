@@ -26,8 +26,7 @@ public class ToolConfiguration extends CraftableItemConfiguration {
 
     private final ItemStack itemStack;
 
-    // It's a constructor.
-    public ToolConfiguration(ConfigurationSection section) {
+    ToolConfiguration(ConfigurationSection section) {
 
         Material material = Material.getMaterial(section.getString(".item.type"));
         int amount = section.getInt(".item.amount");

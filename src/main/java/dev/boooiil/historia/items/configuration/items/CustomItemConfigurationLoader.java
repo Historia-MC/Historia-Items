@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.configuration.items;
 
-import dev.boooiil.historia.items.configuration.BaseConfiguration;
+import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class CustomItemConfigurationLoader extends BaseConfiguration<CustomItemConfiguration> {
+public class CustomItemConfigurationLoader extends BaseConfigurationLoader<CustomItemConfiguration> {
 
     @Override
     public CustomItemConfiguration createNew(String itemName) {

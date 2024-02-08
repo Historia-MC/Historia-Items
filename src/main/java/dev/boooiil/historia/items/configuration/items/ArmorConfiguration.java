@@ -6,7 +6,6 @@ import dev.boooiil.historia.items.util.NumberUtils;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
@@ -24,12 +23,7 @@ public class ArmorConfiguration extends CraftableItemConfiguration {
     private List<Double> defense;
     private List<Integer> durability;
 
-    public ArmorConfiguration(ItemStack itemStack) {
-
-    }
-
-    // Getting the armor's information from the config.
-    public ArmorConfiguration(ConfigurationSection section) {
+    ArmorConfiguration(ConfigurationSection section) {
 
         Material material = Material.getMaterial(section.getString(".item.type"));
         int amount = section.getInt(".item.amount");

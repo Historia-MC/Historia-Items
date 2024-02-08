@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.configuration.items;
 
-import dev.boooiil.historia.items.configuration.BaseConfiguration;
+import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.Map;
  * method to get armor based
  * on recipe items and shape.
  */
-public class ArmorConfigurationLoader extends BaseConfiguration<ArmorConfiguration> {
+public class ArmorConfigurationLoader extends BaseConfigurationLoader<ArmorConfiguration> {
 
     public ArmorConfiguration createNew(String armorName) {
         return new ArmorConfiguration(this.configuration.getConfigurationSection(armorName));

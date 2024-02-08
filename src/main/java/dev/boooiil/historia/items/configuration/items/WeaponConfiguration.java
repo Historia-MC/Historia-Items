@@ -24,8 +24,7 @@ public class WeaponConfiguration extends CraftableItemConfiguration {
     private List<Double> sweepRange;
     private List<Integer> durabilityRange;
 
-    // It's a constructor.
-    public WeaponConfiguration(ConfigurationSection section) {
+    WeaponConfiguration(ConfigurationSection section) {
 
         Material material = Material.getMaterial(section.getString(".item.type"));
         int amount = section.getInt(".item.amount");

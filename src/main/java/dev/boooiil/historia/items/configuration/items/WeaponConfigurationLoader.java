@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.configuration.items;
 
-import dev.boooiil.historia.items.configuration.BaseConfiguration;
+import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * It's a class that gets information from a configuration file.
  */
-public class WeaponConfigurationLoader extends BaseConfiguration<WeaponConfiguration> {
+public class WeaponConfigurationLoader extends BaseConfigurationLoader<WeaponConfiguration> {
 
     /**
      * Used to create a new instance of Weapon.
