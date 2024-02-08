@@ -5,7 +5,7 @@ import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
-import dev.boooiil.historia.items.configuration.items.WeaponConfig;
+import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
 
 import org.bukkit.command.Command;
@@ -26,7 +26,7 @@ public class CommandGive implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("weapon")) {
 
-            WeaponConfig weaponConfig = ConfigurationLoader.getWeaponConfig();
+            WeaponConfigurationLoader weaponConfig = ConfigurationLoader.getWeaponConfig();
 
             if (weaponConfig.isValid(args[1])) {
 

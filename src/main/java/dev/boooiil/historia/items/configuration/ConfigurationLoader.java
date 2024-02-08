@@ -8,7 +8,7 @@
  * @see ArmorConfigurationLoader
  * @see IngotConfig
  * @see OreConfig
- * @see WeaponConfig
+ * @see WeaponConfigurationLoader
  * @see GeneralConfig
  * @see CustomItemConfigurationLoader
  * @see CropConfig
@@ -19,7 +19,7 @@ import dev.boooiil.historia.items.configuration.general.GeneralConfig;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.ToolConfigurationLoader;
-import dev.boooiil.historia.items.configuration.items.WeaponConfig;
+import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
 
 /**
  * It loads the configuration files.
@@ -27,7 +27,7 @@ import dev.boooiil.historia.items.configuration.items.WeaponConfig;
 public class ConfigurationLoader {
 
     private static final ArmorConfigurationLoader armorConfig = new ArmorConfigurationLoader();
-    private static final WeaponConfig weaponConfig = new WeaponConfig();
+    private static final WeaponConfigurationLoader weaponConfig = new WeaponConfigurationLoader();
     private static final GeneralConfig generalConfig = new GeneralConfig();
     private static final CustomItemConfigurationLoader customItemConfig = new CustomItemConfigurationLoader();
     private static final ToolConfigurationLoader toolConfig = new ToolConfigurationLoader();
@@ -46,7 +46,7 @@ public class ConfigurationLoader {
      * 
      * @return The weaponConfig object.
      */
-    public static WeaponConfig getWeaponConfig() {
+    public static WeaponConfigurationLoader getWeaponConfig() {
         return weaponConfig;
     }
 
