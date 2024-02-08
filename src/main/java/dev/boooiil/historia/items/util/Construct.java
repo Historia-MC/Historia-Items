@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.Warning;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -34,7 +33,7 @@ public class Construct {
      * @param lore          The lore of the item.
      * @return An ItemStack
      */
-    @Warning(reason = "This method only works with Spigot!")
+    @Deprecated(forRemoval = true)
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName,
             List<String> lore) {
 
@@ -60,7 +59,7 @@ public class Construct {
 
     }
 
-    @Warning(reason = "This method only works with Spigot!")
+    @Deprecated(forRemoval = true)
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
@@ -83,10 +82,19 @@ public class Construct {
 
     }
 
-    @Warning(reason = "This method only works with PaperSpigot!")
+    /**
+     * It creates an ItemStack with the given parameters
+     * 
+     * @param material    The material of the item.
+     * @param amount      The amount of the item
+     * @param displayName The name that will be displayed on the item.
+     * @param lore        The lore of the item.
+     * @return An {@link ItemStack}
+     */
     public static ItemStack itemStack(Material material, int amount, String displayName, List<String> lore) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
+
         Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " lore: " + lore);
 
