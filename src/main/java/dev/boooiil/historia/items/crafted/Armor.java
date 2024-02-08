@@ -37,6 +37,8 @@ public class Armor extends BaseItem {
             return;
         }
 
+        this.valid = true;
+
         this.defense = container.get(Main.getNamespacedKey("armor-defense"), PersistentDataType.DOUBLE);
 
         this.durability = container.get(Main.getNamespacedKey("armor-durability"), PersistentDataType.INTEGER);
