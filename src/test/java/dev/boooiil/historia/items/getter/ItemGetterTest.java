@@ -12,12 +12,12 @@ import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.file.FileKeys;
-import dev.boooiil.historia.items.items.getter.ItemGetter;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
+import dev.boooiil.historia.items.crafted.getter.ItemGetter;
 
 public class ItemGetterTest {
 

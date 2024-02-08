@@ -11,8 +11,8 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.items.generic.Ingot;
 import dev.boooiil.historia.items.file.FileIO;
+import dev.boooiil.historia.items.generic.Ingot;
 
 public class IngotConfigTest {
 
