@@ -1,10 +1,11 @@
 package dev.boooiil.historia.items.items.craftable;
 
-import dev.boooiil.historia.items.configuration.ConfigurationLoader;
+import dev.boooiil.historia.items.items.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.util.NumberUtils;
+
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
@@ -12,56 +13,38 @@ import java.util.List;
 /**
  * It's a class that represents tools in the game.
  */
-public class Tool extends CraftedItem {
+public class Tool extends CraftableItemConfiguration {
 
-    private String weightClass;
+    private Weight weight;
 
-    private String weight;
+    private String weightValue;
 
     private List<Double> damageRange;
-    private double damage;
-
     private List<Double> speedRange;
-    private double speed;
-
     private List<Double> knockbackRange;
-    private double knockback;
-
     private List<Integer> durabilityRange;
-    private int durability;
 
     private final ItemStack itemStack;
 
     // It's a constructor.
-    public Tool(String localizedName) {
+    public Tool(ConfigurationSection section) {
 
-        YamlConfiguration configuration = ConfigurationLoader.getToolConfig().getConfiguration();
+        Material material = Material.getMaterial(section.getString(".item.type"));
+        int amount = section.getInt(".item.amount");
+        String displayName = section.getString(".item.display-name");
+        List<String> lore = section.getStringList(".item.lore");
 
-        valid = ConfigurationLoader.getToolConfig().isValid(localizedName);
+        this.itemStack = Construct.itemStack(material, amount, displayName, lore);
 
-        if (valid) {
+        this.recipeItems = section.getStringList(".recipe-items");
+        this.recipeShape = section.getStringList(".recipe-shape");
+        this.proficiencies = section.getStringList(".canCraft");
 
-            // It's calling the parent class's constructor.
-            itemStack = Construct.itemStack(
-                    configuration.getString(localizedName + ".item.type"),
-                    configuration.getInt(localizedName + ".item.amount"),
-                    configuration.getString(localizedName + ".item.display-name"),
-                    configuration.getString(localizedName + ".item.loc-name"),
-                    configuration.getStringList(localizedName + ".item.lore"));
-
-            this.recipeItems = configuration.getStringList(localizedName + ".recipe-items");
-            this.recipeShape = configuration.getStringList(localizedName + ".recipe-shape");
-            this.proficiencies = configuration.getStringList(localizedName + ".canCraft");
-
-            this.weightClass = configuration.getString(localizedName + ".type");
-            this.damageRange = configuration.getDoubleList(localizedName + ".damage");
-            this.speedRange = configuration.getDoubleList(localizedName + ".speed");
-            this.knockbackRange = configuration.getDoubleList(localizedName + ".knockback");
-            this.durabilityRange = configuration.getIntegerList(localizedName + ".durability");
-
-        } else {
-            itemStack = new ItemStack(Material.AIR);
-        }
+        this.weight = Weight.getWeight(section.getString(".type"));
+        this.damageRange = section.getDoubleList(".damage");
+        this.speedRange = section.getDoubleList(".speed");
+        this.knockbackRange = section.getDoubleList(".knockback");
+        this.durabilityRange = section.getIntegerList(".durability");
 
     }
 
@@ -215,9 +198,9 @@ public class Tool extends CraftedItem {
      * 
      * @return The type of the object.
      */
-    public String getWeightClass() {
+    public Weight getWeight() {
 
-        return this.weightClass;
+        return this.weight;
 
     }
 
@@ -226,30 +209,13 @@ public class Tool extends CraftedItem {
      * 
      * @return The weight of the object.
      */
-    public String getWeight() {
+    public String getWeightValue() {
 
-        return this.weight;
+        return this.weightValue;
 
     }
 
     public ItemStack getItemStack() {
         return itemStack;
     }
-
-    public double getDamage() {
-        return damage;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public double getKnockback() {
-        return knockback;
-    }
-
-    public int getDurability() {
-        return durability;
-    }
-
 }

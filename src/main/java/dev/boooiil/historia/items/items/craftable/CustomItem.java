@@ -1,51 +1,32 @@
 package dev.boooiil.historia.items.items.craftable;
 
-import dev.boooiil.historia.items.configuration.ConfigurationLoader;
 import dev.boooiil.historia.items.util.Construct;
-import org.bukkit.configuration.file.YamlConfiguration;
 
-public class CustomItem extends CraftedItem {
+import java.util.List;
 
-    private String itemName;
+import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 
-    public CustomItem(String localizedName) {
+public class CustomItem extends CraftableItemConfiguration {
 
-        YamlConfiguration configuration = ConfigurationLoader.getCustomItemConfig().getConfiguration();
-        valid = ConfigurationLoader.getCustomItemConfig().isValid(localizedName);
+    public CustomItem(ConfigurationSection section) {
 
-        if (valid) {
+        Material material = Material.getMaterial(section.getString(".item.type"));
+        int amount = section.getInt(".item.amount");
+        String displayName = section.getString(".item.display-name");
+        List<String> lore = section.getStringList(".item.lore");
 
-            this.itemName = localizedName;
+        this.itemStack = Construct.itemStack(material, amount, displayName, lore);
 
-            // Calling the parent class's constructor.
-            itemStack = Construct.itemStack(
-                    configuration.getString(localizedName + ".item.type"),
-                    configuration.getInt(localizedName + ".item.amount"),
-                    configuration.getString(localizedName + ".item.display-name"),
-                    configuration.getString(localizedName + ".item.loc-name"),
-                    configuration.getStringList(localizedName + ".item.lore"));
+        // Getting the recipe items from the config.
+        this.recipeItems = section.getStringList(".recipe-items");
 
-            // Getting the recipe items from the config.
-            this.recipeItems = configuration.getStringList(localizedName + ".recipe-items");
+        // Getting the recipe shape from the config.
+        this.recipeShape = section.getStringList(".recipe-shape");
 
-            // Getting the recipe shape from the config.
-            this.recipeShape = configuration.getStringList(localizedName + ".recipe-shape");
+        this.isShaped = section.getBoolean(".requireShape");
 
-            this.isShaped = configuration.getBoolean(localizedName + ".requireShape");
-
-            this.proficiencies = configuration.getStringList(localizedName + ".canCraft");
-
-        }
-    }
-
-    /**
-     * It returns the name of the item.
-     * 
-     * @return The name of the item.
-     */
-    public String getItemName() {
-
-        return this.itemName;
+        this.proficiencies = section.getStringList(".canCraft");
 
     }
 
