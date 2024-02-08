@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
-import dev.boooiil.historia.items.items.craftable.CraftedItem;
+import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
 import dev.boooiil.historia.items.items.craftable.CustomItem;
 import dev.boooiil.historia.items.util.Logging;
 
@@ -14,7 +14,7 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
 
     @Override
     public CustomItem createNew(String itemName) {
-        return new CustomItem(itemName);
+        return new CustomItem(this.configuration.getConfigurationSection(itemName));
     }
 
     @Override
@@ -101,9 +101,9 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the armor items that match the shape.
      */
-    public List<CraftedItem> getAllMatchingShape(List<String> shape) {
+    public List<CraftableItemConfiguration> getAllMatchingShape(List<String> shape) {
 
-        List<CraftedItem> set = new ArrayList<>();
+        List<CraftableItemConfiguration> set = new ArrayList<>();
 
         for (CustomItem customItem : map.values()) {
 
@@ -122,9 +122,9 @@ public class CustomItemConfig extends BaseConfiguration<CustomItem> {
 
     }
 
-    public List<CraftedItem> getAllMatchingMaterials(List<String> materials) {
+    public List<CraftableItemConfiguration> getAllMatchingMaterials(List<String> materials) {
 
-        List<CraftedItem> set = new ArrayList<>();
+        List<CraftableItemConfiguration> set = new ArrayList<>();
 
         for (CustomItem customItem : map.values()) {
 

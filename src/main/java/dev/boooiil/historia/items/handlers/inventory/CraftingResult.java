@@ -4,7 +4,7 @@ import dev.boooiil.historia.core.classes.enums.experience.CraftingSources;
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
 import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftInventoryHelper;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
-import dev.boooiil.historia.items.items.craftable.CraftedItem;
+import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
 import dev.boooiil.historia.items.items.craftable.Weapon;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
@@ -23,10 +23,10 @@ public class CraftingResult {
 
     private final Inventory inventory;
     private final ItemStack result;
-    private final CraftedItem craftedItem;
+    private final CraftableItemConfiguration craftedItem;
     private final HistoriaPlayer historiaPlayer;
 
-    public CraftingResult(Inventory inventory, ItemStack result, CraftedItem craftedItem,
+    public CraftingResult(Inventory inventory, ItemStack result, CraftableItemConfiguration craftedItem,
             HistoriaPlayer historiaPlayer) {
         this.inventory = inventory;
         this.result = result;
@@ -190,7 +190,7 @@ public class CraftingResult {
 
     }
 
-    public CraftedItem getCraftedItem() {
+    public CraftableItemConfiguration getCraftedItem() {
         return craftedItem;
     }
 }

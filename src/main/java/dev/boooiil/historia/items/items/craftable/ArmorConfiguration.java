@@ -15,7 +15,7 @@ import java.util.List;
  * Constructs specific information from a given armor.
  *
  */
-public class ArmorConfiguration extends CraftedItem {
+public class ArmorConfiguration extends CraftableItemConfiguration {
 
     private Weight weight;
 

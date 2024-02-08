@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
-import dev.boooiil.historia.items.items.craftable.CraftedItem;
+import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.ArrayList;
@@ -110,9 +110,9 @@ public class ArmorConfigurationLoader extends BaseConfiguration<ArmorConfigurati
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the armor items that match the shape.
      */
-    public List<CraftedItem> getAllMatchingShape(List<String> shape) {
+    public List<CraftableItemConfiguration> getAllMatchingShape(List<String> shape) {
 
-        List<CraftedItem> set = new ArrayList<>();
+        List<CraftableItemConfiguration> set = new ArrayList<>();
 
         for (ArmorConfiguration armor : map.values()) {
 

@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
-import dev.boooiil.historia.items.items.craftable.CraftedItem;
+import dev.boooiil.historia.items.items.craftable.CraftableItemConfiguration;
 import dev.boooiil.historia.items.items.craftable.Weapon;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
      */
     public Weapon createNew(String weaponName) {
 
-        return new Weapon(weaponName);
+        return new Weapon(this.configuration.getConfigurationSection(weaponName));
 
     }
 
@@ -119,9 +119,9 @@ public class WeaponConfig extends BaseConfiguration<Weapon> {
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the weapon items that match the shape.
      */
-    public List<CraftedItem> getAllMatchingShape(List<String> shape) {
+    public List<CraftableItemConfiguration> getAllMatchingShape(List<String> shape) {
 
-        List<CraftedItem> set = new ArrayList<>();
+        List<CraftableItemConfiguration> set = new ArrayList<>();
 
         for (Weapon weapon : map.values()) {
 
