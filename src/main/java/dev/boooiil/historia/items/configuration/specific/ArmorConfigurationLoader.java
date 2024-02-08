@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.configuration.specific;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
-import dev.boooiil.historia.items.items.craftable.Armor;
+import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
 import dev.boooiil.historia.items.items.craftable.CraftedItem;
 import dev.boooiil.historia.items.util.Logging;
 
@@ -14,10 +14,10 @@ import java.util.Map;
  * method to get armor based
  * on recipe items and shape.
  */
-public class ArmorConfig extends BaseConfiguration<Armor> {
+public class ArmorConfigurationLoader extends BaseConfiguration<ArmorConfiguration> {
 
-    public Armor createNew(String armorName) {
-        return new Armor(this.configuration.getConfigurationSection(armorName));
+    public ArmorConfiguration createNew(String armorName) {
+        return new ArmorConfiguration(this.configuration.getConfigurationSection(armorName));
     }
 
     /**
@@ -27,11 +27,11 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
      * @param inputShape Recipe shape.
      * @return Armor object.
      */
-    public Armor getObject(List<String> inputItems, List<String> inputShape) {
+    public ArmorConfiguration getObject(List<String> inputItems, List<String> inputShape) {
 
-        Armor armor = null;
+        ArmorConfiguration armor = null;
 
-        for (Map.Entry<String, Armor> entry : map.entrySet()) {
+        for (Map.Entry<String, ArmorConfiguration> entry : map.entrySet()) {
 
             boolean armorValid = entry.getValue().isValidRecipe(inputItems, inputShape);
 
@@ -52,7 +52,7 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
      * @param armorName Armor name.
      * @return Armor object.
      */
-    public Armor getObject(String armorName) {
+    public ArmorConfiguration getObject(String armorName) {
 
         if (isValid(armorName))
             return map.get(armorName);
@@ -71,7 +71,7 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
 
         boolean found = false;
 
-        for (Armor armor : map.values()) {
+        for (ArmorConfiguration armor : map.values()) {
 
             if (armor.getRecipeShape().equals(shape)) {
 
@@ -94,7 +94,7 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
 
         List<List<String>> set = new ArrayList<>();
 
-        for (Armor armor : map.values()) {
+        for (ArmorConfiguration armor : map.values()) {
 
             set.add(armor.getRecipeShape());
         }
@@ -114,7 +114,7 @@ public class ArmorConfig extends BaseConfiguration<Armor> {
 
         List<CraftedItem> set = new ArrayList<>();
 
-        for (Armor armor : map.values()) {
+        for (ArmorConfiguration armor : map.values()) {
 
             if (armor.getRecipeShape().equals(shape)) {
 
