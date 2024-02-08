@@ -7,9 +7,9 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class CustomItem extends CraftableItemConfiguration {
+public class CustomItemConfiguration extends CraftableItemConfiguration {
 
-    public CustomItem(ConfigurationSection section) {
+    public CustomItemConfiguration(ConfigurationSection section) {
 
         Material material = Material.getMaterial(section.getString(".item.type"));
         int amount = section.getInt(".item.amount");

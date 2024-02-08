@@ -1,6 +1,5 @@
 package dev.boooiil.historia.items.items.craftable;
 
-import dev.boooiil.historia.items.items.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.util.NumberUtils;
 
@@ -11,23 +10,22 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 /**
- * It's a class that represents tools in the game.
+ * It's a class that represents a weapon in the game.
  */
-public class Tool extends CraftableItemConfiguration {
+public class WeaponConfiguration extends CraftableItemConfiguration {
 
-    private Weight weight;
+    private String weightClass;
 
-    private String weightValue;
+    private String weight;
 
     private List<Double> damageRange;
     private List<Double> speedRange;
     private List<Double> knockbackRange;
+    private List<Double> sweepRange;
     private List<Integer> durabilityRange;
 
-    private final ItemStack itemStack;
-
     // It's a constructor.
-    public Tool(ConfigurationSection section) {
+    public WeaponConfiguration(ConfigurationSection section) {
 
         Material material = Material.getMaterial(section.getString(".item.type"));
         int amount = section.getInt(".item.amount");
@@ -38,13 +36,17 @@ public class Tool extends CraftableItemConfiguration {
 
         this.recipeItems = section.getStringList(".recipe-items");
         this.recipeShape = section.getStringList(".recipe-shape");
-        this.proficiencies = section.getStringList(".canCraft");
 
-        this.weight = Weight.getWeight(section.getString(".type"));
+        this.weightClass = section.getString(".type");
         this.damageRange = section.getDoubleList(".damage");
         this.speedRange = section.getDoubleList(".speed");
         this.knockbackRange = section.getDoubleList(".knockback");
+        this.sweepRange = section.getDoubleList(".sweeping");
         this.durabilityRange = section.getIntegerList(".durability");
+
+        this.isShaped = section.getBoolean(".requireShape");
+
+        this.proficiencies = section.getStringList(".canCraft");
 
     }
 
@@ -151,6 +153,34 @@ public class Tool extends CraftableItemConfiguration {
     }
 
     /**
+     * This function returns a list of doubles that represent the sweep range
+     * 
+     * @return The sweepRange list is being returned.
+     */
+    public List<Double> getSweepRange() {
+        return sweepRange;
+    }
+
+    public double getMinSweepValue() {
+        return sweepRange.get(0);
+    }
+
+    public double getMaxSweepValue() {
+        return sweepRange.get(1);
+    }
+
+    /**
+     * It returns a random integer between the minimum and maximum durability values
+     * 
+     * @return A random number between the min and max durability values.
+     */
+    public double getSweepRandomValue() {
+
+        return NumberUtils.random(getMinSweepValue(), getMaxSweepValue());
+
+    }
+
+    /**
      * This function returns a list of integers that represent the durability range
      * of the item
      * 
@@ -198,9 +228,9 @@ public class Tool extends CraftableItemConfiguration {
      * 
      * @return The type of the object.
      */
-    public Weight getWeight() {
+    public String getWeightClass() {
 
-        return this.weight;
+        return this.weightClass;
 
     }
 
@@ -209,13 +239,14 @@ public class Tool extends CraftableItemConfiguration {
      * 
      * @return The weight of the object.
      */
-    public String getWeightValue() {
+    public String getWeight() {
 
-        return this.weightValue;
+        return this.weight;
 
     }
 
     public ItemStack getItemStack() {
         return itemStack;
     }
+
 }
