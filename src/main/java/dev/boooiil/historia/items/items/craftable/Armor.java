@@ -1,9 +1,11 @@
 package dev.boooiil.historia.items.items.craftable;
 
-import dev.boooiil.historia.items.configuration.ConfigurationLoader;
+import dev.boooiil.historia.items.items.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.util.NumberUtils;
-import org.bukkit.configuration.file.YamlConfiguration;
+
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
@@ -14,51 +16,47 @@ import java.util.List;
  */
 public class Armor extends CraftedItem {
 
-    private String weightClass;
+    private Weight weight;
 
-    private Integer weight;
+    private Integer weightValue;
 
     private List<Double> defense;
     private List<Integer> durability;
 
+    public Armor(ItemStack itemStack) {
+
+    }
+
     // Getting the armor's information from the config.
-    public Armor(String localizedName) {
+    public Armor(ConfigurationSection section) {
 
-        YamlConfiguration configuration = ConfigurationLoader.getArmorConfig().getConfiguration();
+        // Calling the parent class's constructor.
+        itemStack = Construct.itemStack(
+                section.getString(".item.type"),
+                section.getInt(".item.amount"),
+                section.getString(".item.display-name"),
+                section.getString(".item.loc-name"),
+                section.getStringList(".item.lore"));
 
-        valid = ConfigurationLoader.getArmorConfig().isValid(localizedName);
+        // Getting the weight class of the armor.
+        this.weight = Weight.getWeight(section.getString(".type"));
 
-        if (valid) {
+        // Getting the weight of the armor.
+        this.weightValue = section.getInt(".weight");
 
-            // Calling the parent class's constructor.
-            itemStack = Construct.itemStack(
-                    configuration.getString(localizedName + ".item.type"),
-                    configuration.getInt(localizedName + ".item.amount"),
-                    configuration.getString(localizedName + ".item.display-name"),
-                    configuration.getString(localizedName + ".item.loc-name"),
-                    configuration.getStringList(localizedName + ".item.lore"));
+        // Getting the defense value of the armor.
+        this.defense = section.getDoubleList(".defense");
 
-            // Getting the weight class of the armor.
-            this.weightClass = configuration.getString(localizedName + ".type");
+        // Getting the durability of the armor.
+        this.durability = section.getIntegerList(".durability");
 
-            // Getting the weight of the armor.
-            this.weight = configuration.getInt(localizedName + ".weight");
+        // Getting the recipe items from the config.
+        this.recipeItems = section.getStringList(".recipe-items");
 
-            // Getting the defense value of the armor.
-            this.defense = configuration.getDoubleList(localizedName + ".defense");
+        // Getting the recipe shape from the config.
+        this.recipeShape = section.getStringList(".recipe-shape");
 
-            // Getting the durability of the armor.
-            this.durability = configuration.getIntegerList(localizedName + ".durability");
-
-            // Getting the recipe items from the config.
-            this.recipeItems = configuration.getStringList(localizedName + ".recipe-items");
-
-            // Getting the recipe shape from the config.
-            this.recipeShape = configuration.getStringList(localizedName + ".recipe-shape");
-
-            this.proficiencies = configuration.getStringList(localizedName + ".canCraft");
-
-        }
+        this.proficiencies = section.getStringList(".canCraft");
 
     }
 
@@ -67,9 +65,9 @@ public class Armor extends CraftedItem {
      *
      * @return Type of armor.
      */
-    public String getWeightClass() {
+    public Weight getWeight() {
 
-        return this.weightClass;
+        return this.weight;
 
     }
 
@@ -78,9 +76,9 @@ public class Armor extends CraftedItem {
      *
      * @return Weight of the armor.
      */
-    public Integer getWeight() {
+    public Integer getWeightValue() {
 
-        return this.weight;
+        return this.weightValue;
 
     }
 
