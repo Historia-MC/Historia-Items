@@ -4,6 +4,7 @@ import dev.boooiil.historia.items.items.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.util.NumberUtils;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
@@ -30,13 +31,12 @@ public class Armor extends CraftedItem {
     // Getting the armor's information from the config.
     public Armor(ConfigurationSection section) {
 
-        // Calling the parent class's constructor.
-        itemStack = Construct.itemStack(
-                section.getString(".item.type"),
-                section.getInt(".item.amount"),
-                section.getString(".item.display-name"),
-                section.getString(".item.loc-name"),
-                section.getStringList(".item.lore"));
+        Material material = Material.getMaterial(section.getString(".item.type"));
+        int amount = section.getInt(".item.amount");
+        String displayName = section.getString(".item.display-name");
+        List<String> lore = section.getStringList(".item.lore");
+
+        this.itemStack = Construct.itemStack(material, amount, displayName, lore);
 
         // Getting the weight class of the armor.
         this.weight = Weight.getWeight(section.getString(".type"));
