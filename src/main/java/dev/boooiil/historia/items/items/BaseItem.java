@@ -4,13 +4,11 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class BaseItem {
 
-    /**
-     * INTENDED GENERIC TO EXTEND CLASSES THAT HOLD ITEMS.
-     * TODO: IMPLEMENT
-     */
-
     protected String name;
     protected boolean valid;
+
+    public BaseItem() {
+    };
 
     /**
      * Constructor for the BaseItem class that takes an ItemStack as a parameter.
@@ -20,12 +18,15 @@ public abstract class BaseItem {
     public BaseItem(ItemStack itemStack) {
 
         this.itemStack = itemStack;
-        this.valid = true;
 
     }
 
-    public BaseItem() {
-    };
+    public BaseItem(ItemStack itemStack, boolean valid) {
+
+        this.itemStack = itemStack;
+        this.valid = valid;
+
+    }
 
     protected ItemStack itemStack;
 
