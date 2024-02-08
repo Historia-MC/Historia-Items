@@ -2,6 +2,7 @@ package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.file.FileIO;
+import dev.boooiil.historia.items.file.FileKeys;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -14,7 +15,7 @@ import java.util.Set;
  * instance of the class for each
  * key in the set and puts it in the map
  */
-public abstract class BaseConfiguration<T> {
+public abstract class BaseConfigurationLoader<T> {
 
     protected YamlConfiguration configuration;
     protected Set<String> set;
@@ -27,10 +28,10 @@ public abstract class BaseConfiguration<T> {
      * 
      * @param fileName The name of the file you want to load.
      */
-    public void loadConfiguration(String fileName) {
+    public void loadConfiguration(FileKeys fileName) {
 
         // @sonatype-lift ignore
-        this.configuration = FileIO.yamlFromSource(new File(Main.plugin().getDataFolder(), fileName));
+        this.configuration = FileIO.yamlFromSource(new File(Main.plugin().getDataFolder(), fileName.getKey()));
         this.set = configuration.getKeys(false);
         this.map = new HashMap<>();
 
