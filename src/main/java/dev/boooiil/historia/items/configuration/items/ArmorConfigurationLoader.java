@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.configuration.specific;
+package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfiguration;
 import dev.boooiil.historia.items.items.craftable.ArmorConfiguration;
