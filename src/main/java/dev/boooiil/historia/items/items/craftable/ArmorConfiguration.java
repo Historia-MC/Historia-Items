@@ -15,7 +15,7 @@ import java.util.List;
  * Constructs specific information from a given armor.
  *
  */
-public class Armor extends CraftedItem {
+public class ArmorConfiguration extends CraftedItem {
 
     private Weight weight;
 
@@ -24,12 +24,12 @@ public class Armor extends CraftedItem {
     private List<Double> defense;
     private List<Integer> durability;
 
-    public Armor(ItemStack itemStack) {
+    public ArmorConfiguration(ItemStack itemStack) {
 
     }
 
     // Getting the armor's information from the config.
-    public Armor(ConfigurationSection section) {
+    public ArmorConfiguration(ConfigurationSection section) {
 
         Material material = Material.getMaterial(section.getString(".item.type"));
         int amount = section.getInt(".item.amount");
