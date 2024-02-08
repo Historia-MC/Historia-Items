@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * It's a class that gets information from a configuration file.
  */
-public class ToolConfig extends BaseConfiguration<ToolConfiguration> {
+public class ToolConfigurationLoader extends BaseConfiguration<ToolConfiguration> {
 
     /**
      * Used to create a new instance of ToolConfiguration.
