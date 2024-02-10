@@ -1,18 +1,4 @@
-/**
- * The ConfigurationLoader class loads and provides access to various configuration files for the Historia plugin.
- * It contains static methods to retrieve instances of specific configuration classes, such as ArmorConfig,
- * IngotConfig, OreConfig, WeaponConfig, GeneralConfig, CustomItemConfig, and CropConfig. It also provides
- * methods to initialize and reload the configuration files.
- * The configuration files are loaded from the plugin's resources folder and are in YAML format.
- * 
- * @see ArmorConfigurationLoader
- * @see IngotConfig
- * @see OreConfig
- * @see WeaponConfigurationLoader
- * @see GeneralConfig
- * @see CustomItemConfigurationLoader
- * @see CropConfig
- */
+
 package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.configuration.general.GeneralConfig;
@@ -20,20 +6,44 @@ import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.BaseConfiguration;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
+import dev.boooiil.historia.items.configuration.items.ItemConfigurationLoaderFactory;
 import dev.boooiil.historia.items.configuration.items.ToolConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
 import dev.boooiil.historia.items.file.FileKeys;
 
 /**
- * It loads the configuration files.
+ * <p>
+ * The ConfigurationProvider class serves as a central hub for managing and
+ * accessing configuration files within the Historia plugin.
+ * It offers static methods to retrieve instances of specific configuration
+ * classes, such as armor, weapons, custom items, and more,
+ * facilitating easy access to configuration data across various modules of the
+ * plugin.
+ * </p>
+ * <p>
+ * ConfigurationProvider initializes and reloads configuration files, ensuring
+ * that the plugin operates with up-to-date configuration settings.
+ * Configuration files are loaded from the plugin's resources folder and are
+ * stored in YAML format for easy readability and maintenance.
+ * </p>
+ * 
+ * @see ArmorConfigurationLoader
+ * @see WeaponConfigurationLoader
+ * @see CustomItemConfigurationLoader
+ * @see ToolConfigurationLoader
+ * @see GeneralConfig
  */
 public class ConfigurationFactory {
 
-    private static final ArmorConfigurationLoader armorConfigurationLoader = new ArmorConfigurationLoader();
-    private static final WeaponConfigurationLoader weaponConfigurationLoader = new WeaponConfigurationLoader();
+    private static final ArmorConfigurationLoader armorConfigurationLoader = ItemConfigurationLoaderFactory
+            .getArmorConfigurationLoader();
+    private static final WeaponConfigurationLoader weaponConfigurationLoader = ItemConfigurationLoaderFactory
+            .getWeaponConfigurationLoader();
     private static final GeneralConfig generalConfig = new GeneralConfig();
-    private static final CustomItemConfigurationLoader customItemConfigurationLoader = new CustomItemConfigurationLoader();
-    private static final ToolConfigurationLoader toolConfigurationLoader = new ToolConfigurationLoader();
+    private static final CustomItemConfigurationLoader customItemConfigurationLoader = ItemConfigurationLoaderFactory
+            .getCustomItemConfigurationLoader();
+    private static final ToolConfigurationLoader toolConfigurationLoader = ItemConfigurationLoaderFactory
+            .getToolConfigurationLoader();
 
     /**
      * It returns the armorConfig variable
@@ -76,6 +86,14 @@ public class ConfigurationFactory {
         return toolConfigurationLoader;
     }
 
+    /**
+     * It returns the configuration loader that has a base configuration extension
+     * matching the class.
+     * 
+     * @param <T>   The type of the configuration.
+     * @param clazz The class of the configuration.
+     * @return The configuration loader.
+     */
     @SuppressWarnings("unchecked")
     public static <T extends BaseConfiguration> BaseConfigurationLoader<T> getConfigurationLoader(
             Class<T> clazz) {
