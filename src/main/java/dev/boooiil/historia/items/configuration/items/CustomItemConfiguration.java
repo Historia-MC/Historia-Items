@@ -7,8 +7,29 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
+/**
+ * <p>
+ * The CustomItemConfiguration class is a subclass of the BaseConfiguration
+ * class
+ * and is responsible for managing and accessing configuration data for custom
+ * items within the Historia plugin.
+ * </p>
+ * <p>
+ * CustomItemConfiguration provides methods to retrieve custom item-specific
+ * configuration settings, such as recipe items, recipe shape, and
+ * proficiencies,
+ * and to create custom items with the specified recipe items and shape.
+ * </p>
+ * 
+ * @see BaseConfiguration
+ */
 public class CustomItemConfiguration extends BaseConfiguration {
 
+    /**
+     * Create a built {@link CustomItemConfiguration} object from the configuration.
+     * 
+     * @param section The configuration section.
+     */
     CustomItemConfiguration(ConfigurationSection section) {
 
         Material material = Material.getMaterial(section.getString(".item.type"));

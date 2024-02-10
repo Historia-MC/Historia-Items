@@ -10,9 +10,18 @@ import org.bukkit.configuration.ConfigurationSection;
 import java.util.List;
 
 /**
- *
- * Constructs specific information from a given armor.
- *
+ * <p>
+ * The ArmorConfiguration class is a subclass of the BaseConfiguration class and
+ * is responsible for managing and accessing configuration data for armor items
+ * within the Historia plugin.
+ * </p>
+ * <p>
+ * ArmorConfiguration provides methods to retrieve armor-specific configuration
+ * settings, such as weight, defense, and durability, and to create armor items
+ * with randomized defense and durability values.
+ * </p>
+ * 
+ * @see BaseConfiguration
  */
 public class ArmorConfiguration extends BaseConfiguration {
 

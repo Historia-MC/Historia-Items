@@ -6,13 +6,35 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * <p>
+ * The BaseConfiguration class is an abstract class that serves as the base for
+ * all item configuration classes within the Historia plugin.
+ * </p>
+ * <p>
+ * BaseConfiguration provides methods to retrieve and validate recipe items and
+ * shapes, to check if a given proficiency can craft an item, and to retrieve
+ * the item stack of an item.
+ * </p>
+ */
 public class BaseConfiguration {
 
+    /**
+     * Recipe shape generally in the pattern of
+     * [ "###", "###", "###" ].
+     */
     protected List<String> recipeShape;
+
+    /** Materials that are present in the creation of this item. */
     protected List<String> recipeItems;
+
+    /** The proficiency that can craft this item. */
     protected List<String> proficiencies;
+
+    /** If the item is shape dependent. */
     protected boolean isShaped;
 
+    /** The item stack of the item. */
     protected ItemStack itemStack;
 
     /**
