@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.commands;
 
-import dev.boooiil.historia.items.configuration.ConfigurationFactory;
+import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
@@ -26,7 +26,7 @@ public class CommandGive implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("weapon")) {
 
-            WeaponConfigurationLoader weaponConfig = ConfigurationFactory.getWeaponConfigurationLoader();
+            WeaponConfigurationLoader weaponConfig = ConfigurationProvider.getWeaponConfigurationLoader();
 
             if (weaponConfig.isValid(args[1])) {
 
@@ -42,7 +42,7 @@ public class CommandGive implements CommandExecutor {
 
         } else if (args[0].equalsIgnoreCase("armor")) {
 
-            ArmorConfigurationLoader armorConfig = ConfigurationFactory.getArmorConfigurationLoader();
+            ArmorConfigurationLoader armorConfig = ConfigurationProvider.getArmorConfigurationLoader();
 
             if (armorConfig.isValid(args[1])) {
 
@@ -58,7 +58,7 @@ public class CommandGive implements CommandExecutor {
 
         } else if (args[0].equalsIgnoreCase("other")) {
 
-            CustomItemConfigurationLoader customItemConfig = ConfigurationFactory.getCustomItemConfigurationLoader();
+            CustomItemConfigurationLoader customItemConfig = ConfigurationProvider.getCustomItemConfigurationLoader();
 
             if (customItemConfig.isValid(args[1])) {
 

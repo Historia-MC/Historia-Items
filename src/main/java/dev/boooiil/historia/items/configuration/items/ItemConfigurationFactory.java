@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
-import dev.boooiil.historia.items.configuration.ConfigurationFactory;
+import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 
 /**
  * It is a factory class that creates instances of a class extending
@@ -26,7 +26,7 @@ public class ItemConfigurationFactory<IC extends BaseConfiguration> {
      * @param clazz The class type of the {@link BaseConfigurationLoader}.
      */
     public ItemConfigurationFactory(Class<IC> clazz) {
-        this.configurationLoader = ConfigurationFactory.getConfigurationLoader(clazz);
+        this.configurationLoader = ConfigurationProvider.getConfigurationLoader(clazz);
     }
 
     public BaseConfigurationLoader<IC> getConfigurationLoader() {

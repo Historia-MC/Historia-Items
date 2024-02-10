@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.crafted.getter;
 
-import dev.boooiil.historia.items.configuration.ConfigurationFactory;
+import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
@@ -16,7 +16,7 @@ public class ItemGetter {
      */
     public static ArmorConfiguration getArmor(String localizedName) {
 
-        return ConfigurationFactory.getArmorConfigurationLoader().getObject(localizedName);
+        return ConfigurationProvider.getArmorConfigurationLoader().getObject(localizedName);
 
     }
 
@@ -28,7 +28,7 @@ public class ItemGetter {
      */
     public static CustomItemConfiguration getCustomItem(String localizedName) {
 
-        return ConfigurationFactory.getCustomItemConfigurationLoader().getObject(localizedName);
+        return ConfigurationProvider.getCustomItemConfigurationLoader().getObject(localizedName);
 
     }
 
@@ -40,7 +40,7 @@ public class ItemGetter {
      */
     public static WeaponConfiguration getWeapon(String localizedName) {
 
-        return ConfigurationFactory.getWeaponConfigurationLoader().getObject(localizedName);
+        return ConfigurationProvider.getWeaponConfigurationLoader().getObject(localizedName);
 
     }
 
@@ -52,7 +52,7 @@ public class ItemGetter {
      */
     public static ToolConfiguration getTool(String localizedName) {
 
-        return ConfigurationFactory.getToolConfigurationLoader().getObject(localizedName);
+        return ConfigurationProvider.getToolConfigurationLoader().getObject(localizedName);
 
     }
 

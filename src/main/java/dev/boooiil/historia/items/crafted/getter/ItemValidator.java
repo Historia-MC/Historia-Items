@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.crafted.getter;
 
-import dev.boooiil.historia.items.configuration.ConfigurationFactory;
+import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 
 public class ItemValidator {
 
@@ -12,7 +12,7 @@ public class ItemValidator {
      */
     public static boolean validArmor(String localizedName) {
 
-        return ConfigurationFactory.getArmorConfigurationLoader().isValid(localizedName);
+        return ConfigurationProvider.getArmorConfigurationLoader().isValid(localizedName);
 
     }
 
@@ -24,7 +24,7 @@ public class ItemValidator {
      */
     public static boolean validCustomItem(String localizedName) {
 
-        return ConfigurationFactory.getCustomItemConfigurationLoader().isValid(localizedName);
+        return ConfigurationProvider.getCustomItemConfigurationLoader().isValid(localizedName);
 
     }
 
@@ -36,7 +36,7 @@ public class ItemValidator {
      */
     public static boolean validWeapon(String localizedName) {
 
-        return ConfigurationFactory.getWeaponConfigurationLoader().isValid(localizedName);
+        return ConfigurationProvider.getWeaponConfigurationLoader().isValid(localizedName);
 
     }
 
@@ -48,7 +48,7 @@ public class ItemValidator {
      */
     public static boolean validTool(String localizedName) {
 
-        return ConfigurationFactory.getToolConfigurationLoader().isValid(localizedName);
+        return ConfigurationProvider.getToolConfigurationLoader().isValid(localizedName);
 
     }
 

@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.handlers.inventory.prepareCraftItem;
 
-import dev.boooiil.historia.items.configuration.ConfigurationFactory;
+import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 import dev.boooiil.historia.items.configuration.items.BaseConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.inventory.ItemStack;
@@ -22,9 +22,9 @@ public class PrepareItemCraftItemHelper {
         fullMaterials = inspector.getFullMaterials();
 
         // Getting all the items that match the pattern.
-        matchingItems = ConfigurationFactory.getArmorConfigurationLoader().getAllMatchingShape(patterns);
-        matchingItems.addAll(ConfigurationFactory.getWeaponConfigurationLoader().getAllMatchingShape(patterns));
-        matchingItems.addAll(ConfigurationFactory.getCustomItemConfigurationLoader().getAllMatchingShape(patterns));
+        matchingItems = ConfigurationProvider.getArmorConfigurationLoader().getAllMatchingShape(patterns);
+        matchingItems.addAll(ConfigurationProvider.getWeaponConfigurationLoader().getAllMatchingShape(patterns));
+        matchingItems.addAll(ConfigurationProvider.getCustomItemConfigurationLoader().getAllMatchingShape(patterns));
 
     }
 

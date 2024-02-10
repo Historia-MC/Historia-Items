@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.events.inventory;
 
 import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
 import dev.boooiil.historia.core.database.internal.PlayerStorage;
-import dev.boooiil.historia.items.configuration.ConfigurationFactory;
+import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
@@ -21,9 +21,9 @@ public class CraftItemListener implements Listener {
         System.out.println("CraftItemEvent triggered");
 
         HistoriaPlayer historiaPlayer = PlayerStorage.getPlayer(event.getWhoClicked().getUniqueId(), false);
-        WeaponConfigurationLoader weaponConfig = ConfigurationFactory.getWeaponConfigurationLoader();
-        ArmorConfigurationLoader armorConfig = ConfigurationFactory.getArmorConfigurationLoader();
-        CustomItemConfigurationLoader customItemConfig = ConfigurationFactory.getCustomItemConfigurationLoader();
+        WeaponConfigurationLoader weaponConfig = ConfigurationProvider.getWeaponConfigurationLoader();
+        ArmorConfigurationLoader armorConfig = ConfigurationProvider.getArmorConfigurationLoader();
+        CustomItemConfigurationLoader customItemConfig = ConfigurationProvider.getCustomItemConfigurationLoader();
         CraftingResult craftingResult;
 
         ItemStack item = event.getClickedInventory().getItem(0);
