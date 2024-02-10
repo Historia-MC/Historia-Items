@@ -2,7 +2,6 @@
 package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.configuration.general.GeneralConfig;
-import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.BaseConfiguration;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
@@ -98,13 +97,13 @@ public class ConfigurationProvider {
     public static <T extends BaseConfiguration> BaseConfigurationLoader<T> getConfigurationLoader(
             Class<T> clazz) {
 
-        if (ArmorConfiguration.class.isAssignableFrom(clazz)) {
+        if (armorConfigurationLoader.typeParameterClass().equals(clazz)) {
             return (BaseConfigurationLoader<T>) armorConfigurationLoader;
-        } else if (WeaponConfigurationLoader.class.isAssignableFrom(clazz)) {
+        } else if (weaponConfigurationLoader.typeParameterClass().equals(clazz)) {
             return (BaseConfigurationLoader<T>) weaponConfigurationLoader;
-        } else if (CustomItemConfigurationLoader.class.isAssignableFrom(clazz)) {
+        } else if (customItemConfigurationLoader.typeParameterClass().equals(clazz)) {
             return (BaseConfigurationLoader<T>) customItemConfigurationLoader;
-        } else if (ToolConfigurationLoader.class.isAssignableFrom(clazz)) {
+        } else if (toolConfigurationLoader.typeParameterClass().equals(clazz)) {
             return (BaseConfigurationLoader<T>) toolConfigurationLoader;
         }
 
