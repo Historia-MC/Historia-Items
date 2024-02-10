@@ -13,8 +13,10 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.file.FileKeys;
 import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.configuration.ConfigurationFactory;
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
+import dev.boooiil.historia.items.configuration.items.ItemConfigurationFactory;
 import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
 import dev.boooiil.historia.items.crafted.getter.ItemGetter;
@@ -47,6 +49,18 @@ public class ItemGetterTest {
     public void tearDown() {
         System.out.println("Tearing down mock...");
         MockBukkit.unmock();
+    }
+
+    @Test
+    public void testItemFactory() {
+        System.out.println("Testing item factory");
+
+        ItemConfigurationFactory<ArmorConfiguration> armorFactory = new ItemConfigurationFactory<>(
+                ArmorConfiguration.class);
+
+        ArmorConfiguration armorConfiguration = armorFactory.getObject("Light_Leather_Helmet");
+
+        System.out.println("armor: " + armorConfiguration.getItemStack());
     }
 
     @Test
