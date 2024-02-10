@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
  * the item stack of an item.
  * </p>
  */
-public class BaseConfiguration {
+public class BaseItemConfiguration {
 
     /**
      * Recipe shape generally in the pattern of
