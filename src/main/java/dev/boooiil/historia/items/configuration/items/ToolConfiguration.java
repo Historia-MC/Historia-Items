@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * It's a class that represents tools in the game.
  */
-public class ToolConfiguration extends CraftableItemConfiguration {
+public class ToolConfiguration extends BaseConfiguration {
 
     private Weight weight;
 

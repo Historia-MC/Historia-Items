@@ -7,7 +7,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class CustomItemConfiguration extends CraftableItemConfiguration {
+public class CustomItemConfiguration extends BaseConfiguration {
 
     CustomItemConfiguration(ConfigurationSection section) {
 
