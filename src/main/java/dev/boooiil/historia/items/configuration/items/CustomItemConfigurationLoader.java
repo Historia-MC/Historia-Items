@@ -99,9 +99,9 @@ public class CustomItemConfigurationLoader extends BaseConfigurationLoader<Custo
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the armor items that match the shape.
      */
-    public List<CraftableItemConfiguration> getAllMatchingShape(List<String> shape) {
+    public List<BaseConfiguration> getAllMatchingShape(List<String> shape) {
 
-        List<CraftableItemConfiguration> set = new ArrayList<>();
+        List<BaseConfiguration> set = new ArrayList<>();
 
         for (CustomItemConfiguration customItem : map.values()) {
 
@@ -120,9 +120,9 @@ public class CustomItemConfigurationLoader extends BaseConfigurationLoader<Custo
 
     }
 
-    public List<CraftableItemConfiguration> getAllMatchingMaterials(List<String> materials) {
+    public List<BaseConfiguration> getAllMatchingMaterials(List<String> materials) {
 
-        List<CraftableItemConfiguration> set = new ArrayList<>();
+        List<BaseConfiguration> set = new ArrayList<>();
 
         for (CustomItemConfiguration customItem : map.values()) {
 

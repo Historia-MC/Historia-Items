@@ -117,9 +117,9 @@ public class WeaponConfigurationLoader extends BaseConfigurationLoader<WeaponCon
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the weapon items that match the shape.
      */
-    public List<CraftableItemConfiguration> getAllMatchingShape(List<String> shape) {
+    public List<BaseConfiguration> getAllMatchingShape(List<String> shape) {
 
-        List<CraftableItemConfiguration> set = new ArrayList<>();
+        List<BaseConfiguration> set = new ArrayList<>();
 
         for (WeaponConfiguration weapon : map.values()) {
 
