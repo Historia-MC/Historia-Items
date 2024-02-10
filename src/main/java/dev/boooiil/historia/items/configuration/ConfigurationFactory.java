@@ -16,7 +16,9 @@
 package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.configuration.general.GeneralConfig;
+import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
+import dev.boooiil.historia.items.configuration.items.BaseConfiguration;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.ToolConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
@@ -72,6 +74,23 @@ public class ConfigurationFactory {
     public static ToolConfigurationLoader getToolConfigurationLoader() {
 
         return toolConfigurationLoader;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends BaseConfiguration> BaseConfigurationLoader<T> getConfigurationLoader(
+            Class<T> clazz) {
+
+        if (ArmorConfiguration.class.isAssignableFrom(clazz)) {
+            return (BaseConfigurationLoader<T>) armorConfigurationLoader;
+        } else if (WeaponConfigurationLoader.class.isAssignableFrom(clazz)) {
+            return (BaseConfigurationLoader<T>) weaponConfigurationLoader;
+        } else if (CustomItemConfigurationLoader.class.isAssignableFrom(clazz)) {
+            return (BaseConfigurationLoader<T>) customItemConfigurationLoader;
+        } else if (ToolConfigurationLoader.class.isAssignableFrom(clazz)) {
+            return (BaseConfigurationLoader<T>) toolConfigurationLoader;
+        }
+
+        return null;
     }
 
     /**
