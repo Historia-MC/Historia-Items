@@ -1,95 +1,15 @@
 package dev.boooiil.historia.items.configuration.items;
 
-import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
-public class CustomItemConfigurationLoader extends BaseConfigurationLoader<CustomItemConfiguration> {
+public class CustomItemConfigurationLoader extends BaseItemConfigurationLoader<CustomItemConfiguration> {
 
     @Override
     public CustomItemConfiguration createNew(String itemName) {
         return new CustomItemConfiguration(this.configuration.getConfigurationSection(itemName));
-    }
-
-    @Override
-    public CustomItemConfiguration getObject(String objectName) {
-
-        if (isValid(objectName))
-            return map.get(objectName);
-        else
-            return null;
-    }
-
-    /**
-     * Get custom item based on recipe items and shape.
-     * 
-     * @param inputItems List of recipe items.
-     * @param inputShape Recipe shape.
-     * @return CustomItem object.
-     */
-    public CustomItemConfiguration getItem(List<String> inputItems, List<String> inputShape) {
-
-        CustomItemConfiguration item = null;
-
-        for (Map.Entry<String, CustomItemConfiguration> entry : map.entrySet()) {
-
-            boolean valid = entry.getValue().isValidRecipe(inputItems, inputShape);
-
-            if (valid) {
-                item = entry.getValue();
-                break;
-            }
-
-        }
-
-        return item;
-
-    }
-
-    /**
-     * It checks if the shape of the recipe is valid
-     * 
-     * @param shape The shape of the recipe.
-     * @return A boolean value.
-     */
-    public boolean validShape(List<String> shape) {
-
-        boolean found = false;
-
-        for (CustomItemConfiguration item : map.values()) {
-
-            if (item.getRecipeShape().equals(shape)) {
-
-                found = true;
-                break;
-
-            }
-        }
-
-        return found;
-
-    }
-
-    /**
-     * It returns a list of all the recipes for the armor
-     * 
-     * @return A list of lists of strings.
-     */
-    public List<List<String>> getAllShapes() {
-
-        List<List<String>> set = new ArrayList<>();
-
-        for (CustomItemConfiguration customItem : map.values()) {
-
-            set.add(customItem.getRecipeShape());
-        }
-
-        return set;
-
     }
 
     /**
@@ -99,6 +19,7 @@ public class CustomItemConfigurationLoader extends BaseConfigurationLoader<Custo
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the armor items that match the shape.
      */
+    @Override
     public List<BaseConfiguration> getAllMatchingShape(List<String> shape) {
 
         List<BaseConfiguration> set = new ArrayList<>();
@@ -108,25 +29,6 @@ public class CustomItemConfigurationLoader extends BaseConfigurationLoader<Custo
             if (!customItem.isShapeDependent())
                 set.add(customItem);
             else if (customItem.getRecipeShape().equals(shape)) {
-
-                Logging.debugToConsole(customItem.getItemStack().getItemMeta().getAsString());
-
-                set.add(customItem);
-
-            }
-        }
-
-        return set;
-
-    }
-
-    public List<BaseConfiguration> getAllMatchingMaterials(List<String> materials) {
-
-        List<BaseConfiguration> set = new ArrayList<>();
-
-        for (CustomItemConfiguration customItem : map.values()) {
-
-            if (new HashSet<>(customItem.getRecipeItems()).containsAll(materials)) {
 
                 Logging.debugToConsole(customItem.getItemStack().getItemMeta().getAsString());
 
