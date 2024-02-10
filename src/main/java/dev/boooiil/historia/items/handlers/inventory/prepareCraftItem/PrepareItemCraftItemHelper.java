@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.handlers.inventory.prepareCraftItem;
 
 import dev.boooiil.historia.items.configuration.ConfigurationProvider;
-import dev.boooiil.historia.items.configuration.items.BaseConfiguration;
+import dev.boooiil.historia.items.configuration.items.BaseItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.inventory.ItemStack;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class PrepareItemCraftItemHelper {
 
     private ItemStack result;
-    private final List<BaseConfiguration> matchingItems;
+    private final List<BaseItemConfiguration> matchingItems;
     private final ArrayList<String> materials;
     private final ArrayList<String> fullMaterials;
 
@@ -32,7 +32,7 @@ public class PrepareItemCraftItemHelper {
 
         if (!matchingItems.isEmpty()) {
 
-            for (BaseConfiguration item : matchingItems) {
+            for (BaseItemConfiguration item : matchingItems) {
 
                 Logging.debugToConsole("[CIM] Item: " + item.getItemStack().getItemMeta().getLocalizedName());
 
@@ -59,7 +59,7 @@ public class PrepareItemCraftItemHelper {
         return result;
     }
 
-    private ItemStack getItemMatchingMaterials(BaseConfiguration item, List<String> materials) {
+    private ItemStack getItemMatchingMaterials(BaseItemConfiguration item, List<String> materials) {
         String replace = "POOR_|COMMON_|PERFECT_";
 
         int need = materials.size();

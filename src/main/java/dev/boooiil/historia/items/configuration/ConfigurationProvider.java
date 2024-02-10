@@ -3,7 +3,7 @@ package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.configuration.general.GeneralConfig;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
-import dev.boooiil.historia.items.configuration.items.BaseConfiguration;
+import dev.boooiil.historia.items.configuration.items.BaseItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.ItemConfigurationLoaderFactory;
 import dev.boooiil.historia.items.configuration.items.ToolConfigurationLoader;
@@ -94,7 +94,7 @@ public class ConfigurationProvider {
      * @return The configuration loader.
      */
     @SuppressWarnings("unchecked")
-    public static <T extends BaseConfiguration> BaseConfigurationLoader<T> getConfigurationLoader(
+    public static <T extends BaseItemConfiguration> BaseConfigurationLoader<T> getConfigurationLoader(
             Class<T> clazz) {
 
         if (armorConfigurationLoader.typeParameterClass().equals(clazz)) {

@@ -21,9 +21,9 @@ import org.bukkit.configuration.ConfigurationSection;
  * and to create custom items with the specified recipe items and shape.
  * </p>
  * 
- * @see BaseConfiguration
+ * @see BaseItemConfiguration
  */
-public class CustomItemConfiguration extends BaseConfiguration {
+public class CustomItemConfiguration extends BaseItemConfiguration {
 
     /**
      * Create a built {@link CustomItemConfiguration} object from the configuration.

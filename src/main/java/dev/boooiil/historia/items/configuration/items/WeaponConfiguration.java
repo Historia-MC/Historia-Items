@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * It's a class that represents a weapon in the game.
  */
-public class WeaponConfiguration extends BaseConfiguration {
+public class WeaponConfiguration extends BaseItemConfiguration {
 
     private String weightClass;
 

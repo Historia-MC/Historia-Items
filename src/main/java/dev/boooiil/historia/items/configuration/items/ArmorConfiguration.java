@@ -21,9 +21,9 @@ import java.util.List;
  * with randomized defense and durability values.
  * </p>
  * 
- * @see BaseConfiguration
+ * @see BaseItemConfiguration
  */
-public class ArmorConfiguration extends BaseConfiguration {
+public class ArmorConfiguration extends BaseItemConfiguration {
 
     private Weight weight;
 

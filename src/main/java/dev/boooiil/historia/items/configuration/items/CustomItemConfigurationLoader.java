@@ -20,9 +20,9 @@ public class CustomItemConfigurationLoader extends BaseItemConfigurationLoader<C
      * @return A list of all the armor items that match the shape.
      */
     @Override
-    public List<BaseConfiguration> getAllMatchingShape(List<String> shape) {
+    public List<BaseItemConfiguration> getAllMatchingShape(List<String> shape) {
 
-        List<BaseConfiguration> set = new ArrayList<>();
+        List<BaseItemConfiguration> set = new ArrayList<>();
 
         for (CustomItemConfiguration customItem : map.values()) {
 

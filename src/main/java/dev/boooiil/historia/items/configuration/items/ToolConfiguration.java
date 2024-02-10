@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * It's a class that represents tools in the game.
  */
-public class ToolConfiguration extends BaseConfiguration {
+public class ToolConfiguration extends BaseItemConfiguration {
 
     private Weight weight;
 

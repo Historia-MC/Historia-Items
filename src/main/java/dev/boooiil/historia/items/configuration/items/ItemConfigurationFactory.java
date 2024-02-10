@@ -16,13 +16,13 @@ import dev.boooiil.historia.items.configuration.ConfigurationProvider;
  * data.
  * 
  * @param <IC> The type of configuration handled by the factory, extending
- *             {@link BaseConfiguration}.
+ *             {@link BaseItemConfiguration}.
  * 
  * @see BaseConfigurationLoader
  * @see ConfigurationProvider
- * @see BaseConfiguration
+ * @see BaseItemConfiguration
  */
-public class ItemConfigurationFactory<IC extends BaseConfiguration> {
+public class ItemConfigurationFactory<IC extends BaseItemConfiguration> {
 
     /**
      * BaseConfigurationLoader instance responsible for loading configurations of
@@ -37,13 +37,13 @@ public class ItemConfigurationFactory<IC extends BaseConfiguration> {
      * the provided configuration type.
      * 
      * @param <IC>              The type of configuration handled by the factory,
-     *                          extending {@link BaseConfiguration}.
+     *                          extending {@link BaseItemConfiguration}.
      * @param configurationType The class type of the
      *                          {@link BaseConfigurationLoader}.
      * @return An ItemConfigurationFactory instance for the specified configuration
      *         type.
      */
-    public static <IC extends BaseConfiguration> ItemConfigurationFactory<IC> create(Class<IC> configurationType) {
+    public static <IC extends BaseItemConfiguration> ItemConfigurationFactory<IC> create(Class<IC> configurationType) {
         return new ItemConfigurationFactory<>(configurationType);
     }
 

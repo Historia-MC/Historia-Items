@@ -8,7 +8,7 @@ import java.util.Map;
 import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
 import dev.boooiil.historia.items.util.Logging;
 
-public abstract class BaseItemConfigurationLoader<T extends BaseConfiguration>
+public abstract class BaseItemConfigurationLoader<T extends BaseItemConfiguration>
         extends BaseConfigurationLoader<T> {
 
     /**
@@ -86,9 +86,9 @@ public abstract class BaseItemConfigurationLoader<T extends BaseConfiguration>
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the item configurations items that match the shape.
      */
-    public List<BaseConfiguration> getAllMatchingShape(List<String> shape) {
+    public List<BaseItemConfiguration> getAllMatchingShape(List<String> shape) {
 
-        List<BaseConfiguration> set = new ArrayList<>();
+        List<BaseItemConfiguration> set = new ArrayList<>();
 
         for (T object : map.values()) {
 
@@ -112,9 +112,9 @@ public abstract class BaseItemConfigurationLoader<T extends BaseConfiguration>
      *                  recipe.
      * @return A list of all the item configurations that match the materials.
      */
-    public List<BaseConfiguration> getAllMatchingMaterials(List<String> materials) {
+    public List<BaseItemConfiguration> getAllMatchingMaterials(List<String> materials) {
 
-        List<BaseConfiguration> set = new ArrayList<>();
+        List<BaseItemConfiguration> set = new ArrayList<>();
 
         for (T object : map.values()) {
 
