@@ -7,6 +7,8 @@ import dev.boooiil.historia.items.file.FileKeys;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -20,6 +22,14 @@ public abstract class BaseConfigurationLoader<T> {
     protected YamlConfiguration configuration;
     protected Set<String> set;
     protected HashMap<String, T> map;
+
+    @SuppressWarnings("unchecked")
+    public Class<T> typeParameterClass() {
+        ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
+        Type type = superClass.getActualTypeArguments()[0];
+
+        return (Class<T>) type;
+    }
 
     /**
      * It loads a YAML file from the plugin's data folder, and then populates a
