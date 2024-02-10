@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
-public class CraftableItemConfiguration {
+public class BaseConfiguration {
 
     protected List<String> recipeShape;
     protected List<String> recipeItems;
