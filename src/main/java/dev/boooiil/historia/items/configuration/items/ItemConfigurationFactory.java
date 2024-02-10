@@ -32,6 +32,22 @@ public class ItemConfigurationFactory<IC extends BaseConfiguration> {
     private final BaseConfigurationLoader<IC> configurationLoader;
 
     /**
+     * Constructs an ItemConfigurationFactory with the specified configuration type.
+     * The configuration loader is obtained from the ConfigurationProvider based on
+     * the provided configuration type.
+     * 
+     * @param <IC>              The type of configuration handled by the factory,
+     *                          extending {@link BaseConfiguration}.
+     * @param configurationType The class type of the
+     *                          {@link BaseConfigurationLoader}.
+     * @return An ItemConfigurationFactory instance for the specified configuration
+     *         type.
+     */
+    public static <IC extends BaseConfiguration> ItemConfigurationFactory<IC> create(Class<IC> configurationType) {
+        return new ItemConfigurationFactory<>(configurationType);
+    }
+
+    /**
      * Constructs an ItemConfigurationFactory with the specified class type of the
      * configuration loader.
      * The configuration loader is obtained from the ConfigurationProvider based on
