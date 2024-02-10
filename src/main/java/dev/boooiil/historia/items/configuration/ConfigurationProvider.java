@@ -33,7 +33,7 @@ import dev.boooiil.historia.items.file.FileKeys;
  * @see ToolConfigurationLoader
  * @see GeneralConfig
  */
-public class ConfigurationFactory {
+public class ConfigurationProvider {
 
     private static final ArmorConfigurationLoader armorConfigurationLoader = ItemConfigurationLoaderFactory
             .getArmorConfigurationLoader();
