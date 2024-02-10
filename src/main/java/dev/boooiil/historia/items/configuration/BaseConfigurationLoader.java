@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.configuration.items.BaseConfiguration;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.file.FileKeys;
 
@@ -17,7 +18,7 @@ import java.util.Set;
  * instance of the class for each
  * key in the set and puts it in the map
  */
-public abstract class BaseConfigurationLoader<T> {
+public abstract class BaseConfigurationLoader<T extends BaseConfiguration> {
 
     protected YamlConfiguration configuration;
     protected Set<String> set;
@@ -112,7 +113,14 @@ public abstract class BaseConfigurationLoader<T> {
 
     }
 
-    public abstract T createNew(String name);
+    public T getObject(String name) {
 
-    public abstract T getObject(String objectName);
+        if (isValid(name))
+            return map.get(name);
+        else
+            return null;
+
+    }
+
+    public abstract T createNew(String name);
 }
