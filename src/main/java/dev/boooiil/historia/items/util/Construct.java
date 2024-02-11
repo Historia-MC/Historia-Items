@@ -103,7 +103,7 @@ public class Construct {
         ItemMeta meta = item.getItemMeta();
 
         List<Component> loreComponent = new ArrayList<>();
-        Component nameComponent = Component.text("My Custom Sword");
+        Component nameComponent = Component.text(displayName);
         meta.displayName(nameComponent);
 
         for (String line : lore) {
