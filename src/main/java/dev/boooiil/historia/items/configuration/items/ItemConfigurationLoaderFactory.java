@@ -1,5 +1,29 @@
 package dev.boooiil.historia.items.configuration.items;
 
+import dev.boooiil.historia.items.file.FileKeys;
+
+/**
+ * <p>
+ * The ItemConfigurationLoaderFactory class is a factory for creating
+ * instances of item configuration loaders within the Historia plugin.
+ * This class will instantiate a new configuration loader and load
+ * the configuration file for the specified type.
+ * </p>
+ * <p>
+ * This class should only be used if you are wanting a NEW instance of a
+ * configuration loader. If you are looking for an already instantiated
+ * configuration loader, use the
+ * {@link dev.boooiil.historia.items.configuration.ConfigurationProvider
+ * ConfigurationProvider} class.
+ * 
+ * @see dev.boooiil.historia.items.configuration.ConfigurationProvider
+ *      ConfigurationProvider
+ * @see ArmorConfigurationLoader
+ * @see WeaponConfigurationLoader
+ * @see CustomItemConfigurationLoader
+ * @see ToolConfigurationLoader
+ * 
+ */
 public class ItemConfigurationLoaderFactory {
 
     /**
@@ -15,7 +39,9 @@ public class ItemConfigurationLoaderFactory {
      * @return A new {@link ArmorConfigurationLoader} instance.
      */
     public static ArmorConfigurationLoader getArmorConfigurationLoader() {
-        return new ArmorConfigurationLoader();
+        ArmorConfigurationLoader armorConfigurationLoader = new ArmorConfigurationLoader();
+        armorConfigurationLoader.loadConfiguration(FileKeys.ARMOR);
+        return armorConfigurationLoader;
     }
 
     /**
@@ -31,7 +57,9 @@ public class ItemConfigurationLoaderFactory {
      * @return A new {@link WeaponConfigurationLoader} instance.
      */
     public static WeaponConfigurationLoader getWeaponConfigurationLoader() {
-        return new WeaponConfigurationLoader();
+        WeaponConfigurationLoader weaponConfigurationLoader = new WeaponConfigurationLoader();
+        weaponConfigurationLoader.loadConfiguration(FileKeys.WEAPONS);
+        return weaponConfigurationLoader;
     }
 
     /**
@@ -47,7 +75,9 @@ public class ItemConfigurationLoaderFactory {
      * @return A new {@link CustomItemConfigurationLoader} instance.
      */
     public static CustomItemConfigurationLoader getCustomItemConfigurationLoader() {
-        return new CustomItemConfigurationLoader();
+        CustomItemConfigurationLoader customItemConfigurationLoader = new CustomItemConfigurationLoader();
+        customItemConfigurationLoader.loadConfiguration(FileKeys.CUSTOM_ITEMS);
+        return customItemConfigurationLoader;
     }
 
     /**
@@ -63,7 +93,9 @@ public class ItemConfigurationLoaderFactory {
      * @return A new {@link ToolConfigurationLoader} instance.
      */
     public static ToolConfigurationLoader getToolConfigurationLoader() {
-        return new ToolConfigurationLoader();
+        ToolConfigurationLoader toolConfigurationLoader = new ToolConfigurationLoader();
+        toolConfigurationLoader.loadConfiguration(FileKeys.TOOLS);
+        return toolConfigurationLoader;
     }
 
 }
