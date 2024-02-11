@@ -8,6 +8,26 @@ import java.util.Map;
 import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
 import dev.boooiil.historia.items.util.Logging;
 
+/**
+ * <p>
+ * The BaseItemConfigurationLoader class is an abstract class that facilitates
+ * the loading of item configurations within the Historia plugin.
+ * It is designed to work with classes extending {@link BaseItemConfiguration}
+ * that have a definition in the
+ * {@link dev.boooiil.historia.items.configuration.ConfigurationProvider
+ * ConfigurationProvider}.
+ * </p>
+ * This class should be used as an extension for configurations that have a
+ * recipe, such as weapons, armor, tools, and custom items.
+ * 
+ * @param <T> The type of configuration handled by the loader, extending
+ *            {@link BaseItemConfiguration}.
+ * 
+ * @see BaseItemConfiguration
+ * @see dev.boooiil.historia.items.configuration.ConfigurationProvider
+ *      ConfigurationProvider
+ * @see BaseConfigurationLoader
+ */
 public abstract class BaseItemConfigurationLoader<T extends BaseItemConfiguration>
         extends BaseConfigurationLoader<T> {
 
