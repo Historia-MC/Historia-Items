@@ -1,6 +1,5 @@
 package dev.boooiil.historia.items.configuration.items;
 
-import dev.boooiil.historia.items.configuration.BaseConfigurationLoader;
 import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 
 /**
@@ -8,7 +7,7 @@ import dev.boooiil.historia.items.configuration.ConfigurationProvider;
  * The ItemConfigurationFactory class facilitates the creation of item
  * configurations within the Historia plugin.
  * It is designed to work with class loaders extending
- * {@link BaseConfigurationLoader} that have a
+ * {@link BaseItemConfigurationLoader} that have a
  * definition in the {@link ConfigurationProvider}.
  * </p>
  * ItemConfigurationFactory offers methods to retrieve the configuration loader,
@@ -18,18 +17,19 @@ import dev.boooiil.historia.items.configuration.ConfigurationProvider;
  * @param <IC> The type of configuration handled by the factory, extending
  *             {@link BaseItemConfiguration}.
  * 
- * @see BaseConfigurationLoader
+ * @see BaseItemConfigurationLoader
  * @see ConfigurationProvider
  * @see BaseItemConfiguration
  */
 public class ItemConfigurationFactory<IC extends BaseItemConfiguration> {
 
     /**
-     * BaseConfigurationLoader instance responsible for loading configurations of
+     * BaseItemConfigurationLoader instance responsible for loading configurations
+     * of
      * type {@code IC}.
      * This variable is used to store instances of a class extending {@link IC}.
      */
-    private final BaseConfigurationLoader<IC> configurationLoader;
+    private final BaseItemConfigurationLoader<IC> configurationLoader;
 
     /**
      * Constructs an ItemConfigurationFactory with the specified configuration type.
@@ -39,7 +39,7 @@ public class ItemConfigurationFactory<IC extends BaseItemConfiguration> {
      * @param <IC>              The type of configuration handled by the factory,
      *                          extending {@link BaseItemConfiguration}.
      * @param configurationType The class type of the
-     *                          {@link BaseConfigurationLoader}.
+     *                          {@link BaseItemConfigurationLoader}.
      * @return An ItemConfigurationFactory instance for the specified configuration
      *         type.
      */
@@ -53,7 +53,7 @@ public class ItemConfigurationFactory<IC extends BaseItemConfiguration> {
      * The configuration loader is obtained from the ConfigurationProvider based on
      * the provided class type.
      * 
-     * @param clazz The class type of the {@link BaseConfigurationLoader}.
+     * @param clazz The class type of the {@link BaseItemConfigurationLoader}.
      */
     public ItemConfigurationFactory(Class<IC> clazz) {
         this.configurationLoader = ConfigurationProvider.getConfigurationLoader(clazz);
@@ -64,7 +64,7 @@ public class ItemConfigurationFactory<IC extends BaseItemConfiguration> {
      * 
      * @return The configuration loader instance.
      */
-    public BaseConfigurationLoader<IC> getConfigurationLoader() {
+    public BaseItemConfigurationLoader<IC> getConfigurationLoader() {
         return configurationLoader;
     }
 
