@@ -4,15 +4,15 @@ import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 
 /**
  * <p>
- * The ItemConfigurationFactory class facilitates the creation of item
- * configurations within the Historia plugin.
+ * The ItemConfigurationFactory class facilitates obtaining instances
+ * of item configurations within the Historia plugin.
  * It is designed to work with class loaders extending
  * {@link BaseItemConfigurationLoader} that have a
  * definition in the {@link ConfigurationProvider}.
  * </p>
  * ItemConfigurationFactory offers methods to retrieve the configuration loader,
  * obtain configuration objects by name, and check the validity of configuration
- * data.
+ * items.
  * 
  * @param <IC> The type of configuration handled by the factory, extending
  *             {@link BaseItemConfiguration}.
