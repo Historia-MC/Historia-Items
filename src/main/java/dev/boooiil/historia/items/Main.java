@@ -1,7 +1,6 @@
 package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
-import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 import dev.boooiil.historia.items.events.inventory.CraftItemListener;
 import dev.boooiil.historia.items.file.FileIO;
 
@@ -49,8 +48,6 @@ public class Main extends JavaPlugin {
 
         // Save / Load the config in the Historia plugins folder.
         this.saveDefaultConfig();
-
-        ConfigurationProvider.init();
 
         registerEvent(new CraftItemListener());
 
