@@ -4,6 +4,7 @@ package dev.boooiil.historia.items.configuration;
 import dev.boooiil.historia.items.configuration.general.GeneralConfig;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.BaseItemConfiguration;
+import dev.boooiil.historia.items.configuration.items.BaseItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.ItemConfigurationLoaderFactory;
 import dev.boooiil.historia.items.configuration.items.ToolConfigurationLoader;
@@ -23,7 +24,7 @@ import dev.boooiil.historia.items.file.FileKeys;
  * ConfigurationProvider initializes and reloads configuration files, ensuring
  * that the plugin operates with up-to-date configuration settings.
  * Configuration files are loaded from the plugin's resources folder and are
- * stored in YAML format for easy readability and maintenance.
+ * stored in YAML.
  * </p>
  * 
  * @see ArmorConfigurationLoader
@@ -94,17 +95,17 @@ public class ConfigurationProvider {
      * @return The configuration loader.
      */
     @SuppressWarnings("unchecked")
-    public static <T extends BaseItemConfiguration> BaseConfigurationLoader<T> getConfigurationLoader(
+    public static <T extends BaseItemConfiguration> BaseItemConfigurationLoader<T> getConfigurationLoader(
             Class<T> clazz) {
 
         if (armorConfigurationLoader.typeParameterClass().equals(clazz)) {
-            return (BaseConfigurationLoader<T>) armorConfigurationLoader;
+            return (BaseItemConfigurationLoader<T>) armorConfigurationLoader;
         } else if (weaponConfigurationLoader.typeParameterClass().equals(clazz)) {
-            return (BaseConfigurationLoader<T>) weaponConfigurationLoader;
+            return (BaseItemConfigurationLoader<T>) weaponConfigurationLoader;
         } else if (customItemConfigurationLoader.typeParameterClass().equals(clazz)) {
-            return (BaseConfigurationLoader<T>) customItemConfigurationLoader;
+            return (BaseItemConfigurationLoader<T>) customItemConfigurationLoader;
         } else if (toolConfigurationLoader.typeParameterClass().equals(clazz)) {
-            return (BaseConfigurationLoader<T>) toolConfigurationLoader;
+            return (BaseItemConfigurationLoader<T>) toolConfigurationLoader;
         }
 
         return null;
