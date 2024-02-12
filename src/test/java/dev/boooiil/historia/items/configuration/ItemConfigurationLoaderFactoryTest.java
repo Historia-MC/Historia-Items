@@ -81,7 +81,7 @@ public class ItemConfigurationLoaderFactoryTest {
 
         assert configurationLoader != null;
 
-        configurationLoader.loadConfiguration(FileKeys.ARMOR);
+        configurationLoader.loadConfiguration(FileKeys.WEAPONS);
 
         assert configurationLoader.getConfiguration() != null;
 
