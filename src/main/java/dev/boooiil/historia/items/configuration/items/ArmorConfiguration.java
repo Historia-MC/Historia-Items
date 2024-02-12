@@ -92,7 +92,7 @@ public class ArmorConfiguration extends BaseItemConfiguration {
      */
     public Double getRandomDefenseValue() {
 
-        return NumberUtils.random(getMinDefenceValue(), getMaxDefenceValue());
+        return NumberUtils.random(getMinDefenseValue(), getMaxDefenseValue());
 
     }
 
@@ -112,7 +112,7 @@ public class ArmorConfiguration extends BaseItemConfiguration {
      *
      * @return Defense value.
      */
-    public Double getMinDefenceValue() {
+    public Double getMinDefenseValue() {
 
         return this.defense.get(0);
 
@@ -123,7 +123,7 @@ public class ArmorConfiguration extends BaseItemConfiguration {
      *
      * @return Defence value.
      */
-    public Double getMaxDefenceValue() {
+    public Double getMaxDefenseValue() {
 
         return this.defense.get(1);
 
