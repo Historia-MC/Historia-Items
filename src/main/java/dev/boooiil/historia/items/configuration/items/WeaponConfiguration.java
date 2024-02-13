@@ -1,5 +1,6 @@
 package dev.boooiil.historia.items.configuration.items;
 
+import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.util.NumberUtils;
 
@@ -7,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,9 +16,9 @@ import java.util.List;
  */
 public class WeaponConfiguration extends BaseItemConfiguration {
 
-    private String weightClass;
+    private Weight weight;
 
-    private String weight;
+    private int weightValue;
 
     private List<Double> damageRange;
     private List<Double> speedRange;
@@ -31,19 +33,20 @@ public class WeaponConfiguration extends BaseItemConfiguration {
         String displayName = section.getString(".item.display-name");
         List<String> lore = section.getStringList(".item.lore");
 
-        this.itemStack = Construct.itemStack(material, amount, displayName, lore);
+        this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
 
         this.recipeItems = section.getStringList(".recipe-items");
         this.recipeShape = section.getStringList(".recipe-shape");
 
-        this.weightClass = section.getString(".type");
+        this.weightValue = section.getInt(".weight");
+        this.weight = Weight.getWeight(section.getString(".type"));
         this.damageRange = section.getDoubleList(".damage");
         this.speedRange = section.getDoubleList(".speed");
         this.knockbackRange = section.getDoubleList(".knockback");
         this.sweepRange = section.getDoubleList(".sweeping");
         this.durabilityRange = section.getIntegerList(".durability");
 
-        this.isShaped = section.getBoolean(".requireShape");
+        this.isShaped = true;
 
         this.proficiencies = section.getStringList(".canCraft");
 
@@ -227,9 +230,9 @@ public class WeaponConfiguration extends BaseItemConfiguration {
      * 
      * @return The type of the object.
      */
-    public String getWeightClass() {
+    public Weight getWeight() {
 
-        return this.weightClass;
+        return this.weight;
 
     }
 
@@ -238,9 +241,9 @@ public class WeaponConfiguration extends BaseItemConfiguration {
      * 
      * @return The weight of the object.
      */
-    public String getWeight() {
+    public int getWeightValue() {
 
-        return this.weight;
+        return this.weightValue;
 
     }
 

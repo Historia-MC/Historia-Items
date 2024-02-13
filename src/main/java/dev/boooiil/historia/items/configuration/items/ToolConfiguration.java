@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class ToolConfiguration extends BaseItemConfiguration {
 
     private Weight weight;
 
-    private String weightValue;
+    private int weightValue;
 
     private List<Double> damageRange;
     private List<Double> speedRange;
@@ -33,17 +34,20 @@ public class ToolConfiguration extends BaseItemConfiguration {
         String displayName = section.getString(".item.display-name");
         List<String> lore = section.getStringList(".item.lore");
 
-        this.itemStack = Construct.itemStack(material, amount, displayName, lore);
+        this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
 
         this.recipeItems = section.getStringList(".recipe-items");
         this.recipeShape = section.getStringList(".recipe-shape");
         this.proficiencies = section.getStringList(".canCraft");
 
+        this.weightValue = section.getInt(".weight");
         this.weight = Weight.getWeight(section.getString(".type"));
         this.damageRange = section.getDoubleList(".damage");
         this.speedRange = section.getDoubleList(".speed");
         this.knockbackRange = section.getDoubleList(".knockback");
         this.durabilityRange = section.getIntegerList(".durability");
+
+        this.isShaped = true;
 
     }
 
@@ -208,7 +212,7 @@ public class ToolConfiguration extends BaseItemConfiguration {
      * 
      * @return The weight of the object.
      */
-    public String getWeightValue() {
+    public int getWeightValue() {
 
         return this.weightValue;
 

@@ -7,6 +7,7 @@ import dev.boooiil.historia.items.util.NumberUtils;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class ArmorConfiguration extends BaseItemConfiguration {
         String displayName = section.getString(".item.display-name");
         List<String> lore = section.getStringList(".item.lore");
 
-        this.itemStack = Construct.itemStack(material, amount, displayName, lore);
+        this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
 
         // Getting the weight class of the armor.
         this.weight = Weight.getWeight(section.getString(".type"));
@@ -60,6 +61,8 @@ public class ArmorConfiguration extends BaseItemConfiguration {
         this.recipeShape = section.getStringList(".recipe-shape");
 
         this.proficiencies = section.getStringList(".canCraft");
+
+        this.isShaped = true;
 
     }
 
