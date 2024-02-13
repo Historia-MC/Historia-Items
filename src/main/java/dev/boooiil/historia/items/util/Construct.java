@@ -91,7 +91,7 @@ public class Construct {
      * @param lore        The lore of the item.
      * @return An {@link ItemStack}
      */
-    public static ItemStack itemStack(Material material, int amount, String displayName, List<String> lore) {
+    public static ItemStack itemStack(Material material, int amount, String displayName, ArrayList<String> lore) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
 
@@ -110,9 +110,30 @@ public class Construct {
             loreComponent.add(Component.text(line));
         }
 
+        item.lore(loreComponent);
         item.setItemMeta(meta);
 
         return item;
+    }
+
+    public static ItemStack itemStack(Material material, int amount, String displayName, List<Component> lore) {
+
+        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+                + " lore: " + lore);
+
+        ItemStack item = new ItemStack(material, amount);
+
+        ItemMeta meta = item.getItemMeta();
+
+        Component nameComponent = Component.text(displayName);
+        meta.displayName(nameComponent);
+
+        meta.lore(lore);
+
+        item.setItemMeta(meta);
+
+        return item;
+
     }
 
     /**
