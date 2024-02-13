@@ -1,5 +1,6 @@
 package dev.boooiil.historia.items.generic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -89,7 +90,7 @@ public class Ingot extends BaseItem {
                 "§7Weight - " + weight.getWeightColor(),
                 "§7Quality - " + quality.getProperNameColored());
 
-        this.itemStack = Construct.itemStack(drop, 1, name, lore);
+        this.itemStack = Construct.itemStack(drop, 1, name, new ArrayList<>(lore));
 
         ItemMeta meta = itemStack.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();

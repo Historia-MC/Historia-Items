@@ -2,6 +2,7 @@ package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.util.Construct;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -37,7 +38,7 @@ public class CustomItemConfiguration extends BaseItemConfiguration {
         String displayName = section.getString(".item.display-name");
         List<String> lore = section.getStringList(".item.lore");
 
-        this.itemStack = Construct.itemStack(material, amount, displayName, lore);
+        this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
 
         // Getting the recipe items from the config.
         this.recipeItems = section.getStringList(".recipe-items");
