@@ -126,13 +126,13 @@ public class CraftingResult {
 
         List<String> lore = List.of(
                 "",
-                "§7Class - " + weapon.getWeightClass(),
+                "§7Class - " + weapon.getWeight(),
                 "",
                 "§7Damage - " + NumberUtils.roundDouble(rolledDamage, 2),
                 "§7Attack Speed - " + NumberUtils.roundDouble(rolledAttackSpeed, 2),
                 "§7Knockback - " + NumberUtils.roundDouble(rolledKnockback, 2),
                 "§7Sweeping - " + NumberUtils.roundDouble(rolledSweeping, 2),
-                "§7Weight - " + weapon.getWeight());
+                "§7Weight - " + weapon.getWeightValue());
 
         damageable.setDamage(adjustedDurability);
         meta.setLore(lore);
