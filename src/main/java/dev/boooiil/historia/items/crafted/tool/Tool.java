@@ -1,5 +1,6 @@
 package dev.boooiil.historia.items.crafted.tool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -9,9 +10,11 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
+import net.kyori.adventure.text.Component;
 
 public class Tool extends BaseItem {
 
@@ -67,7 +70,7 @@ public class Tool extends BaseItem {
 
         this.weight = weight;
 
-        this.itemStack = Construct.itemStack(material, 1, displayName, lore);
+        this.itemStack = Construct.itemStack(material, 1, displayName, new ArrayList<>(lore));
 
         ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
         PersistentDataContainer container = meta.getPersistentDataContainer();
@@ -82,6 +85,38 @@ public class Tool extends BaseItem {
         container.set(Main.getNamespacedKey("tool-weight"), PersistentDataType.STRING, weight.getKey());
 
         itemStack.setItemMeta(meta);
+    }
+
+    public Tool(ToolConfiguration configuration) {
+        Material material = configuration.getItemStack().getType();
+        String displayName = configuration.getItemStack().displayName().examinableName();
+        List<Component> lore = configuration.getItemStack().lore();
+
+        this.valid = true;
+
+        this.damage = configuration.getDamageRandomValue();
+        this.speed = configuration.getSpeedRandomValue();
+        this.knockback = configuration.getKnockbackRandomValue();
+
+        this.durability = configuration.getRandomDurabilityValue();
+        this.weightValue = configuration.getWeightValue();
+        this.weight = configuration.getWeight();
+
+        this.itemStack = Construct.itemStack(material, 1, displayName, lore);
+
+        ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
+        PersistentDataContainer container = meta.getPersistentDataContainer();
+
+        container.set(Main.getNamespacedKey("tool-damage"), PersistentDataType.DOUBLE, damage);
+        container.set(Main.getNamespacedKey("tool-speed"), PersistentDataType.DOUBLE, speed);
+        container.set(Main.getNamespacedKey("tool-knockback"), PersistentDataType.DOUBLE, knockback);
+
+        container.set(Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER, durability);
+        container.set(Main.getNamespacedKey("tool-weight-value"), PersistentDataType.INTEGER, weightValue);
+        container.set(Main.getNamespacedKey("tool-weight"), PersistentDataType.STRING, weight.getKey());
+
+        itemStack.setItemMeta(meta);
+
     }
 
     public double getDamage() {
