@@ -4,7 +4,7 @@ import dev.boooiil.historia.items.util.Logging;
 
 import java.util.List;
 
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.Material;
 
 /**
  * <p>
@@ -34,8 +34,17 @@ public class BaseItemConfiguration {
     /** If the item is shape dependent. */
     protected boolean isShaped;
 
-    /** The item stack of the item. */
-    protected ItemStack itemStack;
+    /** The material of the item. */
+    protected Material material;
+
+    /** The amount of the item. */
+    protected int amount;
+
+    /** The display name of the item. */
+    protected String displayName;
+
+    /** The lore of the item. */
+    protected List<String> lore;
 
     /**
      * This function returns the list of items that are required to craft the item
@@ -103,11 +112,52 @@ public class BaseItemConfiguration {
     }
 
     /**
-     * It returns the item stack of the item.
+     * It returns the material of the item.
      *
-     * @return The item stack.
+     * @return The material of the item.
      */
-    public ItemStack getItemStack() {
-        return itemStack;
+    public Material getMaterial() {
+
+        return this.material;
+
     }
+
+    /**
+     * It returns the amount of the item.
+     *
+     * @return The amount of the item.
+     */
+    public int getAmount() {
+
+        return this.amount;
+
+    }
+
+    /**
+     * It returns the display name of the item.
+     *
+     * @return The display name of the item.
+     */
+    public String getDisplayName() {
+
+        return this.displayName;
+
+    }
+
+    /**
+     * It returns the lore of the item.
+     *
+     * @return The lore of the item.
+     */
+    public List<String> getLore() {
+
+        return this.lore;
+
+    }
+
+    public String toString() {
+        return "Material: " + this.material + " Amount: " + this.amount + " Display Name: " + this.displayName
+                + " Lore: " + this.lore.toString();
+    }
+
 }
