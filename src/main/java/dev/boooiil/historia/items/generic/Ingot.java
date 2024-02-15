@@ -24,6 +24,7 @@ import dev.boooiil.historia.items.util.Construct;
  */
 public class Ingot extends BaseItem {
 
+    private String customMaterialName;
     private Material material;
     private Weight weight;
     private Quality quality;
@@ -50,6 +51,8 @@ public class Ingot extends BaseItem {
         if (container.has(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING)) {
             this.valid = true;
             this.material = itemStack.getType();
+            this.displayName = container.get(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING);
+            this.customMaterialName = container.get(Main.getNamespacedKey("ingot-material"), PersistentDataType.STRING);
             this.weight = Weight
                     .getWeight(container.get(Main.getNamespacedKey("ingot-weight"), PersistentDataType.STRING));
             this.quality = Quality
@@ -61,9 +64,9 @@ public class Ingot extends BaseItem {
 
     }
 
-    public Ingot(Material drop, String name, Weight weight, Quality quality) {
+    public Ingot(Material material, String customMaterialName, String displayName, Weight weight, Quality quality) {
 
-        switch (drop) {
+        switch (material) {
 
             case RAW_IRON:
             case RAW_COPPER:
@@ -81,7 +84,7 @@ public class Ingot extends BaseItem {
                 return;
         }
 
-        this.material = drop;
+        this.material = material;
         this.weight = weight;
         this.quality = quality;
 
@@ -90,12 +93,13 @@ public class Ingot extends BaseItem {
                 "§7Weight - " + weight.getWeightColor(),
                 "§7Quality - " + quality.getProperNameColored());
 
-        this.itemStack = Construct.itemStack(drop, 1, name, new ArrayList<>(lore));
+        this.itemStack = Construct.itemStack(material, 1, displayName, new ArrayList<>(lore));
 
         ItemMeta meta = itemStack.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        container.set(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING, name);
+        container.set(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING, displayName);
+        container.set(Main.getNamespacedKey("ingot-material"), PersistentDataType.STRING, customMaterialName);
         container.set(Main.getNamespacedKey("ingot-weight"), PersistentDataType.STRING, weight.getKey());
         container.set(Main.getNamespacedKey("ingot-quality"), PersistentDataType.STRING, quality.getKey());
 
@@ -161,9 +165,24 @@ public class Ingot extends BaseItem {
 
     }
 
+    /**
+     * This function will return a value that concatenates the quality, weight, and
+     * customMaterialName variables.
+     * 
+     * @return The concatenated string.
+     */
     public String generateReadableName() {
         return this.quality.getKey().toUpperCase() + "_" + this.weight.getKey().toUpperCase() + "_"
-                + this.material.name();
+                + this.customMaterialName.toUpperCase();
+    }
+
+    /**
+     * This function will return the custom name of the material.
+     * 
+     * @return The custom material name.
+     */
+    public String getCustomMaterialName() {
+        return this.customMaterialName;
     }
 
     /**
@@ -188,7 +207,8 @@ public class Ingot extends BaseItem {
 
         Quality quality = null;
         Weight weight = null;
-        String name = null;
+        String displayName = null;
+        String customMaterialName = null;
         Material material = null;
         StringBuilder materialBuilder = new StringBuilder();
 
@@ -196,28 +216,30 @@ public class Ingot extends BaseItem {
             quality = Quality.getQuality(split[0]);
         } catch (IllegalArgumentException e) {
             Logging.debugToConsole("Invalid quality");
-            return new Ingot(Material.AIR, "Invalid Ingot", Weight.LIGHT, Quality.POOR);
+            return new Ingot(new ItemStack(Material.AIR));
         }
 
         try {
             weight = Weight.getWeight(split[1]);
         } catch (IllegalArgumentException e) {
             Logging.debugToConsole("Invalid weight");
-            return new Ingot(Material.AIR, "Invalid Ingot", Weight.LIGHT, Quality.POOR);
+            return new Ingot(new ItemStack(Material.AIR));
         }
 
         // Extract material
         for (int i = 2; i < split.length; i++) {
             materialBuilder.append(split[i]);
             if (i == 2)
-                name = split[i].substring(0, 1).toUpperCase() + split[i].substring(1).toLowerCase();
+                displayName = split[i].substring(0, 1).toUpperCase() + split[i].substring(1);
             ;
             if (i < split.length - 1) {
                 materialBuilder.append("_"); // Add underscore if it's not the last part
             }
         }
 
-        switch (materialBuilder.toString().toLowerCase()) {
+        customMaterialName = materialBuilder.toString();
+
+        switch (customMaterialName) {
             case "sulphur":
                 material = Material.GLOWSTONE_DUST;
                 break;
@@ -245,12 +267,12 @@ public class Ingot extends BaseItem {
                     material = Material.valueOf(materialBuilder.toString().toUpperCase());
                 } catch (IllegalArgumentException e) {
                     Logging.debugToConsole("Invalid material");
-                    return new Ingot(Material.AIR, "Invalid Ingot", Weight.LIGHT, Quality.POOR);
+                    return new Ingot(new ItemStack(Material.AIR));
                 }
                 break;
         }
 
-        return new Ingot(material, quality.getQualityColor() + name, weight, quality);
+        return new Ingot(material, customMaterialName, displayName, weight, quality);
 
     }
 }
