@@ -1,10 +1,11 @@
 package dev.boooiil.historia.items.crafted;
 
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-public abstract class BaseItem {
+public class BaseItem {
 
-    protected String name;
+    protected String displayName;
     protected boolean valid;
 
     public BaseItem() {
@@ -15,13 +16,13 @@ public abstract class BaseItem {
      *
      * @param itemStack The ItemStack to be set as the itemStack variable.
      */
-    public BaseItem(ItemStack itemStack) {
+    public BaseItem(@NotNull ItemStack itemStack) {
 
         this.itemStack = itemStack;
 
     }
 
-    public BaseItem(ItemStack itemStack, boolean valid) {
+    public BaseItem(@NotNull ItemStack itemStack, boolean valid) {
 
         this.itemStack = itemStack;
         this.valid = valid;
@@ -41,9 +42,9 @@ public abstract class BaseItem {
 
     }
 
-    public String getName() {
+    public String getDisplayName() {
 
-        return this.name;
+        return this.displayName;
 
     }
 
