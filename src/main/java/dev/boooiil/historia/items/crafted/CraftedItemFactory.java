@@ -18,6 +18,13 @@ import dev.boooiil.historia.items.crafted.weapon.Weapon;
 
 public class CraftedItemFactory {
 
+    public static <T extends BaseItem> T createObject(@NotNull ItemStack itemStack,
+            CraftedItemFactoryInterface<T> factory) {
+
+        return factory.create(itemStack);
+
+    }
+
     /**
      * <p>
      * Create an instance of Armor from a given ItemStack. If this ItemStack is not
