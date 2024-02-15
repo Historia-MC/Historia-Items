@@ -7,9 +7,11 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
 import dev.boooiil.historia.items.crafted.armor.Armor;
+import dev.boooiil.historia.items.crafted.custom.Custom;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.crafted.tool.Tool;
 import dev.boooiil.historia.items.crafted.weapon.Weapon;
@@ -30,7 +32,7 @@ public class CraftedItemFactory {
      * @param itemStack
      * @return Instance of {@link Armor}
      */
-    public static Armor createArmor(ItemStack itemStack) {
+    public static Armor createArmor(@NotNull ItemStack itemStack) {
         return new Armor(itemStack);
     }
 
@@ -70,7 +72,7 @@ public class CraftedItemFactory {
      *                      armor.
      * @return Instance of {@link Armor}
      */
-    public static Armor createArmor(ArmorConfiguration configuration) {
+    public static Armor createArmor(@NotNull ArmorConfiguration configuration) {
 
         return new Armor(configuration);
 
@@ -90,7 +92,7 @@ public class CraftedItemFactory {
      * @param itemStack
      * @return Instance of {@link Weapon}
      */
-    public static Weapon createWeapon(ItemStack itemStack) {
+    public static Weapon createWeapon(@NotNull ItemStack itemStack) {
         return new Weapon(itemStack);
     }
 
@@ -155,7 +157,7 @@ public class CraftedItemFactory {
      * @param itemStack
      * @return Instance of {@link Tool}
      */
-    public static Tool createTool(ItemStack itemStack) {
+    public static Tool createTool(@NotNull ItemStack itemStack) {
         return new Tool(itemStack);
     }
 
@@ -199,5 +201,59 @@ public class CraftedItemFactory {
 
         return new Tool(configuration);
 
+    }
+
+    /**
+     * <p>
+     * Create an instance of Custom from a given ItemStack. If this ItemStack is not
+     * an instance of Custom, {@link Custom#isValid()} will return false.
+     * </p>
+     * 
+     * This method will NOT generate values for custom, only provide an interface to
+     * interact with the custom. If you want to create a new instance of Custom with
+     * provided values, use
+     * {@link #createCustom(Material, int, String, List)}.
+     * 
+     * @param itemStack
+     * @return Instance of {@link Custom}
+     */
+    public static Custom createCustom(@NotNull ItemStack itemStack) {
+        return new Custom(itemStack);
+    }
+
+    /**
+     * <p>
+     * Build an instance of Custom from the given parameters. This method is used to
+     * create new instances of Custom with provided values.
+     * </p>
+     * 
+     * @param material    The {@link Material} of the custom.
+     * @param amount      The amount of the custom.
+     * @param displayName The display name of the custom (shown to player).
+     * @param lore        The lore of the custom.
+     * @return Instance of {@link Custom}
+     */
+    public static Custom createCustom(Material material, int amount, String displayName, List<String> lore) {
+        return new Custom(material, amount, displayName, lore);
+    }
+
+    /**
+     * <p>
+     * Create an instance of Custom from a given CustomItemConfiguration. This will
+     * not check if the Custom is valid, as it is assumed that the
+     * CustomItemConfiguration is valid.
+     * </p>
+     * 
+     * The CustomItemConfiguration is used to create a new instance of Custom with
+     * provided values. The Custom will have its values populated on instantiation.
+     * You can get the item stack of the custom by calling
+     * {@link Custom#getItemStack()}.
+     * 
+     * @param configuration The {@link CustomItemConfiguration configuration} of the
+     *                      custom.
+     * @return Instance of {@link Custom}
+     */
+    public static Custom createCustom(@NotNull CustomItemConfiguration configuration) {
+        return new Custom(configuration);
     }
 }
