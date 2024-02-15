@@ -114,7 +114,7 @@ public abstract class BaseItemConfigurationLoader<T extends BaseItemConfiguratio
 
             if (object.getRecipeShape().equals(shape)) {
 
-                Logging.debugToConsole(object.getItemStack().getItemMeta().toString());
+                Logging.debugToConsole(object.getDisplayName());
 
                 set.add(object);
 
@@ -140,7 +140,7 @@ public abstract class BaseItemConfigurationLoader<T extends BaseItemConfiguratio
 
             if (new HashSet<>(object.getRecipeItems()).containsAll(materials)) {
 
-                Logging.debugToConsole(object.getItemStack().getItemMeta().getAsString());
+                Logging.debugToConsole(object.toString());
 
                 set.add(object);
 
