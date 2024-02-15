@@ -27,6 +27,36 @@ import dev.boooiil.historia.items.file.FileKeys;
 public class ItemConfigurationLoaderFactory {
 
     /**
+     * This method will instantiate a new configuration loader for the specified
+     * file and factory interface.
+     * 
+     * <p>
+     * This method should only be used if you are wanting a NEW instance of a
+     * configuration loader. If you are looking for an already instantiated
+     * configuration loader, use the
+     * {@link dev.boooiil.historia.items.configuration.ConfigurationProvider
+     * ConfigurationProvider} getter methods.
+     * </p>
+     * 
+     * This is a dumb implementation and does not have an advantage over the set
+     * getter methods. BUT it is a generic method that can be used to get any
+     * configuration loader that extends BaseItemConfigurationLoader.
+     * 
+     * @param <T>              The type of configuration loader to be instantiated.
+     * @param file             The file key of the configuration file to be loaded.
+     * @param factoryInterface The factory interface for the configuration loader.
+     * @return A new instance of the specified configuration loader.
+     */
+    public static <T extends BaseItemConfigurationLoader<?>> T getConfigurationLoader(FileKeys file,
+            ItemConfigurationLoaderFactoryInterface<T> factoryInterface) {
+
+        T configurationLoader = factoryInterface.create();
+        configurationLoader.loadConfiguration(file);
+
+        return configurationLoader;
+    }
+
+    /**
      * This method will instantiate a new {@link ArmorConfigurationLoader}.
      * 
      * <p>
