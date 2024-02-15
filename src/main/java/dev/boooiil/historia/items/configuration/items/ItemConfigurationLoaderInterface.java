@@ -17,6 +17,6 @@ package dev.boooiil.historia.items.configuration.items;
  * @see BaseItemConfigurationLoader
  * @see ConfigurationProvider
  */
-public interface ItemConfigurationLoaderFactoryInterface<T extends BaseItemConfigurationLoader<?>> {
+public interface ItemConfigurationLoaderInterface<T extends BaseItemConfigurationLoader<?>> {
     public T create();
 }

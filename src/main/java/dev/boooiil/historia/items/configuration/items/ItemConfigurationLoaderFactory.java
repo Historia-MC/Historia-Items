@@ -48,7 +48,7 @@ public class ItemConfigurationLoaderFactory {
      * @return A new instance of the specified configuration loader.
      */
     public static <T extends BaseItemConfigurationLoader<?>> T getConfigurationLoader(FileKeys file,
-            ItemConfigurationLoaderFactoryInterface<T> factoryInterface) {
+            ItemConfigurationLoaderInterface<T> factoryInterface) {
 
         T configurationLoader = factoryInterface.create();
         configurationLoader.loadConfiguration(file);
