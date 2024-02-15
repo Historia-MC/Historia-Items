@@ -30,7 +30,7 @@ public class CustomItemConfigurationLoader extends BaseItemConfigurationLoader<C
                 set.add(customItem);
             else if (customItem.getRecipeShape().equals(shape)) {
 
-                Logging.debugToConsole(customItem.getItemStack().getItemMeta().getAsString());
+                Logging.debugToConsole(customItem.toString());
 
                 set.add(customItem);
 
