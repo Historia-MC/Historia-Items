@@ -18,7 +18,10 @@ import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.ItemConfigurationFactory;
 import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
+import dev.boooiil.historia.items.crafted.armor.Armor;
 import dev.boooiil.historia.items.crafted.getter.ItemGetter;
+import dev.boooiil.historia.items.crafted.tool.Tool;
+import dev.boooiil.historia.items.crafted.weapon.Weapon;
 
 public class ItemGetterTest {
 
@@ -59,7 +62,7 @@ public class ItemGetterTest {
 
         ArmorConfiguration armorConfiguration = armorFactory.getObject("Light_Leather_Helmet");
 
-        System.out.println("armor: " + armorConfiguration.getItemStack());
+        System.out.println("armor: " + armorConfiguration.getDisplayName());
     }
 
     @Test
@@ -72,7 +75,8 @@ public class ItemGetterTest {
             if (key.equals("version"))
                 continue;
             System.out.println("Testing key: " + key);
-            ArmorConfiguration item = ItemGetter.getArmor(key);
+            ArmorConfiguration itemConfiguration = ItemGetter.getArmor(key);
+            Armor item = new Armor(itemConfiguration);
 
             System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
 
@@ -91,7 +95,8 @@ public class ItemGetterTest {
             if (key.equals("version"))
                 continue;
             System.out.println("Testing key: " + key);
-            WeaponConfiguration item = ItemGetter.getWeapon(key);
+            WeaponConfiguration itemConfiguration = ItemGetter.getWeapon(key);
+            Weapon item = new Weapon(itemConfiguration);
 
             System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
 
@@ -112,7 +117,7 @@ public class ItemGetterTest {
             System.out.println("Testing key: " + key);
             CustomItemConfiguration item = ItemGetter.getCustomItem(key);
 
-            System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
+            System.out.println("Item: " + item.getDisplayName());
 
             assert item != null;
         }
@@ -129,11 +134,13 @@ public class ItemGetterTest {
             if (key.equals("version"))
                 continue;
             System.out.println("Testing key: " + key);
-            ToolConfiguration item = ItemGetter.getTool(key);
+            ToolConfiguration itemConfiguration = ItemGetter.getTool(key);
+            Tool item = new Tool(itemConfiguration);
 
             System.out.println("Item: " + item.getItemStack().getItemMeta().displayName());
 
             assert item != null;
+
         }
 
     }
