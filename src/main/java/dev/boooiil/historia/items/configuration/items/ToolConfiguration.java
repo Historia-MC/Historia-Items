@@ -1,14 +1,10 @@
 package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
-import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.util.NumberUtils;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,16 +21,12 @@ public class ToolConfiguration extends BaseItemConfiguration {
     private List<Double> knockbackRange;
     private List<Integer> durabilityRange;
 
-    private final ItemStack itemStack;
-
     ToolConfiguration(ConfigurationSection section) {
 
-        Material material = Material.getMaterial(section.getString(".item.type"));
-        int amount = section.getInt(".item.amount");
-        String displayName = section.getString(".item.display-name");
-        List<String> lore = section.getStringList(".item.lore");
-
-        this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
+        this.material = Material.getMaterial(section.getString(".item.type"));
+        this.amount = section.getInt(".item.amount");
+        this.displayName = section.getString(".item.display-name");
+        this.lore = section.getStringList(".item.lore");
 
         this.recipeItems = section.getStringList(".recipe-items");
         this.recipeShape = section.getStringList(".recipe-shape");
@@ -216,9 +208,5 @@ public class ToolConfiguration extends BaseItemConfiguration {
 
         return this.weightValue;
 
-    }
-
-    public ItemStack getItemStack() {
-        return itemStack;
     }
 }

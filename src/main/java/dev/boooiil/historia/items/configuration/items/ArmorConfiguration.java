@@ -1,13 +1,11 @@
 package dev.boooiil.historia.items.configuration.items;
 
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
-import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.util.NumberUtils;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,12 +33,10 @@ public class ArmorConfiguration extends BaseItemConfiguration {
 
     ArmorConfiguration(ConfigurationSection section) {
 
-        Material material = Material.getMaterial(section.getString(".item.type"));
-        int amount = section.getInt(".item.amount");
-        String displayName = section.getString(".item.display-name");
-        List<String> lore = section.getStringList(".item.lore");
-
-        this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
+        this.material = Material.getMaterial(section.getString(".item.type"));
+        this.amount = section.getInt(".item.amount");
+        this.displayName = section.getString(".item.display-name");
+        this.lore = section.getStringList(".item.lore");
 
         // Getting the weight class of the armor.
         this.weight = Weight.getWeight(section.getString(".type"));
