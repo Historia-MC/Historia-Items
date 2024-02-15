@@ -6,6 +6,7 @@ import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
 
+@Deprecated(forRemoval = true)
 public class ItemGetter {
 
     /**

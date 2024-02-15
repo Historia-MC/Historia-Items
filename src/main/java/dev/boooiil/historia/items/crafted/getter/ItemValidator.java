@@ -2,6 +2,7 @@ package dev.boooiil.historia.items.crafted.getter;
 
 import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 
+@Deprecated(forRemoval = true)
 public class ItemValidator {
 
     /**
