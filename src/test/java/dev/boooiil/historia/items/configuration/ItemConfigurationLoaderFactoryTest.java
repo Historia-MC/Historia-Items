@@ -67,7 +67,8 @@ public class ItemConfigurationLoaderFactoryTest {
         ArmorConfiguration configuration = configurationLoader.getObject("Light_Iron_Helmet");
 
         assert configuration != null;
-        assert configuration.getItemStack() != null;
+        assert configuration.getLore() != null;
+        assert configuration.getDisplayName() != null;
 
         System.out.println("Armor configuration loader test passed.");
     }
@@ -90,7 +91,8 @@ public class ItemConfigurationLoaderFactoryTest {
         WeaponConfiguration configuration = configurationLoader.getObject("Light_Iron_Sword");
 
         assert configuration != null;
-        assert configuration.getItemStack() != null;
+        assert configuration.getLore() != null;
+        assert configuration.getDisplayName() != null;
 
         System.out.println("Item configuration loader factory test passed.");
     }
@@ -113,7 +115,8 @@ public class ItemConfigurationLoaderFactoryTest {
         ToolConfiguration configuration = configurationLoader.getObject("Light_Iron_Pickaxe");
 
         assert configuration != null;
-        assert configuration.getItemStack() != null;
+        assert configuration.getLore() != null;
+        assert configuration.getDisplayName() != null;
 
         System.out.println("Item configuration loader factory test passed.");
     }
@@ -136,7 +139,8 @@ public class ItemConfigurationLoaderFactoryTest {
         CustomItemConfiguration configuration = configurationLoader.getObject("COAL_COKE");
 
         assert configuration != null;
-        assert configuration.getItemStack() != null;
+        assert configuration.getLore() != null;
+        assert configuration.getDisplayName() != null;
 
         System.out.println("Custom item configuration loader factory test passed.");
     }
