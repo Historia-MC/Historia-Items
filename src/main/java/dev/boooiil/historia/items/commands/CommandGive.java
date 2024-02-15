@@ -6,6 +6,9 @@ import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
 import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
+import dev.boooiil.historia.items.crafted.armor.Armor;
+import dev.boooiil.historia.items.crafted.custom.Custom;
+import dev.boooiil.historia.items.crafted.weapon.Weapon;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
 
 import org.bukkit.command.Command;
@@ -30,7 +33,9 @@ public class CommandGive implements CommandExecutor {
 
             if (weaponConfig.isValid(args[1])) {
 
-                WeaponConfiguration weapon = weaponConfig.getObject(args[1]);
+                WeaponConfiguration weaponConfiguration = weaponConfig.getObject(args[1]);
+                Weapon weapon = new Weapon(weaponConfiguration);
+
                 player.getWorld().dropItemNaturally(player.getLocation(), weapon.getItemStack());
 
             }
@@ -46,7 +51,9 @@ public class CommandGive implements CommandExecutor {
 
             if (armorConfig.isValid(args[1])) {
 
-                ArmorConfiguration armor = armorConfig.getObject(args[1]);
+                ArmorConfiguration armorConfiguration = armorConfig.getObject(args[1]);
+                Armor armor = new Armor(armorConfiguration);
+
                 player.getWorld().dropItemNaturally(player.getLocation(), armor.getItemStack());
 
             }
@@ -62,7 +69,9 @@ public class CommandGive implements CommandExecutor {
 
             if (customItemConfig.isValid(args[1])) {
 
-                CustomItemConfiguration item = customItemConfig.getObject(args[1]);
+                CustomItemConfiguration itemConfiguration = customItemConfig.getObject(args[1]);
+                Custom item = new Custom(itemConfiguration);
+
                 player.getWorld().dropItemNaturally(player.getLocation(), item.getItemStack());
 
             }
