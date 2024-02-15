@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import net.kyori.adventure.text.Component;
 import dev.boooiil.historia.items.Main;
@@ -31,7 +32,7 @@ public class Armor extends BaseItem {
      *
      * @param item The ItemStack representing the armor.
      */
-    public Armor(ItemStack item) {
+    public Armor(@NotNull ItemStack item) {
         super(item);
 
         if (!item.hasItemMeta()) {
@@ -93,9 +94,13 @@ public class Armor extends BaseItem {
      * @param configuration The configuration defining the armor.
      */
     public Armor(ArmorConfiguration configuration) {
-        Material material = configuration.getItemStack().getType();
-        String displayName = configuration.getItemStack().displayName().examinableName();
-        List<Component> lore = configuration.getItemStack().lore();
+        Material material = configuration.getMaterial();
+        String displayName = configuration.getDisplayName();
+        List<Component> lore = new ArrayList<>();
+
+        for (String s : configuration.getLore()) {
+            lore.add(Component.text(s));
+        }
 
         this.defense = configuration.getRandomDefenseValue();
         this.durability = configuration.getRandomDurabilityValue();

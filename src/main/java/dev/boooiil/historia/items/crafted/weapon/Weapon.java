@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
@@ -28,7 +29,7 @@ public class Weapon extends BaseItem {
 
     private Weight weight;
 
-    public Weapon(ItemStack item) {
+    public Weapon(@NotNull ItemStack item) {
         super(item);
 
         if (!item.hasItemMeta()) {
@@ -95,9 +96,13 @@ public class Weapon extends BaseItem {
     public Weapon(WeaponConfiguration configuration) {
         this.valid = true;
 
-        Material material = configuration.getItemStack().getType();
-        String displayName = configuration.getItemStack().displayName().examinableName();
-        List<Component> lore = configuration.getItemStack().lore();
+        Material material = configuration.getMaterial();
+        String displayName = configuration.getDisplayName();
+        List<Component> lore = new ArrayList<>();
+
+        for (String s : configuration.getLore()) {
+            lore.add(Component.text(s));
+        }
 
         this.damage = configuration.getDamageRandomValue();
         this.speed = configuration.getSpeedRandomValue();
