@@ -145,4 +145,17 @@ public class ItemConfigurationLoaderFactoryTest {
         System.out.println("Custom item configuration loader factory test passed.");
     }
 
+    @Test
+    public void testGenericItemConfigurationLoaderFactory() {
+
+        WeaponConfigurationLoader configurationLoader = ItemConfigurationLoaderFactory
+                .getConfigurationLoader(FileKeys.WEAPONS, WeaponConfigurationLoader::new);
+
+        WeaponConfiguration configuration = configurationLoader.getObject("Light_Iron_Sword");
+
+        assert configuration != null;
+        assert configuration.getLore() != null;
+        assert configuration.getDisplayName() != null;
+
+    }
 }
