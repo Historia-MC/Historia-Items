@@ -13,6 +13,7 @@ import org.bukkit.persistence.PersistentDataType;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.crafted.BaseItem;
+import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Quality;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
@@ -37,30 +38,25 @@ public class Ingot extends BaseItem {
      * @param itemStack
      */
     public Ingot(ItemStack itemStack) {
+        super(itemStack);
 
-        if (!itemStack.hasItemMeta()) {
-            this.valid = false;
+        if (getItemType() != ItemType.INGOT) {
             return;
-        }
-
-        this.itemStack = itemStack;
+        } else
+            this.valid = true;
 
         ItemMeta meta = itemStack.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        if (container.has(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING)) {
-            this.valid = true;
-            this.material = itemStack.getType();
-            this.displayName = container.get(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING);
-            this.customMaterialName = container.get(Main.getNamespacedKey("ingot-material"), PersistentDataType.STRING);
-            this.weight = Weight
-                    .getWeight(container.get(Main.getNamespacedKey("ingot-weight"), PersistentDataType.STRING));
-            this.quality = Quality
-                    .getQuality(container.get(Main.getNamespacedKey("ingot-quality"), PersistentDataType.STRING));
+        this.material = itemStack.getType();
+        this.customMaterialName = container.get(Main.getNamespacedKey("item-ingot-material"),
+                PersistentDataType.STRING);
+        this.weight = Weight
+                .getWeight(container.get(Main.getNamespacedKey("item-ingot-weight"), PersistentDataType.STRING));
+        this.quality = Quality
+                .getQuality(container.get(Main.getNamespacedKey("item-ingot-quality"), PersistentDataType.STRING));
 
-            this.isDirty = container.get(Main.getNamespacedKey("ingot-dirtiness"), PersistentDataType.BOOLEAN);
-
-        }
+        this.isDirty = container.get(Main.getNamespacedKey("item-ingot-dirtiness"), PersistentDataType.BOOLEAN);
 
     }
 
@@ -98,10 +94,10 @@ public class Ingot extends BaseItem {
         ItemMeta meta = itemStack.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        container.set(Main.getNamespacedKey("ingot-name"), PersistentDataType.STRING, displayName);
-        container.set(Main.getNamespacedKey("ingot-material"), PersistentDataType.STRING, customMaterialName);
-        container.set(Main.getNamespacedKey("ingot-weight"), PersistentDataType.STRING, weight.getKey());
-        container.set(Main.getNamespacedKey("ingot-quality"), PersistentDataType.STRING, quality.getKey());
+        container.set(Main.getNamespacedKey("item-ingot-name"), PersistentDataType.STRING, displayName);
+        container.set(Main.getNamespacedKey("item-ingot-material"), PersistentDataType.STRING, customMaterialName);
+        container.set(Main.getNamespacedKey("item-ingot-weight"), PersistentDataType.STRING, weight.getKey());
+        container.set(Main.getNamespacedKey("item-ingot-quality"), PersistentDataType.STRING, quality.getKey());
 
         itemStack.setItemMeta(meta);
 
