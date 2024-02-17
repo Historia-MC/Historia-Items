@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.events.inventory;
 
-import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
 import dev.boooiil.historia.core.database.internal.PlayerStorage;
+import dev.boooiil.historia.core.player.HistoriaPlayer;
 import dev.boooiil.historia.items.configuration.ConfigurationProvider;
 import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
 import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
