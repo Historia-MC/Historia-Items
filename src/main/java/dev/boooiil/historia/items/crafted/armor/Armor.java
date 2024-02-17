@@ -14,6 +14,7 @@ import net.kyori.adventure.text.Component;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
+import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 
@@ -35,25 +36,18 @@ public class Armor extends BaseItem {
     public Armor(@NotNull ItemStack item) {
         super(item);
 
-        if (!item.hasItemMeta()) {
-            this.valid = false;
+        if (getItemType() != ItemType.ARMOR) {
             return;
-        }
+        } else
+            this.valid = true;
 
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        if (!container.has(Main.getNamespacedKey("armor-defense"))) {
-            this.valid = false;
-            return;
-        }
-
-        this.valid = true;
-
-        this.defense = container.get(Main.getNamespacedKey("armor-defense"), PersistentDataType.DOUBLE);
-        this.durability = container.get(Main.getNamespacedKey("armor-durability"), PersistentDataType.INTEGER);
-        this.weightValue = container.get(Main.getNamespacedKey("armor-weight-value"), PersistentDataType.INTEGER);
-        this.weight = Weight.getWeight(container.get(Main.getNamespacedKey("armor-weight"), PersistentDataType.STRING));
+        this.defense = container.get(Main.getNamespacedKey("item-defense"), PersistentDataType.DOUBLE);
+        this.durability = container.get(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER);
+        this.weightValue = container.get(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER);
+        this.weight = Weight.getWeight(container.get(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING));
     }
 
     /**
@@ -74,16 +68,19 @@ public class Armor extends BaseItem {
         this.durability = durability;
         this.weightValue = weightValue;
         this.weight = weight;
+        this.itemType = ItemType.ARMOR;
 
         this.itemStack = Construct.itemStack(material, 1, displayName, new ArrayList<>(lore));
 
         ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        container.set(Main.getNamespacedKey("armor-defense"), PersistentDataType.DOUBLE, defense);
-        container.set(Main.getNamespacedKey("armor-durability"), PersistentDataType.INTEGER, durability);
-        container.set(Main.getNamespacedKey("armor-weight-value"), PersistentDataType.INTEGER, weightValue);
-        container.set(Main.getNamespacedKey("armor-weight"), PersistentDataType.STRING, weight.getKey());
+        container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());
+        container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
+        container.set(Main.getNamespacedKey("item-defense"), PersistentDataType.DOUBLE, defense);
+        container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
+        container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
+        container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
 
         itemStack.setItemMeta(meta);
     }
@@ -106,6 +103,7 @@ public class Armor extends BaseItem {
         this.durability = configuration.getRandomDurabilityValue();
         this.weight = configuration.getWeight();
         this.weightValue = configuration.getWeightValue();
+        this.itemType = ItemType.ARMOR;
 
         this.valid = true;
 
@@ -114,10 +112,12 @@ public class Armor extends BaseItem {
         ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        container.set(Main.getNamespacedKey("armor-defense"), PersistentDataType.DOUBLE, defense);
-        container.set(Main.getNamespacedKey("armor-durability"), PersistentDataType.INTEGER, durability);
-        container.set(Main.getNamespacedKey("armor-weight-value"), PersistentDataType.INTEGER, weightValue);
-        container.set(Main.getNamespacedKey("armor-weight"), PersistentDataType.STRING, weight.getKey());
+        container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());
+        container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
+        container.set(Main.getNamespacedKey("item-defense"), PersistentDataType.DOUBLE, defense);
+        container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
+        container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
+        container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
 
         itemStack.setItemMeta(meta);
     }
