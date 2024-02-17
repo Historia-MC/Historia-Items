@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
+import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import net.kyori.adventure.text.Component;
@@ -31,29 +32,22 @@ public class Tool extends BaseItem {
     public Tool(@NotNull ItemStack item) {
         super(item);
 
-        if (!item.hasItemMeta()) {
-            this.valid = false;
+        if (getItemType() != ItemType.TOOL) {
             return;
-        }
+        } else
+            this.valid = true;
 
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        if (!container.has(Main.getNamespacedKey("tool-damage"))) {
-            this.valid = false;
-            return;
-        }
+        this.damage = container.get(Main.getNamespacedKey("item-damage"), PersistentDataType.DOUBLE);
+        this.speed = container.get(Main.getNamespacedKey("item-speed"), PersistentDataType.DOUBLE);
+        this.knockback = container.get(Main.getNamespacedKey("item-knockback"), PersistentDataType.DOUBLE);
 
-        this.valid = true;
+        this.durability = container.get(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER);
+        this.weightValue = container.get(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER);
 
-        this.damage = container.get(Main.getNamespacedKey("tool-damage"), PersistentDataType.DOUBLE);
-        this.speed = container.get(Main.getNamespacedKey("tool-speed"), PersistentDataType.DOUBLE);
-        this.knockback = container.get(Main.getNamespacedKey("tool-knockback"), PersistentDataType.DOUBLE);
-
-        this.durability = container.get(Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER);
-        this.weightValue = container.get(Main.getNamespacedKey("tool-weight-value"), PersistentDataType.INTEGER);
-
-        this.weight = Weight.getWeight(container.get(Main.getNamespacedKey("tool-weight"), PersistentDataType.STRING));
+        this.weight = Weight.getWeight(container.get(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING));
 
     }
 

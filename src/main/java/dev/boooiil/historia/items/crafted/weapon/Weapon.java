@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
+import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import net.kyori.adventure.text.Component;
@@ -32,31 +33,24 @@ public class Weapon extends BaseItem {
     public Weapon(@NotNull ItemStack item) {
         super(item);
 
-        if (!item.hasItemMeta()) {
-            this.valid = false;
+        if (getItemType() != ItemType.WEAPON) {
             return;
-        }
+        } else
+            this.valid = true;
 
         ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        if (!container.has(Main.getNamespacedKey("weapon-damage"))) {
-            this.valid = false;
-            return;
-        }
+        this.damage = container.get(Main.getNamespacedKey("item-damage"), PersistentDataType.DOUBLE);
+        this.speed = container.get(Main.getNamespacedKey("item-speed"), PersistentDataType.DOUBLE);
+        this.knockback = container.get(Main.getNamespacedKey("item-knockback"), PersistentDataType.DOUBLE);
+        this.sweeping = container.get(Main.getNamespacedKey("item-sweeping"), PersistentDataType.DOUBLE);
 
-        this.valid = true;
-
-        this.damage = container.get(Main.getNamespacedKey("weapon-damage"), PersistentDataType.DOUBLE);
-        this.speed = container.get(Main.getNamespacedKey("weapon-speed"), PersistentDataType.DOUBLE);
-        this.knockback = container.get(Main.getNamespacedKey("weapon-knockback"), PersistentDataType.DOUBLE);
-        this.sweeping = container.get(Main.getNamespacedKey("weapon-sweeping"), PersistentDataType.DOUBLE);
-
-        this.durability = container.get(Main.getNamespacedKey("weapon-durability"), PersistentDataType.INTEGER);
-        this.weightValue = container.get(Main.getNamespacedKey("weapon-weight-value"), PersistentDataType.INTEGER);
+        this.durability = container.get(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER);
+        this.weightValue = container.get(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER);
 
         this.weight = Weight
-                .getWeight(container.get(Main.getNamespacedKey("weapon-weight"), PersistentDataType.STRING));
+                .getWeight(container.get(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING));
 
     }
 
@@ -64,6 +58,8 @@ public class Weapon extends BaseItem {
             int durability, Weight weight, int weightValue, List<String> lore) {
 
         this.valid = true;
+        this.itemType = ItemType.WEAPON;
+        this.displayName = displayName;
 
         this.damage = damage;
         this.speed = speed;
@@ -80,14 +76,17 @@ public class Weapon extends BaseItem {
         ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        container.set(Main.getNamespacedKey("weapon-damage"), PersistentDataType.DOUBLE, damage);
-        container.set(Main.getNamespacedKey("weapon-speed"), PersistentDataType.DOUBLE, speed);
-        container.set(Main.getNamespacedKey("weapon-knockback"), PersistentDataType.DOUBLE, knockback);
-        container.set(Main.getNamespacedKey("weapon-sweeping"), PersistentDataType.DOUBLE, sweeping);
+        container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, ItemType.WEAPON.getType());
+        container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
 
-        container.set(Main.getNamespacedKey("weapon-durability"), PersistentDataType.INTEGER, durability);
-        container.set(Main.getNamespacedKey("weapon-weight-value"), PersistentDataType.INTEGER, weightValue);
-        container.set(Main.getNamespacedKey("weapon-weight"), PersistentDataType.STRING, weight.getKey());
+        container.set(Main.getNamespacedKey("item-damage"), PersistentDataType.DOUBLE, damage);
+        container.set(Main.getNamespacedKey("item-speed"), PersistentDataType.DOUBLE, speed);
+        container.set(Main.getNamespacedKey("item-knockback"), PersistentDataType.DOUBLE, knockback);
+        container.set(Main.getNamespacedKey("item-sweeping"), PersistentDataType.DOUBLE, sweeping);
+
+        container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
+        container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
+        container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
 
         itemStack.setItemMeta(meta);
 
@@ -95,9 +94,10 @@ public class Weapon extends BaseItem {
 
     public Weapon(WeaponConfiguration configuration) {
         this.valid = true;
+        this.itemType = ItemType.WEAPON;
 
         Material material = configuration.getMaterial();
-        String displayName = configuration.getDisplayName();
+        this.displayName = configuration.getDisplayName();
         List<Component> lore = new ArrayList<>();
 
         for (String s : configuration.getLore()) {
@@ -119,14 +119,17 @@ public class Weapon extends BaseItem {
         ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
-        container.set(Main.getNamespacedKey("weapon-damage"), PersistentDataType.DOUBLE, damage);
-        container.set(Main.getNamespacedKey("weapon-speed"), PersistentDataType.DOUBLE, speed);
-        container.set(Main.getNamespacedKey("weapon-knockback"), PersistentDataType.DOUBLE, knockback);
-        container.set(Main.getNamespacedKey("weapon-sweeping"), PersistentDataType.DOUBLE, sweeping);
+        container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, ItemType.WEAPON.getType());
+        container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
 
-        container.set(Main.getNamespacedKey("weapon-durability"), PersistentDataType.INTEGER, durability);
-        container.set(Main.getNamespacedKey("weapon-weight-value"), PersistentDataType.INTEGER, weightValue);
-        container.set(Main.getNamespacedKey("weapon-weight"), PersistentDataType.STRING, weight.getKey());
+        container.set(Main.getNamespacedKey("item-damage"), PersistentDataType.DOUBLE, damage);
+        container.set(Main.getNamespacedKey("item-speed"), PersistentDataType.DOUBLE, speed);
+        container.set(Main.getNamespacedKey("item-knockback"), PersistentDataType.DOUBLE, knockback);
+        container.set(Main.getNamespacedKey("item-sweeping"), PersistentDataType.DOUBLE, sweeping);
+
+        container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
+        container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
+        container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
 
         itemStack.setItemMeta(meta);
 
