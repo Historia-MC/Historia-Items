@@ -1,10 +1,16 @@
 package dev.boooiil.historia.items.crafted;
 
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+
+import dev.boooiil.historia.items.Main;
 
 public class BaseItem {
 
+    protected ItemType itemType;
     protected String displayName;
     protected boolean valid;
 
@@ -20,8 +26,28 @@ public class BaseItem {
 
         this.itemStack = itemStack;
 
+        if (this.itemStack.getItemMeta() == null) {
+            this.valid = false;
+            this.itemType = ItemType.VANILLA;
+            return;
+        }
+
+        ItemMeta itemMeta = this.itemStack.getItemMeta();
+        PersistentDataContainer container = itemMeta.getPersistentDataContainer();
+
+        if (!container.has(Main.getNamespacedKey("item-type"), PersistentDataType.STRING)) {
+            this.valid = false;
+            this.itemType = ItemType.VANILLA;
+            return;
+        }
+
+        this.itemType = ItemType
+                .fromString(container.get(Main.getNamespacedKey("item-type"), PersistentDataType.STRING));
+        this.displayName = container.get(Main.getNamespacedKey("item-name"), PersistentDataType.STRING);
+
     }
 
+    @Deprecated(forRemoval = true)
     public BaseItem(@NotNull ItemStack itemStack, boolean valid) {
 
         this.itemStack = itemStack;
@@ -53,4 +79,11 @@ public class BaseItem {
         return this.valid;
 
     }
+
+    public ItemType getItemType() {
+
+        return this.itemType;
+
+    }
+
 }
