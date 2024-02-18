@@ -35,7 +35,7 @@ public class Custom extends BaseItem {
 
         this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
 
-        ItemMeta itemMeta = Main.server().getItemFactory().getItemMeta(material);
+        ItemMeta itemMeta = this.itemStack.getItemMeta();
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());
@@ -57,7 +57,7 @@ public class Custom extends BaseItem {
 
         this.itemStack = Construct.itemStack(material, amount, displayName, new ArrayList<>(lore));
 
-        ItemMeta itemMeta = Main.server().getItemFactory().getItemMeta(material);
+        ItemMeta itemMeta = this.itemStack.getItemMeta();
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());

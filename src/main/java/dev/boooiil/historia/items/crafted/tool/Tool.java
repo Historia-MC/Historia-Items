@@ -67,7 +67,7 @@ public class Tool extends BaseItem {
 
         this.itemStack = Construct.itemStack(material, 1, displayName, new ArrayList<>(lore));
 
-        ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
+        ItemMeta meta = this.itemStack.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("tool-damage"), PersistentDataType.DOUBLE, damage);
@@ -104,7 +104,7 @@ public class Tool extends BaseItem {
 
         this.itemStack = Construct.itemStack(material, 1, displayName, lore);
 
-        ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
+        ItemMeta meta = this.itemStack.getItemMeta();
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("tool-damage"), PersistentDataType.DOUBLE, damage);
