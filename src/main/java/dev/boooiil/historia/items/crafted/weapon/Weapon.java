@@ -107,7 +107,7 @@ public class Weapon extends BaseItem {
         this.damage = configuration.getDamageRandomValue();
         this.speed = configuration.getSpeedRandomValue();
         this.knockback = configuration.getKnockbackRandomValue();
-        this.sweeping = configuration.getSpeedRandomValue();
+        this.sweeping = configuration.getSweepRandomValue();
 
         this.durability = configuration.getRandomDurabilityValue();
         this.weightValue = configuration.getWeightValue();
