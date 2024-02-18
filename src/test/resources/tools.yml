@@ -452,7 +452,7 @@ Light_Iron_Pickaxe:
   item:
     type: IRON_PICKAXE
     amount: 1
-    display-name: §7Iron Dagger
+    display-name: §7Iron Pickaxe
     loc-name: Light_Iron_Pickaxe
     lore:
       - ""
