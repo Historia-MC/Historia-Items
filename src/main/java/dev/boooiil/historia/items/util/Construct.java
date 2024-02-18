@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import dev.boooiil.historia.items.Main;
 import net.kyori.adventure.text.Component;
 
 /**
@@ -99,8 +100,7 @@ public class Construct {
                 + " lore: " + lore);
 
         ItemStack item = new ItemStack(material, amount);
-
-        ItemMeta meta = item.getItemMeta();
+        ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
 
         List<Component> loreComponent = new ArrayList<>();
         Component nameComponent = Component.text(displayName);
