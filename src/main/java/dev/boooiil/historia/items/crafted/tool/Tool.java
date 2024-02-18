@@ -55,15 +55,14 @@ public class Tool extends BaseItem {
             Weight weight, int weightValue, List<String> lore) {
 
         this.valid = true;
-
         this.damage = damage;
         this.speed = speed;
         this.knockback = knockback;
-
         this.durability = durability;
         this.weightValue = weightValue;
-
         this.weight = weight;
+        this.displayName = displayName;
+        this.itemType = ItemType.TOOL;
 
         this.itemStack = Construct.itemStack(material, 1, displayName, new ArrayList<>(lore));
 
@@ -93,6 +92,8 @@ public class Tool extends BaseItem {
         }
 
         this.valid = true;
+        this.displayName = configuration.getDisplayName();
+        this.itemType = ItemType.TOOL;
 
         this.damage = configuration.getDamageRandomValue();
         this.speed = configuration.getSpeedRandomValue();

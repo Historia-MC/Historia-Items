@@ -68,6 +68,7 @@ public class Armor extends BaseItem {
         this.durability = durability;
         this.weightValue = weightValue;
         this.weight = weight;
+        this.displayName = displayName;
         this.itemType = ItemType.ARMOR;
 
         this.itemStack = Construct.itemStack(material, 1, displayName, new ArrayList<>(lore));
@@ -103,6 +104,7 @@ public class Armor extends BaseItem {
         this.durability = configuration.getRandomDurabilityValue();
         this.weight = configuration.getWeight();
         this.weightValue = configuration.getWeightValue();
+        this.displayName = configuration.getDisplayName();
         this.itemType = ItemType.ARMOR;
 
         this.valid = true;
