@@ -14,17 +14,17 @@ public abstract class ItemConfigurationRegistry {
     }
 
     public static void register(String key, BaseItemConfiguration configuration) {
-        Logging.debugToConsole("Registering " + key + " to registry.");
+        Logging.debugToConsole("Registering " + key + " to item configuration registry.");
         registry.put(key, configuration);
     }
 
     public static void deregister(String key) {
-        Logging.debugToConsole("Removing " + key + " from registry.");
+        Logging.debugToConsole("Removing " + key + " from item configuration registry.");
         registry.remove(key);
     }
 
     public static void update(String key, BaseItemConfiguration configuration) {
-        Logging.debugToConsole("Updating " + key + " in registry.");
+        Logging.debugToConsole("Updating " + key + " in item configuration registry.");
         registry.put(key, configuration);
     }
 
