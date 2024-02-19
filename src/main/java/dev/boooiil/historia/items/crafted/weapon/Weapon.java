@@ -11,7 +11,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
@@ -54,10 +54,12 @@ public class Weapon extends BaseItem {
 
     }
 
-    public Weapon(Material material, String displayName, double damage, double speed, double knockback, double sweeping,
+    public Weapon(Material material, String id, String displayName, double damage, double speed, double knockback,
+            double sweeping,
             int durability, Weight weight, int weightValue, List<String> lore) {
 
         this.valid = true;
+        this.id = id;
         this.itemType = ItemType.WEAPON;
         this.displayName = displayName;
 
@@ -77,6 +79,7 @@ public class Weapon extends BaseItem {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, ItemType.WEAPON.getType());
+        container.set(Main.getNamespacedKey("item-id"), PersistentDataType.STRING, id);
         container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
 
         container.set(Main.getNamespacedKey("item-damage"), PersistentDataType.DOUBLE, damage);
@@ -95,6 +98,7 @@ public class Weapon extends BaseItem {
     public Weapon(WeaponConfiguration configuration) {
         this.valid = true;
         this.itemType = ItemType.WEAPON;
+        this.id = configuration.getID();
 
         Material material = configuration.getMaterial();
         this.displayName = configuration.getDisplayName();
@@ -120,6 +124,7 @@ public class Weapon extends BaseItem {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, ItemType.WEAPON.getType());
+        container.set(Main.getNamespacedKey("item-id"), PersistentDataType.STRING, id);
         container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
 
         container.set(Main.getNamespacedKey("item-damage"), PersistentDataType.DOUBLE, damage);

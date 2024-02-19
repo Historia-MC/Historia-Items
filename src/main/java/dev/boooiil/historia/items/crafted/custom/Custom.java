@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.util.Construct;
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.crafted.ItemType;
 
@@ -27,9 +27,10 @@ public class Custom extends BaseItem {
             this.valid = true;
     }
 
-    public Custom(Material material, int amount, String displayName, List<String> lore) {
+    public Custom(Material material, int amount, String id, String displayName, List<String> lore) {
 
         this.valid = true;
+        this.id = id;
         this.displayName = displayName;
         this.itemType = ItemType.CUSTOM;
 
@@ -39,15 +40,17 @@ public class Custom extends BaseItem {
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());
+        container.set(Main.getNamespacedKey("item-id"), PersistentDataType.STRING, id);
         container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
 
         this.itemStack.setItemMeta(itemMeta);
 
     }
 
-    public Custom(@NotNull CustomItemConfiguration configuration) {
+    public Custom(@NotNull CustomConfiguration configuration) {
 
         this.valid = true;
+        this.id = configuration.getID();
         this.displayName = configuration.getDisplayName();
         this.itemType = ItemType.CUSTOM;
 
@@ -60,7 +63,8 @@ public class Custom extends BaseItem {
         ItemMeta itemMeta = this.itemStack.getItemMeta();
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
 
-        container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());
+        container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, ItemType.WEAPON.getType());
+        container.set(Main.getNamespacedKey("item-id"), PersistentDataType.STRING, id);
         container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
 
         this.itemStack.setItemMeta(itemMeta);

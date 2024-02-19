@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 import net.kyori.adventure.text.Component;
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
@@ -61,9 +61,10 @@ public class Armor extends BaseItem {
      * @param weightValue The weight value of the armor.
      * @param lore        The lore of the armor.
      */
-    public Armor(Material material, String displayName, double defense, int durability, Weight weight,
+    public Armor(Material material, String id, String displayName, double defense, int durability, Weight weight,
             int weightValue, List<String> lore) {
         this.valid = true;
+        this.id = id;
         this.defense = defense;
         this.durability = durability;
         this.weightValue = weightValue;
@@ -77,6 +78,7 @@ public class Armor extends BaseItem {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());
+        container.set(Main.getNamespacedKey("item-id"), PersistentDataType.STRING, id);
         container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
         container.set(Main.getNamespacedKey("item-defense"), PersistentDataType.DOUBLE, defense);
         container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
@@ -100,6 +102,7 @@ public class Armor extends BaseItem {
             lore.add(Component.text(s));
         }
 
+        this.id = configuration.getID();
         this.defense = configuration.getRandomDefenseValue();
         this.durability = configuration.getRandomDurabilityValue();
         this.weight = configuration.getWeight();
@@ -115,6 +118,7 @@ public class Armor extends BaseItem {
         PersistentDataContainer container = meta.getPersistentDataContainer();
 
         container.set(Main.getNamespacedKey("item-type"), PersistentDataType.STRING, this.itemType.getType());
+        container.set(Main.getNamespacedKey("item-id"), PersistentDataType.STRING, id);
         container.set(Main.getNamespacedKey("item-name"), PersistentDataType.STRING, displayName);
         container.set(Main.getNamespacedKey("item-defense"), PersistentDataType.DOUBLE, defense);
         container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
