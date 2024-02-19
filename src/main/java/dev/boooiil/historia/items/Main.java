@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
+import dev.boooiil.historia.items.configuration.ItemConfigurationRegistryLoader;
 import dev.boooiil.historia.items.events.inventory.CraftItemListener;
 import dev.boooiil.historia.items.file.FileIO;
 
@@ -41,6 +42,8 @@ public class Main extends JavaPlugin {
         // Check config files
         FileIO.checkFiles();
 
+        ItemConfigurationRegistryLoader.initialize();
+
     }
 
     @Override
@@ -75,9 +78,9 @@ public class Main extends JavaPlugin {
 
     }
 
-    public static void disable(Plugin plugin) {
+    public static void disable() {
 
-        plugin.getServer().getPluginManager().disablePlugin(plugin);
+        plugin().getServer().getPluginManager().disablePlugin(Main.plugin());
 
     }
 
