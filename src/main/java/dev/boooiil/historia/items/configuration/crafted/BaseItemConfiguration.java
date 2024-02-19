@@ -1,10 +1,12 @@
-package dev.boooiil.historia.items.configuration.items;
+package dev.boooiil.historia.items.configuration.crafted;
 
+import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 
 /**
  * <p>
@@ -17,7 +19,11 @@ import org.bukkit.Material;
  * the item stack of an item.
  * </p>
  */
-public class BaseItemConfiguration {
+public abstract class BaseItemConfiguration {
+
+    // TODO: ALL items need to have an ID in the configuration file.
+    // TODO: ADD an id field to each section.
+    protected String id;
 
     /**
      * Recipe shape generally in the pattern of
@@ -42,6 +48,9 @@ public class BaseItemConfiguration {
 
     /** The display name of the item. */
     protected String displayName;
+
+    /** The type of the item. */
+    protected ItemType itemType;
 
     /** The lore of the item. */
     protected List<String> lore;
@@ -144,6 +153,10 @@ public class BaseItemConfiguration {
 
     }
 
+    public ItemType getItemType() {
+        return this.itemType;
+    }
+
     /**
      * It returns the lore of the item.
      *
@@ -160,4 +173,11 @@ public class BaseItemConfiguration {
                 + " Lore: " + this.lore.toString();
     }
 
+    public String getID() {
+        return this.id;
+    }
+
+    public static <T extends BaseItemConfiguration> T fromConfigurationSection(ConfigurationSection section) {
+        return null;
+    };
 }

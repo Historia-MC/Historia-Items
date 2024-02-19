@@ -1,5 +1,7 @@
-package dev.boooiil.historia.items.configuration.items;
+package dev.boooiil.historia.items.configuration.crafted.armor;
 
+import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.NumberUtils;
 
@@ -33,10 +35,13 @@ public class ArmorConfiguration extends BaseItemConfiguration {
 
     ArmorConfiguration(ConfigurationSection section) {
 
+        this.itemType = ItemType.ARMOR;
         this.material = Material.getMaterial(section.getString(".item.type"));
         this.amount = section.getInt(".item.amount");
         this.displayName = section.getString(".item.display-name");
         this.lore = section.getStringList(".item.lore");
+        // TODO: replace with .id when implemented
+        this.id = section.getString(".item.loc-name");
 
         // Getting the weight class of the armor.
         this.weight = Weight.getWeight(section.getString(".type"));
@@ -150,4 +155,9 @@ public class ArmorConfiguration extends BaseItemConfiguration {
 
     }
 
+    public static ArmorConfiguration fromConfigurationSection(ConfigurationSection section) {
+
+        return new ArmorConfiguration(section);
+
+    }
 }

@@ -1,7 +1,10 @@
-package dev.boooiil.historia.items.configuration.items;
+package dev.boooiil.historia.items.configuration.crafted.custom;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+
+import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.crafted.ItemType;
 
 /**
  * <p>
@@ -19,19 +22,22 @@ import org.bukkit.configuration.ConfigurationSection;
  * 
  * @see BaseItemConfiguration
  */
-public class CustomItemConfiguration extends BaseItemConfiguration {
+public class CustomConfiguration extends BaseItemConfiguration {
 
     /**
-     * Create a built {@link CustomItemConfiguration} object from the configuration.
+     * Create a built {@link CustomConfiguration} object from the configuration.
      * 
      * @param section The configuration section.
      */
-    CustomItemConfiguration(ConfigurationSection section) {
+    CustomConfiguration(ConfigurationSection section) {
 
+        this.itemType = ItemType.CUSTOM;
         this.material = Material.getMaterial(section.getString(".item.type"));
         this.amount = section.getInt(".item.amount");
         this.displayName = section.getString(".item.display-name");
         this.lore = section.getStringList(".item.lore");
+        // TODO: replace with .id when implemented
+        this.id = section.getString(".item.loc-name");
 
         // Getting the recipe items from the config.
         this.recipeItems = section.getStringList(".recipe-items");
@@ -45,4 +51,7 @@ public class CustomItemConfiguration extends BaseItemConfiguration {
 
     }
 
+    public static CustomConfiguration fromConfigurationSection(ConfigurationSection section) {
+        return new CustomConfiguration(section);
+    }
 }

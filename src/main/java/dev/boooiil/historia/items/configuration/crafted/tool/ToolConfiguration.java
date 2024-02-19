@@ -1,5 +1,7 @@
-package dev.boooiil.historia.items.configuration.items;
+package dev.boooiil.historia.items.configuration.crafted.tool;
 
+import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.NumberUtils;
 
@@ -8,9 +10,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import java.util.List;
 
 /**
- * It's a class that represents a weapon in the game.
+ * It's a class that represents tools in the game.
  */
-public class WeaponConfiguration extends BaseItemConfiguration {
+public class ToolConfiguration extends BaseItemConfiguration {
 
     private Weight weight;
 
@@ -19,30 +21,30 @@ public class WeaponConfiguration extends BaseItemConfiguration {
     private List<Double> damageRange;
     private List<Double> speedRange;
     private List<Double> knockbackRange;
-    private List<Double> sweepRange;
     private List<Integer> durabilityRange;
 
-    WeaponConfiguration(ConfigurationSection section) {
+    ToolConfiguration(ConfigurationSection section) {
 
+        this.itemType = ItemType.TOOL;
         this.material = Material.getMaterial(section.getString(".item.type"));
         this.amount = section.getInt(".item.amount");
         this.displayName = section.getString(".item.display-name");
         this.lore = section.getStringList(".item.lore");
+        // TODO: replace with .id when implemented
+        this.id = section.getString(".item.loc-name");
 
         this.recipeItems = section.getStringList(".recipe-items");
         this.recipeShape = section.getStringList(".recipe-shape");
+        this.proficiencies = section.getStringList(".canCraft");
 
         this.weightValue = section.getInt(".weight");
         this.weight = Weight.getWeight(section.getString(".type"));
         this.damageRange = section.getDoubleList(".damage");
         this.speedRange = section.getDoubleList(".speed");
         this.knockbackRange = section.getDoubleList(".knockback");
-        this.sweepRange = section.getDoubleList(".sweeping");
         this.durabilityRange = section.getIntegerList(".durability");
 
         this.isShaped = true;
-
-        this.proficiencies = section.getStringList(".canCraft");
 
     }
 
@@ -149,34 +151,6 @@ public class WeaponConfiguration extends BaseItemConfiguration {
     }
 
     /**
-     * This function returns a list of doubles that represent the sweep range
-     * 
-     * @return The sweepRange list is being returned.
-     */
-    public List<Double> getSweepRange() {
-        return sweepRange;
-    }
-
-    public double getMinSweepValue() {
-        return sweepRange.get(0);
-    }
-
-    public double getMaxSweepValue() {
-        return sweepRange.get(1);
-    }
-
-    /**
-     * It returns a random integer between the minimum and maximum durability values
-     * 
-     * @return A random number between the min and max durability values.
-     */
-    public double getSweepRandomValue() {
-
-        return NumberUtils.random(getMinSweepValue(), getMaxSweepValue());
-
-    }
-
-    /**
      * This function returns a list of integers that represent the durability range
      * of the item
      * 
@@ -241,4 +215,7 @@ public class WeaponConfiguration extends BaseItemConfiguration {
 
     }
 
+    public static ToolConfiguration fromConfigurationSection(ConfigurationSection section) {
+        return new ToolConfiguration(section);
+    }
 }
