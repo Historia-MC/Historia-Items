@@ -8,18 +8,14 @@ import org.bukkit.configuration.file.YamlConfiguration;
 /**
  * It's a class that grabs the configuration file and stores it in a variable.
  */
-public class GeneralConfig {
+public class GeneralConfiguration {
 
-    public static YamlConfiguration configuration = FileIO.get(FileKeys.CONFIG);
+    public static YamlConfiguration configuration;
 
     public static boolean debug;
 
-    public GeneralConfig() {
-
-        System.out.print(configuration.toString());
-
+    static {
+        configuration = FileIO.get(FileKeys.CONFIG);
         debug = configuration.getBoolean("debug");
-
     }
-
 }
