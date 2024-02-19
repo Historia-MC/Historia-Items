@@ -2,10 +2,8 @@ package dev.boooiil.historia.items.events.inventory;
 
 import dev.boooiil.historia.core.database.internal.PlayerStorage;
 import dev.boooiil.historia.core.player.HistoriaPlayer;
-import dev.boooiil.historia.items.configuration.ConfigurationProvider;
-import dev.boooiil.historia.items.configuration.items.ArmorConfigurationLoader;
-import dev.boooiil.historia.items.configuration.items.CustomItemConfigurationLoader;
-import dev.boooiil.historia.items.configuration.items.WeaponConfigurationLoader;
+import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
+import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.handlers.inventory.CraftingResult;
 import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.event.EventHandler;
@@ -15,54 +13,33 @@ import org.bukkit.inventory.ItemStack;
 
 public class CraftItemListener implements Listener {
 
+    // TODO: this all needs to be moved to a handler and
+    // CONT: should be refactored. This is a mess.
+
     @EventHandler
     public void onCraftItem(CraftItemEvent event) {
 
         System.out.println("CraftItemEvent triggered");
 
         HistoriaPlayer historiaPlayer = PlayerStorage.getPlayer(event.getWhoClicked().getUniqueId(), false);
-        WeaponConfigurationLoader weaponConfig = ConfigurationProvider.getWeaponConfigurationLoader();
-        ArmorConfigurationLoader armorConfig = ConfigurationProvider.getArmorConfigurationLoader();
-        CustomItemConfigurationLoader customItemConfig = ConfigurationProvider.getCustomItemConfigurationLoader();
-        CraftingResult craftingResult;
 
         ItemStack item = event.getClickedInventory().getItem(0);
+        BaseItem baseItem = new BaseItem(item);
 
-        Logging.debugToConsole("[onCraftResult] Crafting a " + item.getItemMeta().getLocalizedName());
+        Logging.debugToConsole("[onCraftResult] Crafting a " + baseItem.getDisplayName());
 
-        if (weaponConfig.isValid(item.getItemMeta().getLocalizedName())) {
+        if (!baseItem.isValid())
+            return;
 
-            Logging.debugToConsole("[onCraftResult] Crafting a weapon");
+        if (baseItem.isValid()) {
 
-            craftingResult = new CraftingResult(
+            Logging.debugToConsole("[onCraftItem] Crafting a valid item");
+
+            CraftingResult craftingResult = new CraftingResult(
                     event.getInventory(),
                     item,
-                    weaponConfig.getObject(item.getItemMeta().getLocalizedName()),
+                    ItemConfigurationRegistry.get(baseItem.getID()),
                     historiaPlayer);
-
-        } else if (armorConfig.isValid(item.getItemMeta().getLocalizedName())) {
-
-            Logging.debugToConsole("[onCraftResult] Crafting an armor");
-
-            craftingResult = new CraftingResult(
-                    event.getInventory(),
-                    item,
-                    armorConfig.getObject(item.getItemMeta().getLocalizedName()),
-                    historiaPlayer);
-
-        } else {
-
-            Logging.debugToConsole("[onCraftResult] Crafting a custom item");
-
-            craftingResult = new CraftingResult(
-                    event.getInventory(),
-                    item,
-                    customItemConfig.getObject(item.getItemMeta().getLocalizedName()),
-                    historiaPlayer);
-
-        }
-
-        if (craftingResult != null) {
 
             if (!craftingResult.getCraftedItem().canCraft(historiaPlayer.getProficiency().getName()))
                 event.setCancelled(true);
@@ -70,6 +47,7 @@ public class CraftItemListener implements Listener {
                 craftingResult.generateRandomModifiers();
 
         }
+
     }
 
 }
