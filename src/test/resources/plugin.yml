@@ -1,0 +1,13 @@
+main: dev.boooiil.historia.items.Main
+name: Historia-Items
+description: Historia Custom Item Plugin
+api-version: 1.19
+author: boooiil
+load: STARTUP
+version: 1.0
+depend: [Historia]
+commands:
+  give:
+    description: Adjust stuff.
+    usage: /<command> <weapon/armor/other> itemName
+    permission: historia.give
