@@ -8,5 +8,6 @@ Maven/
 .vscode/
 historia.code-workspace
 .idea/
+doxygen/
 Historia-Ores.iml
 Historia-Items.iml
