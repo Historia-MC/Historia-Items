@@ -6,10 +6,10 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
-import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
-import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
-import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
 import dev.boooiil.historia.items.crafted.armor.Armor;
 import dev.boooiil.historia.items.crafted.custom.Custom;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
@@ -34,7 +34,7 @@ public class CraftedItemFactory {
      * This method will NOT generate values for armor, only provide an interface to
      * interact with the armor. If you want to create a new instance of Armor with
      * provided values, use
-     * {@link #createArmor(Material, String, double, int, Weight, int, List)}.
+     * {@link #createArmor(Material, String, String, double, int, Weight, int, List)}.
      * 
      * @param itemStack
      * @return Instance of {@link Armor}
@@ -58,9 +58,9 @@ public class CraftedItemFactory {
      * @param lore        The lore of the armor.
      * @return Instance of {@link Armor}
      */
-    public static Armor createArmor(Material material, String displayName, double defense, int durability,
+    public static Armor createArmor(Material material, String id, String displayName, double defense, int durability,
             Weight weight, int weightValue, List<String> lore) {
-        return new Armor(material, displayName, defense, durability, weight, weightValue, lore);
+        return new Armor(material, id, displayName, defense, durability, weight, weightValue, lore);
     }
 
     /**
@@ -94,7 +94,7 @@ public class CraftedItemFactory {
      * This method will NOT generate values for weapon, only provide an interface to
      * interact with the weapon. If you want to create a new instance of Weapon with
      * provided values, use
-     * {@link #createWeapon(Material, String, double, double, double, double, int, Weight, int, List)}.
+     * {@link #createWeapon(Material, String, String, double, double, double, double, int, Weight, int, List)}.
      * 
      * @param itemStack
      * @return Instance of {@link Weapon}
@@ -121,10 +121,11 @@ public class CraftedItemFactory {
      * @param lore        The lore of the weapon.
      * @return Instance of {@link Weapon}
      */
-    public static Weapon createWeapon(Material material, String displayName, double damage, double speed,
+    public static Weapon createWeapon(Material material, String id, String displayName, double damage, double speed,
             double knockback, double sweeping,
             int durability, Weight weight, int weightValue, List<String> lore) {
-        return new Weapon(material, displayName, damage, speed, knockback, sweeping, durability, weight, weightValue,
+        return new Weapon(material, id, displayName, damage, speed, knockback, sweeping, durability, weight,
+                weightValue,
                 lore);
     }
 
@@ -159,7 +160,7 @@ public class CraftedItemFactory {
      * This method will NOT generate values for tool, only provide an interface to
      * interact with the tool. If you want to create a new instance of Tool with
      * provided values, use
-     * {@link #createTool(Material, String, double, double, double, int, Weight, int, List)}.
+     * {@link #createTool(Material, String, String, double, double, double, int, Weight, int, List)}.
      * 
      * @param itemStack
      * @return Instance of {@link Tool}
@@ -185,9 +186,10 @@ public class CraftedItemFactory {
      * @param lore        The lore of the tool.
      * @return Instance of{@link Tool}
      */
-    public static Tool createTool(Material material, String displayName, double damage, double speed, double knockback,
+    public static Tool createTool(Material material, String id, String displayName, double damage, double speed,
+            double knockback,
             int durability, Weight weight, int weightValue, List<String> lore) {
-        return new Tool(material, displayName, damage, speed, knockback, durability, weight, weightValue, lore);
+        return new Tool(material, id, displayName, damage, speed, knockback, durability, weight, weightValue, lore);
     }
 
     /**
@@ -240,8 +242,8 @@ public class CraftedItemFactory {
      * @param lore        The lore of the custom.
      * @return Instance of {@link Custom}
      */
-    public static Custom createCustom(Material material, int amount, String displayName, List<String> lore) {
-        return new Custom(material, amount, displayName, lore);
+    public static Custom createCustom(Material material, int amount, String id, String displayName, List<String> lore) {
+        return new Custom(material, amount, id, displayName, lore);
     }
 
     /**
@@ -256,11 +258,11 @@ public class CraftedItemFactory {
      * You can get the item stack of the custom by calling
      * {@link Custom#getItemStack()}.
      * 
-     * @param configuration The {@link CustomItemConfiguration configuration} of the
+     * @param configuration The {@link CustomConfiguration configuration} of the
      *                      custom.
      * @return Instance of {@link Custom}
      */
-    public static Custom createCustom(@NotNull CustomItemConfiguration configuration) {
+    public static Custom createCustom(@NotNull CustomConfiguration configuration) {
         return new Custom(configuration);
     }
 }
