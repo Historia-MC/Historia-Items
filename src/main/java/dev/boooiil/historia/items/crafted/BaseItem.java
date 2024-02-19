@@ -12,6 +12,7 @@ public class BaseItem {
 
     protected ItemType itemType;
     protected String displayName;
+    protected String id;
     protected boolean valid;
 
     public BaseItem() {
@@ -44,6 +45,7 @@ public class BaseItem {
         this.itemType = ItemType
                 .fromString(container.get(Main.getNamespacedKey("item-type"), PersistentDataType.STRING));
         this.displayName = container.get(Main.getNamespacedKey("item-name"), PersistentDataType.STRING);
+        this.id = container.get(Main.getNamespacedKey("item-id"), PersistentDataType.STRING);
 
     }
 
@@ -86,4 +88,9 @@ public class BaseItem {
 
     }
 
+    public String getID() {
+
+        return this.id;
+
+    }
 }
