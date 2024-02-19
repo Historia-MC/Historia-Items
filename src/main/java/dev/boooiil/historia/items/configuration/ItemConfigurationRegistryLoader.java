@@ -3,8 +3,10 @@ package dev.boooiil.historia.items.configuration;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
 import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
 import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
@@ -62,7 +64,7 @@ public class ItemConfigurationRegistryLoader {
             try {
                 // Get the method named "fromConfigurationSection" with a YamlConfiguration
                 // parameter
-                Method method = type.getMethod("fromConfigurationSection", YamlConfiguration.class);
+                Method method = type.getMethod("fromConfigurationSection", ConfigurationSection.class);
 
                 // Invoke the static method on the type class
                 Object result = method.invoke(null, configuration.getConfigurationSection(key));
@@ -72,6 +74,8 @@ public class ItemConfigurationRegistryLoader {
                 ItemConfigurationRegistry.register(key, (BaseItemConfiguration) result);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
+                Main.disable();
+                break;
             }
         }
 
