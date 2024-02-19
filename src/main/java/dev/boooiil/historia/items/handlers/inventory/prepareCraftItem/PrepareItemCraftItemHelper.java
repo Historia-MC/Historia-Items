@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.handlers.inventory.prepareCraftItem;
 
-import dev.boooiil.historia.items.configuration.ConfigurationProvider;
-import dev.boooiil.historia.items.configuration.items.BaseItemConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.CraftedItemConfigurationRegistry;
 import dev.boooiil.historia.items.util.Logging;
 
 import java.util.ArrayList;
@@ -35,15 +35,12 @@ public class PrepareItemCraftItemHelper {
 
     public PrepareItemCraftItemHelper(PrepareItemCraftInventoryHelper inspector) {
 
-        ArrayList<String> patterns = inspector.getPattern();
+        ArrayList<String> shape = inspector.getPattern();
         materials = inspector.getMaterials();
         fullMaterials = inspector.getFullMaterials();
 
         // Getting all the items that match the pattern.
-        matchingItems = ConfigurationProvider.getArmorConfigurationLoader().getAllMatchingShape(patterns);
-        matchingItems.addAll(ConfigurationProvider.getWeaponConfigurationLoader().getAllMatchingShape(patterns));
-        matchingItems.addAll(ConfigurationProvider.getCustomItemConfigurationLoader().getAllMatchingShape(patterns));
-
+        matchingItems = CraftedItemConfigurationRegistry.getAllMatchingShape(shape);
     }
 
     public void doMatch() {
