@@ -16,11 +16,11 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
-import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
-import dev.boooiil.historia.items.configuration.items.ItemConfigurationFactory;
-import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
-import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
+import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
+import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
 import dev.boooiil.historia.items.crafted.armor.Armor;
 import dev.boooiil.historia.items.crafted.custom.Custom;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
@@ -177,9 +177,7 @@ public class CraftedItemFactoryTest {
     @Test
     public void testWeaponCreationFromConfiguration() {
 
-        ItemConfigurationFactory<WeaponConfiguration> factory = ItemConfigurationFactory
-                .create(WeaponConfiguration.class);
-        WeaponConfiguration configuration = factory.getObject("Light_Iron_Sword");
+        WeaponConfiguration configuration = ItemConfigurationRegistry.getTyped("Light_Iron_Sword");
         Weapon weapon = CraftedItemFactory.createWeapon(configuration);
 
         assert (weapon.isValid());
@@ -206,9 +204,7 @@ public class CraftedItemFactoryTest {
     @Test
     public void testArmorCreationFromConfiguration() {
 
-        ItemConfigurationFactory<ArmorConfiguration> factory = ItemConfigurationFactory
-                .create(ArmorConfiguration.class);
-        ArmorConfiguration configuration = factory.getObject("Light_Iron_Chestplate");
+        ArmorConfiguration configuration = ItemConfigurationRegistry.getTyped("Light_Iron_Chestplate");
         Armor armor = CraftedItemFactory.createArmor(configuration);
 
         assert (armor.isValid());
@@ -226,9 +222,7 @@ public class CraftedItemFactoryTest {
 
     @Test
     public void testCustomCreationFromConfiguration() {
-        ItemConfigurationFactory<CustomItemConfiguration> factory = ItemConfigurationFactory
-                .create(CustomItemConfiguration.class);
-        CustomItemConfiguration configuration = factory.getObject("GUNPOWDER");
+        CustomConfiguration configuration = ItemConfigurationRegistry.getTyped("GUNPOWDER");
         Custom custom = CraftedItemFactory.createCustom(configuration);
 
         assert (custom.isValid());
@@ -239,9 +233,7 @@ public class CraftedItemFactoryTest {
 
     @Test
     public void testToolCreationFromConfiguration() {
-        ItemConfigurationFactory<ToolConfiguration> factory = ItemConfigurationFactory
-                .create(ToolConfiguration.class);
-        ToolConfiguration configuration = factory.getObject("Light_Iron_Pickaxe");
+        ToolConfiguration configuration = ItemConfigurationRegistry.getTyped("Light_Iron_Pickaxe");
         Tool tool = CraftedItemFactory.createTool(configuration);
 
         assert (tool.isValid());
@@ -261,7 +253,8 @@ public class CraftedItemFactoryTest {
     @Test
     public void testWeaponCreationFromGivenParameters() {
 
-        Weapon weapon = CraftedItemFactory.createWeapon(Material.IRON_SWORD, "Test Weapon", 10.0, 1.0, 1.0, 1.0, 100,
+        Weapon weapon = CraftedItemFactory.createWeapon(Material.IRON_SWORD, "TEST_WEAPON", "Test Weapon", 10.0, 1.0,
+                1.0, 1.0, 100,
                 Weight.LIGHT, 10, List.of());
 
         assert (weapon.isValid());
@@ -279,7 +272,8 @@ public class CraftedItemFactoryTest {
     @Test
     public void testArmorCreationFromGivenParameters() {
 
-        Armor armor = CraftedItemFactory.createArmor(Material.IRON_CHESTPLATE, "Test Armor", 10.0, 100, Weight.LIGHT,
+        Armor armor = CraftedItemFactory.createArmor(Material.IRON_CHESTPLATE, "TEST_ARMOR", "Test Armor", 10.0, 100,
+                Weight.LIGHT,
                 10,
                 List.of());
 
@@ -295,7 +289,7 @@ public class CraftedItemFactoryTest {
     @Test
     public void testCustomCreationFromGivenParameters() {
 
-        Custom custom = CraftedItemFactory.createCustom(Material.DIAMOND, 1, "Test Custom", List.of());
+        Custom custom = CraftedItemFactory.createCustom(Material.DIAMOND, 1, "TEST_CUSTOM", "Test Custom", List.of());
 
         assert (custom.isValid());
         assert (custom.getDisplayName().equals("Test Custom"));
@@ -305,7 +299,8 @@ public class CraftedItemFactoryTest {
     @Test
     public void testToolCreationFromGivenParameters() {
 
-        Tool tool = CraftedItemFactory.createTool(Material.IRON_PICKAXE, "Test Tool", 10.0, 1.0, 1.0, 100, Weight.LIGHT,
+        Tool tool = CraftedItemFactory.createTool(Material.IRON_PICKAXE, "TEST_TOOL", "Test Tool", 10.0, 1.0, 1.0, 100,
+                Weight.LIGHT,
                 10, List.of());
 
         assert (tool.isValid());
