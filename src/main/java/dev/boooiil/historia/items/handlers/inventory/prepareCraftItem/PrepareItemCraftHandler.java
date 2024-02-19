@@ -5,10 +5,10 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 
-import dev.boooiil.historia.items.configuration.items.ArmorConfiguration;
-import dev.boooiil.historia.items.configuration.items.CustomItemConfiguration;
-import dev.boooiil.historia.items.configuration.items.ToolConfiguration;
-import dev.boooiil.historia.items.configuration.items.WeaponConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
 import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.crafted.CraftedItemFactory;
 import dev.boooiil.historia.items.crafted.weapon.Weapon;
@@ -43,26 +43,26 @@ public class PrepareItemCraftHandler {
         itemHelper.doMatch();
 
         if (itemHelper.getResult() == null)
-            return new BaseItem(new ItemStack(Material.AIR), false);
+            return new BaseItem(new ItemStack(Material.AIR));
 
         if (itemHelper.getResult() instanceof ArmorConfiguration) {
             return CraftedItemFactory.createArmor((ArmorConfiguration) itemHelper.getResult());
         }
 
         else if (itemHelper.getResult() instanceof WeaponConfiguration) {
-            return new Weapon((WeaponConfiguration) itemHelper.getResult());
+            return CraftedItemFactory.createWeapon((WeaponConfiguration) itemHelper.getResult());
         }
 
         else if (itemHelper.getResult() instanceof ToolConfiguration) {
             return CraftedItemFactory.createTool((ToolConfiguration) itemHelper.getResult());
         }
 
-        else if (itemHelper.getResult() instanceof CustomItemConfiguration) {
-            return CraftedItemFactory.createCustom((CustomItemConfiguration) itemHelper.getResult());
+        else if (itemHelper.getResult() instanceof CustomConfiguration) {
+            return CraftedItemFactory.createCustom((CustomConfiguration) itemHelper.getResult());
         }
 
         else {
-            return new BaseItem(event.getRecipe().getResult(), false);
+            return new BaseItem(event.getRecipe().getResult());
         }
 
     }
