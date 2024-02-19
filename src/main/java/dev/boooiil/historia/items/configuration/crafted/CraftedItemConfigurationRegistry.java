@@ -38,7 +38,7 @@ public abstract class CraftedItemConfigurationRegistry extends ItemConfiguration
      */
     @Nullable
     @SuppressWarnings("unchecked")
-    public <T extends BaseItemConfiguration> T getTyped(List<String> inputItems, List<String> inputShape) {
+    public static <T extends BaseItemConfiguration> T getTyped(List<String> inputItems, List<String> inputShape) {
 
         T object = null;
 
@@ -63,7 +63,7 @@ public abstract class CraftedItemConfigurationRegistry extends ItemConfiguration
      * @param shape The shape of the recipe.
      * @return True - If the shape is valid.
      */
-    public boolean validShape(List<String> shape) {
+    public static boolean validShape(List<String> shape) {
 
         boolean found = false;
 
@@ -86,7 +86,7 @@ public abstract class CraftedItemConfigurationRegistry extends ItemConfiguration
      * 
      * @return A list of lists of strings.
      */
-    public List<List<String>> getAllShapes() {
+    public static List<List<String>> getAllShapes() {
 
         List<List<String>> set = new ArrayList<>();
 
@@ -106,7 +106,7 @@ public abstract class CraftedItemConfigurationRegistry extends ItemConfiguration
      * @param shape A list of strings that represent the shape of the recipe.
      * @return A list of all the item configurations items that match the shape.
      */
-    public List<BaseItemConfiguration> getAllMatchingShape(List<String> shape) {
+    public static List<BaseItemConfiguration> getAllMatchingShape(List<String> shape) {
 
         List<BaseItemConfiguration> set = new ArrayList<>();
 
@@ -134,7 +134,7 @@ public abstract class CraftedItemConfigurationRegistry extends ItemConfiguration
      *                  recipe.
      * @return A list of all the item configurations that match the materials.
      */
-    public List<BaseItemConfiguration> getAllMatchingMaterials(List<String> materials) {
+    public static List<BaseItemConfiguration> getAllMatchingMaterials(List<String> materials) {
 
         List<BaseItemConfiguration> set = new ArrayList<>();
 
