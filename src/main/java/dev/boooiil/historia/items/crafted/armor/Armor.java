@@ -2,8 +2,12 @@ package dev.boooiil.historia.items.crafted.armor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -85,6 +89,11 @@ public class Armor extends BaseItem {
         container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
         container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
 
+        AttributeModifier armorModifier = new AttributeModifier(UUID.randomUUID(), "generic.armor", defense,
+                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+
+        meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armorModifier);
+
         itemStack.setItemMeta(meta);
     }
 
@@ -124,6 +133,11 @@ public class Armor extends BaseItem {
         container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
         container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
         container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
+
+        AttributeModifier armorModifier = new AttributeModifier(UUID.randomUUID(), "generic.armor", defense,
+                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+
+        meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armorModifier);
 
         itemStack.setItemMeta(meta);
     }

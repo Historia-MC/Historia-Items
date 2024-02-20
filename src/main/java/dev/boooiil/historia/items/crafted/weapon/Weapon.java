@@ -2,8 +2,12 @@ package dev.boooiil.historia.items.crafted.weapon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -91,6 +95,19 @@ public class Weapon extends BaseItem {
         container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
         container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
 
+        AttributeModifier damageModifier = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", damage,
+                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+
+        AttributeModifier speedModifier = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", speed,
+                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+
+        AttributeModifier knockbackModifier = new AttributeModifier(UUID.randomUUID(), "generic.attackKnockback",
+                knockback, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damageModifier);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speedModifier);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_KNOCKBACK, knockbackModifier);
+
         itemStack.setItemMeta(meta);
 
     }
@@ -135,6 +152,19 @@ public class Weapon extends BaseItem {
         container.set(Main.getNamespacedKey("item-durability"), PersistentDataType.INTEGER, durability);
         container.set(Main.getNamespacedKey("item-weight-value"), PersistentDataType.INTEGER, weightValue);
         container.set(Main.getNamespacedKey("item-weight"), PersistentDataType.STRING, weight.getKey());
+
+        AttributeModifier damageModifier = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", damage,
+                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+
+        AttributeModifier speedModifier = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", speed,
+                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+
+        AttributeModifier knockbackModifier = new AttributeModifier(UUID.randomUUID(), "generic.attackKnockback",
+                knockback, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damageModifier);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speedModifier);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_KNOCKBACK, knockbackModifier);
 
         itemStack.setItemMeta(meta);
 
