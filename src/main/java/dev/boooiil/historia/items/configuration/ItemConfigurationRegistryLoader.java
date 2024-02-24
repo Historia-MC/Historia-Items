@@ -56,7 +56,7 @@ public class ItemConfigurationRegistryLoader {
 
     }
 
-    private static void populate(YamlConfiguration configuration, Class<? extends BaseItemConfiguration> type) {
+    public static void populate(YamlConfiguration configuration, Class<? extends BaseItemConfiguration> type) {
         for (String key : configuration.getKeys(false)) {
             if (key.equals("version"))
                 continue;
