@@ -16,8 +16,30 @@ import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.crafted.tool.Tool;
 import dev.boooiil.historia.items.crafted.weapon.Weapon;
 
+/**
+ * <p>
+ * The CraftedItemFactory class is a utility class that is used to create
+ * instances of crafted items from the Historia plugin. This class provides
+ * methods to create instances of Armor, Weapon, Tool, and Custom items from
+ * ItemStacks, Configuration objects, and provided values.
+ * </p>
+ */
 public class CraftedItemFactory {
 
+    /**
+     * <p>
+     * Create an instance of BaseItem from a given ItemStack. If this ItemStack is
+     * not an instance of BaseItem, {@link BaseItem#isValid()} will return false.
+     * </p>
+     * 
+     * This method will NOT generate values for base item, only provide an interface
+     * to interact with the base item. If you want to create a new instance of Base
+     * Item with provided values, use
+     * {@link #createObject(ItemStack, CraftedItemInterface)}.
+     * 
+     * @param itemStack
+     * @return Instance of {@link BaseItem}
+     */
     public static <T extends BaseItem> T createObject(@NotNull ItemStack itemStack,
             CraftedItemInterface<T> factory) {
 

@@ -10,7 +10,19 @@ import org.bukkit.configuration.ConfigurationSection;
 import java.util.List;
 
 /**
- * It's a class that represents tools in the game.
+ * <p>
+ * The ToolConfiguration class is a subclass of the BaseConfiguration class and
+ * is responsible for managing and accessing configuration data for tool items
+ * within the Historia plugin.
+ * </p>
+ * <p>
+ * ToolConfiguration provides methods to retrieve tool-specific configuration
+ * settings, such as weight, damage, speed, knockback, and durability, and to
+ * create tool items with randomized damage, speed, knockback, and durability
+ * values.
+ * </p>
+ * 
+ * @see BaseItemConfiguration
  */
 public class ToolConfiguration extends BaseItemConfiguration {
 
@@ -23,6 +35,11 @@ public class ToolConfiguration extends BaseItemConfiguration {
     private List<Double> knockbackRange;
     private List<Integer> durabilityRange;
 
+    /**
+     * Create a built {@link ToolConfiguration} object from the configuration.
+     * 
+     * @param section The configuration section.
+     */
     ToolConfiguration(ConfigurationSection section) {
 
         this.itemType = ItemType.TOOL;
@@ -48,6 +65,11 @@ public class ToolConfiguration extends BaseItemConfiguration {
 
     }
 
+    /**
+     * This function updates the stats of the weapon.
+     * 
+     * @param lore The lore of the weapon.
+     */
     public void updateWeaponStats(List<String> lore) {
 
     }
@@ -103,10 +125,20 @@ public class ToolConfiguration extends BaseItemConfiguration {
         return speedRange;
     }
 
+    /**
+     * This function returns the first element of the speedRange ArrayList
+     * 
+     * @return The first element of the speedRange array.
+     */
     public double getMinSpeedValue() {
         return speedRange.get(0);
     }
 
+    /**
+     * This function returns the maximum speed value of the speed range
+     * 
+     * @return The second value in the speedRange array.
+     */
     public double getMaxSpeedValue() {
         return speedRange.get(1);
     }
@@ -131,10 +163,20 @@ public class ToolConfiguration extends BaseItemConfiguration {
         return knockbackRange;
     }
 
+    /**
+     * This function returns the first element of the knockbackRange ArrayList
+     * 
+     * @return The first element of the knockbackRange array.
+     */
     public double getMinKnockbackValue() {
         return knockbackRange.get(0);
     }
 
+    /**
+     * This function returns the maximum knockback value of the knockback range
+     * 
+     * @return The second value in the knockbackRange array.
+     */
     public double getMaxKnockbackValue() {
         return knockbackRange.get(1);
     }
@@ -215,6 +257,13 @@ public class ToolConfiguration extends BaseItemConfiguration {
 
     }
 
+    /**
+     * This function returns a new ToolConfiguration object from the configuration
+     * section
+     * 
+     * @param section The configuration section.
+     * @return A new ToolConfiguration object.
+     */
     public static ToolConfiguration fromConfigurationSection(ConfigurationSection section) {
         return new ToolConfiguration(section);
     }

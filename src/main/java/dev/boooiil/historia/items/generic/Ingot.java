@@ -60,6 +60,14 @@ public class Ingot extends BaseItem {
 
     }
 
+    /**
+     * Ingot builder from Material, customMaterialName, Weight, and Quality.
+     * 
+     * @param material           The material of the ingot.
+     * @param customMaterialName The custom material name of the ingot.
+     * @param weight             The weight of the ingot.
+     * @param quality            The quality of the ingot.
+     */
     public Ingot(Material material, String customMaterialName, String displayName, Weight weight, Quality quality) {
 
         switch (material) {
@@ -138,6 +146,11 @@ public class Ingot extends BaseItem {
 
     }
 
+    /**
+     * This function returns the isDirty variable.
+     * 
+     * @return The isDirty variable.
+     */
     @Warning(reason = "This function is not yet implemented.")
     public boolean isDirty() {
 

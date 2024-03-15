@@ -51,6 +51,12 @@ public class CustomConfiguration extends BaseItemConfiguration {
 
     }
 
+    /**
+     * Create a built {@link CustomConfiguration} object from the configuration.
+     * 
+     * @param section The configuration section.
+     * @return The built {@link CustomConfiguration} object.
+     */
     public static CustomConfiguration fromConfigurationSection(ConfigurationSection section) {
         return new CustomConfiguration(section);
     }

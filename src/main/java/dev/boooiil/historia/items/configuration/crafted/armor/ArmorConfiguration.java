@@ -33,6 +33,11 @@ public class ArmorConfiguration extends BaseItemConfiguration {
     private List<Double> defense;
     private List<Integer> durability;
 
+    /**
+     * Create a built {@link ArmorConfiguration} object from the configuration.
+     * 
+     * @param section The configuration section.
+     */
     ArmorConfiguration(ConfigurationSection section) {
 
         this.itemType = ItemType.ARMOR;
@@ -155,6 +160,12 @@ public class ArmorConfiguration extends BaseItemConfiguration {
 
     }
 
+    /**
+     * Create a new ArmorConfiguration object from a configuration section.
+     * 
+     * @param section The configuration section.
+     * @return A new ArmorConfiguration object.
+     */
     public static ArmorConfiguration fromConfigurationSection(ConfigurationSection section) {
 
         return new ArmorConfiguration(section);

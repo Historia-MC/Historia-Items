@@ -22,6 +22,19 @@ import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import net.kyori.adventure.text.Component;
 
+/**
+ * <p>
+ * The Tool class is a subclass of the BaseItem class and is responsible for
+ * managing and accessing tool items within the Historia plugin.
+ * </p>
+ * <p>
+ * Tool provides methods to retrieve tool-specific attributes, such as damage,
+ * speed, knockback, durability, and weight, and to create tool items with
+ * randomized damage, speed, knockback, and durability values.
+ * </p>
+ * 
+ * @see BaseItem
+ */
 public class Tool extends BaseItem {
 
     private double damage;
@@ -33,6 +46,11 @@ public class Tool extends BaseItem {
 
     private Weight weight;
 
+    /**
+     * Constructs a Tool object from an existing ItemStack.
+     *
+     * @param item The ItemStack representing the tool.
+     */
     public Tool(@NotNull ItemStack item) {
         super(item);
 
@@ -55,6 +73,20 @@ public class Tool extends BaseItem {
 
     }
 
+    /**
+     * Constructs a Tool object with specified attributes.
+     *
+     * @param material    The material of the tool.
+     * @param id          The id of the tool.
+     * @param displayName The display name of the tool.
+     * @param damage      The damage value of the tool.
+     * @param speed       The speed value of the tool.
+     * @param knockback   The knockback value of the tool.
+     * @param durability  The durability of the tool.
+     * @param weight      The weight class of the tool.
+     * @param weightValue The weight value of the tool.
+     * @param lore        The lore of the tool.
+     */
     public Tool(Material material, String id, String displayName, double damage, double speed, double knockback,
             int durability,
             Weight weight, int weightValue, List<String> lore) {
@@ -104,6 +136,11 @@ public class Tool extends BaseItem {
         itemStack.setItemMeta(meta);
     }
 
+    /**
+     * Constructs a Tool object from the specified configuration.
+     *
+     * @param configuration The configuration of the tool.
+     */
     public Tool(ToolConfiguration configuration) {
 
         Material material = configuration.getMaterial();
@@ -161,26 +198,56 @@ public class Tool extends BaseItem {
 
     }
 
+    /**
+     * This function returns the damage value of the tool.
+     * 
+     * @return The damage value of the tool.
+     */
     public double getDamage() {
         return this.damage;
     }
 
+    /**
+     * This function returns the speed value of the tool.
+     * 
+     * @return The speed value of the tool.
+     */
     public double getSpeed() {
         return this.speed;
     }
 
+    /**
+     * This function returns the knockback value of the tool.
+     * 
+     * @return The knockback value of the tool.
+     */
     public double getKnockback() {
         return this.knockback;
     }
 
+    /**
+     * This function returns the durability value of the tool.
+     * 
+     * @return The durability value of the tool.
+     */
     public int getDurability() {
         return this.durability;
     }
 
+    /**
+     * This function returns the weight value of the tool.
+     * 
+     * @return The weight value of the tool.
+     */
     public int getWeightValue() {
         return this.weightValue;
     }
 
+    /**
+     * This function returns the weight class of the tool.
+     * 
+     * @return The weight class of the tool.
+     */
     public Weight getWeight() {
         return this.weight;
     }

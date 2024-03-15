@@ -10,7 +10,19 @@ import org.bukkit.configuration.ConfigurationSection;
 import java.util.List;
 
 /**
- * It's a class that represents a weapon in the game.
+ * <p>
+ * The ToolConfiguration class is a subclass of the BaseConfiguration class and
+ * is responsible for managing and accessing configuration data for tool items
+ * within the Historia plugin.
+ * </p>
+ * <p>
+ * ToolConfiguration provides methods to retrieve tool-specific configuration
+ * settings, such as weight, damage, speed, knockback, and durability, and to
+ * create tool items with randomized damage, speed, knockback, and durability
+ * values.
+ * </p>
+ * 
+ * @see BaseItemConfiguration
  */
 public class WeaponConfiguration extends BaseItemConfiguration {
 
@@ -24,6 +36,11 @@ public class WeaponConfiguration extends BaseItemConfiguration {
     private List<Double> sweepRange;
     private List<Integer> durabilityRange;
 
+    /**
+     * Create a built {@link WeaponConfiguration} object from the configuration.
+     * 
+     * @param section The configuration section.
+     */
     WeaponConfiguration(ConfigurationSection section) {
 
         this.itemType = ItemType.WEAPON;
@@ -51,6 +68,11 @@ public class WeaponConfiguration extends BaseItemConfiguration {
 
     }
 
+    /**
+     * This function updates the weapon stats.
+     * 
+     * @param lore The lore of the weapon.
+     */
     public void updateWeaponStats(List<String> lore) {
 
     }
@@ -106,10 +128,20 @@ public class WeaponConfiguration extends BaseItemConfiguration {
         return speedRange;
     }
 
+    /**
+     * This function returns the minimum speed value of the weapon
+     * 
+     * @return The minimum speed value of the weapon.
+     */
     public double getMinSpeedValue() {
         return speedRange.get(0);
     }
 
+    /**
+     * This function returns the maximum speed value of the weapon
+     * 
+     * @return The maximum speed value of the weapon.
+     */
     public double getMaxSpeedValue() {
         return speedRange.get(1);
     }
@@ -134,10 +166,20 @@ public class WeaponConfiguration extends BaseItemConfiguration {
         return knockbackRange;
     }
 
+    /**
+     * This function returns the minimum knockback value of the weapon
+     * 
+     * @return The minimum knockback value of the weapon.
+     */
     public double getMinKnockbackValue() {
         return knockbackRange.get(0);
     }
 
+    /**
+     * This function returns the maximum knockback value of the weapon
+     * 
+     * @return The maximum knockback value of the weapon.
+     */
     public double getMaxKnockbackValue() {
         return knockbackRange.get(1);
     }
@@ -162,10 +204,20 @@ public class WeaponConfiguration extends BaseItemConfiguration {
         return sweepRange;
     }
 
+    /**
+     * This function returns the first element of the sweepRange ArrayList
+     * 
+     * @return The first element of the sweepRange array.
+     */
     public double getMinSweepValue() {
         return sweepRange.get(0);
     }
 
+    /**
+     * This function returns the maximum sweep value of the sweep range
+     * 
+     * @return The second value in the sweepRange array.
+     */
     public double getMaxSweepValue() {
         return sweepRange.get(1);
     }
@@ -246,6 +298,13 @@ public class WeaponConfiguration extends BaseItemConfiguration {
 
     }
 
+    /**
+     * This function returns a new WeaponConfiguration object from the configuration
+     * section
+     * 
+     * @param section The configuration section.
+     * @return A new ToolConfiguration object.
+     */
     public static WeaponConfiguration fromConfigurationSection(ConfigurationSection section) {
         return new WeaponConfiguration(section);
     }

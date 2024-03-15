@@ -16,8 +16,27 @@ import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfigurati
 import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.crafted.ItemType;
 
+/**
+ * <p>
+ * The Custom class is a subclass of the BaseItem
+ * and is responsible for managing and accessing custom items within the
+ * Historia plugin.
+ * </p>
+ * <p>
+ * Custom provides methods to retrieve custom-specific attributes, such as
+ * recipe items, recipe shape, and proficiencies, and to create custom items
+ * with the specified recipe items and shape.
+ * </p>
+ * 
+ * @see BaseItem
+ */
 public class Custom extends BaseItem {
 
+    /**
+     * Constructs a Custom object from an existing ItemStack.
+     *
+     * @param itemStack The ItemStack representing the custom item.
+     */
     public Custom(@NotNull ItemStack itemStack) {
         super(itemStack);
 
@@ -27,6 +46,16 @@ public class Custom extends BaseItem {
             this.valid = true;
     }
 
+    /**
+     * Constructs a Custom object from the specified material, amount, id, display
+     * name, and lore.
+     *
+     * @param material    The material of the custom item.
+     * @param amount      The amount of the custom item.
+     * @param id          The id of the custom item.
+     * @param displayName The display name of the custom item.
+     * @param lore        The lore of the custom item.
+     */
     public Custom(Material material, int amount, String id, String displayName, List<String> lore) {
 
         this.valid = true;
@@ -47,6 +76,11 @@ public class Custom extends BaseItem {
 
     }
 
+    /**
+     * Constructs a Custom object from the specified configuration.
+     *
+     * @param configuration The configuration of the custom item.
+     */
     public Custom(@NotNull CustomConfiguration configuration) {
 
         this.valid = true;

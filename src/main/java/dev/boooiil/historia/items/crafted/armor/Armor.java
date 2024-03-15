@@ -23,7 +23,18 @@ import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 
 /**
- * Represents a piece of armor in the game.
+ * <p>
+ * The Armor class is a subclass of the BaseItem class and is responsible for
+ * managing and accessing armor items within the Historia plugin.
+ * </p>
+ * <p>
+ * Armor provides methods to retrieve armor-specific attributes, such as
+ * defense,
+ * durability, and weight, and to create armor items with randomized defense and
+ * durability values.
+ * </p>
+ * 
+ * @see BaseItem
  */
 public class Armor extends BaseItem {
 

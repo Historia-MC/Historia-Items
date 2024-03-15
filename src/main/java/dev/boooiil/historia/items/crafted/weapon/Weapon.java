@@ -22,6 +22,19 @@ import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.Construct;
 import net.kyori.adventure.text.Component;
 
+/**
+ * <p>
+ * The Weapon class is a subclass of the BaseItem class and is responsible for
+ * managing and accessing weapon items within the Historia plugin.
+ * </p>
+ * <p>
+ * Weapon provides methods to retrieve weapon-specific attributes, such as
+ * damage, speed, knockback, sweeping, durability, and weight, and to create
+ * weapon items with randomized damage, speed, knockback, and durability values.
+ * </p>
+ * 
+ * @see BaseItem
+ */
 public class Weapon extends BaseItem {
 
     private double damage;
@@ -34,6 +47,11 @@ public class Weapon extends BaseItem {
 
     private Weight weight;
 
+    /**
+     * Constructs a Weapon object from an existing ItemStack.
+     *
+     * @param item The ItemStack representing the weapon.
+     */
     public Weapon(@NotNull ItemStack item) {
         super(item);
 
@@ -58,6 +76,21 @@ public class Weapon extends BaseItem {
 
     }
 
+    /**
+     * Constructs a Weapon object with specified attributes.
+     *
+     * @param material    The material of the weapon.
+     * @param id          The id of the weapon.
+     * @param displayName The display name of the weapon.
+     * @param damage      The damage value of the weapon.
+     * @param speed       The speed value of the weapon.
+     * @param knockback   The knockback value of the weapon.
+     * @param sweeping    The sweeping value of the weapon.
+     * @param durability  The durability of the weapon.
+     * @param weight      The weight class of the weapon.
+     * @param weightValue The weight value of the weapon.
+     * @param lore        The lore of the weapon.
+     */
     public Weapon(Material material, String id, String displayName, double damage, double speed, double knockback,
             double sweeping,
             int durability, Weight weight, int weightValue, List<String> lore) {
@@ -112,6 +145,11 @@ public class Weapon extends BaseItem {
 
     }
 
+    /**
+     * Constructs a Weapon object from the specified configuration.
+     *
+     * @param configuration The configuration of the weapon.
+     */
     public Weapon(WeaponConfiguration configuration) {
         this.valid = true;
         this.itemType = ItemType.WEAPON;
@@ -170,30 +208,65 @@ public class Weapon extends BaseItem {
 
     }
 
+    /**
+     * Get the damage value of the weapon.
+     *
+     * @return The damage value.
+     */
     public double getDamage() {
         return this.damage;
     }
 
+    /**
+     * Get the speed value of the weapon.
+     *
+     * @return The speed value.
+     */
     public double getSpeed() {
         return this.speed;
     }
 
+    /**
+     * Get the knockback value of the weapon.
+     *
+     * @return The knockback value.
+     */
     public double getKnockback() {
         return this.knockback;
     }
 
+    /**
+     * Get the sweeping value of the weapon.
+     *
+     * @return The sweeping value.
+     */
     public double getSweeping() {
         return this.sweeping;
     }
 
+    /**
+     * Get the durability of the weapon.
+     *
+     * @return The durability value.
+     */
     public int getDurability() {
         return this.durability;
     }
 
+    /**
+     * Get the weight value of the weapon.
+     *
+     * @return The weight value.
+     */
     public int getWeightValue() {
         return this.weightValue;
     }
 
+    /**
+     * Get the weight class of the weapon.
+     *
+     * @return The weight class.
+     */
     public Weight getWeight() {
         return this.weight;
     }

@@ -8,6 +8,12 @@ import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 
+/**
+ * The BaseItem class is a superclass that is responsible for managing and
+ * accessing items within the Historia plugin.
+ * 
+ * @see ItemStack
+ */
 public class BaseItem {
 
     protected ItemType itemType;
@@ -15,6 +21,9 @@ public class BaseItem {
     protected String id;
     protected boolean valid;
 
+    /**
+     * Constructor for the BaseItem class.
+     */
     public BaseItem() {
     };
 
@@ -49,6 +58,13 @@ public class BaseItem {
 
     }
 
+    /**
+     * Constructor for the BaseItem class that takes an ItemStack and a boolean as
+     * parameters.
+     *
+     * @param itemStack The ItemStack to be set as the itemStack variable.
+     * @param valid     The boolean to be set as the valid variable.
+     */
     @Deprecated(forRemoval = true)
     public BaseItem(@NotNull ItemStack itemStack, boolean valid) {
 
@@ -70,24 +86,44 @@ public class BaseItem {
 
     }
 
+    /**
+     * It returns the display name of the item.
+     *
+     * @return The display name of the item.
+     */
     public String getDisplayName() {
 
         return this.displayName;
 
     }
 
+    /**
+     * It returns if the item is valid.
+     *
+     * @return If the item is valid.
+     */
     public boolean isValid() {
 
         return this.valid;
 
     }
 
+    /**
+     * It returns the type of the item.
+     *
+     * @return The type of the item.
+     */
     public ItemType getItemType() {
 
         return this.itemType;
 
     }
 
+    /**
+     * It returns the id of the item.
+     *
+     * @return The id of the item.
+     */
     public String getID() {
 
         return this.id;

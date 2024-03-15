@@ -1,5 +1,6 @@
 package dev.boooiil.historia.items.configuration.crafted;
 
+import dev.boooiil.historia.core.proficiency.Proficiency.ProficiencyName;
 import dev.boooiil.historia.items.crafted.ItemType;
 import dev.boooiil.historia.items.util.Logging;
 
@@ -109,14 +110,14 @@ public abstract class BaseItemConfiguration {
      * @param proficiency The proficiency to check.
      * @return If the proficiency can craft the item.
      */
-    public boolean canCraft(String proficiency) {
+    public boolean canCraft(ProficiencyName proficiency) {
 
         Logging.debugToConsole("[CraftedItem] Proficiencies: " + this.proficiencies.toString());
 
         if (this.proficiencies.contains("ALL"))
             return true;
         else
-            return this.proficiencies.contains(proficiency);
+            return this.proficiencies.contains(proficiency.getKey());
 
     }
 
@@ -153,6 +154,11 @@ public abstract class BaseItemConfiguration {
 
     }
 
+    /**
+     * It returns the type of the item.
+     *
+     * @return The type of the item.
+     */
     public ItemType getItemType() {
         return this.itemType;
     }
@@ -168,15 +174,29 @@ public abstract class BaseItemConfiguration {
 
     }
 
+    @Override
     public String toString() {
         return "Material: " + this.material + " Amount: " + this.amount + " Display Name: " + this.displayName
                 + " Lore: " + this.lore.toString();
     }
 
+    /**
+     * It returns the ID of the item.
+     *
+     * @return The ID of the item.
+     */
     public String getID() {
         return this.id;
     }
 
+    /**
+     * Create a built {@link BaseItemConfiguration} object from the configuration.
+     * 
+     * @param <T>     The type of the configuration that extends
+     *                {@link BaseItemConfiguration}.
+     * @param section The configuration section.
+     * @return The built {@link BaseItemConfiguration} object.
+     */
     public static <T extends BaseItemConfiguration> T fromConfigurationSection(ConfigurationSection section) {
         return null;
     };

@@ -1,5 +1,8 @@
 package dev.boooiil.historia.items.crafted.modifiers;
 
+/**
+ * An enum representing the weight of an item.
+ */
 public enum Weight {
 
     LIGHT(0, "light"),
@@ -9,6 +12,12 @@ public enum Weight {
     private int value;
     private String key;
 
+    /**
+     * Constructs a Weight enum with a value and key.
+     *
+     * @param value The value of the weight.
+     * @param key   The key of the weight.
+     */
     private Weight(int value, String key) {
 
         this.value = value;
@@ -16,18 +25,33 @@ public enum Weight {
 
     }
 
+    /**
+     * Get the value of the weight.
+     *
+     * @return The value of the weight.
+     */
     public int getValue() {
 
         return this.value;
 
     }
 
+    /**
+     * Get the key of the weight.
+     *
+     * @return The key of the weight.
+     */
     public String getKey() {
 
         return this.key;
 
     }
 
+    /**
+     * Get the proper name of the weight.
+     *
+     * @return The proper name of the weight.
+     */
     public String getProperName() {
 
         String normalizedWeightString = this.key.substring(0, 1).toUpperCase() + this.key.substring(1);
@@ -36,6 +60,11 @@ public enum Weight {
 
     }
 
+    /**
+     * Get the colored proper name of the weight.
+     *
+     * @return The colored proper name of the weight.
+     */
     public String getWeightColor() {
 
         switch (this) {
@@ -56,6 +85,12 @@ public enum Weight {
 
     }
 
+    /**
+     * Get the weight of the item based on the value.
+     *
+     * @param value The value of the weight.
+     * @return The weight of the item.
+     */
     public static Weight getWeight(int value) {
 
         for (Weight tier : Weight.values()) {
@@ -72,6 +107,12 @@ public enum Weight {
 
     }
 
+    /**
+     * Get the weight of the item based on the key.
+     *
+     * @param key The key of the weight.
+     * @return The weight of the item.
+     */
     public static Weight getWeight(String key) {
 
         for (Weight tier : Weight.values()) {

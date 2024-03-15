@@ -1,5 +1,8 @@
 package dev.boooiil.historia.items.crafted.modifiers;
 
+/**
+ * An enum representing the quality of an item.
+ */
 public enum Quality {
 
     POOR(0, "poor"),
@@ -11,6 +14,12 @@ public enum Quality {
     private int value;
     private String key;
 
+    /**
+     * Constructs a Quality enum with a value and key.
+     *
+     * @param value The value of the quality.
+     * @param key   The key of the quality.
+     */
     private Quality(int value, String key) {
 
         this.value = value;
@@ -18,18 +27,33 @@ public enum Quality {
 
     }
 
+    /**
+     * Get the value of the quality.
+     *
+     * @return The value of the quality.
+     */
     public int getValue() {
 
         return this.value;
 
     }
 
+    /**
+     * Get the key of the quality.
+     *
+     * @return The key of the quality.
+     */
     public String getKey() {
 
         return this.key;
 
     }
 
+    /**
+     * Get the proper name of the quality.
+     *
+     * @return The proper name of the quality.
+     */
     public String getProperName() {
 
         String normalizedWeightString = this.key.substring(0, 1).toUpperCase() + this.key.substring(1);
@@ -38,6 +62,11 @@ public enum Quality {
 
     }
 
+    /**
+     * Get the colored proper name of the quality.
+     *
+     * @return The colored proper name of the quality.
+     */
     public String getProperNameColored() {
 
         switch (this) {
@@ -64,6 +93,11 @@ public enum Quality {
 
     }
 
+    /**
+     * Get the color of the quality.
+     *
+     * @return The color of the quality.
+     */
     public String getQualityColor() {
 
         switch (this) {
@@ -89,6 +123,12 @@ public enum Quality {
         }
     }
 
+    /**
+     * Get the quality of an item by its value.
+     *
+     * @param value The value of the quality.
+     * @return The quality of the item.
+     */
     public static Quality getQuality(int value) {
 
         for (Quality tier : Quality.values()) {
@@ -105,6 +145,12 @@ public enum Quality {
 
     }
 
+    /**
+     * Get the quality of an item by its key.
+     *
+     * @param key The key of the quality.
+     * @return The quality of the item.
+     */
     public static Quality getQuality(String key) {
 
         for (Quality tier : Quality.values()) {
