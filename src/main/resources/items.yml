@@ -6,8 +6,8 @@ FISH_OIL:
     amount: 1
     display-name: §7Oil
     loc-name: FISH_OIL
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7A vial of fish oil."
       - ""
       - "§oSmells so strong"
@@ -26,8 +26,8 @@ COD_FISH_OIL:
     amount: 1
     display-name: §7Oil
     loc-name: FISH_OIL
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7A vial of cod fish oil"
       - ""
       - "§oSmells so strong"
@@ -39,7 +39,7 @@ COD_FISH_OIL:
   requireShape: false
   recipe-items: ["COD"]
   recipe-shape: ["A  ", "   ", "   "]
-  canCraft: [ Fisherman, Apothecary ]
+  canCraft: [Fisherman, Apothecary]
 
 SALMON_FISH_OIL:
   item:
@@ -47,8 +47,8 @@ SALMON_FISH_OIL:
     amount: 1
     display-name: §7Oil
     loc-name: FISH_OIL
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7A vial of salmon fish oil"
       - ""
       - "§oSmells so strong"
@@ -60,7 +60,7 @@ SALMON_FISH_OIL:
   requireShape: false
   recipe-items: ["SALMON"]
   recipe-shape: ["A  ", "   ", "   "]
-  canCraft: [ Fisherman, Apothecary ]
+  canCraft: [Fisherman, Apothecary]
 
 PUFFERFISH_FISH_OIL:
   item:
@@ -68,8 +68,8 @@ PUFFERFISH_FISH_OIL:
     amount: 1
     display-name: §7Oil
     loc-name: FISH_OIL
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7A vial of pufferfish oil"
       - ""
       - "§oBetter hope it was"
@@ -81,7 +81,7 @@ PUFFERFISH_FISH_OIL:
   requireShape: false
   recipe-items: ["PUFFERFISH"]
   recipe-shape: ["A  ", "   ", "   "]
-  canCraft: [ Fisherman, Apothecary ]
+  canCraft: [Fisherman, Apothecary]
 
 TROPICAL_FISH_OIL:
   item:
@@ -89,8 +89,8 @@ TROPICAL_FISH_OIL:
     amount: 1
     display-name: §7Oil
     loc-name: FISH_OIL
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7A vial of tropical fish oil"
       - ""
       - "§oUnlike tropical drinks"
@@ -102,7 +102,7 @@ TROPICAL_FISH_OIL:
   requireShape: false
   recipe-items: ["TROPICAL_FISH"]
   recipe-shape: ["A  ", "   ", "   "]
-  canCraft: [ Fisherman, Apothecary ]
+  canCraft: [Fisherman, Apothecary]
 
 FISH_OIL_TIPPED_ARROW:
   item:
@@ -110,8 +110,8 @@ FISH_OIL_TIPPED_ARROW:
     amount: 4
     display-name: §7Oil Tipped Arrow
     loc-name: FISH_OIL_TIPPED_ARROW
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7An oil tipped arrow"
       - ""
       - "§oCareful where"
@@ -123,7 +123,7 @@ FISH_OIL_TIPPED_ARROW:
   requireShape: false
   recipe-items: ["FISH_OIL", "ARROW"]
   recipe-shape: ["AB ", "   ", "   "]
-  canCraft: [ Archer ]
+  canCraft: [Archer]
 
 GUNPOWDER:
   item:
@@ -131,8 +131,8 @@ GUNPOWDER:
     amount: 4
     display-name: §7Gunpowder
     loc-name: GUNPOWDER
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7A pile of gunpowder"
       - ""
       - "§oTo boom"
@@ -144,7 +144,7 @@ GUNPOWDER:
   requireShape: false
   recipe-items: ["SULPHUR", "CHARCOAL"]
   recipe-shape: ["AB ", "   ", "   "]
-  canCraft: [ Apothecary ]
+  canCraft: [Apothecary]
 
 SADDLE:
   item:
@@ -152,8 +152,8 @@ SADDLE:
     amount: 1
     display-name: §7Saddle
     loc-name: SADDLE
-    lore: 
-      - "" 
+    lore:
+      - ""
       - "§7A hardy leather saddle"
       - ""
       - "§oWhat will you ride?"
@@ -165,5 +165,25 @@ SADDLE:
   requireShape: true
   recipe-items: ["TANNED_LEATHER", "LEAD"]
   recipe-shape: ["AAA", "B B", "   "]
-  canCraft: [ Huntsman ]
+  canCraft: [Huntsman]
 
+SALT:
+  item:
+    type: SUGAR
+    amount: 4
+    display-name: §7Salt
+    loc-name: SALT
+    lore:
+      - ""
+      - "§7A bag of salt"
+      - ""
+      - "§oGood for preserving"
+      - "§oand seasoning."
+      - ""
+      - "§9--------------------"
+      - ""
+
+  requireShape: false
+  recipe-items: ["INVALID"]
+  recipe-shape: ["A ", "   ", "   "]
+  canCraft: [ALL]

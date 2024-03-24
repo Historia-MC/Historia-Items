@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.Warning;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import dev.boooiil.historia.items.Main;
 import net.kyori.adventure.text.Component;
 
 /**
@@ -34,7 +34,7 @@ public class Construct {
      * @param lore          The lore of the item.
      * @return An ItemStack
      */
-    @Warning(reason = "This method only works with Spigot!")
+    @Deprecated(forRemoval = true)
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName,
             List<String> lore) {
 
@@ -60,7 +60,7 @@ public class Construct {
 
     }
 
-    @Warning(reason = "This method only works with Spigot!")
+    @Deprecated(forRemoval = true)
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
@@ -83,10 +83,41 @@ public class Construct {
 
     }
 
-    @Warning(reason = "This method only works with PaperSpigot!")
-    public static ItemStack itemStack(Material material, int amount, String displayName, List<String> lore) {
+    /**
+     * It creates an ItemStack with the given parameters
+     * 
+     * @param material    The material of the item.
+     * @param amount      The amount of the item
+     * @param displayName The name that will be displayed on the item.
+     * @param lore        The lore of the item.
+     * @return An {@link ItemStack}
+     */
+    public static ItemStack itemStack(Material material, int amount, String displayName, ArrayList<String> lore) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
+
+        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+                + " lore: " + lore);
+
+        ItemStack item = new ItemStack(material, amount);
+        ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
+
+        List<Component> loreComponent = new ArrayList<>();
+        Component nameComponent = Component.text(displayName);
+        meta.displayName(nameComponent);
+
+        for (String line : lore) {
+            loreComponent.add(Component.text(line));
+        }
+
+        item.lore(loreComponent);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public static ItemStack itemStack(Material material, int amount, String displayName, List<Component> lore) {
+
         Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " lore: " + lore);
 
@@ -94,17 +125,15 @@ public class Construct {
 
         ItemMeta meta = item.getItemMeta();
 
-        List<Component> loreComponent = new ArrayList<>();
-        Component nameComponent = Component.text("My Custom Sword");
+        Component nameComponent = Component.text(displayName);
         meta.displayName(nameComponent);
 
-        for (String line : lore) {
-            loreComponent.add(Component.text(line));
-        }
+        meta.lore(lore);
 
         item.setItemMeta(meta);
 
         return item;
+
     }
 
     /**

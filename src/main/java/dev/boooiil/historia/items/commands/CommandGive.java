@@ -1,13 +1,17 @@
 package dev.boooiil.historia.items.commands;
 
-import dev.boooiil.historia.items.configuration.ConfigurationLoader;
-import dev.boooiil.historia.items.configuration.specific.ArmorConfig;
-import dev.boooiil.historia.items.configuration.specific.CustomItemConfig;
-import dev.boooiil.historia.items.configuration.specific.WeaponConfig;
-import dev.boooiil.historia.items.items.craftable.Armor;
-import dev.boooiil.historia.items.items.craftable.CustomItem;
-import dev.boooiil.historia.items.items.craftable.Weapon;
+import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
+import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
+import dev.boooiil.historia.items.crafted.armor.Armor;
+import dev.boooiil.historia.items.crafted.custom.Custom;
+import dev.boooiil.historia.items.crafted.tool.Tool;
+import dev.boooiil.historia.items.crafted.weapon.Weapon;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,62 +23,48 @@ public class CommandGive implements CommandExecutor {
     // It's a method that is called when a command is executed.
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!(sender instanceof Player player))
+        if (args.length > 2) {
+            sender.sendMessage("Syntax: /give <player> <item name>");
             return false;
-        if (args.length == 0)
+        }
+
+        if (Bukkit.getPlayer(args[0]) == null) {
+            sender.sendMessage("That player could not be found.");
             return false;
+        }
 
-        if (args[0].equalsIgnoreCase("weapon")) {
+        Player player = Bukkit.getPlayer(args[0]);
+        BaseItemConfiguration baseConfiguration = ItemConfigurationRegistry.get(args[1]);
 
-            WeaponConfig weaponConfig = ConfigurationLoader.getWeaponConfig();
-
-            if (weaponConfig.isValid(args[1])) {
-
-                Weapon weapon = weaponConfig.getObject(args[1]);
-                player.getWorld().dropItemNaturally(player.getLocation(), weapon.getItemStack());
-
-            }
-
-            else {
-
-                sender.sendMessage("Invalid item name.");
-            }
-
-        } else if (args[0].equalsIgnoreCase("armor")) {
-
-            ArmorConfig armorConfig = ConfigurationLoader.getArmorConfig();
-
-            if (armorConfig.isValid(args[1])) {
-
-                Armor armor = armorConfig.getObject(args[1]);
-                player.getWorld().dropItemNaturally(player.getLocation(), armor.getItemStack());
-
-            }
-
-            else {
-
-                sender.sendMessage("Invalid item name.");
-            }
-
-        } else if (args[0].equalsIgnoreCase("other")) {
-
-            CustomItemConfig customItemConfig = ConfigurationLoader.getCustomItemConfig();
-
-            if (customItemConfig.isValid(args[1])) {
-
-                CustomItem item = customItemConfig.getObject(args[1]);
-                player.getWorld().dropItemNaturally(player.getLocation(), item.getItemStack());
-
-            }
-
-            else {
-
-                sender.sendMessage("Invalid item name.");
-            }
-
-        } else {
-            sender.sendMessage("Syntax: /give <weapon/armor/other> <item name>");
+        if (baseConfiguration == null) {
+            sender.sendMessage("Invalid item name.");
             return false;
+        }
+
+        switch (baseConfiguration.getItemType()) {
+            case WEAPON:
+                WeaponConfiguration weaponConfiguration = (WeaponConfiguration) baseConfiguration;
+                Weapon weapon = new Weapon(weaponConfiguration);
+                player.getInventory().addItem(weapon.getItemStack());
+                break;
+            case ARMOR:
+                ArmorConfiguration armorConfiguration = (ArmorConfiguration) baseConfiguration;
+                Armor armor = new Armor(armorConfiguration);
+                player.getInventory().addItem(armor.getItemStack());
+                break;
+            case CUSTOM:
+                CustomConfiguration customConfiguration = (CustomConfiguration) baseConfiguration;
+                Custom custom = new Custom(customConfiguration);
+                player.getInventory().addItem(custom.getItemStack());
+                break;
+            case TOOL:
+                ToolConfiguration toolConfiguration = (ToolConfiguration) baseConfiguration;
+                Tool tool = new Tool(toolConfiguration);
+                player.getInventory().addItem(tool.getItemStack());
+                break;
+            default:
+                sender.sendMessage("Invalid item name.");
+                return false;
         }
 
         return false;

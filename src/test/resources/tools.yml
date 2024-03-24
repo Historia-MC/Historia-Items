@@ -20,7 +20,7 @@ Light_Wooden_Pickaxe:
   speed: [1.4, 1.6]
   knockback: [0.0, 0.5]
   durability: [40, 60]
-  type: Light
+  type: light
   recipe-items: ["WOOD", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -45,7 +45,7 @@ Light_Wooden_Hoe:
   speed: [1.4, 1.6]
   knockback: [0.0, 0.5]
   durability: [40, 60]
-  type: Light
+  type: light
   recipe-items: ["WOOD", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -70,7 +70,7 @@ Light_Wooden_Shovel:
   speed: [0.8, 1.2]
   knockback: [0.0, 1.0]
   durability: [40, 60]
-  type: Light
+  type: light
   recipe-items: ["WOOD", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -95,7 +95,7 @@ Light_Tin_Pickaxe:
   speed: [1.4, 1.6]
   knockback: [0.5, 1.0]
   durability: [50, 75]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -120,7 +120,7 @@ Light_Tin_Hoe:
   speed: [1.4, 1.6]
   knockback: [0.5, 1.0]
   durability: [50, 75]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -144,7 +144,7 @@ Light_Tin_Shovel:
   speed: [0.8, 1.2]
   knockback: [0.0, 1.0]
   durability: [50, 75]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -169,7 +169,7 @@ Heavy_Stone_Pickaxe:
   speed: [1.0, 1.3]
   knockback: [2.0, 3.5]
   durability: [100, 132]
-  type: Heavy
+  type: heavy
   recipe-items: ["STONE", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -194,7 +194,7 @@ Heavy_Stone_Hoe:
   speed: [1.0, 1.3]
   knockback: [2.0, 3.5]
   durability: [100, 132]
-  type: Heavy
+  type: heavy
   recipe-items: ["STONE", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -219,7 +219,7 @@ Heavy_Stone_Shovel:
   speed: [0.4, 0.7]
   knockback: [3.0, 4.5]
   durability: [100, 132]
-  type: Heavy
+  type: heavy
   recipe-items: ["STONE", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -244,7 +244,7 @@ Light_Bronze_Pickaxe:
   speed: [1.0, 1.4]
   knockback: [0.0, 0.5]
   durability: [75, 125]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -269,17 +269,17 @@ Light_Bronze_Hoe:
   speed: [1.0, 1.4]
   knockback: [0.0, 0.5]
   durability: [75, 125]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
 
-Medium_Bronze_Pickaxe:
+Moderate_Bronze_Pickaxe:
   item:
     type: GOLDEN_PICKAXE
     amount: 1
     display-name: §7Bronze Pickaxe
-    loc-name: Medium_Bronze_Pickaxe
+    loc-name: Moderate_Bronze_Pickaxe
     lore:
       - ""
       - "§7A §cmedium§7, bronze pickaxe."
@@ -294,17 +294,17 @@ Medium_Bronze_Pickaxe:
   speed: [1.0, 1.3]
   knockback: [0.5, 2.0]
   durability: [100, 150]
-  type: Medium
-  recipe-items: ["MEDIUM_BRONZE_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
-Medium_Bronze_Hoe:
+Moderate_Bronze_Hoe:
   item:
     type: GOLDEN_HOE
     amount: 1
-    display-name: §7Medium Bronze Hoe
-    loc-name: Medium_Bronze_Hoe
+    display-name: §7Moderate Bronze Hoe
+    loc-name: Moderate_Bronze_Hoe
     lore:
       - ""
       - "§7A §cmedium§7, bronze hoe."
@@ -319,8 +319,8 @@ Medium_Bronze_Hoe:
   speed: [1.0, 1.3]
   knockback: [0.5, 2.0]
   durability: [100, 150]
-  type: Medium
-  recipe-items: ["MEDIUM_BRONZE_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -344,7 +344,7 @@ Heavy_Bronze_Pickaxe:
   speed: [0.8, 1.0]
   knockback: [2.0, 3.5]
   durability: [125, 160]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -369,7 +369,7 @@ Heavy_Bronze_Hoe:
   speed: [0.8, 1.0]
   knockback: [2.0, 3.5]
   durability: [125, 160]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -393,17 +393,17 @@ Light_Bronze_Shovel:
   speed: [0.6, 1.0]
   knockback: [0.0, 0.5]
   durability: [75, 125]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
 
-Medium_Bronze_Shovel:
+Moderate_Bronze_Shovel:
   item:
     type: GOLDEN_SHOVEL
     amount: 1
     display-name: §7Bronze Shovel
-    loc-name: Medium_Bronze_Shovel
+    loc-name: Moderate_Bronze_Shovel
     lore:
       - ""
       - "§7A §cmedium§7, bronze shovel."
@@ -418,8 +418,8 @@ Medium_Bronze_Shovel:
   speed: [0.6, 0.9]
   knockback: [1.5, 3.0]
   durability: [100, 150]
-  type: Medium
-  recipe-items: ["MEDIUM_BRONZE_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -443,7 +443,7 @@ Heavy_Bronze_Shovel:
   speed: [0.5, 0.8]
   knockback: [3.0, 4.5]
   durability: [125, 160]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -452,7 +452,7 @@ Light_Iron_Pickaxe:
   item:
     type: IRON_PICKAXE
     amount: 1
-    display-name: §7Iron Dagger
+    display-name: §7Iron Pickaxe
     loc-name: Light_Iron_Pickaxe
     lore:
       - ""
@@ -468,7 +468,7 @@ Light_Iron_Pickaxe:
   speed: [1.3, 1.6]
   knockback: [0.0, 0.5]
   durability: [145, 175]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -493,17 +493,17 @@ Light_Iron_Hoe:
   speed: [1.3, 1.6]
   knockback: [0.0, 0.5]
   durability: [145, 175]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
 
-Medium_Iron_Pickaxe:
+Moderate_Iron_Pickaxe:
   item:
     type: IRON_PICKAXE
     amount: 1
     display-name: §7Iron Pickaxe
-    loc-name: Medium_Iron_Pickaxe
+    loc-name: Moderate_Iron_Pickaxe
     lore:
       - ""
       - "§7A §cmedium§7, iron pickaxe."
@@ -518,17 +518,17 @@ Medium_Iron_Pickaxe:
   speed: [1.0, 1.4]
   knockback: [0.5, 2.0]
   durability: [175, 225]
-  type: Medium
-  recipe-items: ["MEDIUM_IRON_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
-Medium_Iron_Hoe:
+Moderate_Iron_Hoe:
   item:
     type: IRON_HOE
     amount: 1
-    display-name: §7Medium Iron Hoe
-    loc-name: Medium_Iron_Hoe
+    display-name: §7Moderate Iron Hoe
+    loc-name: Moderate_Iron_Hoe
     lore:
       - ""
       - "§7A §cmedium§7, iron hoe."
@@ -543,8 +543,8 @@ Medium_Iron_Hoe:
   speed: [1.0, 1.4]
   knockback: [0.5, 2.0]
   durability: [175, 225]
-  type: Medium
-  recipe-items: ["MEDIUM_IRON_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -568,7 +568,7 @@ Heavy_Iron_Pickaxe:
   speed: [0.8, 1.2]
   knockback: [2.0, 3.5]
   durability: [200, 250]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -593,7 +593,7 @@ Heavy_Iron_Hoe:
   speed: [0.8, 1.2]
   knockback: [2.0, 3.5]
   durability: [200, 250]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -618,17 +618,17 @@ Light_Iron_Shovel:
   speed: [0.6, 1.0]
   knockback: [1.0, 1.5]
   durability: [145, 175]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
 
-Medium_Iron_Shovel:
+Moderate_Iron_Shovel:
   item:
     type: IRON_SHOVEL
     amount: 1
     display-name: §7Iron Shovel
-    loc-name: Medium_Iron_Shovel
+    loc-name: Moderate_Iron_Shovel
     lore:
       - ""
       - "§7A §cmedium§7, iron shovel."
@@ -643,8 +643,8 @@ Medium_Iron_Shovel:
   speed: [0.6, 0.9]
   knockback: [1.5, 3.0]
   durability: [175, 225]
-  type: Medium
-  recipe-items: ["MEDIUM_IRON_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -668,7 +668,7 @@ Heavy_Iron_Shovel:
   speed: [0.5, 0.8]
   knockback: [3.0, 4.5]
   durability: [200, 275]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -693,7 +693,7 @@ Light_Steel_Pickaxe:
   speed: [1.3, 1.6]
   knockback: [0.0, 0.5]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
@@ -718,17 +718,17 @@ Light_Steel_Hoe:
   speed: [1.3, 1.6]
   knockback: [0.0, 0.5]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
 
-Medium_Steel_Pickaxe:
+Moderate_Steel_Pickaxe:
   item:
     type: NETHERITE_PICKAXE
     amount: 1
     display-name: §7Steel Pickaxe
-    loc-name: Medium_Steel_Pickaxe
+    loc-name: Moderate_Steel_Pickaxe
     lore:
       - ""
       - "§7A §cmedium§7, steel pickaxe."
@@ -743,17 +743,17 @@ Medium_Steel_Pickaxe:
   speed: [1.0, 1.4]
   knockback: [0.5, 2.0]
   durability: [350, 400]
-  type: Medium
-  recipe-items: ["MEDIUM_STEEL_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
-Medium_Steel_Hoe:
+Moderate_Steel_Hoe:
   item:
     type: NETHERITE_HOE
     amount: 1
-    display-name: §7Medium Steel Hoe
-    loc-name: Medium_Steel_Hoe
+    display-name: §7Moderate Steel Hoe
+    loc-name: Moderate_Steel_Hoe
     lore:
       - ""
       - "§7A §cmedium§7, steel hoe."
@@ -768,8 +768,8 @@ Medium_Steel_Hoe:
   speed: [1.0, 1.4]
   knockback: [0.5, 2.0]
   durability: [350, 400]
-  type: Medium
-  recipe-items: ["MEDIUM_STEEL_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -793,7 +793,7 @@ Heavy_Steel_Pickaxe:
   speed: [0.8, 1.0]
   knockback: [2.0, 3.5]
   durability: [450, 600]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -818,7 +818,7 @@ Heavy_Steel_Hoe:
   speed: [0.8, 1.0]
   knockback: [2.0, 3.5]
   durability: [450, 600]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
@@ -843,17 +843,17 @@ Light_Steel_Shovel:
   speed: [0.6, 1.0]
   knockback: [1.5, 3.0]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [ALL]
 
-Medium_Steel_Shovel:
+Moderate_Steel_Shovel:
   item:
     type: NETHERITE_SHOVEL
     amount: 1
     display-name: §7Iron Shovel
-    loc-name: Medium_Iron_Shovel
+    loc-name: Moderate_Iron_Shovel
     lore:
       - ""
       - "§7A §cmedium§7, steel shovel."
@@ -868,8 +868,8 @@ Medium_Steel_Shovel:
   speed: [0.7, 0.9]
   knockback: [1.5, 3.0]
   durability: [350, 400]
-  type: Medium
-  recipe-items: ["MEDIUM_STEEL_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -893,7 +893,7 @@ Heavy_Steel_Shovel:
   speed: [0.5, 0.8]
   knockback: [3.0, 4.5]
   durability: [200, 275]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
   requireShape: true
   canCraft: [Blacksmith]

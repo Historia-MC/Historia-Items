@@ -13,6 +13,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class for handling file input and output.
+ */
 public class FileIO {
 
     private static final List<String> configFileNames = new ArrayList<>();
@@ -25,6 +28,9 @@ public class FileIO {
 
     }
 
+    /**
+     * Checks the existence and version of config files.
+     */
     public static void checkFiles() {
 
         Logging.infoToConsole("Checking existence and version of config files.");
@@ -56,11 +62,23 @@ public class FileIO {
 
     }
 
+    /**
+     * Loads a YamlConfiguration from an InputStream.
+     *
+     * @param is The InputStream to load the YamlConfiguration from.
+     * @return The YamlConfiguration loaded from the InputStream.
+     */
     public static YamlConfiguration yamlFromSource(InputStream is) {
         Reader reader = new InputStreamReader(is, Charset.defaultCharset());
         return YamlConfiguration.loadConfiguration(reader);
     }
 
+    /**
+     * Loads a YamlConfiguration from a File.
+     *
+     * @param file The File to load the YamlConfiguration from.
+     * @return The YamlConfiguration loaded from the File.
+     */
     public static YamlConfiguration yamlFromSource(File file) {
         return YamlConfiguration.loadConfiguration(file);
     }

@@ -1,32 +1,28 @@
 package dev.boooiil.historia.items.handlers.inventory;
 
-import dev.boooiil.historia.core.classes.enums.experience.CraftingSources;
-import dev.boooiil.historia.core.classes.user.HistoriaPlayer;
+import dev.boooiil.historia.core.player.HistoriaPlayer;
+import dev.boooiil.historia.core.proficiency.experience.CraftingSources;
+import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
+import dev.boooiil.historia.items.crafted.armor.Armor;
+import dev.boooiil.historia.items.crafted.weapon.Weapon;
+import dev.boooiil.historia.items.generic.Ingot;
 import dev.boooiil.historia.items.handlers.inventory.prepareCraftItem.PrepareItemCraftInventoryHelper;
-import dev.boooiil.historia.items.items.craftable.Armor;
-import dev.boooiil.historia.items.items.craftable.CraftedItem;
-import dev.boooiil.historia.items.items.craftable.Weapon;
 import dev.boooiil.historia.items.util.Logging;
-import dev.boooiil.historia.items.util.NumberUtils;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
-import java.util.UUID;
 
 public class CraftingResult {
 
     private final Inventory inventory;
-    private final ItemStack result;
-    private final CraftedItem craftedItem;
+    private final BaseItemConfiguration craftedItem;
     private final HistoriaPlayer historiaPlayer;
+    private ItemStack result;
 
-    public CraftingResult(Inventory inventory, ItemStack result, CraftedItem craftedItem,
+    public CraftingResult(Inventory inventory, ItemStack result, BaseItemConfiguration craftedItem,
             HistoriaPlayer historiaPlayer) {
         this.inventory = inventory;
         this.result = result;
@@ -36,30 +32,19 @@ public class CraftingResult {
 
     public void generateRandomModifiers() {
 
-        if (craftedItem instanceof Armor) {
-
-            Logging.debugToConsole("[generateRandomModifiers] Generating Armor Modifiers");
-
-            generateArmorModifiers();
-
-            historiaPlayer.increaseExperience(CraftingSources.ARMOR_CRAFT.getKey());
-
-        } else if (craftedItem instanceof Weapon) {
-
-            Logging.debugToConsole("[generateRandomModifiers] Generating Weapon Modifiers");
-
-            generateWeaponModifiers();
-
-            historiaPlayer.increaseExperience(CraftingSources.WEAPON_CRAFT.getKey());
-
-        }
-
-        else {
-
-            Logging.debugToConsole("[generateRandomModifiers] Was other item.");
-
-            historiaPlayer.increaseExperience(CraftingSources.OTHER_CRAFT.getKey());
-
+        switch (craftedItem.getItemType()) {
+            case ARMOR:
+                Logging.debugToConsole("[generateRandomModifiers] Armor");
+                generateArmorModifiers();
+                break;
+            case WEAPON:
+                Logging.debugToConsole("[generateRandomModifiers] Weapon");
+                generateWeaponModifiers();
+                break;
+            default:
+                Logging.debugToConsole("[generateRandomModifiers] Other");
+                historiaPlayer.increaseExperience(CraftingSources.OTHER_CRAFT.getKey());
+                break;
         }
 
     }
@@ -68,36 +53,13 @@ public class CraftingResult {
 
         PrepareItemCraftInventoryHelper inspector = new PrepareItemCraftInventoryHelper(inventory.getContents());
         List<String> allMaterials = inspector.getFullMaterials();
-        Armor armor = (Armor) craftedItem;
+        ArmorConfiguration armorConfiguration = (ArmorConfiguration) craftedItem;
+        Armor armor = new Armor(armorConfiguration);
 
         float qualityBonus = getQualityBonus(allMaterials);
         float levelBonus = getLevelBonus(historiaPlayer.getLevel());
-        int rolledDurability = armor.getMaxDurabilityValue();
-        double rolledArmor = armor.getRandomDefenseValue();
 
-        ItemMeta meta = result.getItemMeta();
-        Damageable damageable = (Damageable) meta;
-        AttributeModifier armorModifier = new AttributeModifier(
-                UUID.randomUUID(), "Attack Speed", rolledArmor, AttributeModifier.Operation.ADD_NUMBER,
-                result.getType().getEquipmentSlot());
-
-        int adjustedDurability = result.getType().getMaxDurability() - rolledDurability;
-
-        List<String> lore = List.of(
-                "",
-                "§7Class - " + armor.getWeightClass(),
-                "",
-                "§7Armor - " + NumberUtils.roundDouble(rolledArmor, 2),
-                "§7Weight - " + armor.getWeight());
-
-        damageable.setDamage(adjustedDurability);
-        meta.setLore(lore);
-        meta.addAttributeModifier(Attribute.GENERIC_ARMOR, armorModifier);
-
-        Logging.debugToConsole("[generateArmorModifiers] Durability: " + rolledDurability);
-        Logging.debugToConsole("[generateArmorModifiers] Durability: " + adjustedDurability);
-
-        result.setItemMeta(meta);
+        result = armor.getItemStack();
 
     }
 
@@ -105,44 +67,14 @@ public class CraftingResult {
 
         PrepareItemCraftInventoryHelper inspector = new PrepareItemCraftInventoryHelper(inventory.getContents());
         List<String> allMaterials = inspector.getFullMaterials();
-        Weapon weapon = (Weapon) craftedItem;
+        WeaponConfiguration weaponConfiguration = (WeaponConfiguration) craftedItem;
 
         float qualityBonus = getQualityBonus(allMaterials);
         float levelBonus = getLevelBonus(historiaPlayer.getLevel());
-        int rolledDurability = weapon.getRandomDurabilityValue();
-        double rolledDamage = weapon.getDamageRandomValue();
-        double rolledAttackSpeed = weapon.getSpeedRandomValue();
-        double rolledKnockback = weapon.getKnockbackRandomValue();
-        double rolledSweeping = weapon.getSweepRandomValue();
 
-        ItemMeta meta = result.getItemMeta();
-        Damageable damageable = (Damageable) meta;
-        AttributeModifier damageModifier = new AttributeModifier(UUID.randomUUID(), "Damage", rolledDamage,
-                AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-        AttributeModifier attackSpeedModifier = new AttributeModifier(UUID.randomUUID(), "Attack Speed",
-                rolledAttackSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        Weapon weapon = new Weapon(weaponConfiguration);
 
-        int adjustedDurability = result.getType().getMaxDurability() - rolledDurability;
-
-        List<String> lore = List.of(
-                "",
-                "§7Class - " + weapon.getWeightClass(),
-                "",
-                "§7Damage - " + NumberUtils.roundDouble(rolledDamage, 2),
-                "§7Attack Speed - " + NumberUtils.roundDouble(rolledAttackSpeed, 2),
-                "§7Knockback - " + NumberUtils.roundDouble(rolledKnockback, 2),
-                "§7Sweeping - " + NumberUtils.roundDouble(rolledSweeping, 2),
-                "§7Weight - " + weapon.getWeight());
-
-        damageable.setDamage(adjustedDurability);
-        meta.setLore(lore);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damageModifier);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, attackSpeedModifier);
-
-        Logging.debugToConsole("[generateArmorModifiers] Durability: " + rolledDurability);
-        Logging.debugToConsole("[generateArmorModifiers] Adjusted Durability: " + adjustedDurability);
-
-        result.setItemMeta(meta);
+        result = weapon.getItemStack();
 
     }
 
@@ -157,18 +89,23 @@ public class CraftingResult {
 
         for (String material : materials) {
 
-            if (material.contains("HIGH")) {
+            Ingot ingot = Ingot.parseFromString(material);
 
-                high++;
+            if (!ingot.isValid())
+                continue;
 
-            } else if (material.contains("MEDIUM")) {
-
-                medium++;
-
-            } else if (material.contains("LOW")) {
-
-                low++;
-
+            switch (ingot.getQuality()) {
+                case PERFECT:
+                    high++;
+                    break;
+                case UNCOMMON:
+                    medium++;
+                    break;
+                case POOR:
+                    low++;
+                    break;
+                default:
+                    break;
             }
 
         }
@@ -190,7 +127,7 @@ public class CraftingResult {
 
     }
 
-    public CraftedItem getCraftedItem() {
+    public BaseItemConfiguration getCraftedItem() {
         return craftedItem;
     }
 }

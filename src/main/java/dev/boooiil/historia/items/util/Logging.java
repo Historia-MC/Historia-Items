@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.specific.GeneralConfig;
+import dev.boooiil.historia.items.configuration.general.GeneralConfiguration;
 import net.kyori.adventure.text.Component;
 
 /**
@@ -184,7 +184,7 @@ public class Logging {
      */
     public static void debugToConsole(String... messages) {
 
-        if (GeneralConfig.debug) {
+        if (GeneralConfiguration.debug) {
 
             String built = "";
 

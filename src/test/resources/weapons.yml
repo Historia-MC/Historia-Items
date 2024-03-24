@@ -21,10 +21,10 @@ Light_Wooden_Sword:
   knockback: [0.0, 0.5]
   sweeping: [0.5, 1.0]
   durability: [40, 60]
-  type: Light
+  type: light
   recipe-items: ["WOOD", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
 Light_Wooden_Axe:
   item:
@@ -47,10 +47,10 @@ Light_Wooden_Axe:
   knockback: [0.0, 1.0]
   sweeping: [0.5, 1.0]
   durability: [40, 60]
-  type: Light
+  type: light
   recipe-items: ["WOOD", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
 Light_Tin_Sword:
   item:
@@ -73,10 +73,10 @@ Light_Tin_Sword:
   knockback: [0.5, 1.0]
   sweeping: [1.0, 1.5]
   durability: [50, 75]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
 Light_Tin_Axe:
   item:
@@ -99,10 +99,10 @@ Light_Tin_Axe:
   knockback: [0.0, 1.0]
   sweeping: [0.0, 0.0]
   durability: [50, 75]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
 Heavy_Stone_Sword:
   item:
@@ -125,10 +125,10 @@ Heavy_Stone_Sword:
   knockback: [2.0, 3.5]
   sweeping: [1.0, 2.5]
   durability: [100, 132]
-  type: Heavy
+  type: heavy
   recipe-items: ["COBBLESTONE", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Heavy_Stone_Axe:
   item:
@@ -151,10 +151,10 @@ Heavy_Stone_Axe:
   knockback: [3.0, 4.5]
   sweeping: [0.0, 0.0]
   durability: [100, 132]
-  type: Heavy
+  type: heavy
   recipe-items: ["COBBLESTONE", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Light_Bronze_Sword:
   item:
@@ -177,17 +177,17 @@ Light_Bronze_Sword:
   knockback: [0.0, 0.5]
   sweeping: [1.0, 2.25]
   durability: [75, 125]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
-Medium_Bronze_Sword:
+Moderate_Bronze_Sword:
   item:
     type: GOLDEN_SWORD
     amount: 1
     display-name: §7Bronze Sword
-    loc-name: Medium_Bronze_Sword
+    loc-name: Moderate_Bronze_Sword
     lore:
       - ""
       - "§7A §cmedium§7, bronze sword."
@@ -203,10 +203,10 @@ Medium_Bronze_Sword:
   knockback: [0.5, 2.0]
   sweeping: [1.5, 2.5]
   durability: [100, 150]
-  type: Medium
-  recipe-items: ["MEDIUM_BRONZE_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Heavy_Bronze_Sword:
   item:
@@ -230,10 +230,10 @@ Heavy_Bronze_Sword:
   knockback: [2.0, 3.5]
   sweeping: [1.5, 3.25]
   durability: [125, 160]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Light_Bronze_Axe:
   item:
@@ -256,17 +256,17 @@ Light_Bronze_Axe:
   knockback: [0.0, 0.5]
   sweeping: [0.0, 0.0]
   durability: [75, 125]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
-Medium_Bronze_Axe:
+Moderate_Bronze_Axe:
   item:
     type: GOLDEN_AXE
     amount: 1
     display-name: §7Bronze Axe
-    loc-name: Medium_Bronze_Axe
+    loc-name: Moderate_Bronze_Axe
     lore:
       - ""
       - "§7A §cmedium§7, bronze axe."
@@ -282,10 +282,10 @@ Medium_Bronze_Axe:
   knockback: [1.5, 3.0]
   sweeping: [0.0, 0.0]
   durability: [100, 150]
-  type: Medium
-  recipe-items: ["MEDIUM_BRONZE_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Heavy_Bronze_Axe:
   item:
@@ -308,10 +308,10 @@ Heavy_Bronze_Axe:
   knockback: [3.0, 4.5]
   sweeping: [0.0, 0.0]
   durability: [125, 160]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Light_Iron_Sword:
   item:
@@ -334,17 +334,17 @@ Light_Iron_Sword:
   knockback: [0.0, 0.5]
   sweeping: [1.75, 2.75]
   durability: [145, 175]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
-Medium_Iron_Sword:
+Moderate_Iron_Sword:
   item:
     type: IRON_SWORD
     amount: 1
     display-name: §7Iron Sword
-    loc-name: Medium_Iron_Sword
+    loc-name: Moderate_Iron_Sword
     lore:
       - ""
       - "§7A §cmedium§7, iron sword."
@@ -360,10 +360,10 @@ Medium_Iron_Sword:
   knockback: [0.5, 2.0]
   sweeping: [2.25, 3.0]
   durability: [175, 225]
-  type: Medium
-  recipe-items: ["MEDIUM_IRON_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Heavy_Iron_Sword:
   item:
@@ -386,10 +386,10 @@ Heavy_Iron_Sword:
   knockback: [2.0, 3.5]
   sweeping: [2.5, 3.5]
   durability: [200, 250]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Light_Iron_Axe:
   item:
@@ -412,17 +412,17 @@ Light_Iron_Axe:
   knockback: [1.0, 1.5]
   sweeping: [0.0, 0.0]
   durability: [145, 175]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
-Medium_Iron_Axe:
+Moderate_Iron_Axe:
   item:
     type: IRON_AXE
     amount: 1
     display-name: §7Iron Axe
-    loc-name: Medium_Iron_Axe
+    loc-name: Moderate_Iron_Axe
     lore:
       - ""
       - "§7A §cmedium§7, iron axe."
@@ -438,10 +438,10 @@ Medium_Iron_Axe:
   knockback: [1.5, 3.0]
   sweeping: [0.0, 0.0]
   durability: [175, 225]
-  type: Medium
-  recipe-items: ["MEDIUM_IRON_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Heavy_Iron_Axe:
   item:
@@ -464,10 +464,10 @@ Heavy_Iron_Axe:
   knockback: [3.0, 4.5]
   sweeping: [0.0, 0.0]
   durability: [200, 275]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Light_Steel_Sword:
   item:
@@ -490,17 +490,17 @@ Light_Steel_Sword:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
-Medium_Steel_Sword:
+Moderate_Steel_Sword:
   item:
     type: NETHERITE_SWORD
     amount: 1
     display-name: §7Steel Sword
-    loc-name: Medium_Steel_Sword
+    loc-name: Moderate_Steel_Sword
     lore:
       - ""
       - "§7A §cmedium§7, steel sword."
@@ -516,10 +516,10 @@ Medium_Steel_Sword:
   knockback: [0.5, 2.0]
   sweeping: [2.5, 3.5]
   durability: [350, 400]
-  type: Medium
-  recipe-items: ["MEDIUM_STEEL_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Heavy_Steel_Sword:
   item:
@@ -542,10 +542,10 @@ Heavy_Steel_Sword:
   knockback: [2.0, 3.5]
   sweeping: [3.25, 4.5]
   durability: [450, 600]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Light_Steel_Axe:
   item:
@@ -568,17 +568,17 @@ Light_Steel_Axe:
   knockback: [1.5, 3.0]
   sweeping: [0.0, 0.0]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ ALL ]
+  canCraft: [ALL]
 
-Medium_Steel_Axe:
+Moderate_Steel_Axe:
   item:
     type: NETHERITE_AXE
     amount: 1
     display-name: §7Iron Axe
-    loc-name: Medium_Iron_Axe
+    loc-name: Moderate_Iron_Axe
     lore:
       - ""
       - "§7A §cmedium§7, steel axe."
@@ -594,10 +594,10 @@ Medium_Steel_Axe:
   knockback: [1.5, 3.0]
   sweeping: [0.0, 0.0]
   durability: [350, 400]
-  type: Medium
-  recipe-items: ["MEDIUM_STEEL_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
+  canCraft: [Blacksmith]
 
 Heavy_Steel_Axe:
   item:
@@ -620,11 +620,11 @@ Heavy_Steel_Axe:
   knockback: [3.0, 4.5]
   sweeping: [0.0, 0.0]
   durability: [200, 275]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
   requireShape: true
-  canCraft: [ Blacksmith ]
-  
+  canCraft: [Blacksmith]
+
 Light_Wooden_Pitchfork:
   item:
     type: TRIDENT
@@ -646,11 +646,11 @@ Light_Wooden_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["WOOD", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Light_Wooden_Trident:
   item:
@@ -673,11 +673,11 @@ Light_Wooden_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["WOOD", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
 Light_Tin_Pitchfork:
   item:
@@ -700,11 +700,11 @@ Light_Tin_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Light_Tin_Trident:
   item:
@@ -727,18 +727,18 @@ Light_Tin_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_TIN_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
-Medium_Tin_Pitchfork:
+Moderate_Tin_Pitchfork:
   item:
     type: TRIDENT
     amount: 1
     display-name: §7Tin Pitchfork
-    loc-name: Medium_Tin_Pitchfork
+    loc-name: Moderate_Tin_Pitchfork
     lore:
       - ""
       - "§7A §cmedium§7, tin pitchfork."
@@ -754,18 +754,18 @@ Medium_Tin_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Medium
-  recipe-items: ["MEDIUM_TIN_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_TIN_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
-Medium_Tin_Trident:
+Moderate_Tin_Trident:
   item:
     type: TRIDENT
     amount: 1
     display-name: §7Tin Trident
-    loc-name: Medium_Tin_Trident
+    loc-name: Moderate_Tin_Trident
     lore:
       - ""
       - "§7A §cmedium§7, tin trident."
@@ -781,11 +781,11 @@ Medium_Tin_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Medium
-  recipe-items: ["MEDIUM_TIN_INGOT", "TRIDENT_BASE"]
+  type: moderate
+  recipe-items: ["MODERATE_TIN_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
 Heavy_Tin_Pitchfork:
   item:
@@ -808,11 +808,11 @@ Heavy_Tin_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_TIN_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Heavy_Tin_Trident:
   item:
@@ -835,11 +835,11 @@ Heavy_Tin_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.35, 3.0]
   durability: [300, 375]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_TIN_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
 Heavy_Stone_Pitchfork:
   item:
@@ -862,11 +862,11 @@ Heavy_Stone_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.5, 3.25]
   durability: [400, 500]
-  type: Heavy
+  type: heavy
   recipe-items: ["COBBLESTONE", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Heavy_Stone_Trident:
   item:
@@ -889,11 +889,11 @@ Heavy_Stone_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.5, 3.25]
   durability: [400, 500]
-  type: Heavy
+  type: heavy
   recipe-items: ["COBBLESTONE", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
 Light_Iron_Pitchfork:
   item:
@@ -916,11 +916,11 @@ Light_Iron_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.65, 3.5]
   durability: [500, 625]
-  type: Light
+  type: light
   recipe-items: ["LIGHIT_IRON_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Light_Iron_Trident:
   item:
@@ -943,18 +943,18 @@ Light_Iron_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.65, 3.5]
   durability: [500, 625]
-  type: Light
+  type: light
   recipe-items: ["LIGHIT_IRON_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
-Medium_Iron_Pitchfork:
+Moderate_Iron_Pitchfork:
   item:
     type: TRIDENT
     amount: 1
     display-name: §7Iron Pitchfork
-    loc-name: Medium_Iron_Pitchfork
+    loc-name: Moderate_Iron_Pitchfork
     lore:
       - ""
       - "§7A §cmedium§7, iron pitchfork."
@@ -970,18 +970,18 @@ Medium_Iron_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.65, 3.5]
   durability: [500, 625]
-  type: Medium
-  recipe-items: ["MEDIUM_IRON_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
-Medium_Iron_Trident:
+Moderate_Iron_Trident:
   item:
     type: TRIDENT
     amount: 1
     display-name: §7Iron Trident
-    loc-name: Medium_Iron_Trident
+    loc-name: Moderate_Iron_Trident
     lore:
       - ""
       - "§7A §cmedium§7, iron trident."
@@ -997,11 +997,11 @@ Medium_Iron_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.65, 3.5]
   durability: [500, 625]
-  type: Medium
-  recipe-items: ["MEDIUM_IRON_INGOT", "TRIDENT_BASE"]
+  type: moderate
+  recipe-items: ["MODERATE_IRON_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
 Heavy_Iron_Pitchfork:
   item:
@@ -1024,11 +1024,11 @@ Heavy_Iron_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.65, 3.5]
   durability: [500, 625]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Heavy_Iron_Trident:
   item:
@@ -1051,11 +1051,11 @@ Heavy_Iron_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.65, 3.5]
   durability: [500, 625]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
 Light_Steel_Pitchfork:
   item:
@@ -1078,11 +1078,11 @@ Light_Steel_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.8, 3.75]
   durability: [600, 750]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Light_Steel_Trident:
   item:
@@ -1105,18 +1105,18 @@ Light_Steel_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.8, 3.75]
   durability: [600, 750]
-  type: Light
+  type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
-Medium_Steel_Pitchfork:
+Moderate_Steel_Pitchfork:
   item:
     type: TRIDENT
     amount: 1
     display-name: §7Steel Pitchfork
-    loc-name: Medium_Steel_Pitchfork
+    loc-name: Moderate_Steel_Pitchfork
     lore:
       - ""
       - "§7A §cmedium§7, steel pitchfork."
@@ -1132,18 +1132,18 @@ Medium_Steel_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.8, 3.75]
   durability: [600, 750]
-  type: Medium
-  recipe-items: ["MEDIUM_STEEL_INGOT", "STICK"]
+  type: moderate
+  recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
-Medium_Steel_Trident:
+Moderate_Steel_Trident:
   item:
     type: TRIDENT
     amount: 1
     display-name: §7Steel Trident
-    loc-name: Medium_Steel_Trident
+    loc-name: Moderate_Steel_Trident
     lore:
       - ""
       - "§7A §cmedium§7, steel trident."
@@ -1159,11 +1159,11 @@ Medium_Steel_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.8, 3.75]
   durability: [600, 750]
-  type: Medium
-  recipe-items: ["MEDIUM_STEEL_INGOT", "TRIDENT_BASE"]
+  type: moderate
+  recipe-items: ["MODERATE_STEEL_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]
 
 Heavy_Steel_Pitchfork:
   item:
@@ -1186,11 +1186,11 @@ Heavy_Steel_Pitchfork:
   knockback: [0.0, 0.5]
   sweeping: [2.8, 3.75]
   durability: [600, 750]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Farmer, Fisherman ]
+  canCraft: [Farmer, Fisherman]
 
 Heavy_Steel_Trident:
   item:
@@ -1213,8 +1213,8 @@ Heavy_Steel_Trident:
   knockback: [0.0, 0.5]
   sweeping: [2.8, 3.75]
   durability: [600, 750]
-  type: Heavy
+  type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "TRIDENT_BASE"]
   recipe-shape: [" AA", " BA", "B  "]
   requireShape: true
-  canCraft: [ Fisherman ]
+  canCraft: [Fisherman]

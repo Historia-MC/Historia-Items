@@ -2,31 +2,33 @@ package dev.boooiil.historia.items.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Random;
 
 public class NumberUtils {
-    
+
     public static float random(int min, int max) {
-        return (float) (Math.random() * (max - min + 1) + min);
+        return (float) (Math.random() * (max - min) + min);
     }
 
     public static float random(float min, float max) {
-        return (float) (Math.random() * (max - min + 1) + min);
+        return (float) (Math.random() * (max - min) + min);
     }
 
     public static double random(double min, double max) {
-        return (Math.random() * (max - min + 1) + min);
+        Random random = new Random();
+        return min + (max - min) * random.nextDouble();
     }
 
     public static float randomToTenth(int min, int max) {
-        return (float) (Math.round(Math.random() * (max - min + 1) + min) * 10) / 10;
+        return (float) (Math.round(Math.random() * (max - min) + min) * 10) / 10;
     }
 
     public static float randomToHundredth(int min, int max) {
-        return (float) (Math.round(Math.random() * (max - min + 1) + min) * 100) / 100;
+        return (float) (Math.round(Math.random() * (max - min) + min) * 100) / 100;
     }
 
     public static int randomInt(int min, int max) {
-        return (int) (Math.random() * (max - min + 1) + min);
+        return (int) (Math.random() * (max - min) + min);
     }
 
     public static float roundFloat(float value, int places) {
@@ -34,7 +36,8 @@ public class NumberUtils {
     }
 
     public static double roundDouble(double value, int places) {
-        return Double.parseDouble(new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString());
+        return Double.parseDouble(
+                new BigDecimal(value).setScale(places, RoundingMode.HALF_UP).stripTrailingZeros().toPlainString());
     }
 
 }

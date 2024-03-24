@@ -1,4 +1,7 @@
-package dev.boooiil.historia.items.events.inventory;
+package dev.boooiil.historia.items.handlers.inventory.craftItem;
+
+import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.inventory.ItemStack;
 
 import dev.boooiil.historia.core.database.internal.PlayerStorage;
 import dev.boooiil.historia.core.player.HistoriaPlayer;
@@ -6,23 +9,18 @@ import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
 import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.handlers.inventory.CraftingResult;
 import dev.boooiil.historia.items.util.Logging;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.inventory.ItemStack;
 
-public class CraftItemListener implements Listener {
+public class CraftItemHandler {
 
-    // TODO: this all needs to be moved to a handler and
-    // CONT: should be refactored. This is a mess.
+    private final HistoriaPlayer historiaPlayer;
+    private CraftItemEvent event;
 
-    @EventHandler
-    public void onCraftItem(CraftItemEvent event) {
+    public CraftItemHandler(CraftItemEvent event) {
+        this.event = event;
+        this.historiaPlayer = PlayerStorage.getPlayer(event.getWhoClicked().getUniqueId(), false);
+    }
 
-        System.out.println("CraftItemEvent triggered");
-
-        HistoriaPlayer historiaPlayer = PlayerStorage.getPlayer(event.getWhoClicked().getUniqueId(), false);
-
+    public void handle() {
         ItemStack item = event.getClickedInventory().getItem(0);
         BaseItem baseItem = new BaseItem(item);
 

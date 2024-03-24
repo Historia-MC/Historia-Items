@@ -1,5 +1,8 @@
 package dev.boooiil.historia.items.file;
 
+/**
+ * An enum representing the keys of the files in the plugin.
+ */
 public enum FileKeys {
 
     /** config.yml */
@@ -15,17 +18,27 @@ public enum FileKeys {
     /** ingots.yml */
     INGOTS("ingots.yml");
 
-    private final String key;
+    private final String filename;
 
-    FileKeys(String key) {
+    /**
+     * Constructs a FileKeys enum with a filename.
+     *
+     * @param filename The filename of the file.
+     */
+    FileKeys(String filename) {
 
-        this.key = key;
+        this.filename = filename;
 
     }
 
+    /**
+     * Get the filename.
+     *
+     * @return The filename of the file.
+     */
     public String getKey() {
 
-        return this.key;
+        return this.filename;
 
     }
 
