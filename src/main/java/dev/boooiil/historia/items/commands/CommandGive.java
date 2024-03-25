@@ -17,7 +17,30 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * <p>
+ * The CommandGive class is a subclass of the {@link CommandExecutor} class and
+ * is responsible for managing and executing the /give command within the
+ * Historia plugin.
+ * </p>
+ * <p>
+ * CommandGive provides methods to give items to players using the /give
+ * command.
+ * </p>
+ * 
+ * @see CommandExecutor
+ * @see Command
+ * @see CommandSender
+ * @see Player
+ * @see Bukkit
+ * @see BaseItemConfiguration
+ * @see ItemConfigurationRegistry
+ */
 public class CommandGive implements CommandExecutor {
+
+    /** command give default constructor */
+    public CommandGive() {
+    }
 
     @Override
     // It's a method that is called when a command is executed.

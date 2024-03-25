@@ -60,6 +60,15 @@ public class Construct {
 
     }
 
+    /**
+     * It creates an ItemStack with the given parameters
+     * 
+     * @param material      The material of the item.
+     * @param amount        The amount of the item
+     * @param displayName   The name that will be displayed on the item.
+     * @param localizedName The name of the item in the language file.
+     * @return An ItemStack
+     */
     @Deprecated(forRemoval = true)
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName) {
 
@@ -116,6 +125,15 @@ public class Construct {
         return item;
     }
 
+    /**
+     * It creates an ItemStack with the given parameters
+     * 
+     * @param material    The material of the item.
+     * @param amount      The amount of the item
+     * @param displayName The name that will be displayed on the item.
+     * @param lore        The lore of the item.
+     * @return An {@link ItemStack}
+     */
     public static ItemStack itemStack(Material material, int amount, String displayName, List<Component> lore) {
 
         Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName

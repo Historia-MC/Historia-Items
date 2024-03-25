@@ -10,12 +10,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The PrepareItemCraftInventoryHelper class is responsible for parsing the
+ * inventory of a crafting table and preparing the materials for crafting within
+ * the Historia plugin.
+ */
 public class PrepareItemCraftInventoryHelper {
 
+    /** The pattern of the crafting table */
     private final ArrayList<String> pattern = new ArrayList<>();
+    /** The unique list of materials in the crafting pattern */
     private final ArrayList<String> materials = new ArrayList<>();
+    /** The list of all materials in the crafting pattern */
     private final ArrayList<String> fullMaterials = new ArrayList<>();
 
+    /**
+     * Constructs a PrepareItemCraftInventoryHelper object with the specified
+     * crafting table inventory.
+     * 
+     * @param craftingTableInventory The crafting table inventory.
+     */
     public PrepareItemCraftInventoryHelper(ItemStack[] craftingTableInventory) {
         Logging.debugToConsole("[CTI] Table Size: " + craftingTableInventory.length);
 
@@ -58,14 +72,31 @@ public class PrepareItemCraftInventoryHelper {
         Logging.infoToConsole("Materials: " + materials);
     }
 
+    /**
+     * Return the pattern of this crafting table.
+     * Pattern is of the form ["ABC", "DEF", "GHI"]
+     * 
+     * @return A list of strings
+     */
     public ArrayList<String> getPattern() {
         return pattern;
     }
 
+    /**
+     * Return the list of materials in this crafting table. Duplicate materials are
+     * removed.
+     * 
+     * @return A list of materials
+     */
     public ArrayList<String> getMaterials() {
         return materials;
     }
 
+    /**
+     * Return the list of all materials in this crafting table
+     * 
+     * @return A list of materials
+     */
     public ArrayList<String> getFullMaterials() {
         return fullMaterials;
     }

@@ -16,13 +16,17 @@ import dev.boooiil.historia.items.Main;
  */
 public class BaseItem {
 
+    /** The internal item type */
     protected ItemType itemType;
+    /** The configured display name of the item */
     protected String displayName;
+    /** The configured id of the item */
     protected String id;
+    /** The validity of the item */
     protected boolean valid;
 
     /**
-     * Constructor for the BaseItem class.
+     * Constructor for the BaseItem class. This will hold a null item stack.
      */
     public BaseItem() {
     };
@@ -73,6 +77,7 @@ public class BaseItem {
 
     }
 
+    /** The item stack relating to this item */
     protected ItemStack itemStack;
 
     /**

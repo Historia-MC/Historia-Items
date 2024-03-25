@@ -9,29 +9,27 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.boooiil.historia.items.util.Logging;
 
+/**
+ * The Main class is responsible for initializing the Historia plugin.
+ */
 public class Main extends JavaPlugin {
 
+    /** Singleton instance of the plugin */
     private static JavaPlugin instance;
 
     /**
-     *
-     * Server starts => Config loaded => passed to respective handler => other
-     * classes can access the object
-     *
-     * Config section (class, expiry, etc) passed to respective handler that parses
-     * that infromation into an accessable object.
-     *
-     * Player logs in and is applied stats based on the configuration stored.
-     *
-     * Player respawns and is applied stats based on the configuration stored.
-     *
+     * Default constructor for the Main class.
      */
+    public Main() {
+    }
 
+    /**
+     * The onLoad method is called when the plugin is loaded.
+     */
     @Override
     public void onLoad() {
 
@@ -46,6 +44,9 @@ public class Main extends JavaPlugin {
 
     }
 
+    /**
+     * The onEnable method is called when the plugin is enabled.
+     */
     @Override
     public void onEnable() {
 
@@ -60,36 +61,64 @@ public class Main extends JavaPlugin {
 
     }
 
+    /**
+     * The onDisable method is called when the plugin is disabled.
+     */
     @Override
     public void onDisable() {
 
         getLogger().info("Plugin disabled.");
     }
 
+    /**
+     * Returns the instance of the plugin.
+     *
+     * @return The instance of the plugin.
+     */
     public static JavaPlugin plugin() {
 
         return instance;
 
     }
 
+    /**
+     * Returns the server instance.
+     *
+     * @return The server instance.
+     */
     public static Server server() {
 
         return plugin().getServer();
 
     }
 
+    /**
+     * Disables the plugin.
+     */
     public static void disable() {
 
         plugin().getServer().getPluginManager().disablePlugin(Main.plugin());
 
     }
 
+    /**
+     * Returns a NamespacedKey object with the given key using this plugins
+     * namespace.
+     *
+     * @param key The key to create the NamespacedKey with.
+     * @return The NamespacedKey object.
+     */
     public static NamespacedKey getNamespacedKey(String key) {
 
         return new NamespacedKey(plugin(), key);
 
     }
 
+    /**
+     * Registers an event to the server
+     *
+     * @param event The event to register
+     */
     private void registerEvent(Listener event) {
 
         this.getServer().getPluginManager().registerEvents(event, this);

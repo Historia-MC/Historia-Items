@@ -24,7 +24,7 @@ import dev.boooiil.historia.items.util.Logging;
  * 
  * @see ItemConfigurationRegistry
  * @see BaseItemConfiguration
- * @see dev.boooiil.historia.items.configuration.RegistryLoader
+ * @see dev.boooiil.historia.items.configuration.ItemConfigurationRegistryLoader
  *      ConfigurationProvider
  */
 public abstract class CraftedItemConfigurationRegistry extends ItemConfigurationRegistry {
@@ -34,6 +34,7 @@ public abstract class CraftedItemConfigurationRegistry extends ItemConfiguration
      * 
      * @param inputItems A list of strings that represent the items in the recipe.
      * @param inputShape A list of strings that represent the shape of the recipe.
+     * @param <T>        The type of the object.
      * @return The object that matches the input items and shape.
      */
     @Nullable

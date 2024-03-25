@@ -11,11 +11,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * The CraftItemListener class is responsible for listening for CraftItemEvents
+ * within the Historia plugin.
+ */
 public class CraftItemListener implements Listener {
 
     // TODO: this all needs to be moved to a handler and
     // CONT: should be refactored. This is a mess.
 
+    /** craft item listener default constructor */
+    public CraftItemListener() {
+    }
+
+    /**
+     * Listens for CraftItemEvents and handles them.
+     *
+     * @param event The CraftItemEvent to be handled.
+     */
     @EventHandler
     public void onCraftItem(CraftItemEvent event) {
 

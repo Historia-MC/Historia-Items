@@ -25,17 +25,25 @@ import dev.boooiil.historia.items.util.Construct;
  */
 public class Ingot extends BaseItem {
 
+    /** The custom name of the material. */
     private String customMaterialName;
+    /** The material of the ingot. */
     private Material material;
+    /** The weight of the ingot. */
     private Weight weight;
+    /** The quality of the ingot. */
     private Quality quality;
-
+    /** If the ingot is dirty */
     private boolean isDirty;
+
+    /** ingot defualt constructor */
+    Ingot() {
+    }
 
     /**
      * Ingot builder from ItemStack.
      * 
-     * @param itemStack
+     * @param itemStack The item stack of the ingot.
      */
     public Ingot(ItemStack itemStack) {
         super(itemStack);
@@ -65,6 +73,7 @@ public class Ingot extends BaseItem {
      * 
      * @param material           The material of the ingot.
      * @param customMaterialName The custom material name of the ingot.
+     * @param displayName        The display name of the ingot.
      * @param weight             The weight of the ingot.
      * @param quality            The quality of the ingot.
      */
@@ -158,6 +167,11 @@ public class Ingot extends BaseItem {
 
     }
 
+    /**
+     * If the ingot is of a raw type.
+     * 
+     * @return If the ingot is raw.
+     */
     public boolean isRaw() {
 
         switch (this.material) {

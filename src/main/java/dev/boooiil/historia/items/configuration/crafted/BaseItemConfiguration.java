@@ -9,6 +9,8 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
+import com.sk89q.worldedit.blocks.BaseItem;
+
 /**
  * <p>
  * The BaseConfiguration class is an abstract class that serves as the base for
@@ -24,6 +26,7 @@ public abstract class BaseItemConfiguration {
 
     // TODO: ALL items need to have an ID in the configuration file.
     // TODO: ADD an id field to each section.
+    /** custom id of the item */
     protected String id;
 
     /**
@@ -55,6 +58,10 @@ public abstract class BaseItemConfiguration {
 
     /** The lore of the item. */
     protected List<String> lore;
+
+    /** base item configuration default constructor */
+    public BaseItemConfiguration() {
+    }
 
     /**
      * This function returns the list of items that are required to craft the item

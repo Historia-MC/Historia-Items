@@ -28,6 +28,10 @@ public class FileIO {
 
     }
 
+    /* FileIO default constructor */
+    private FileIO() {
+    };
+
     /**
      * Checks the existence and version of config files.
      */

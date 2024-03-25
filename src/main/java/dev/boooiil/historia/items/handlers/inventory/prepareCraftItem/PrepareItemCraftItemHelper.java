@@ -7,11 +7,20 @@ import dev.boooiil.historia.items.util.Logging;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The PrepareItemCraftItemHelper class is responsible for preparing crafted
+ * items
+ * within the Historia plugin.
+ */
 public class PrepareItemCraftItemHelper {
 
+    /** The result of the item configuration */
     private BaseItemConfiguration result;
+    /** The list of matching items */
     private final List<BaseItemConfiguration> matchingItems;
+    /** The list of materials */
     private final ArrayList<String> materials;
+    /** The list of full materials */
     private final ArrayList<String> fullMaterials;
 
     /*
@@ -33,6 +42,20 @@ public class PrepareItemCraftItemHelper {
      * 
      */
 
+    /**
+     * Constructs a PrepareItemCraftItemHelper object.
+     */
+    PrepareItemCraftItemHelper() {
+        this.fullMaterials = null;
+        this.matchingItems = null;
+        this.materials = null;
+    }
+
+    /**
+     * Constructs a PrepareItemCraftItemHelper object with the specified inspector.
+     * 
+     * @param inspector The inspector.
+     */
     public PrepareItemCraftItemHelper(PrepareItemCraftInventoryHelper inspector) {
 
         ArrayList<String> shape = inspector.getPattern();
@@ -43,6 +66,9 @@ public class PrepareItemCraftItemHelper {
         matchingItems = CraftedItemConfigurationRegistry.getAllMatchingShape(shape);
     }
 
+    /**
+     * Perform the match for the item configuration.
+     */
     public void doMatch() {
 
         if (matchingItems.isEmpty()) {
@@ -74,6 +100,11 @@ public class PrepareItemCraftItemHelper {
 
     }
 
+    /**
+     * Get the result of the item configuration.
+     * 
+     * @return The item configuration.
+     */
     public BaseItemConfiguration getResult() {
         return result;
     }

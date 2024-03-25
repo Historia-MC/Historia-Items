@@ -69,6 +69,7 @@ public class Armor extends BaseItem {
      * Constructs an Armor object with specified attributes.
      *
      * @param material    The material of the armor.
+     * @param id          The ID of the armor.
      * @param displayName The display name of the armor.
      * @param defense     The defense value of the armor.
      * @param durability  The durability of the armor.

@@ -10,6 +10,10 @@ import org.bukkit.inventory.ItemStack;
 import dev.boooiil.historia.items.generic.Ingot;
 import dev.boooiil.historia.items.util.Logging;
 
+/**
+ * The newPrepareCraftHandler class is responsible for handling the preparation
+ * of crafted items within the Historia plugin.
+ */
 public class newCraftingInventoryHelper {
     /*
      * 
@@ -39,6 +43,12 @@ public class newCraftingInventoryHelper {
     private final ArrayList<String> fullMaterials = new ArrayList<>();
 
     private final String[] PATTERN_LETTERS = { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
+
+    /**
+     * new crafting inventory helper default constructor.
+     */
+    newCraftingInventoryHelper() {
+    }
 
     /**
      * Parses the given crafting inventory and generates a pattern and list of

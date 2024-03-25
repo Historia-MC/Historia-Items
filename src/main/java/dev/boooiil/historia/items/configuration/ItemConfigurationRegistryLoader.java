@@ -26,10 +26,18 @@ import dev.boooiil.historia.items.util.Logging;
  */
 public class ItemConfigurationRegistryLoader {
 
+    /** armor yaml configuration */
     private static YamlConfiguration armorYAMLConfiguration;
+    /** weapon yaml configuration */
     private static YamlConfiguration weaponYAMLConfiguration;
+    /** tool yaml configuration */
     private static YamlConfiguration toolYAMLConfiguration;
+    /** custom yaml configuration */
     private static YamlConfiguration customYAMLConfiguration;
+
+    /** item configuration registry default constructor */
+    private ItemConfigurationRegistryLoader() {
+    };
 
     /**
      * Initialize the YAML configurations within this registry loader. This does not

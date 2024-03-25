@@ -26,6 +26,10 @@ import dev.boooiil.historia.items.crafted.weapon.Weapon;
  */
 public class CraftedItemFactory {
 
+    /** craft item factory default constructor */
+    private CraftedItemFactory() {
+    }
+
     /**
      * <p>
      * Create an instance of BaseItem from a given ItemStack. If this ItemStack is
@@ -37,7 +41,9 @@ public class CraftedItemFactory {
      * Item with provided values, use
      * {@link #createObject(ItemStack, CraftedItemInterface)}.
      * 
-     * @param itemStack
+     * @param itemStack The ItemStack to be set as the itemStack variable.
+     * @param factory   The factory to create the item.
+     * @param <T>       The type of the item.
      * @return Instance of {@link BaseItem}
      */
     public static <T extends BaseItem> T createObject(@NotNull ItemStack itemStack,
@@ -58,7 +64,7 @@ public class CraftedItemFactory {
      * provided values, use
      * {@link #createArmor(Material, String, String, double, int, Weight, int, List)}.
      * 
-     * @param itemStack
+     * @param itemStack The ItemStack to be processed.
      * @return Instance of {@link Armor}
      */
     public static Armor createArmor(@NotNull ItemStack itemStack) {
@@ -72,6 +78,7 @@ public class CraftedItemFactory {
      * </p>
      * 
      * @param material    The {@link Material} of the armor.
+     * @param id          The ID of the armor.
      * @param displayName The display name of the armor (shown to player).
      * @param defense     The defense value of the armor.
      * @param durability  The durability of the armor.
@@ -118,7 +125,7 @@ public class CraftedItemFactory {
      * provided values, use
      * {@link #createWeapon(Material, String, String, double, double, double, double, int, Weight, int, List)}.
      * 
-     * @param itemStack
+     * @param itemStack The ItemStack to be processed.
      * @return Instance of {@link Weapon}
      */
     public static Weapon createWeapon(@NotNull ItemStack itemStack) {
@@ -132,6 +139,7 @@ public class CraftedItemFactory {
      * </p>
      * 
      * @param material    The {@link Material} of the weapon.
+     * @param id          The ID of the weapon.
      * @param displayName The display name of the weapon (shown to player).
      * @param damage      The damage value of the weapon.
      * @param speed       The speed value of the weapon.
@@ -184,7 +192,7 @@ public class CraftedItemFactory {
      * provided values, use
      * {@link #createTool(Material, String, String, double, double, double, int, Weight, int, List)}.
      * 
-     * @param itemStack
+     * @param itemStack The ItemStack to be processed.
      * @return Instance of {@link Tool}
      */
     public static Tool createTool(@NotNull ItemStack itemStack) {
@@ -198,6 +206,7 @@ public class CraftedItemFactory {
      * </p>
      * 
      * @param material    The {@link Material} of the tool.
+     * @param id          The ID of the tool.
      * @param displayName The display name of the tool (shown to player).
      * @param damage      The damage value of the tool.
      * @param speed       The speed value of the tool.
@@ -243,7 +252,7 @@ public class CraftedItemFactory {
      * This method will NOT generate values for custom, only provide an interface to
      * interact with the custom. If you want to create a new instance of Custom with
      * provided values, use
-     * {@link #createCustom(Material, int, String, List)}.
+     * {@link #createCustom(Material, int, String, String, List)}.
      * 
      * @param itemStack
      * @return Instance of {@link Custom}

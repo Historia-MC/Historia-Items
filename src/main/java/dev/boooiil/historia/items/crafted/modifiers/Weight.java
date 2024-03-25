@@ -5,11 +5,16 @@ package dev.boooiil.historia.items.crafted.modifiers;
  */
 public enum Weight {
 
+    /** light value */
     LIGHT(0, "light"),
+    /** moderate value */
     MODERATE(1, "moderate"),
+    /** heavy value */
     HEAVY(2, "heavy");
 
+    /** int value of the enum */
     private int value;
+    /** string key of the enum */
     private String key;
 
     /**

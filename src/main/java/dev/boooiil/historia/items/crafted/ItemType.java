@@ -10,11 +10,19 @@ import dev.boooiil.historia.items.Main;
  * An enum representing the type of an item.
  */
 public enum ItemType {
+    /** armor value */
     ARMOR("armor"),
+    /** custom value */
     CUSTOM("custom"),
+    /** food value */
+    FOOD("food"),
+    /** ingot value */
     INGOT("ingot"),
+    /** tool value */
     TOOL("tool"),
+    /** weapon value */
     WEAPON("weapon"),
+    /** vanilla value */
     VANILLA("vanilla");
 
     private final String type;
@@ -40,6 +48,7 @@ public enum ItemType {
     /**
      * Get the item type from a string.
      *
+     * @param type The name of the item type.
      * @return The name of the item type.
      */
     public static ItemType fromString(String type) {

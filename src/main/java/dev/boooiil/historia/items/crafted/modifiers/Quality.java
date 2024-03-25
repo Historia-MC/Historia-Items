@@ -5,13 +5,20 @@ package dev.boooiil.historia.items.crafted.modifiers;
  */
 public enum Quality {
 
+    /** poor value */
     POOR(0, "poor"),
+    /** common value */
     COMMON(1, "common"),
+    /** uncommon value */
     UNCOMMON(2, "uncommon"),
+    /** rare value */
     RARE(3, "rare"),
+    /** perfect value */
     PERFECT(4, "perfect");
 
+    /** int value of the enum */
     private int value;
+    /** string key of the enum */
     private String key;
 
     /**

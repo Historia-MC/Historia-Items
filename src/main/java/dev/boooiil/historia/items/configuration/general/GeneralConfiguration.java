@@ -10,12 +10,20 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 public class GeneralConfiguration {
 
+    /** The configuration file. */
     public static YamlConfiguration configuration;
 
+    /** If the plugin is in debug mode. */
     public static boolean debug;
 
     static {
         configuration = FileIO.get(FileKeys.CONFIG);
         debug = configuration.getBoolean("debug");
+    }
+
+    /**
+     * Default constructor for the GeneralConfiguration class.
+     */
+    GeneralConfiguration() {
     }
 }

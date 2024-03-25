@@ -7,9 +7,29 @@ import javax.annotation.Nullable;
 import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 
+/**
+ * <p>
+ * The ItemConfigurationRegistry class is an abstract class that serves as the
+ * base for all item configuration registry classes within the Historia plugin.
+ * </p>
+ * 
+ * <p>
+ * ItemConfigurationRegistry provides methods to register, deregister, update,
+ * and get item configurations from the registry.
+ * </p>
+ */
 public abstract class ItemConfigurationRegistry {
+
+    /** The item configuration registry. */
     protected static HashMap<String, BaseItemConfiguration> registry = new HashMap<>();
 
+    /** item configuration registry default constructor */
+    public ItemConfigurationRegistry() {
+    }
+
+    /**
+     * Initialize the item configuration registry.
+     */
     public static void initialize() {
     }
 
