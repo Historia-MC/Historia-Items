@@ -1,0 +1,125 @@
+classDiagram
+
+    class BaseItem {
+
+        #ItemType itemType
+        #String displayName
+        #String id
+        #boolean valid
+        #ItemStack itemStack
+
+        +BaseItem()
+        +BaseItem(ItemStack)
+
+        +getItemType() : ItemType
+        +getDisplayName() : String
+        +getID() : String
+        +isValid() : boolean
+        +getItemStack() : ItemStack
+    
+    }
+
+    class Armor {
+
+        -double defence
+        -int durability
+        -int weightValue
+        -Weight weight
+
+        +Armor(ItemStack)
+        +Armor(Material, String, String, double, int, Weight, int, List~String~)
+        +Armor(ArmorConfiguration)
+        +getDefense() : double
+        +getDurability() : int
+        +getWeightValue() : int
+        +getWeight() : Weight
+
+    }
+
+    BaseItem <|-- Armor 
+
+    class Custom {
+
+        +Custom(ItemStack)
+        +Custom(Material, int, String, String, List~String~)
+        +Custom(CustomConfiguration)
+
+    }
+
+    BaseItem <|-- Custom
+
+    class Weapon {
+
+        -double damage
+        -double speed
+        -double knockback
+        -double sweeping
+        -int durability
+        -int weightValue
+        -Weight weight
+
+        +Weapon(ItemStack)
+        +Weapon(Material, String, String, double, double, double, double, int, Weight, int, List~String~)
+        +Weapon(WeaponConfiguration)
+        +getDamage() : double
+        +getSpeed() : double
+        +getKnockback() : double
+        +getSweeping() : double
+        +getDurability() : int
+        +getWeightValue() : int
+        +getWeight() : Weight
+
+    }
+
+    BaseItem <|-- Weapon
+    
+    class Tool {
+
+        -double damage
+        -double speed
+        -double knockback
+        -double sweeping
+        -int durability
+        -int weightValue
+        -Weight weight
+
+        +Tool(ItemStack)
+        +Tool(Material, String, String, double, double, double, int, Weight, int, List~String~)
+        +Tool(ToolConfiguration)
+        +getDamage() : double
+        +getSpeed() : double
+        +getKnockback() : double
+        +getDurability() : int
+        +getWeightValue() : int
+        +getWeight() : Weight
+
+    }
+
+    BaseItem <|-- Tool
+
+    class CraftedItemFactory {
+
+        +createObject(ItemStack, CraftedItemInterface~T~)$ : BaseItem
+
+        +createArmor(ItemStack)$ : Armor
+        +createArmor(Material, String, String, double, int, Weight, int, List~String~)$ : Armor
+        +createArmor(ArmorConfiguration)$ : Armor
+
+        +createCustom(ItemStack)$ : Custom
+        +createCustom(Material, int, String, String, List~String~)$ : Custom
+        +createCustom(CustomConfiguration)$ : Custom
+
+        +createWeapon(ItemStack)$ : Weapon
+        +createWeapon(Material, String, String, double, double, double, double, int, Weight, int, List~String~)$ : Weapon
+        +createWeapon(WeaponConfiguration)$ : Weapon
+
+        +createTool(ItemStack)$ : Tool
+        +createTool(Material, String, String, double, double, double, int, Weight, int, List~String~)$ : Tool
+        +createTool(ToolConfiguration)$ : Tool
+
+    }
+
+    Armor <.. CraftedItemFactory
+    Custom <.. CraftedItemFactory
+    Weapon <.. CraftedItemFactory
+    Tool <.. CraftedItemFactory
