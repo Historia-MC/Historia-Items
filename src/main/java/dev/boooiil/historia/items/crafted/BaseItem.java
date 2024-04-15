@@ -25,6 +25,9 @@ public class BaseItem {
     /** The validity of the item */
     protected boolean valid;
 
+    /** The item stack relating to this item */
+    protected ItemStack itemStack;
+
     /**
      * Constructor for the BaseItem class. This will hold a null item stack.
      */
@@ -76,9 +79,6 @@ public class BaseItem {
         this.valid = valid;
 
     }
-
-    /** The item stack relating to this item */
-    protected ItemStack itemStack;
 
     /**
      * It returns the item stack
