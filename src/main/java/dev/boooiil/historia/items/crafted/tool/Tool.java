@@ -156,9 +156,9 @@ public class Tool extends BaseItem {
         this.displayName = configuration.getDisplayName();
         this.itemType = ItemType.TOOL;
 
-        this.damage = configuration.getDamageRandomValue();
-        this.speed = configuration.getSpeedRandomValue();
-        this.knockback = configuration.getKnockbackRandomValue();
+        this.damage = configuration.getRandomDamageValue();
+        this.speed = configuration.getRandomSpeedValue();
+        this.knockback = configuration.getRandomKnockbackValue();
 
         this.durability = configuration.getRandomDurabilityValue();
         this.weightValue = configuration.getWeightValue();

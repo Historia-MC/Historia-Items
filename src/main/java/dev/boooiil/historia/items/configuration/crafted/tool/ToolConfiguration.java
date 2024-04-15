@@ -110,7 +110,7 @@ public class ToolConfiguration extends BaseItemConfiguration {
      * 
      * @return A random number between the min and max damage values.
      */
-    public double getDamageRandomValue() {
+    public double getRandomDamageValue() {
 
         return NumberUtils.random(getMinDamageValue(), getMaxDamageValue());
 
@@ -148,7 +148,7 @@ public class ToolConfiguration extends BaseItemConfiguration {
      * 
      * @return A random number between the min and max durability values.
      */
-    public double getSpeedRandomValue() {
+    public double getRandomSpeedValue() {
 
         return NumberUtils.random(getMinSpeedValue(), getMaxSpeedValue());
 
@@ -186,7 +186,7 @@ public class ToolConfiguration extends BaseItemConfiguration {
      * 
      * @return A random number between the min and max durability values.
      */
-    public double getKnockbackRandomValue() {
+    public double getRandomKnockbackValue() {
 
         return NumberUtils.random(getMinKnockbackValue(), getMaxKnockbackValue());
 
