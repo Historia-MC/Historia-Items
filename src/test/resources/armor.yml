@@ -21,6 +21,7 @@ Light_Leather_Helmet:
   durability: [40, 60]
   type: light
   recipe-items: ["LIGHT_LEATHER"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [ALL]
 
@@ -45,6 +46,7 @@ Moderate_Leather_Helmet:
   durability: [40, 60]
   type: moderate
   recipe-items: ["MODERATE_LEATHER"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -69,6 +71,7 @@ Heavy_Leather_Helmet:
   durability: [40, 60]
   type: heavy
   recipe-items: ["HEAVY_LEATHER"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -93,6 +96,7 @@ Light_Leather_Chestplate:
   durability: [40, 80]
   type: light
   recipe-items: ["LIGHT_LEATHER"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [ALL]
 
@@ -142,6 +146,7 @@ Heavy_Leather_Chestplate:
   durability: [60, 100]
   type: heavy
   recipe-items: ["HEAVY_LEATHER"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -166,6 +171,7 @@ Light_Leather_Leggings:
   durability: [30, 60]
   type: light
   recipe-items: ["LIGHT_LEATHER"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -190,6 +196,7 @@ Moderate_Leather_Leggings:
   durability: [30, 60]
   type: moderate
   recipe-items: ["MODERATE_LEATHER"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -214,6 +221,7 @@ Heavy_Leather_Leggings:
   durability: [40, 70]
   type: heavy
   recipe-items: ["HEAVY_LEATHER"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -238,6 +246,7 @@ Light_Leather_Boots:
   durability: [30, 60]
   type: light
   recipe-items: ["LIGHT_LEATHER"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -262,6 +271,7 @@ Moderate_Leather_Boots:
   durability: [40, 70]
   type: moderate
   recipe-items: ["MODERATE_LEATHER"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -286,6 +296,7 @@ Heavy_Leather_Boots:
   durability: [50, 80]
   type: heavy
   recipe-items: ["HEAVY_LEATHER"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -310,6 +321,7 @@ Light_Tin_Helmet:
   durability: [60, 90]
   type: light
   recipe-items: ["LIGHT_TIN_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [ALL]
 
@@ -334,6 +346,7 @@ Light_Tin_Chestplate:
   durability: [70, 125]
   type: light
   recipe-items: ["LIGHT_TIN_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [ALL]
 
@@ -358,6 +371,7 @@ Light_Tin_Leggings:
   durability: [70, 125]
   type: light
   recipe-items: ["LIGHT_TIN_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -382,6 +396,7 @@ Light_Tin_Boots:
   durability: [60, 90]
   type: light
   recipe-items: ["LIGHT_TIN_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -406,6 +421,7 @@ Light_Bronze_Helmet:
   durability: [75, 110]
   type: light
   recipe-items: ["LIGHT_BRONZE_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [ALL]
 
@@ -430,6 +446,7 @@ Moderate_Bronze_Helmet:
   durability: [80, 120]
   type: moderate
   recipe-items: ["MODERATE_BRONZE_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -454,6 +471,7 @@ Heavy_Bronze_Helmet:
   durability: [85, 130]
   type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -478,6 +496,7 @@ Light_Bronze_Chestplate:
   durability: [70, 125]
   type: light
   recipe-items: ["LIGHT_BRONZE_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [ALL]
 
@@ -502,6 +521,7 @@ Moderate_Bronze_Chestplate:
   durability: [75, 150]
   type: moderate
   recipe-items: ["MODERATE_BRONZE_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -526,6 +546,7 @@ Heavy_Bronze_Chestplate:
   durability: [90, 175]
   type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -550,6 +571,7 @@ Light_Bronze_Leggings:
   durability: [70, 125]
   type: light
   recipe-items: ["LIGHT_BRONZE_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -574,6 +596,7 @@ Moderate_Bronze_Leggings:
   durability: [80, 150]
   type: moderate
   recipe-items: ["MODERATE_BRONZE_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -598,6 +621,7 @@ Heavy_Bronze_Leggings:
   durability: [90, 175]
   type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -622,6 +646,7 @@ Light_Bronze_Boots:
   durability: [70, 125]
   type: light
   recipe-items: ["LIGHT_BRONZE_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -646,6 +671,7 @@ Moderate_Bronze_Boots:
   durability: [80, 150]
   type: moderate
   recipe-items: ["MODERATE_BRONZE_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -670,6 +696,7 @@ Heavy_Bronze_Boots:
   durability: [90, 175]
   type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -694,6 +721,7 @@ Light_Iron_Helmet:
   durability: [100, 160]
   type: light
   recipe-items: ["LIGHT_IRON_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [ALL]
 
@@ -718,6 +746,7 @@ Moderate_Iron_Helmet:
   durability: [110, 175]
   type: moderate
   recipe-items: ["MODERATE_IRON_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -742,6 +771,7 @@ Heavy_Iron_Helmet:
   durability: [120, 200]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -766,6 +796,7 @@ Light_Iron_Chestplate:
   durability: [140, 240]
   type: light
   recipe-items: ["LIGHT_IRON_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [ALL]
 
@@ -790,6 +821,7 @@ Moderate_Iron_Chestplate:
   durability: [150, 275]
   type: moderate
   recipe-items: ["MODERATE_IRON_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -814,6 +846,7 @@ Heavy_Iron_Chestplate:
   durability: [175, 300]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -838,6 +871,7 @@ Light_Iron_Leggings:
   durability: [125, 200]
   type: light
   recipe-items: ["LIGHT_IRON_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -862,6 +896,7 @@ Moderate_Iron_Leggings:
   durability: [150, 250]
   type: moderate
   recipe-items: ["MODERATE_IRON_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -886,6 +921,7 @@ Heavy_Iron_Leggings:
   durability: [175, 275]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -910,6 +946,7 @@ Light_Iron_Boots:
   durability: [100, 150]
   type: light
   recipe-items: ["LIGHT_IRON_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -934,6 +971,7 @@ Moderate_Iron_Boots:
   durability: [115, 175]
   type: moderate
   recipe-items: ["MODERATE_IRON_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -958,6 +996,7 @@ Heavy_Iron_Boots:
   durability: [125, 200]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -982,6 +1021,7 @@ Light_Steel_Helmet:
   durability: [200, 350]
   type: light
   recipe-items: ["LIGHT_STEEL_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [ALL]
 
@@ -1006,6 +1046,7 @@ Moderate_Steel_Helmet:
   durability: [225, 375]
   type: moderate
   recipe-items: ["MODERATE_STEEL_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1030,6 +1071,7 @@ Heavy_Steel_Helmet:
   durability: [250, 400]
   type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1054,6 +1096,7 @@ Light_Steel_Chestplate:
   durability: [300, 450]
   type: light
   recipe-items: ["LIGHT_STEEL_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [ALL]
 
@@ -1078,6 +1121,7 @@ Moderate_Steel_Chestplate:
   durability: [350, 475]
   type: moderate
   recipe-items: ["MODERATE_STEEL_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1102,6 +1146,7 @@ Heavy_Steel_Chestplate:
   durability: [375, 550]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT"]
+  recipe-shape: ["A A", "AAA", "AAA"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1126,6 +1171,7 @@ Light_Steel_Leggings:
   durability: [250, 375]
   type: light
   recipe-items: ["LIGHT_STEEL_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -1150,6 +1196,7 @@ Moderate_Steel_Leggings:
   durability: [300, 425]
   type: moderate
   recipe-items: ["MODERATE_STEEL_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1174,6 +1221,7 @@ Heavy_Steel_Leggings:
   durability: [375, 500]
   type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT"]
+  recipe-shape: ["AAA", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1198,6 +1246,7 @@ Light_Steel_Boots:
   durability: [250, 350]
   type: light
   recipe-items: ["LIGHT_STEEL_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [ALL]
 
@@ -1222,6 +1271,7 @@ Moderate_Steel_Boots:
   durability: [300, 385]
   type: moderate
   recipe-items: ["MODERATE_STEEL_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1246,6 +1296,7 @@ Heavy_Steel_Boots:
   durability: [350, 450]
   type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT"]
+  recipe-shape: ["   ", "A A", "A A"]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -1272,5 +1323,6 @@ Heavy_Turtle_Helmet:
   durability: [175, 300]
   type: heavy
   recipe-items: ["SCUTE"]
+  recipe-shape: ["AAA", "A A", "   "]
   requireShape: true
   canCraft: [Farmer, Fisherman]

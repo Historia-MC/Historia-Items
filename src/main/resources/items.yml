@@ -163,27 +163,48 @@ SADDLE:
       - ""
 
   requireShape: true
-  recipe-items: ["TANNED_LEATHER", "LEAD"]
+  recipe-items: ["LIGHT_LEATHER", "LEAD"]
   recipe-shape: ["AAA", "B B", "   "]
   canCraft: [Huntsman]
 
-SALT:
+CHARCOAL_COKE:
   item:
-    type: SUGAR
-    amount: 4
-    display-name: §7Salt
-    loc-name: SALT
+    type: COAL
+    amount: 1
+    display-name: §7Coke
+    loc-name: COKE
     lore:
       - ""
-      - "§7A bag of salt"
+      - "§7A lump of coke"
       - ""
-      - "§oGood for preserving"
-      - "§oand seasoning."
+      - "§oI could combine this"
+      - "$owith something..."
       - ""
       - "§9--------------------"
       - ""
 
-  requireShape: false
-  recipe-items: ["INVALID"]
-  recipe-shape: ["A ", "   ", "   "]
-  canCraft: [ALL]
+  requireShape: true
+  recipe-items: ["CHARCOAL"]
+  recipe-shape: ["AAA", "A A", "AAA"]
+  canCraft: [Blacksmith]
+
+COAL_COKE:
+  item:
+    type: COAL
+    amount: 1
+    display-name: §7Coke
+    loc-name: COKE
+    lore:
+      - ""
+      - "§7A lump of coke"
+      - ""
+      - "§oI could combine this"
+      - "$owith something..."
+      - ""
+      - "§9--------------------"
+      - ""
+
+  requireShape: true
+  recipe-items: ["COAL"]
+  recipe-shape: ["AAA", "A A", "AAA"]
+  canCraft: [Blacksmith]

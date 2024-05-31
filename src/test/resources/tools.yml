@@ -22,6 +22,7 @@ Light_Wooden_Pickaxe:
   durability: [40, 60]
   type: light
   recipe-items: ["WOOD", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -47,6 +48,7 @@ Light_Wooden_Hoe:
   durability: [40, 60]
   type: light
   recipe-items: ["WOOD", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -72,6 +74,7 @@ Light_Wooden_Shovel:
   durability: [40, 60]
   type: light
   recipe-items: ["WOOD", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -97,6 +100,7 @@ Light_Tin_Pickaxe:
   durability: [50, 75]
   type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -122,6 +126,7 @@ Light_Tin_Hoe:
   durability: [50, 75]
   type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -146,6 +151,7 @@ Light_Tin_Shovel:
   durability: [50, 75]
   type: light
   recipe-items: ["LIGHT_TIN_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -171,6 +177,7 @@ Heavy_Stone_Pickaxe:
   durability: [100, 132]
   type: heavy
   recipe-items: ["STONE", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -196,6 +203,7 @@ Heavy_Stone_Hoe:
   durability: [100, 132]
   type: heavy
   recipe-items: ["STONE", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -221,6 +229,7 @@ Heavy_Stone_Shovel:
   durability: [100, 132]
   type: heavy
   recipe-items: ["STONE", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -246,6 +255,7 @@ Light_Bronze_Pickaxe:
   durability: [75, 125]
   type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -271,6 +281,7 @@ Light_Bronze_Hoe:
   durability: [75, 125]
   type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -296,6 +307,7 @@ Moderate_Bronze_Pickaxe:
   durability: [100, 150]
   type: moderate
   recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -321,6 +333,7 @@ Moderate_Bronze_Hoe:
   durability: [100, 150]
   type: moderate
   recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -346,6 +359,7 @@ Heavy_Bronze_Pickaxe:
   durability: [125, 160]
   type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -371,6 +385,7 @@ Heavy_Bronze_Hoe:
   durability: [125, 160]
   type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -395,6 +410,7 @@ Light_Bronze_Shovel:
   durability: [75, 125]
   type: light
   recipe-items: ["LIGHT_BRONZE_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -420,6 +436,7 @@ Moderate_Bronze_Shovel:
   durability: [100, 150]
   type: moderate
   recipe-items: ["MODERATE_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -445,6 +462,7 @@ Heavy_Bronze_Shovel:
   durability: [125, 160]
   type: heavy
   recipe-items: ["HEAVY_BRONZE_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -470,6 +488,7 @@ Light_Iron_Pickaxe:
   durability: [145, 175]
   type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -495,6 +514,7 @@ Light_Iron_Hoe:
   durability: [145, 175]
   type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -520,6 +540,7 @@ Moderate_Iron_Pickaxe:
   durability: [175, 225]
   type: moderate
   recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -545,6 +566,7 @@ Moderate_Iron_Hoe:
   durability: [175, 225]
   type: moderate
   recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -570,6 +592,7 @@ Heavy_Iron_Pickaxe:
   durability: [200, 250]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -595,6 +618,7 @@ Heavy_Iron_Hoe:
   durability: [200, 250]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -620,6 +644,7 @@ Light_Iron_Shovel:
   durability: [145, 175]
   type: light
   recipe-items: ["LIGHT_IRON_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -645,6 +670,7 @@ Moderate_Iron_Shovel:
   durability: [175, 225]
   type: moderate
   recipe-items: ["MODERATE_IRON_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -670,6 +696,7 @@ Heavy_Iron_Shovel:
   durability: [200, 275]
   type: heavy
   recipe-items: ["HEAVY_IRON_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -695,6 +722,7 @@ Light_Steel_Pickaxe:
   durability: [300, 375]
   type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -720,6 +748,7 @@ Light_Steel_Hoe:
   durability: [300, 375]
   type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -745,6 +774,7 @@ Moderate_Steel_Pickaxe:
   durability: [350, 400]
   type: moderate
   recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -770,6 +800,7 @@ Moderate_Steel_Hoe:
   durability: [350, 400]
   type: moderate
   recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -795,6 +826,7 @@ Heavy_Steel_Pickaxe:
   durability: [450, 600]
   type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
+  recipe-shape: ["AAA", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -820,6 +852,7 @@ Heavy_Steel_Hoe:
   durability: [450, 600]
   type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
+  recipe-shape: ["AA ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -845,6 +878,7 @@ Light_Steel_Shovel:
   durability: [300, 375]
   type: light
   recipe-items: ["LIGHT_STEEL_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [ALL]
 
@@ -870,6 +904,7 @@ Moderate_Steel_Shovel:
   durability: [350, 400]
   type: moderate
   recipe-items: ["MODERATE_STEEL_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
 
@@ -895,5 +930,6 @@ Heavy_Steel_Shovel:
   durability: [200, 275]
   type: heavy
   recipe-items: ["HEAVY_STEEL_INGOT", "STICK"]
+  recipe-shape: [" A ", " B ", " B "]
   requireShape: true
   canCraft: [Blacksmith]
