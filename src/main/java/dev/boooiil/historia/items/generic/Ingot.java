@@ -89,6 +89,7 @@ public class Ingot extends BaseItem {
             case GOLD_INGOT:
             case COAL:
             case GLOWSTONE_DUST:
+            case NETHERITE_INGOT:
             case LEATHER:
                 break;
 
@@ -100,6 +101,7 @@ public class Ingot extends BaseItem {
         this.material = material;
         this.weight = weight;
         this.quality = quality;
+        this.customMaterialName = customMaterialName;
 
         List<String> lore = List.of(
                 "",
