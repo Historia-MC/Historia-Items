@@ -2,6 +2,7 @@ package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ItemConfigurationRegistryLoader;
+import dev.boooiil.historia.items.configuration.ItemRecipeLoader;
 import dev.boooiil.historia.items.events.inventory.CraftItemListener;
 import dev.boooiil.historia.items.file.FileIO;
 
@@ -41,6 +42,7 @@ public class Main extends JavaPlugin {
         FileIO.checkFiles();
 
         ItemConfigurationRegistryLoader.initialize();
+        ItemRecipeLoader.init();
 
     }
 
