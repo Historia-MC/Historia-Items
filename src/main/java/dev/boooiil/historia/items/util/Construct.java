@@ -105,8 +105,9 @@ public class Construct {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
 
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
-                + " lore: " + lore);
+        // Logging.debugToConsole("material: " + material + " amount: " + amount + "
+        // display-name: " + displayName
+        // + " lore: " + lore);
 
         ItemStack item = new ItemStack(material, amount);
         ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
