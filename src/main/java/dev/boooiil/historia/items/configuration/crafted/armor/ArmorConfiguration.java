@@ -1,13 +1,23 @@
 package dev.boooiil.historia.items.configuration.crafted.armor;
 
+import dev.boooiil.historia.core.proficiency.Proficiency.ProficiencyName;
 import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.CraftedItemConfiguration;
+import dev.boooiil.historia.items.configuration.crafted.CraftedItemMaterialBasic;
+import dev.boooiil.historia.items.configuration.crafted.CraftedItemMaterialComplex;
+import dev.boooiil.historia.items.configuration.crafted.MaterialMatchBy;
 import dev.boooiil.historia.items.crafted.ItemType;
+import dev.boooiil.historia.items.crafted.modifiers.Quality;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
+import dev.boooiil.historia.items.generic.Ingot;
+import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,7 +34,7 @@ import java.util.List;
  * 
  * @see BaseItemConfiguration
  */
-public class ArmorConfiguration extends BaseItemConfiguration {
+public class ArmorConfiguration extends CraftedItemConfiguration {
 
     private Weight weight;
 
@@ -63,10 +73,57 @@ public class ArmorConfiguration extends BaseItemConfiguration {
         // Getting the recipe items from the config.
         this.recipeItems = section.getStringList(".recipe-items");
 
-        // Getting the recipe shape from the config.
-        this.recipeShape = section.getStringList(".recipe-shape");
+        super.setRecipeShape(section.getStringList(".recipe-shape"));
 
-        this.proficiencies = section.getStringList(".canCraft");
+        for (String str_proficiency : section.getStringList(".canCraft")) {
+            try {
+                ProficiencyName proficiency = ProficiencyName.valueOf(str_proficiency);
+                super.setProficiencyRequirement(proficiency);
+            } catch (IllegalArgumentException e) {
+                Logging.errorToConsole("Invalid proficiency name: " + str_proficiency + " for item: " + this.id);
+            }
+        }
+
+        // TODO: there is definitely a better way to do this
+        HashMap<Integer, Character> assoc = new HashMap<>();
+
+        assoc.put(0, 'A');
+        assoc.put(1, 'B');
+        assoc.put(2, 'C');
+        assoc.put(3, 'D');
+        assoc.put(4, 'E');
+        assoc.put(5, 'F');
+        assoc.put(6, 'G');
+        assoc.put(7, 'H');
+        assoc.put(8, 'I');
+
+        // TODO: figure out how to handle this better
+
+        for (int i = 0; i <= 8; i++) {
+            String str_item = section.getStringList(".recipe-items").get(i);
+
+            if (str_item.contains("INGOT") || str_item.contains("LEATHER")) {
+                Ingot ingot = Ingot.parseFromString(str_item);
+
+                CraftedItemMaterialComplex<Quality> cimc_ingot = new CraftedItemMaterialComplex<>(Quality.class,
+                        ingot.getItemStack());
+
+                cimc_ingot.addModifier(Quality.POOR);
+                cimc_ingot.addModifier(Quality.COMMON);
+                cimc_ingot.addModifier(Quality.PERFECT);
+
+                cimc_ingot.addMatchBy(MaterialMatchBy.MODIFIER);
+
+                super.setIngredient(assoc.get(i), cimc_ingot);
+            }
+
+            else {
+                CraftedItemMaterialBasic cimb = new CraftedItemMaterialBasic(
+                        new ItemStack(Material.getMaterial(str_item)));
+
+                super.setIngredient(assoc.get(i), cimb);
+            }
+        }
 
         this.isShaped = true;
 
