@@ -1,0 +1,15 @@
+Light_Tin_Axe:
+  item:
+    type: IRON_AXE
+    amount: 1
+    display-name: §7Tin Axe
+    loc-name: Light_Tin_Axe
+
+  damage: [2.0, 4.0]
+  speed: [0.8, 1.2]
+  knockback: [0.0, 1.0]
+  sweeping: [0.0, 0.0]
+  durability: [50, 75]
+  type: light
+  recipe-id: tin_axe
+  canCraft: [ALL]

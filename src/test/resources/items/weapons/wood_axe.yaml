@@ -1,0 +1,15 @@
+Light_Wood_Axe:
+  item:
+    type: WOOD_AXE
+    amount: 1
+    display-name: §7Light Axe
+    loc-name: Light_Wood_Axe
+
+  damage: [2.0, 3.0]
+  speed: [0.8, 1.2]
+  knockback: [0.0, 1.0]
+  sweeping: [0.5, 1.0]
+  durability: [40, 60]
+  type: light
+  recipe-id: wood_axe
+  canCraft: [ALL]

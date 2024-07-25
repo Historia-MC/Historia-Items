@@ -1,0 +1,14 @@
+Light_Tin_Hoe:
+  item:
+    type: IRON_HOE
+    amount: 1
+    display-name: §7Light Tin Hoe
+    loc-name: Light_Tin_Hoe
+
+  damage: [2.0, 3.0]
+  speed: [1.4, 1.6]
+  knockback: [0.5, 1.0]
+  durability: [50, 75]
+  type: light
+  recipe-id: tin_hoe
+  canCraft: [ALL]

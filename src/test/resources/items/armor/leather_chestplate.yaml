@@ -1,0 +1,41 @@
+Light_Leather_Chestplate:
+  item:
+    type: LEATHER_CHESTPLATE
+    amount: 1
+    display-name: §7Leather Chestplate
+    loc-name: Light_Leather_Chestplate
+
+  defense: [1.0, 2.0]
+  weight: 25
+  durability: [40, 80]
+  type: light
+  recipe-id: leather_chestplate
+  canCraft: [ALL]
+
+Moderate_Leather_Chestplate:
+  item:
+    type: LEATHER_CHESTPLATE
+    amount: 1
+    display-name: §7Leather Chestplate
+    loc-name: Moderate_Leather_Chestplate
+
+  defense: [1.5, 2.5]
+  weight: 35
+  durability: [50, 90]
+  type: moderate
+  recipe-id: leather_chestplate
+  canCraft: [Blacksmith]
+
+Heavy_Leather_Chestplate:
+  item:
+    type: LEATHER_CHESTPLATE
+    amount: 1
+    display-name: §7Leather Chestplate
+    loc-name: Heavy_Leather_Chestplate
+
+  defense: [2.5, 3.5]
+  weight: 45
+  durability: [60, 100]
+  type: heavy
+  recipe-id: leather_chestplate
+  canCraft: [Blacksmith]

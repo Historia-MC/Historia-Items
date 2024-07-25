@@ -1,0 +1,41 @@
+Light_Steel_Chestplate:
+  item:
+    type: NETHERITE_CHESTPLATE
+    amount: 1
+    display-name: §7Steel Chestplate
+    loc-name: Light_Steel_Chestplate
+
+  defense: [3.5, 6.0]
+  weight: 25
+  durability: [300, 450]
+  type: light
+  recipe-id: steel_chestplate
+  canCraft: [ALL]
+
+Moderate_Steel_Chestplate:
+  item:
+    type: NETHERITE_CHESTPLATE
+    amount: 1
+    display-name: §7Steel Chestplate
+    loc-name: Moderate_Steel_Chestplate
+
+  defense: [4.0, 7.0]
+  weight: 35
+  durability: [350, 475]
+  type: moderate
+  recipe-id: steel_chestplate
+  canCraft: [Blacksmith]
+
+Heavy_Steel_Chestplate:
+  item:
+    type: NETHERITE_CHESTPLATE
+    amount: 1
+    display-name: §7Steel Chestplate
+    loc-name: Heavy_Steel_Chestplate
+
+  defense: [4.5, 8.0]
+  weight: 45
+  durability: [375, 550]
+  type: heavy
+  recipe-id: steel_chestplate
+  canCraft: [Blacksmith]

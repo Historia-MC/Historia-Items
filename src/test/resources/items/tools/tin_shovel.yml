@@ -1,0 +1,14 @@
+Light_Tin_Shovel:
+  item:
+    type: IRON_SHOVEL
+    amount: 1
+    display-name: §7Tin Shovel
+    loc-name: Light_Tin_Shovel
+
+  damage: [2.0, 4.0]
+  speed: [0.8, 1.2]
+  knockback: [0.0, 1.0]
+  durability: [50, 75]
+  type: light
+  recipe-id: tin_shovel
+  canCraft: [ALL]

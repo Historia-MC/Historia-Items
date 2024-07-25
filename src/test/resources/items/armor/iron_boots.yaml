@@ -1,0 +1,41 @@
+Light_Iron_Boots:
+  item:
+    type: CHAINMAIL_BOOTS
+    amount: 1
+    display-name: §7Chainmail Boots
+    loc-name: Light_Iron_Boots
+
+  defense: [1.0, 2.0]
+  weight: 15
+  durability: [100, 150]
+  type: light
+  recipe-id: iron_boots
+  canCraft: [ALL]
+
+Moderate_Iron_Boots:
+  item:
+    type: IRON_BOOTS
+    amount: 1
+    display-name: §7Iron Boots
+    loc-name: Moderate_Iron_Boots
+
+  defense: [1.5, 2.5]
+  weight: 25
+  durability: [115, 175]
+  type: moderate
+  recipe-id: iron_boots
+  canCraft: [Blacksmith]
+
+Heavy_Iron_Boots:
+  item:
+    type: IRON_BOOTS
+    amount: 1
+    display-name: §7Iron Boots
+    loc-name: Heavy_Iron_Boots
+
+  defense: [2.0, 3.0]
+  weight: 35
+  durability: [125, 200]
+  type: heavy
+  recipe-id: iron_boots
+  canCraft: [Blacksmith]

@@ -1,0 +1,47 @@
+Light_Bronze_Axe:
+  item:
+    type: GOLDEN_AXE
+    amount: 1
+    display-name: §7Bronze Hatchet
+    loc-name: Light_Bronze_Axe
+
+  damage: [3.0, 6.0]
+  speed: [0.6, 1.0]
+  knockback: [0.0, 0.5]
+  sweeping: [0.0, 0.0]
+  durability: [75, 125]
+  type: light
+  recipe-id: bronze_axe
+  canCraft: [ALL]
+
+Moderate_Bronze_Axe:
+  item:
+    type: GOLDEN_AXE
+    amount: 1
+    display-name: §7Bronze Axe
+    loc-name: Moderate_Bronze_Axe
+
+  damage: [4.0, 6.5]
+  speed: [0.6, 0.9]
+  knockback: [1.5, 3.0]
+  sweeping: [0.0, 0.0]
+  durability: [100, 150]
+  type: moderate
+  recipe-id: bronze_axe
+  canCraft: [Blacksmith]
+
+Heavy_Bronze_Axe:
+  item:
+    type: GOLDEN_AXE
+    amount: 1
+    display-name: §7Bronze Bardiche
+    loc-name: Heavy_Bronze_Axe
+
+  damage: [4.0, 7.0]
+  speed: [0.5, 0.8]
+  knockback: [3.0, 4.5]
+  sweeping: [0.0, 0.0]
+  durability: [125, 160]
+  type: heavy
+  recipe-id: bronze_axe
+  canCraft: [Blacksmith]

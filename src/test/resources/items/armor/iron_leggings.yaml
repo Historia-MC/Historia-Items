@@ -1,0 +1,41 @@
+Light_Iron_Leggings:
+  item:
+    type: CHAINMAIL_LEGGINGS
+    amount: 1
+    display-name: §7Chainmail Leggings
+    loc-name: Light_Iron_Leggings
+
+  defense: [2.5, 3.5]
+  weight: 25
+  durability: [125, 200]
+  type: light
+  recipe-id: iron_leggings
+  canCraft: [ALL]
+
+Moderate_Iron_Leggings:
+  item:
+    type: IRON_LEGGINGS
+    amount: 1
+    display-name: §7Iron Leggings
+    loc-name: Moderate_Iron_Leggings
+
+  defense: [3.0, 4.5]
+  weight: 35
+  durability: [150, 250]
+  type: moderate
+  recipe-id: iron_leggings
+  canCraft: [Blacksmith]
+
+Heavy_Iron_Leggings:
+  item:
+    type: IRON_LEGGINGS
+    amount: 1
+    display-name: §7Iron Leggings
+    loc-name: Heavy_Iron_Leggings
+
+  defense: [3.5, 5.0]
+  weight: 45
+  durability: [175, 275]
+  type: heavy
+  recipe-id: iron_leggings
+  canCraft: [Blacksmith]

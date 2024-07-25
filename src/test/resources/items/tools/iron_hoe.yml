@@ -1,0 +1,44 @@
+Light_Iron_Hoe:
+  item:
+    type: IRON_HOE
+    amount: 1
+    display-name: §7Light Iron Hoe
+    loc-name: Light_Iron_Hoe
+
+  damage: [3.5, 5.5]
+  speed: [1.3, 1.6]
+  knockback: [0.0, 0.5]
+  durability: [145, 175]
+  type: light
+  recipe-id: iron_hoe
+  canCraft: [ALL]
+
+Moderate_Iron_Hoe:
+  item:
+    type: IRON_HOE
+    amount: 1
+    display-name: §7Moderate Iron Hoe
+    loc-name: Moderate_Iron_Hoe
+
+  damage: [4.5, 6.0]
+  speed: [1.0, 1.4]
+  knockback: [0.5, 2.0]
+  durability: [175, 225]
+  type: moderate
+  recipe-id: iron_hoe
+  canCraft: [Blacksmith]
+
+Heavy_Iron_Hoe:
+  item:
+    type: IRON_HOE
+    amount: 1
+    display-name: §7Heavy Iron Hoe
+    loc-name: Heavy_Iron_Hoe
+
+  damage: [5.0, 7.0]
+  speed: [0.8, 1.2]
+  knockback: [2.0, 3.5]
+  durability: [200, 250]
+  type: heavy
+  recipe-id: iron_hoe
+  canCraft: [Blacksmith]

@@ -1,0 +1,14 @@
+Light_Tin_Pickaxe:
+  item:
+    type: IRON_PICKAXE
+    amount: 1
+    display-name: §7Tin Pickaxe
+    loc-name: Light_Tin_Pickaxe
+
+  damage: [2.0, 3.0]
+  speed: [1.4, 1.6]
+  knockback: [0.5, 1.0]
+  durability: [50, 75]
+  type: light
+  recipe-id: tin_pickaxe
+  canCraft: [ALL]

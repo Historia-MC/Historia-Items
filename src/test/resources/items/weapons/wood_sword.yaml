@@ -1,0 +1,15 @@
+Light_Wood_Sword:
+  item:
+    type: WOOD_SWORD
+    amount: 1
+    display-name: §7Light Sword
+    loc-name: Light_Wood_Sword
+
+  damage: [1.0, 2.0]
+  speed: [1.4, 1.6]
+  knockback: [0.0, 0.5]
+  sweeping: [0.5, 1.0]
+  durability: [40, 60]
+  type: light
+  recipe-id: wood_sword
+  canCraft: [ALL]

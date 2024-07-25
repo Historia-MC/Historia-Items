@@ -1,0 +1,41 @@
+Light_Iron_Helmet:
+  item:
+    type: CHAINMAIL_HELMET
+    amount: 1
+    display-name: §7Chainmail Helmet
+    loc-name: Light_Iron_Helmet
+
+  defense: [1.0, 1.5]
+  weight: 20
+  durability: [100, 160]
+  type: light
+  recipe-id: iron_helmet
+  canCraft: [ALL]
+
+Moderate_Iron_Helmet:
+  item:
+    type: IRON_HELMET
+    amount: 1
+    display-name: §7Iron Helmet
+    loc-name: Moderate_Iron_Helmet
+
+  defense: [1.0, 2.0]
+  weight: 25
+  durability: [110, 175]
+  type: moderate
+  recipe-id: iron_helmet
+  canCraft: [Blacksmith]
+
+Heavy_Iron_Helmet:
+  item:
+    type: IRON_HELMET
+    amount: 1
+    display-name: §7Iron Helmet
+    loc-name: Heavy_Iron_Helmet
+
+  defense: [1.5, 2.5]
+  weight: 35
+  durability: [120, 200]
+  type: heavy
+  recipe-id: iron_helmet
+  canCraft: [Blacksmith]

@@ -1,0 +1,13 @@
+Light_Tin_Boots:
+  item:
+    type: IRON_BOOTS
+    amount: 1
+    display-name: §7Tin Boots
+    loc-name: Light_Tin_Boots
+
+  defense: [0.5, 1.5]
+  weight: 15
+  durability: [60, 90]
+  type: light
+  recipe-id: tin_boots
+  canCraft: [ALL]

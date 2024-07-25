@@ -1,0 +1,15 @@
+Light_Tin_Sword:
+  item:
+    type: IRON_SWORD
+    amount: 1
+    display-name: §7Tin Sword
+    loc-name: Light_Tin_Sword
+
+  damage: [2.0, 3.0]
+  speed: [1.4, 1.6]
+  knockback: [0.5, 1.0]
+  sweeping: [1.0, 1.5]
+  durability: [50, 75]
+  type: light
+  recipe-id: tin_sword
+  canCraft: [ALL]

@@ -1,0 +1,41 @@
+Light_Steel_Leggings:
+  item:
+    type: NETHERITE_LEGGINGS
+    amount: 1
+    display-name: §7Steel Leggings
+    loc-name: Light_Steel_Leggings
+
+  defense: [3.5, 5.0]
+  weight: 25
+  durability: [250, 375]
+  type: light
+  recipe-id: steel_leggings
+  canCraft: [ALL]
+
+Moderate_Steel_Leggings:
+  item:
+    type: NETHERITE_LEGGINGS
+    amount: 1
+    display-name: §7Steel Leggings
+    loc-name: Moderate_Steel_Leggings
+
+  defense: [4.0, 5.5]
+  weight: 35
+  durability: [300, 425]
+  type: moderate
+  recipe-id: steel_leggings
+  canCraft: [Blacksmith]
+
+Heavy_Steel_Leggings:
+  item:
+    type: NETHERITE_LEGGINGS
+    amount: 1
+    display-name: §7Steel Leggings
+    loc-name: Heavy_Steel_Leggings
+
+  defense: [4.5, 6.0]
+  weight: 45
+  durability: [375, 500]
+  type: heavy
+  recipe-id: steel_leggings
+  canCraft: [Blacksmith]

@@ -1,0 +1,44 @@
+Light_Steel_Shovel:
+  item:
+    type: NETHERITE_SHOVEL
+    amount: 1
+    display-name: §7Iron Hatchet
+    loc-name: Light_Iron_Shovel
+
+  damage: [7.0, 9.0]
+  speed: [0.6, 1.0]
+  knockback: [1.5, 3.0]
+  durability: [300, 375]
+  type: light
+  recipe-id: steel_shovel
+  canCraft: [ALL]
+
+Moderate_Steel_Shovel:
+  item:
+    type: NETHERITE_SHOVEL
+    amount: 1
+    display-name: §7Iron Shovel
+    loc-name: Moderate_Iron_Shovel
+
+  damage: [7.5, 10]
+  speed: [0.7, 0.9]
+  knockback: [1.5, 3.0]
+  durability: [350, 400]
+  type: moderate
+  recipe-id: steel_shovel
+  canCraft: [Blacksmith]
+
+Heavy_Steel_Shovel:
+  item:
+    type: NETHERITE_SHOVEL
+    amount: 1
+    display-name: §7Iron Mace
+    loc-name: Heavy_Iron_Shovel
+
+  damage: [5.0, 8.0]
+  speed: [0.5, 0.8]
+  knockback: [3.0, 4.5]
+  durability: [200, 275]
+  type: heavy
+  recipe-id: steel_shovel
+  canCraft: [Blacksmith]

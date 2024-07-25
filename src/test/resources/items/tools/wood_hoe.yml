@@ -1,0 +1,14 @@
+Light_Wooden_Hoe:
+  item:
+    type: WOODEN_HOE
+    amount: 1
+    display-name: §7Light Wooden Hoe
+    loc-name: Light_Wooden_Hoe
+
+  damage: [1.0, 2.0]
+  speed: [1.4, 1.6]
+  knockback: [0.0, 0.5]
+  durability: [40, 60]
+  type: light
+  recipe-id: wood_hoe
+  canCraft: [ALL]

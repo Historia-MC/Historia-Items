@@ -1,0 +1,44 @@
+Light_Steel_Pickaxe:
+  item:
+    type: NETHERITE_PICKAXE
+    amount: 1
+    display-name: §7Steel Dagger
+    loc-name: Light_Steel_Pickaxe
+
+  damage: [4.5, 6.0]
+  speed: [1.3, 1.6]
+  knockback: [0.0, 0.5]
+  durability: [300, 375]
+  type: light
+  recipe-id: steel_pickaxe
+  canCraft: [ALL]
+
+Moderate_Steel_Pickaxe:
+  item:
+    type: NETHERITE_PICKAXE
+    amount: 1
+    display-name: §7Steel Pickaxe
+    loc-name: Moderate_Steel_Pickaxe
+
+  damage: [5.0, 7.0]
+  speed: [1.0, 1.4]
+  knockback: [0.5, 2.0]
+  durability: [350, 400]
+  type: moderate
+  recipe-id: steel_pickaxe
+  canCraft: [Blacksmith]
+
+Heavy_Steel_Pickaxe:
+  item:
+    type: NETHERITE_PICKAXE
+    amount: 1
+    display-name: §7Steel Greatsword
+    loc-name: Heavy_Steel_Pickaxe
+
+  damage: [6.5, 9.0]
+  speed: [0.8, 1.0]
+  knockback: [2.0, 3.5]
+  durability: [450, 600]
+  type: heavy
+  recipe-id: steel_pickaxe
+  canCraft: [Blacksmith]

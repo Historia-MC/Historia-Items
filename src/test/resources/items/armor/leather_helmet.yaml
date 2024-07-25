@@ -1,0 +1,41 @@
+Light_Leather_Helmet:
+  item:
+    type: LEATHER_HELMET
+    amount: 1
+    display-name: §7Leather Helmet
+    loc-name: Light_Leather_Helmet
+
+  defense: [0.5, 1.0]
+  weight: 15
+  durability: [40, 60]
+  type: light
+  recipe-id: leather_helmet
+  canCraft: [ALL]
+
+Moderate_Leather_Helmet:
+  item:
+    type: LEATHER_HELMET
+    amount: 1
+    display-name: §7Leather Helmet
+    loc-name: Moderate_Leather_Helmet
+
+  defense: [1.0, 1.5]
+  weight: 25
+  durability: [40, 60]
+  type: moderate
+  recipe-id: leather_helmet
+  canCraft: [Blacksmith]
+
+Heavy_Leather_Helmet:
+  item:
+    type: LEATHER_HELMET
+    amount: 1
+    display-name: §7Leather Helmet
+    loc-name: Heavy_Leather_Helmet
+
+  defense: [1.5, 2.0]
+  weight: 30
+  durability: [40, 60]
+  type: heavy
+  recipe-id: leather_helmet
+  canCraft: [Blacksmith]

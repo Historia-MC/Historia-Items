@@ -1,0 +1,47 @@
+Light_Tin_Trident:
+  item:
+    type: TRIDENT
+    amount: 1
+    display-name: §7Tin Trident
+    loc-name: Light_Tin_Trident
+
+  damage: [4.5, 6.0]
+  speed: [1.3, 1.6]
+  knockback: [0.0, 0.5]
+  sweeping: [2.35, 3.0]
+  durability: [300, 375]
+  type: light
+  recipe-id: tin_trident
+  canCraft: [Fisherman]
+
+Moderate_Tin_Trident:
+  item:
+    type: TRIDENT
+    amount: 1
+    display-name: §7Tin Trident
+    loc-name: Moderate_Tin_Trident
+
+  damage: [4.5, 6.0]
+  speed: [1.3, 1.6]
+  knockback: [0.0, 0.5]
+  sweeping: [2.35, 3.0]
+  durability: [300, 375]
+  type: moderate
+  recipe-id: tin_trident
+  canCraft: [Fisherman]
+
+Heavy_Tin_Trident:
+  item:
+    type: TRIDENT
+    amount: 1
+    display-name: §7Tin Trident
+    loc-name: Heavy_Tin_Trident
+
+  damage: [4.5, 6.0]
+  speed: [1.3, 1.6]
+  knockback: [0.0, 0.5]
+  sweeping: [2.35, 3.0]
+  durability: [300, 375]
+  type: heavy
+  recipe-id: tin_trident
+  canCraft: [Fisherman]
