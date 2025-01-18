@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.bukkit.inventory.ItemStack;
 
+import dev.boooiil.historia.items.crafted.BaseItem;
 import dev.boooiil.historia.items.generic.Ingot;
 import dev.boooiil.historia.items.util.Logging;
 
@@ -38,6 +39,8 @@ public class newCraftingInventoryHelper {
 
     /** List of materials */
     private final ArrayList<String> materials = new ArrayList<>();
+
+    private final ArrayList<BaseItem> baseItems = new ArrayList<>();
 
     /** List of full materials */
     private final ArrayList<String> fullMaterials = new ArrayList<>();
