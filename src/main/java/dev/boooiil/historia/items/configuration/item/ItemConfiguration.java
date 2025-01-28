@@ -28,7 +28,7 @@ public class ItemConfiguration {
     Weight type;
     List<ProficiencyName> allowedProficiencies = new ArrayList<>();
 
-    HashMap<String, IItemComponent> components;
+    HashMap<String, IItemComponent> components = new HashMap<>();
 
     ItemConfiguration(YamlConfiguration configuration, HashMap<String, IItemComponent> components) {
         this.components = components;
