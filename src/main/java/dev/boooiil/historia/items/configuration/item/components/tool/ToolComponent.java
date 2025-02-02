@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.core.Main;
+import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.item.components.IItemComponent;
 import dev.boooiil.historia.items.util.PDCUtils;
 
