@@ -43,7 +43,7 @@ public class ToolData implements IItemData {
 
     public ItemStack applyToDataContainer() {
 
-        ItemMeta meta = getItemMeta(item);
+        ItemMeta meta = item.getItemMeta();
         PersistentDataContainer container = PDCUtils.getContainer(meta);
         ToolComponent tc = getItemComponent();
 
@@ -147,10 +147,6 @@ public class ToolData implements IItemData {
         return PDCUtils.getFromContainer(this.item, Main.getNamespacedKey("tool-durability"),
                 PersistentDataType.INTEGER);
 
-    }
-
-    private ItemMeta getItemMeta(ItemStack item) {
-        return item.getItemMeta();
     }
 
 }
