@@ -5,21 +5,18 @@ import java.util.List;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.core.Main;
 import dev.boooiil.historia.items.configuration.item.components.IItemComponent;
-import dev.boooiil.historia.items.util.NumberUtils;
+import dev.boooiil.historia.items.util.PDCUtils;
 
 public class ToolComponent implements IItemComponent {
 
-    private int priority;
-    private List<Float> damage;
-    private List<Float> speed;
-    private List<Float> knockback;
-    private List<Integer> durability;
+    private List<Float> damageRange;
+    private List<Float> speedRange;
+    private List<Float> knockbackRange;
+    private List<Integer> durabilityRange;
 
     ToolComponent() {
     }
@@ -27,11 +24,11 @@ public class ToolComponent implements IItemComponent {
     @Override
     public void processConfiguration(ConfigurationSection section) {
 
-        this.priority = section.getInt("priority");
-        this.damage = section.getFloatList("damage");
-        this.speed = section.getFloatList("speed");
-        this.knockback = section.getFloatList("knockback");
-        this.durability = section.getIntegerList("durability");
+        // this.priority = section.getInt("priority");
+        this.damageRange = section.getFloatList("damage");
+        this.speedRange = section.getFloatList("speed");
+        this.knockbackRange = section.getFloatList("knockback");
+        this.durabilityRange = section.getIntegerList("durability");
 
     }
 
@@ -41,26 +38,33 @@ public class ToolComponent implements IItemComponent {
         processConfiguration(configuration.getConfigurationSection("tool"));
     }
 
-    @Override
-    public ItemStack applyToItemStack(ItemStack item, float qualityModifier) {
-
-        // TODO: apply modified quality and other information to stack
-
-        ItemMeta meta = item.getItemMeta();
-        PersistentDataContainer container = meta.getPersistentDataContainer();
-
-        container.set(Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT,
-                NumberUtils.random(damage.get(0), damage.get(1)));
-        container.set(Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT,
-                NumberUtils.random(speed.get(0), speed.get(1)));
-        container.set(Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT,
-                NumberUtils.random(knockback.get(0), knockback.get(1)));
-        container.set(Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER,
-                NumberUtils.randomInt(durability.get(0), durability.get(1)));
-
-        item.setItemMeta(meta);
-
-        return item;
+    public List<Float> getDamageRange() {
+        return damageRange;
     }
 
+    public List<Float> getSpeedRange() {
+        return speedRange;
+    }
+
+    public List<Float> getKnockbackRange() {
+        return knockbackRange;
+    }
+
+    public List<Integer> getDurabilityRange() {
+        return durabilityRange;
+    }
+
+    @Override
+    public void setDefaultsToMeta(ItemStack item) {
+
+        PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT,
+                getDamageRange().get(0));
+        PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT,
+                getSpeedRange().get(0));
+        PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT,
+                getKnockbackRange().get(0));
+        PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER,
+                getDurabilityRange().get(0));
+
+    }
 }

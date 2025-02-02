@@ -10,6 +10,6 @@ public interface IItemComponent {
 
     public void processConfiguration(YamlConfiguration configuration);
 
-    public ItemStack applyToItemStack(ItemStack item, float qualityModifier);
+    public void setDefaultsToMeta(ItemStack item);
 
 }

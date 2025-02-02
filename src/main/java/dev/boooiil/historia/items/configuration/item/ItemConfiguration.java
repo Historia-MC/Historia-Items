@@ -7,31 +7,35 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
+import dev.boooiil.historia.core.Main;
 import dev.boooiil.historia.core.proficiency.Proficiency.ProficiencyName;
 import dev.boooiil.historia.items.configuration.item.components.IItemComponent;
 import dev.boooiil.historia.items.crafted.modifiers.Weight;
+import dev.boooiil.historia.items.util.PDCUtils;
 
 public class ItemConfiguration {
 
-    String recipeId;
-    String displayName;
+    private String id;
+    private String recipeId;
+    private String displayName;
 
-    Material baseMaterial;
-    List<Integer> amount;
+    private Material baseMaterial;
+    private List<Integer> amount;
 
     /**
      * The weight of the item in KG. We are a metric society, damn the imperialists.
      */
-    double weight;
+    private double weight;
 
-    Weight type;
-    List<ProficiencyName> allowedProficiencies = new ArrayList<>();
+    private Weight type;
+    private List<ProficiencyName> allowedProficiencies = new ArrayList<>();
 
-    HashMap<String, IItemComponent> components = new HashMap<>();
+    private HashMap<String, IItemComponent> componentHolder = new HashMap<>();
 
-    ItemConfiguration(YamlConfiguration configuration, HashMap<String, IItemComponent> components) {
-        this.components = components;
+    public ItemConfiguration(YamlConfiguration configuration, HashMap<String, IItemComponent> components) {
+        this.componentHolder = components;
 
         configuration.getKeys(false).forEach(cKey -> {
 
@@ -43,6 +47,8 @@ public class ItemConfiguration {
             this.weight = configuration.getDouble(cKey + ".weight");
             this.type = Weight.getWeight(configuration.getString(cKey + ".type"));
             this.recipeId = configuration.getString("recipe-id");
+            // TODO: this will need to be changed to an actual unique id key
+            this.id = configuration.getString(cKey + ".loc-name");
 
             cProficiencies = configuration.getStringList("canCraft");
 
@@ -57,12 +63,18 @@ public class ItemConfiguration {
             // });
 
             // temp component processing until we get the registry
-            components.keySet().forEach(key -> {
-                components.get(key).processConfiguration(configuration.getConfigurationSection(cKey + "." + key));
+            componentHolder.keySet().forEach(key -> {
+                componentHolder
+                        .get(key)
+                        .processConfiguration(configuration.getConfigurationSection(cKey + "." + key));
             });
 
         });
 
+    }
+
+    public String getConfigurationId() {
+        return this.id;
     }
 
     /**
@@ -117,32 +129,27 @@ public class ItemConfiguration {
     /**
      * @return the components
      */
-    public HashMap<String, IItemComponent> getComponents() {
-        return components;
+    public HashMap<String, IItemComponent> getComponentHolder() {
+        return componentHolder;
     }
 
     /**
-     * Creates an {@link ItemStack} from this configuration with a quality modifier
-     * of 0.
+     * Creates a default {@link ItemStack} with this configuration.
      * 
      * @return the created {@link ItemStack}.
      *
      */
     public ItemStack createItemStack() {
 
-        return createItemStack(0);
-
-    }
-
-    public ItemStack createItemStack(float qualityModifier) {
-
         // invalid material
         assert (baseMaterial != null | baseMaterial != Material.AIR);
 
         ItemStack item = new ItemStack(baseMaterial);
 
-        for (IItemComponent component : components.values()) {
-            component.applyToItemStack(item, qualityModifier);
+        PDCUtils.setInContainer(item, Main.getNamespacedKey("config-id"), PersistentDataType.STRING, id);
+
+        for (IItemComponent component : componentHolder.values()) {
+            component.setDefaultsToMeta(item);
         }
 
         // thoughts on applying lore:

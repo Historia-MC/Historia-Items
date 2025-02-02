@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.annotation.Nullable;
 
 import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
+import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 
 /**
@@ -21,7 +22,7 @@ import dev.boooiil.historia.items.util.Logging;
 public abstract class ItemConfigurationRegistry {
 
     /** The item configuration registry. */
-    protected static HashMap<String, BaseItemConfiguration> registry = new HashMap<>();
+    protected static HashMap<String, ItemConfiguration> registry = new HashMap<>();
 
     /** item configuration registry default constructor */
     public ItemConfigurationRegistry() {
@@ -39,7 +40,7 @@ public abstract class ItemConfigurationRegistry {
      * @param key           The key to register the configuration under.
      * @param configuration The configuration to register.
      */
-    public static void register(String key, BaseItemConfiguration configuration) {
+    public static void register(String key, ItemConfiguration configuration) {
         Logging.debugToConsole("Registering " + key + " to item configuration registry.");
         registry.put(key, configuration);
     }
@@ -60,7 +61,7 @@ public abstract class ItemConfigurationRegistry {
      * @param key           The key to update.
      * @param configuration The new configuration.
      */
-    public static void update(String key, BaseItemConfiguration configuration) {
+    public static void update(String key, ItemConfiguration configuration) {
         Logging.debugToConsole("Updating " + key + " in item configuration registry.");
         registry.put(key, configuration);
     }
@@ -83,24 +84,25 @@ public abstract class ItemConfigurationRegistry {
      * @param key The key to get the configuration for.
      * @return The configuration if it exists, null otherwise.
      */
-    @Nullable
-    @SuppressWarnings("unchecked")
-    public static <T extends BaseItemConfiguration> T getTyped(String key) {
+    // @Nullable
+    // @SuppressWarnings("unchecked")
+    // public static <T extends BaseItemConfiguration> T getTyped(String key) {
 
-        BaseItemConfiguration configuration = registry.get(key);
+    // BaseItemConfiguration configuration = registry.get(key);
 
-        if (configuration == null)
-            return null;
+    // if (configuration == null)
+    // return null;
 
-        try {
-            T typedConfiguration = (T) configuration;
-            return typedConfiguration;
-        } catch (ClassCastException e) {
-            Logging.debugToConsole("Error casting configuration to type " + key + " - " + e.getMessage());
-            return null;
-        }
+    // try {
+    // T typedConfiguration = (T) configuration;
+    // return typedConfiguration;
+    // } catch (ClassCastException e) {
+    // Logging.debugToConsole("Error casting configuration to type " + key + " - " +
+    // e.getMessage());
+    // return null;
+    // }
 
-    }
+    // }
 
     /**
      * Get a base item configuration from the registry.
@@ -108,7 +110,7 @@ public abstract class ItemConfigurationRegistry {
      * @param key The key to get the configuration for.
      * @return The configuration if it exists, null otherwise.
      */
-    public static BaseItemConfiguration get(String key) {
+    public static ItemConfiguration get(String key) {
         return registry.get(key);
     }
 
