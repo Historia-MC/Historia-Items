@@ -6,6 +6,7 @@ import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration
 import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
 import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
 import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
+import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
 import dev.boooiil.historia.items.crafted.armor.Armor;
 import dev.boooiil.historia.items.crafted.custom.Custom;
 import dev.boooiil.historia.items.crafted.tool.Tool;
@@ -57,38 +58,14 @@ public class CommandGive implements CommandExecutor {
         }
 
         Player player = Bukkit.getPlayer(args[0]);
-        BaseItemConfiguration baseConfiguration = ItemConfigurationRegistry.get(args[1]);
+        ItemConfiguration itemConfiguration = ItemConfigurationRegistry.get(args[1]);
 
-        if (baseConfiguration == null) {
+        if (itemConfiguration == null) {
             sender.sendMessage("Invalid item name.");
             return false;
         }
 
-        switch (baseConfiguration.getItemType()) {
-            case WEAPON:
-                WeaponConfiguration weaponConfiguration = (WeaponConfiguration) baseConfiguration;
-                Weapon weapon = new Weapon(weaponConfiguration);
-                player.getInventory().addItem(weapon.getItemStack());
-                break;
-            case ARMOR:
-                ArmorConfiguration armorConfiguration = (ArmorConfiguration) baseConfiguration;
-                Armor armor = new Armor(armorConfiguration);
-                player.getInventory().addItem(armor.getItemStack());
-                break;
-            case CUSTOM:
-                CustomConfiguration customConfiguration = (CustomConfiguration) baseConfiguration;
-                Custom custom = new Custom(customConfiguration);
-                player.getInventory().addItem(custom.getItemStack());
-                break;
-            case TOOL:
-                ToolConfiguration toolConfiguration = (ToolConfiguration) baseConfiguration;
-                Tool tool = new Tool(toolConfiguration);
-                player.getInventory().addItem(tool.getItemStack());
-                break;
-            default:
-                sender.sendMessage("Invalid item name.");
-                return false;
-        }
+        player.getInventory().addItem(itemConfiguration.createItemStack());
 
         return false;
 
