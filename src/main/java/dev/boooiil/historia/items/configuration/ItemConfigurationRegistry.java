@@ -2,9 +2,6 @@ package dev.boooiil.historia.items.configuration;
 
 import java.util.HashMap;
 
-import javax.annotation.Nullable;
-
-import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
 import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
 
