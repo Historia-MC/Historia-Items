@@ -12,7 +12,6 @@ import org.bukkit.persistence.PersistentDataType;
 import dev.boooiil.historia.core.Main;
 import dev.boooiil.historia.core.proficiency.Proficiency.ProficiencyName;
 import dev.boooiil.historia.items.configuration.item.components.IItemComponent;
-import dev.boooiil.historia.items.crafted.modifiers.Weight;
 import dev.boooiil.historia.items.util.PDCUtils;
 
 public class ItemConfiguration {
@@ -29,7 +28,6 @@ public class ItemConfiguration {
      */
     private double weight;
 
-    private Weight type;
     private List<ProficiencyName> allowedProficiencies = new ArrayList<>();
 
     private HashMap<String, IItemComponent> componentHolder = new HashMap<>();
@@ -45,7 +43,6 @@ public class ItemConfiguration {
             this.amount = configuration.getIntegerList(cKey + ".amount");
             this.displayName = configuration.getString(cKey + ".display-name");
             this.weight = configuration.getDouble(cKey + ".weight");
-            this.type = Weight.getWeight(configuration.getString(cKey + ".type"));
             this.recipeId = configuration.getString("recipe-id");
             // TODO: this will need to be changed to an actual unique id key
             this.id = configuration.getString(cKey + ".loc-name");
@@ -110,13 +107,6 @@ public class ItemConfiguration {
      */
     public double getWeight() {
         return weight;
-    }
-
-    /**
-     * @return the type
-     */
-    public Weight getType() {
-        return type;
     }
 
     /**
