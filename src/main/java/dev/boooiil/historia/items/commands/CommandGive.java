@@ -1,16 +1,7 @@
 package dev.boooiil.historia.items.commands;
 
 import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
-import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
 import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
-import dev.boooiil.historia.items.crafted.armor.Armor;
-import dev.boooiil.historia.items.crafted.custom.Custom;
-import dev.boooiil.historia.items.crafted.tool.Tool;
-import dev.boooiil.historia.items.crafted.weapon.Weapon;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
