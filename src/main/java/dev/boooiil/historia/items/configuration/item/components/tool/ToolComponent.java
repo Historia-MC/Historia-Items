@@ -2,9 +2,15 @@ package dev.boooiil.historia.items.configuration.item.components.tool;
 
 import java.util.List;
 
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.Main;
@@ -18,7 +24,7 @@ public class ToolComponent implements IItemComponent {
     private List<Float> knockbackRange;
     private List<Integer> durabilityRange;
 
-    ToolComponent() {
+    public ToolComponent() {
     }
 
     @Override
@@ -57,14 +63,40 @@ public class ToolComponent implements IItemComponent {
     @Override
     public void setDefaultsToMeta(ItemStack item) {
 
+        ItemMeta meta = item.getItemMeta();
+
+        float damage = getDamageRange().get(0);
+        float speed = getSpeedRange().get(0);
+        float knockback = getKnockbackRange().get(0);
+        int durability = getDurabilityRange().get(0);
+
         PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT,
-                getDamageRange().get(0));
+                damage);
         PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT,
-                getSpeedRange().get(0));
+                speed);
         PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT,
-                getKnockbackRange().get(0));
+                knockback);
         PDCUtils.setInContainer(item, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER,
-                getDurabilityRange().get(0));
+                durability);
+
+        AttributeModifier damageAttr = new AttributeModifier(Main.getNamespacedKey("tool-damage"), damage,
+                Operation.ADD_NUMBER);
+        AttributeModifier speedAttr = new AttributeModifier(Main.getNamespacedKey("tool-speed"), speed,
+                Operation.ADD_NUMBER);
+        AttributeModifier knockbackAttr = new AttributeModifier(Main.getNamespacedKey("tool-knockback"), knockback,
+                Operation.ADD_NUMBER);
+
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, damageAttr);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, speedAttr);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_KNOCKBACK, knockbackAttr);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        item.setItemMeta(meta);
+
+        Damageable damageable = (Damageable) item.getItemMeta();
+        damageable.setMaxDamage(durability);
+
+        item.setItemMeta(damageable);
 
     }
 }
