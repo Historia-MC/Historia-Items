@@ -34,6 +34,10 @@ public class ToolData implements ItemData {
     float knockback;
     int maxDurability;
 
+    public ToolData() {
+        this(0, 0, 0, 1);
+    }
+
     public ToolData(float attackDamage, float attackSpeed, float knockback, int maxDurability) {
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
