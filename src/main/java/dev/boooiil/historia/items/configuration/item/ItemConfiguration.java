@@ -5,14 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.core.Main;
 import dev.boooiil.historia.core.proficiency.Proficiency.ProficiencyName;
+import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.configuration.item.components.IItemComponent;
+import dev.boooiil.historia.items.configuration.item.data.tool.ToolData;
+import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 
 public class ItemConfiguration {
 
@@ -22,6 +28,7 @@ public class ItemConfiguration {
 
     private Material baseMaterial;
     private List<Integer> amount;
+    private List<Component> lore = new ArrayList<>();
 
     /**
      * The weight of the item in KG. We are a metric society, damn the imperialists.
@@ -32,41 +39,60 @@ public class ItemConfiguration {
 
     private HashMap<String, IItemComponent> componentHolder = new HashMap<>();
 
-    public ItemConfiguration(YamlConfiguration configuration, HashMap<String, IItemComponent> components) {
+    public ItemConfiguration(ConfigurationSection configuration, HashMap<String, IItemComponent> components) {
         this.componentHolder = components;
 
-        configuration.getKeys(false).forEach(cKey -> {
+        this.baseMaterial = Material.valueOf(configuration.getString("material"));
+        this.amount = configuration.getIntegerList("amount");
+        this.displayName = configuration.getString("display-name");
+        this.weight = configuration.getDouble("weight");
+        this.recipeId = configuration.getString("recipe-id");
+        // TODO: this will need to be changed to an actual unique id key
+        this.id = configuration.getString("loc-name");
 
-            List<String> cProficiencies;
+        if (configuration.contains("lore")) {
+            List<String> loreList = configuration.getStringList("lore");
+            for (String sLore : loreList) {
+                lore.add(Component.text(sLore));
+            }
+        } else if (!components.isEmpty()) {
 
-            this.baseMaterial = Material.valueOf(configuration.getString(cKey + ".material"));
-            this.amount = configuration.getIntegerList(cKey + ".amount");
-            this.displayName = configuration.getString(cKey + ".display-name");
-            this.weight = configuration.getDouble(cKey + ".weight");
-            this.recipeId = configuration.getString("recipe-id");
-            // TODO: this will need to be changed to an actual unique id key
-            this.id = configuration.getString(cKey + ".loc-name");
+            for (String key : components.keySet()) {
 
-            cProficiencies = configuration.getStringList("canCraft");
+                if (LoreConfiguration.contains(key)) {
+                    List<String> loreList = LoreConfiguration.get(key);
+                    for (String sLore : loreList) {
+                        lore.add(Component.text(sLore));
+                    }
 
-            // add allowed proficiencies
-            cProficiencies.forEach(p -> {
-                allowedProficiencies.add(ProficiencyName.fromString(p));
-            });
+                }
+            }
 
-            // components.forEach(component -> {
-            // component.processConfiguration(configuration.getConfigurationSection(key +
-            // ".component"));
-            // });
+            List<String> loreList = LoreConfiguration.get("foot");
+            for (String sLore : loreList) {
+                lore.add(Component.text(sLore));
+            }
 
-            // temp component processing until we get the registry
-            componentHolder.keySet().forEach(key -> {
-                componentHolder
-                        .get(key)
-                        .processConfiguration(configuration.getConfigurationSection(cKey + "." + key));
-            });
+        }
 
+        Logging.debugToConsole("" + lore);
+
+        List<String> cProficiencies;
+        cProficiencies = configuration.getStringList("canCraft");
+
+        // add allowed proficiencies
+        cProficiencies.forEach(p -> {
+            allowedProficiencies.add(ProficiencyName.fromString(p));
         });
+
+        /**
+         * get comonent section map string
+         */
+        for (String strComponent : components.keySet()) {
+            components
+                    .get(strComponent)
+                    .processConfiguration(configuration.getConfigurationSection(strComponent));
+        }
 
     }
 
@@ -135,19 +161,29 @@ public class ItemConfiguration {
         assert (baseMaterial != null | baseMaterial != Material.AIR);
 
         ItemStack item = new ItemStack(baseMaterial);
+        ItemMeta meta = item.getItemMeta();
+        ToolData toolData = new ToolData(item);
+        TextComponent textComponent = Component.text(getDisplayName());
 
-        PDCUtils.setInContainer(item, Main.getNamespacedKey("config-id"), PersistentDataType.STRING, id);
+        PDCUtils.setInContainer(meta, Main.getNamespacedKey("config-id"),
+                PersistentDataType.STRING, id);
 
-        for (IItemComponent component : componentHolder.values()) {
-            component.setDefaultsToMeta(item);
-        }
+        meta.displayName(textComponent);
+        meta.lore(lore);
+        item.setItemMeta(meta);
+
+        return toolData.apply();
+
+        // for (IItemComponent component : componentHolder.values()) {
+        // component.setDefaultsToMeta(item);
+        // }
 
         // thoughts on applying lore:
         // %placeholder%
         // %weapon.sweeping% where "weapon" is the component and can be found through
         // ItemConfiguration.getValue(weapon.sweeping)
 
-        return item;
+        // return item;
 
     }
 }
