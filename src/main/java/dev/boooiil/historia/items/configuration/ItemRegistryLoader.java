@@ -1,16 +1,14 @@
 package dev.boooiil.historia.items.configuration;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import dev.boooiil.historia.items.item.ItemComponent;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
-import dev.boooiil.historia.items.configuration.item.components.IItemComponent;
-import dev.boooiil.historia.items.configuration.item.components.tool.ToolComponent;
+import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.util.Logging;
 
@@ -18,36 +16,34 @@ import dev.boooiil.historia.items.util.Logging;
  * <p>
  * This is a utility class that is used to load the item configurations from the
  * plugin's YAML files and register them in the
- * {@link ItemConfigurationRegistry}. It also provides a method to register
+ * {@link ItemRegistry}. It also provides a method to register
  * other plugins' configurations with the registry.
  * </p>
  */
-public class ItemConfigurationRegistryLoader {
-
-    private static final Set<Class<? extends IItemComponent>> REGISTERED_COMPONENTS = new HashSet<>();
+public class ItemRegistryLoader {
 
     private static List<YamlConfiguration> configurations;
 
     /** item configuration registry default constructor */
-    private ItemConfigurationRegistryLoader() {
+    private ItemRegistryLoader() {
     };
 
     /**
      * Initialize the YAML configurations within this registry loader. This does not
      * directly load the configurations into the registry, but utilizes the
-     * {@link ItemConfigurationRegistryLoader#load()} method after the
+     * {@link ItemRegistryLoader#load()} method after the
      * configurations are initialized.
      */
     public static void initialize() {
 
-        Logging.debugToConsole("Initializing ItemConfigurationRegistryLoader...");
+        Logging.debugToConsole("Initializing ItemRegistryLoader...");
 
         load();
 
     }
 
     /**
-     * Loads the ItemConfigurationRegistry with the YamlConfigurations provided by
+     * Loads the ItemRegistry with the YamlConfigurations provided by
      * the plugin. Other plugins will have to load their own
      * configurations with
      */
@@ -58,7 +54,7 @@ public class ItemConfigurationRegistryLoader {
     }
 
     /**
-     * Reloads the {@link ItemConfigurationRegistryLoader} by reinitializing the
+     * Reloads the {@link ItemRegistryLoader} by reinitializing the
      * YamlConfigurations and calling the load method. This will only reload the
      * configurations provided by THIS plugin. Other plugins will have to handle
      * their own reloading.
@@ -71,7 +67,7 @@ public class ItemConfigurationRegistryLoader {
 
     /**
      * <p>
-     * Populates the ItemConfigurationRegistry with the given YamlConfiguration and
+     * Populates the ItemRegistry with the given YamlConfiguration and
      * type. This method assumes that the YAML provided follows the format of:
      * </p>
      * <blockquote>
@@ -129,39 +125,15 @@ public class ItemConfigurationRegistryLoader {
 
                 Logging.debugToConsole("Key", key);
 
-                HashMap<String, IItemComponent> components = new HashMap<>();
-
                 ConfigurationSection section = configuration.getConfigurationSection(key);
 
-                for (Class<? extends IItemComponent> clazz : REGISTERED_COMPONENTS) {
-                    try {
-                        IItemComponent component = clazz.getDeclaredConstructor().newInstance();
-                        if (!section.contains(component.getKey()))
-                            continue;
-
-                        Logging.debugToConsole(key, "had", component.getKey(), "component.");
-                        components.put(component.getKey(), component);
-
-                    } catch (ReflectiveOperationException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
-                ItemConfigurationRegistry.register(key, new ItemConfiguration(section, components));
+                ItemRegistry.register(key, HistoriaItem.fromConfig(section));
 
             }
 
         }
         // throw new Error("Unimplemented method.");
 
-    }
-
-    public static void registerComponent(Class<? extends IItemComponent> clazz) {
-        REGISTERED_COMPONENTS.add(clazz);
-    }
-
-    static {
-        registerComponent(ToolComponent.class);
     }
 
 }

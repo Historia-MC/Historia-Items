@@ -7,7 +7,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jspecify.annotations.NullMarked;
 
+import java.util.Optional;
+
+@NullMarked
 public class PDCUtils {
 
     public static PersistentDataContainer getContainer(ItemStack item) {
@@ -27,13 +31,12 @@ public class PDCUtils {
             return null;
     }
 
-    @Nullable
-    public static <T> T getFromContainer(ItemStack item, NamespacedKey key,
-            PersistentDataType<T, T> type) {
+    public static <T> Optional<T> getFromContainer(ItemStack item, NamespacedKey key,
+                                                   PersistentDataType<T, T> type) {
         if (getContainer(item).has(key)) {
-            return getContainer(item).get(key, type);
+            return Optional.ofNullable(getContainer(item).get(key, type));
         } else
-            return null;
+            return Optional.empty();
     }
 
     @Nullable

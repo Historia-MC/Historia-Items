@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
-import dev.boooiil.historia.items.configuration.ItemConfigurationRegistryLoader;
+import dev.boooiil.historia.items.configuration.ItemRegistryLoader;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.events.entity.EntityDamageByEntityListener;
 import dev.boooiil.historia.items.file.FileIO;
@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
         FileIO.checkAndSaveResources("items");
 
         LoreConfiguration.initLoreMap();
-        ItemConfigurationRegistryLoader.initialize();
+        ItemRegistryLoader.initialize();
 
     }
 
