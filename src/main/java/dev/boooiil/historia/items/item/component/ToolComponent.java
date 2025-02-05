@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
-public final class ToolComponent implements ItemComponent {
+public class ToolComponent implements ItemComponent {
     private final List<Float> damageRange;
     private final List<Float> speedRange;
     private final List<Float> knockbackRange;

@@ -34,10 +34,6 @@ public class ToolData implements ItemData {
     float knockback;
     int maxDurability;
 
-    public ToolData() {
-        this(0, 0, 0, 1);
-    }
-
     public ToolData(float attackDamage, float attackSpeed, float knockback, int maxDurability) {
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
@@ -45,25 +41,26 @@ public class ToolData implements ItemData {
         this.maxDurability = maxDurability;
     }
 
-    @Override
-    public void read(ItemStack stack) {
-        this.attackDamage = NumberUtils.roundFloat(
+    public static ToolData fromStack(ItemStack stack) {
+        float attackDamage = NumberUtils.roundFloat(
                 PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT)
                         .orElse(0f),
                 2);
 
-        this.attackSpeed = NumberUtils.roundFloat(
+        float attackSpeed = NumberUtils.roundFloat(
                 PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT)
                         .orElse(0f),
                 2);
 
-        this.knockback = NumberUtils.roundFloat(
+        float knockback = NumberUtils.roundFloat(
                 PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT)
                         .orElse(0f),
                 2);
 
-        this.maxDurability = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER)
+        int maxDurability = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER)
                 .orElse((int) stack.getType().getMaxDurability());
+
+        return new ToolData(attackDamage, attackSpeed, knockback, maxDurability);
     }
 
     @Override
@@ -71,11 +68,11 @@ public class ToolData implements ItemData {
         // TODO: apply modified quality and other information to stack
 
         // should be fine since item is passed as ref
-        writeData(stack);
-        writeLore(stack);
+        applyData(stack);
+        applyLore(stack);
     }
 
-    protected void writeData(ItemStack stack) {
+    protected void applyData(ItemStack stack) {
         ItemMeta meta = stack.getItemMeta();
 
         PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT,
@@ -108,7 +105,7 @@ public class ToolData implements ItemData {
         stack.setData(DataComponentTypes.MAX_DAMAGE, this.maxDurability);
     }
 
-    protected void writeLore(ItemStack stack) {
+    protected void applyLore(ItemStack stack) {
 
         String configId = PDCUtils.getFromContainer(PDCUtils.getContainer(stack), Main.getNamespacedKey("config-id"), PersistentDataType.STRING);
 
