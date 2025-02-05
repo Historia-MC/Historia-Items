@@ -1,19 +1,16 @@
 package dev.boooiil.historia.items.configuration;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
+import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
+import dev.boooiil.historia.items.configuration.item.components.IItemComponent;
+import dev.boooiil.historia.items.configuration.item.components.tool.ToolComponent;
 import dev.boooiil.historia.items.file.FileIO;
-import dev.boooiil.historia.items.file.FileKeys;
 import dev.boooiil.historia.items.util.Logging;
 
 /**
@@ -26,14 +23,7 @@ import dev.boooiil.historia.items.util.Logging;
  */
 public class ItemConfigurationRegistryLoader {
 
-    /** armor yaml configuration */
-    private static YamlConfiguration armorYAMLConfiguration;
-    /** weapon yaml configuration */
-    private static YamlConfiguration weaponYAMLConfiguration;
-    /** tool yaml configuration */
-    private static YamlConfiguration toolYAMLConfiguration;
-    /** custom yaml configuration */
-    private static YamlConfiguration customYAMLConfiguration;
+    private static List<YamlConfiguration> configurations;
 
     /** item configuration registry default constructor */
     private ItemConfigurationRegistryLoader() {
@@ -49,11 +39,6 @@ public class ItemConfigurationRegistryLoader {
 
         Logging.debugToConsole("Initializing ItemConfigurationRegistryLoader...");
 
-        armorYAMLConfiguration = FileIO.get(FileKeys.ARMOR);
-        weaponYAMLConfiguration = FileIO.get(FileKeys.WEAPONS);
-        toolYAMLConfiguration = FileIO.get(FileKeys.TOOLS);
-        customYAMLConfiguration = FileIO.get(FileKeys.CUSTOM_ITEMS);
-
         load();
 
     }
@@ -62,15 +47,11 @@ public class ItemConfigurationRegistryLoader {
      * Loads the ItemConfigurationRegistry with the YamlConfigurations provided by
      * the plugin. Other plugins will have to load their own
      * configurations with
-     * {@link ItemConfigurationRegistryLoader#populate(YamlConfiguration, Class)}.
      */
     public static void load() {
+        configurations = FileIO.loadYamlConfigurationsFromPlugins();
 
-        populate(armorYAMLConfiguration, ArmorConfiguration.class);
-        populate(weaponYAMLConfiguration, WeaponConfiguration.class);
-        populate(toolYAMLConfiguration, ToolConfiguration.class);
-        populate(customYAMLConfiguration, CustomConfiguration.class);
-
+        populate();
     }
 
     /**
@@ -135,28 +116,56 @@ public class ItemConfigurationRegistryLoader {
      * 
      * @param type          The type of the configuration to populate the registry
      */
-    public static void populate(YamlConfiguration configuration, Class<? extends BaseItemConfiguration> type) {
-        for (String key : configuration.getKeys(false)) {
-            if (key.equals("version"))
-                continue;
+    public static void populate() {
 
-            try {
-                // Get the method named "fromConfigurationSection" with a YamlConfiguration
-                // parameter
-                Method method = type.getMethod("fromConfigurationSection", ConfigurationSection.class);
+        for (YamlConfiguration configuration : configurations) {
 
-                // Invoke the static method on the type class
-                Object result = method.invoke(null, configuration.getConfigurationSection(key));
+            Set<String> keys = configuration.getKeys(false);
 
-                // Assuming ItemConfigurationRegistry.register() takes a String key and the
-                // result
-                ItemConfigurationRegistry.register(key, (BaseItemConfiguration) result);
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-                Main.disable();
-                break;
+            for (String key : keys) {
+
+                Logging.debugToConsole("Key", key);
+
+                HashMap<String, IItemComponent> components = new HashMap<>();
+
+                ConfigurationSection section = configuration.getConfigurationSection(key);
+
+                if (section.contains("tool")) {
+                    Logging.debugToConsole(key, "had tool component.");
+                    components.put("tool", new ToolComponent());
+                }
+
+                if (section.contains("weapon")) {
+                    Logging.debugToConsole(key, "had weapon component.");
+                    // TODO: add weapon
+                }
+
+                if (section.contains("armor")) {
+                    Logging.debugToConsole(key, "had armor component.");
+                    // TODO: add armor
+                }
+
+                if (section.contains("modifier")) {
+                    Logging.debugToConsole(key, "had modifier component.");
+                    // TODO: add armor
+                }
+
+                if (section.contains("smelting")) {
+                    Logging.debugToConsole(key, "had smelting component.");
+                    // TODO: add armor
+                }
+
+                if (section.contains("executable")) {
+                    Logging.debugToConsole(key, "had executable component.");
+                    // TODO: add executable
+                }
+
+                ItemConfigurationRegistry.register(key, new ItemConfiguration(section, components));
+
             }
+
         }
+        // throw new Error("Unimplemented method.");
 
     }
 
