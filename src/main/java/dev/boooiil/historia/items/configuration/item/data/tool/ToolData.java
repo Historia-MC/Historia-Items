@@ -1,5 +1,6 @@
 package dev.boooiil.historia.items.configuration.item.data.tool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
@@ -11,10 +12,13 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
 import dev.boooiil.historia.items.configuration.item.components.tool.ToolComponent;
 import dev.boooiil.historia.items.configuration.item.data.IItemData;
+import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
 public class ToolData implements IItemData {
 
@@ -34,6 +38,8 @@ public class ToolData implements IItemData {
     public ItemStack apply() {
 
         // TODO: apply modified quality and other information to stack
+
+        Logging.debugToConsole("Applying to item:", getConfigurationId());
 
         // should be fine since item is passed as ref
         applyToDataContainer();
@@ -73,43 +79,59 @@ public class ToolData implements IItemData {
     public ItemStack applyToLorePlaceholder() {
 
         ItemMeta meta = item.getItemMeta();
+
+        if (!meta.hasLore() || meta.lore().isEmpty()) {
+            Logging.debugToConsole(getConfigurationId(), "has no lore, skipping placeholder.");
+            return item;
+        }
+
         List<Component> lore = meta.lore();
+        List<Component> nLore = new ArrayList<>();
 
         for (Component component : lore) {
 
             TextComponent textComponent = (TextComponent) component;
 
-            if (textComponent.content().contains("%tool.damage%")) {
-                textComponent.content(
-                        textComponent
-                                .content()
-                                .replace("%tool.damage%", "" + getDamage()));
+            Logging.debugToConsole(getConfigurationId(), "" + textComponent);
+
+            if (textComponent.content().contains("<tool-damage>")) {
+
+                Logging.debugToConsole(getConfigurationId(), "has damage placeholder.");
+
+                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                        Placeholder.component("tool-damage", Component.text(getDamage()))));
                 continue;
             }
-            if (textComponent.content().contains("%tool.speed%")) {
-                textComponent.content(
-                        textComponent
-                                .content()
-                                .replace("%tool.speed%", "" + getSpeed()));
+            if (textComponent.content().contains("<tool-speed>")) {
+
+                Logging.debugToConsole(getConfigurationId(), "has speed placeholder.");
+
+                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                        Placeholder.component("tool-speed", Component.text(getSpeed()))));
                 continue;
             }
-            if (textComponent.content().contains("%tool.knockback%")) {
-                textComponent.content(
-                        textComponent
-                                .content()
-                                .replace("%tool.knockback%", "" + getKnockback()));
+            if (textComponent.content().contains("<tool-knockback>")) {
+
+                Logging.debugToConsole(getConfigurationId(), "has knockback placeholder.");
+
+                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                        Placeholder.component("tool-knockback", Component.text(getKnockback()))));
                 continue;
             }
-            if (textComponent.content().contains("%tool.durability%")) {
-                textComponent.content(
-                        textComponent
-                                .content()
-                                .replace("%tool.durability%", "" + getDurability()));
+            if (textComponent.content().contains("<tool-durability>")) {
+
+                Logging.debugToConsole(getConfigurationId(), "has durability placeholder.");
+
+                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                        Placeholder.component("tool-damage", Component.text(getDurability()))));
                 continue;
             }
+
+            nLore.add(component);
 
         }
 
+        meta.lore(nLore);
         item.setItemMeta(meta);
         return item;
     }
