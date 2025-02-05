@@ -108,6 +108,7 @@ public abstract class ItemConfigurationRegistry {
      * @return The configuration if it exists, null otherwise.
      */
     public static ItemConfiguration get(String key) {
+        Logging.debugToConsole("Obtaining:", key, "from registry.");
         return registry.get(key);
     }
 

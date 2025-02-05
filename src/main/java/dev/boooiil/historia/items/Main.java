@@ -2,6 +2,8 @@ package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ItemConfigurationRegistryLoader;
+import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
+import dev.boooiil.historia.items.events.entity.EntityDamageByEntityListener;
 import dev.boooiil.historia.items.file.FileIO;
 
 import org.bukkit.NamespacedKey;
@@ -37,8 +39,12 @@ public class Main extends JavaPlugin {
         Logging.infoToConsole("Plugin has loaded.");
 
         // Check config files
-        FileIO.checkFiles();
+        // FileIO.checkFiles();
 
+        FileIO.checkAndSaveResources("config.yml");
+        FileIO.checkAndSaveResources("items");
+
+        LoreConfiguration.initLoreMap();
         ItemConfigurationRegistryLoader.initialize();
 
     }
@@ -53,6 +59,7 @@ public class Main extends JavaPlugin {
         this.saveDefaultConfig();
 
         registerCommand("give", new CommandGive());
+        registerEvent(new EntityDamageByEntityListener());
 
         Logging.infoToConsole("Plugin Enabled.");
 
