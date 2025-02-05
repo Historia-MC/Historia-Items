@@ -31,7 +31,7 @@ public class PrepareItemCraftHandlerTest {
         System.out.println("Loading plugin...");
         try {
             plugin = MockBukkit.load(Main.class);
-            MockBukkit.load(dev.boooiil.historia.core.Main.class);
+            MockBukkit.load(dev.boooiil.historia.core.HistoriaCore.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
