@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.core.proficiency.Proficiency.ProficiencyName;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.util.Logging;
