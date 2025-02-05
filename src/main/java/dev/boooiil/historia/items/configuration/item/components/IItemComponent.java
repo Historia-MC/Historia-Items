@@ -12,4 +12,6 @@ public interface IItemComponent {
 
     public void setDefaultsToMeta(ItemStack item);
 
+    String getKey();
+
 }

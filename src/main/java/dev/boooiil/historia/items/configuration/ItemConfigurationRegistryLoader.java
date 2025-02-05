@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items.configuration;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +23,8 @@ import dev.boooiil.historia.items.util.Logging;
  * </p>
  */
 public class ItemConfigurationRegistryLoader {
+
+    private static final Set<Class<? extends IItemComponent>> REGISTERED_COMPONENTS = new HashSet<>();
 
     private static List<YamlConfiguration> configurations;
 
@@ -130,34 +133,18 @@ public class ItemConfigurationRegistryLoader {
 
                 ConfigurationSection section = configuration.getConfigurationSection(key);
 
-                if (section.contains("tool")) {
-                    Logging.debugToConsole(key, "had tool component.");
-                    components.put("tool", new ToolComponent());
-                }
+                for (Class<? extends IItemComponent> clazz : REGISTERED_COMPONENTS) {
+                    try {
+                        IItemComponent component = clazz.getDeclaredConstructor().newInstance();
+                        if (!section.contains(component.getKey()))
+                            continue;
 
-                if (section.contains("weapon")) {
-                    Logging.debugToConsole(key, "had weapon component.");
-                    // TODO: add weapon
-                }
+                        Logging.debugToConsole(key, "had", component.getKey(), "component.");
+                        components.put(component.getKey(), component);
 
-                if (section.contains("armor")) {
-                    Logging.debugToConsole(key, "had armor component.");
-                    // TODO: add armor
-                }
-
-                if (section.contains("modifier")) {
-                    Logging.debugToConsole(key, "had modifier component.");
-                    // TODO: add armor
-                }
-
-                if (section.contains("smelting")) {
-                    Logging.debugToConsole(key, "had smelting component.");
-                    // TODO: add armor
-                }
-
-                if (section.contains("executable")) {
-                    Logging.debugToConsole(key, "had executable component.");
-                    // TODO: add executable
+                    } catch (ReflectiveOperationException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 ItemConfigurationRegistry.register(key, new ItemConfiguration(section, components));
@@ -167,6 +154,14 @@ public class ItemConfigurationRegistryLoader {
         }
         // throw new Error("Unimplemented method.");
 
+    }
+
+    public static void registerComponent(Class<? extends IItemComponent> clazz) {
+        REGISTERED_COMPONENTS.add(clazz);
+    }
+
+    static {
+        registerComponent(ToolComponent.class);
     }
 
 }

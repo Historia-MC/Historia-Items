@@ -99,4 +99,9 @@ public class ToolComponent implements IItemComponent {
         item.setItemMeta(damageable);
 
     }
+
+    @Override
+    public String getKey() {
+        return "tool";
+    }
 }
