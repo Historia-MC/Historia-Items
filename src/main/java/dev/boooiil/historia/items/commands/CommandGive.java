@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.commands;
 
-import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
-import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
+import dev.boooiil.historia.items.configuration.ItemRegistry;
+import dev.boooiil.historia.items.item.HistoriaItem;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -33,7 +33,7 @@ import java.util.List;
  * @see Player
  * @see Bukkit
  * @see BaseItemConfiguration
- * @see ItemConfigurationRegistry
+ * @see ItemRegistry
  */
 public class CommandGive implements TabExecutor {
 
@@ -55,14 +55,14 @@ public class CommandGive implements TabExecutor {
         }
 
         Player player = Bukkit.getPlayer(args[0]);
-        ItemConfiguration itemConfiguration = ItemConfigurationRegistry.get(args[1]);
+        HistoriaItem historiaItem = ItemRegistry.get(args[1]);
 
-        if (itemConfiguration == null) {
+        if (historiaItem == null) {
             sender.sendMessage("Invalid item name.");
             return false;
         }
 
-        ItemStack stack = itemConfiguration.createItemStack();
+        ItemStack stack = historiaItem.createItemStack();
         player.getInventory().addItem(stack);
 
         Component message = Component.text("Gave " + stack.getAmount() + " ")
@@ -84,7 +84,7 @@ public class CommandGive implements TabExecutor {
         }
 
         if (args.length == 2) {
-            return ItemConfigurationRegistry.allKeys().stream()
+            return ItemRegistry.allKeys().stream()
                     .filter(key -> key.toLowerCase().startsWith(args[1].toLowerCase()))
                     .toList();
         }

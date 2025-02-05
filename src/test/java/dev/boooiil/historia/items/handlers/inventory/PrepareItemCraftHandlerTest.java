@@ -2,19 +2,19 @@ package dev.boooiil.historia.items.handlers.inventory;
 
 import java.util.UUID;
 
+import dev.boooiil.historia.items.configuration.ItemRegistry;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.ServerMock;
-import be.seeseemelk.mockbukkit.entity.EntityMock;
-import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import be.seeseemelk.mockbukkit.entity.ZombieMock;
+import org.mockbukkit.mockbukkit.MockBukkit;
+import org.mockbukkit.mockbukkit.ServerMock;
+import org.mockbukkit.mockbukkit.entity.EntityMock;
+import org.mockbukkit.mockbukkit.entity.PlayerMock;
+import org.mockbukkit.mockbukkit.entity.ZombieMock;
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
 import dev.boooiil.historia.items.util.Logging;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -55,7 +55,7 @@ public class PrepareItemCraftHandlerTest {
 
         // player.attack(entity);
 
-        player.getInventory().addItem(ItemConfigurationRegistry.get("Light_Tin_Sword").createItemStack());
+        player.getInventory().addItem(ItemRegistry.get("Light_Tin_Sword").createItemStack());
 
         for (ItemStack item : player.getInventory().getContents()) {
             if (item != null && item.getType() != Material.AIR) {

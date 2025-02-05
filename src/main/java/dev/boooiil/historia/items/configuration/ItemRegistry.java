@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
+import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.util.Logging;
 
 /**
  * <p>
- * The ItemConfigurationRegistry class is an abstract class that serves as the
+ * The ItemRegistry class is an abstract class that serves as the
  * base for all item configuration registry classes within the Historia plugin.
  * </p>
  * 
  * <p>
- * ItemConfigurationRegistry provides methods to register, deregister, update,
+ * ItemRegistry provides methods to register, deregister, update,
  * and get item configurations from the registry.
  * </p>
  */
-public abstract class ItemConfigurationRegistry {
+public abstract class ItemRegistry {
 
     /** The item configuration registry. */
-    protected static HashMap<String, ItemConfiguration> registry = new HashMap<>();
+    protected static HashMap<String, HistoriaItem> registry = new HashMap<>();
 
     /** item configuration registry default constructor */
-    public ItemConfigurationRegistry() {
+    public ItemRegistry() {
     }
 
     /**
@@ -39,7 +39,7 @@ public abstract class ItemConfigurationRegistry {
      * @param key           The key to register the configuration under.
      * @param configuration The configuration to register.
      */
-    public static void register(String key, ItemConfiguration configuration) {
+    public static void register(String key, HistoriaItem configuration) {
         Logging.debugToConsole("Registering " + key + " to item configuration registry.");
         registry.put(key, configuration);
     }
@@ -60,7 +60,7 @@ public abstract class ItemConfigurationRegistry {
      * @param key           The key to update.
      * @param configuration The new configuration.
      */
-    public static void update(String key, ItemConfiguration configuration) {
+    public static void update(String key, HistoriaItem configuration) {
         Logging.debugToConsole("Updating " + key + " in item configuration registry.");
         registry.put(key, configuration);
     }
@@ -109,7 +109,7 @@ public abstract class ItemConfigurationRegistry {
      * @param key The key to get the configuration for.
      * @return The configuration if it exists, null otherwise.
      */
-    public static ItemConfiguration get(String key) {
+    public static HistoriaItem get(String key) {
         Logging.debugToConsole("Obtaining:", key, "from registry.");
         return registry.get(key);
     }
