@@ -3,12 +3,14 @@ package dev.boooiil.historia.items.commands;
 import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
 import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -60,7 +62,15 @@ public class CommandGive implements TabExecutor {
             return false;
         }
 
-        player.getInventory().addItem(itemConfiguration.createItemStack());
+        ItemStack stack = itemConfiguration.createItemStack();
+        player.getInventory().addItem(stack);
+
+        Component message = Component.text("Gave " + stack.getAmount() + " ")
+                .append(stack.displayName())
+                .append(Component.text(" to "))
+                .append(Component.text(player.getName()).hoverEvent(player));
+
+        player.sendMessage(message);
         return true;
     }
 
