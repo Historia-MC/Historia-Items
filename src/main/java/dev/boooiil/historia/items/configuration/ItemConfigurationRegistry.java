@@ -1,6 +1,8 @@
 package dev.boooiil.historia.items.configuration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import dev.boooiil.historia.items.configuration.item.ItemConfiguration;
 import dev.boooiil.historia.items.util.Logging;
@@ -110,6 +112,10 @@ public abstract class ItemConfigurationRegistry {
     public static ItemConfiguration get(String key) {
         Logging.debugToConsole("Obtaining:", key, "from registry.");
         return registry.get(key);
+    }
+
+    public static List<String> allKeys() {
+        return new ArrayList<>(registry.keySet());
     }
 
 }
