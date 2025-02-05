@@ -1,0 +1,19 @@
+tool:
+  - "A <weight-lore-prefix> <item-displayname>."
+  - "<quality-lore-prefix>."
+  - ""
+  - "<tool-damage> damage."
+  - "<tool-speed> speed."
+  - "<tool-knockback> knockback."
+
+weapon:
+  - "<weapon-sweeping> sweep."
+
+armor:
+  - "A <weight-lore-prefix> <item-displayname>."
+  - "<quality-lore-prefix>."
+  - ""
+  - "<armor-defense> defense."
+
+foot:
+  - "<item-weight> weight."
