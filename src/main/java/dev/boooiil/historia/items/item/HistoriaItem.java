@@ -10,7 +10,6 @@ import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
-import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -79,9 +78,6 @@ public class HistoriaItem {
 
                     HashMap<String, List<String>> cLore = LoreConfiguration.get(key);
 
-                    Logging.debugToConsole(key);
-                    Logging.debugToConsole("" + cLore);
-
                     for (String sLore : cLore.get("head")) {
                         lore.add(Component.text(sLore));
                     }
@@ -103,8 +99,6 @@ public class HistoriaItem {
             }
 
         }
-
-        Logging.debugToConsole("" + lore);
 
         return new HistoriaItem(id, displayName, baseMaterial, lore, weight, components);
     }
