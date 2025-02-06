@@ -1,7 +1,5 @@
 package dev.boooiil.historia.items.util;
 
-import javax.annotation.Nullable;
-
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,38 +12,46 @@ import java.util.Optional;
 @NullMarked
 public class PDCUtils {
 
-    public static PersistentDataContainer getContainer(ItemStack item) {
-        return item.getItemMeta().getPersistentDataContainer();
+    public static Optional<PersistentDataContainer> getContainer(ItemStack item) {
+        if (item.hasItemMeta()) {
+            return Optional.of(getContainer(item.getItemMeta()));
+        } else {
+            Logging.debugToConsole("Tried to obtain the data container for", item.getType().name(),
+                    "but it did not have any meta.");
+
+            // cannot guarantee that every item passed through here is going to have a meta
+            return Optional.empty();
+        }
     }
 
     public static PersistentDataContainer getContainer(ItemMeta itemMeta) {
         return itemMeta.getPersistentDataContainer();
     }
 
-    @Nullable
-    public static <T> T getFromContainer(PersistentDataContainer container, NamespacedKey key,
+    public static <T> Optional<T> getFromContainer(PersistentDataContainer container, NamespacedKey key,
             PersistentDataType<T, T> type) {
         if (container.has(key)) {
-            return container.get(key, type);
-        } else
-            return null;
-    }
-
-    public static <T> Optional<T> getFromContainer(ItemStack item, NamespacedKey key,
-                                                   PersistentDataType<T, T> type) {
-        if (getContainer(item).has(key)) {
-            return Optional.ofNullable(getContainer(item).get(key, type));
+            return Optional.ofNullable(container.get(key, type));
         } else
             return Optional.empty();
     }
 
-    @Nullable
-    public static <T> T getFromContainer(ItemMeta itemMeta, NamespacedKey key,
+    public static <T> Optional<T> getFromContainer(ItemMeta itemMeta, NamespacedKey key,
             PersistentDataType<T, T> type) {
-        if (getContainer(itemMeta).has(key)) {
-            return getContainer(itemMeta).get(key, type);
-        } else
-            return null;
+        return getFromContainer(getContainer(itemMeta), key, type);
+    }
+
+    public static <T> Optional<T> getFromContainer(ItemStack item, NamespacedKey key,
+            PersistentDataType<T, T> type) {
+
+        if (item.hasItemMeta()) {
+            return getFromContainer(getContainer(item).get(), key, type);
+        } else {
+            Logging.debugToConsole("Tried to obtain data from the data container for", item.getType().name(),
+                    "but it did not have any meta.");
+            return Optional.empty();
+        }
+
     }
 
     public static <T> void setInContainer(PersistentDataContainer container, NamespacedKey key,
@@ -55,7 +61,7 @@ public class PDCUtils {
 
     public static <T> void setInContainer(ItemMeta itemMeta, NamespacedKey key,
             PersistentDataType<T, T> type, T value) {
-        getContainer(itemMeta).set(key, type, value);
+        setInContainer(getContainer(itemMeta), key, type, value);
     }
 
     public static <T> void setInContainer(ItemStack item, NamespacedKey key,
@@ -63,7 +69,7 @@ public class PDCUtils {
 
         ItemMeta meta = item.getItemMeta();
 
-        getContainer(meta).set(key, type, value);
+        setInContainer(meta, key, type, value);
 
         item.setItemMeta(meta);
     }
