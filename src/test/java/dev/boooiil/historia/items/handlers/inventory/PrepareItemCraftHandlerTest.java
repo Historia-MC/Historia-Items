@@ -2,9 +2,12 @@ package dev.boooiil.historia.items.handlers.inventory;
 
 import dev.boooiil.historia.items.configuration.ItemRegistry;
 import dev.boooiil.historia.items.item.HistoriaItem;
+import dev.boooiil.historia.items.item.component.ExecutorComponent;
 import dev.boooiil.historia.items.item.data.ArmorData;
+import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.data.ToolData;
 import dev.boooiil.historia.items.item.data.WeaponData;
+import dev.boooiil.historia.items.item.types.Actions;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -123,6 +126,26 @@ public class PrepareItemCraftHandlerTest {
 
                         assert (ad.getDefense() == defense);
                         assert (ad.maxDurability() == armorDamageable.getMaxDamage());
+                        break;
+
+                    case "executor":
+                        ExecutorData ed = ExecutorData.fromStack(item);
+                        ExecutorComponent ec = (ExecutorComponent) historiaItem.getComponentHolder().get(key);
+
+                        for (Actions action : ed.actions()) {
+
+                            Logging.debugToConsole("Action:", action.getLowercase());
+
+                            assert (action != Actions.UNKNOWN);
+                            assert (ec.actions().contains(action));
+
+                        }
+
+                        Logging.debugToConsole("Command:", ed.command());
+
+                        assert (ec.command().equals(ed.command()));
+                        break;
+
                 }
             }
         }
