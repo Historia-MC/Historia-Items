@@ -12,6 +12,14 @@ Light_Bronze_Leggings:
     defense: [2.0, 3.0]
     durability: [70, 125]
 
+  executor:
+    command: "/tp %player% 0 0 1"
+    actions:
+      - right_click
+      - sneak_right_click
+      - left_click
+      - sneak_left_click
+
 Moderate_Bronze_Leggings:
   material: GOLDEN_LEGGINGS
   amount: 1
