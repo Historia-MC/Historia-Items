@@ -1,23 +1,25 @@
 package dev.boooiil.historia.items.handlers.inventory;
 
-import java.util.UUID;
-
 import dev.boooiil.historia.items.configuration.ItemRegistry;
-import org.bukkit.Material;
+import dev.boooiil.historia.items.item.HistoriaItem;
+import dev.boooiil.historia.items.item.data.ArmorData;
+import dev.boooiil.historia.items.item.data.ToolData;
+import dev.boooiil.historia.items.item.data.WeaponData;
+
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
-import org.mockbukkit.mockbukkit.entity.EntityMock;
-import org.mockbukkit.mockbukkit.entity.PlayerMock;
-import org.mockbukkit.mockbukkit.entity.ZombieMock;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.util.Logging;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
+import dev.boooiil.historia.items.util.NumberUtils;
 
 public class PrepareItemCraftHandlerTest {
 
@@ -46,39 +48,84 @@ public class PrepareItemCraftHandlerTest {
     }
 
     @Test
-    public void doMainTest() {
-        PlayerMock player = server.addPlayer();
-        Logging.debugToConsole("Creating player", player.getName());
+    public void validateItems() {
+        for (String registeredItem : ItemRegistry.allKeys()) {
 
-        EntityMock entity = new ZombieMock(server, UUID.randomUUID());
-        Logging.debugToConsole("Creating entity", entity.getType().name());
+            HistoriaItem historiaItem = ItemRegistry.get(registeredItem);
 
-        // player.attack(entity);
+            Logging.debugToConsole("Testing item:", historiaItem.getConfigurationId());
 
-        player.getInventory().addItem(ItemRegistry.get("Light_Tin_Sword").createItemStack());
+            ItemStack item = historiaItem.createItemStack();
+            Logging.debugToConsole(item.getItemMeta().getPersistentDataContainer().getKeys() + "");
 
-        for (ItemStack item : player.getInventory().getContents()) {
-            if (item != null && item.getType() != Material.AIR) {
-                System.out.println("Item found: " + item.getType());
+            assert (item.hasItemMeta());
+
+            ItemMeta meta = item.getItemMeta();
+
+            for (String key : historiaItem.getComponentHolder().keySet()) {
+
+                switch (key) {
+                    case "tool":
+                        ToolData td = ToolData.fromStack(item);
+
+                        AttributeModifier damageAttr = meta.getAttributeModifiers(Attribute.ATTACK_DAMAGE).iterator()
+                                .next();
+
+                        AttributeModifier speedAttr = meta.getAttributeModifiers(Attribute.ATTACK_SPEED).iterator()
+                                .next();
+
+                        AttributeModifier knockbackAttr = meta.getAttributeModifiers(Attribute.ATTACK_KNOCKBACK)
+                                .iterator().next();
+
+                        Damageable toolDamageable = (Damageable) item.getItemMeta();
+                        float damage = NumberUtils.roundFloat((float) damageAttr.getAmount(), 2);
+                        float speed = NumberUtils.roundFloat((float) speedAttr.getAmount(), 2);
+                        float knockback = NumberUtils.roundFloat((float) knockbackAttr.getAmount(), 2);
+
+                        Logging.debugToConsole("Damage", td.attackDamage() + " : " + damage);
+                        Logging.debugToConsole("Speed", td.attackSpeed() + " : " + speed);
+                        Logging.debugToConsole("Knockback", td.knockback() + " : " + knockback);
+                        Logging.debugToConsole("Durability",
+                                td.maxDurability() + " : " + toolDamageable.getMaxDamage());
+
+                        assert (td.attackDamage() == damage);
+                        assert (td.attackSpeed() == speed);
+                        assert (td.knockback() == knockback);
+                        assert (td.maxDurability() == toolDamageable.getMaxDamage());
+                        break;
+
+                    case "weapon":
+                        WeaponData wd = WeaponData.fromStack(item);
+
+                        AttributeModifier sweepingAttr = meta.getAttributeModifiers(Attribute.SWEEPING_DAMAGE_RATIO)
+                                .iterator()
+                                .next();
+
+                        float sweeping = NumberUtils.roundFloat((float) sweepingAttr.getAmount(), 2);
+
+                        Logging.debugToConsole("Damage", wd.sweeping() + " : " + sweeping);
+                        assert (wd.sweeping() == sweeping);
+
+                        break;
+
+                    case "armor":
+                        ArmorData ad = ArmorData.fromStack(item);
+
+                        AttributeModifier defenseAttr = meta.getAttributeModifiers(Attribute.ARMOR).iterator()
+                                .next();
+
+                        Damageable armorDamageable = (Damageable) item.getItemMeta();
+                        float defense = NumberUtils.roundFloat((float) defenseAttr.getAmount(), 2);
+
+                        Logging.debugToConsole("Defense", ad.getDefense() + " : " + defense);
+                        Logging.debugToConsole("Durability",
+                                ad.maxDurability() + " : " + armorDamageable.getMaxDamage());
+
+                        assert (ad.getDefense() == defense);
+                        assert (ad.maxDurability() == armorDamageable.getMaxDamage());
+                }
             }
         }
-
-        System.out.println(player.getInventory().getItemInMainHand().getItemMeta().getDisplayName());
-
-        // if (!player.getInventory().getItemInMainHand().hasItemMeta()
-        // || player.getInventory().getItemInMainHand().getItemMeta().lore() == null
-        // || player.getInventory().getItemInMainHand().getItemMeta().lore().isEmpty())
-        // {
-
-        // return;
-        // }
-
-        for (Component component : player.getInventory().getItemInMainHand().getItemMeta().lore()) {
-            TextComponent textComponent = (TextComponent) component;
-
-            System.out.println(textComponent.content());
-        }
-        // do main file tests
     }
 
 }
