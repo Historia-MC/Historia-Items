@@ -21,8 +21,7 @@ public class ToolComponent implements ItemComponent {
             List<Float> damageRange,
             List<Float> speedRange,
             List<Float> knockbackRange,
-            List<Integer> durabilityRange
-    ) {
+            List<Integer> durabilityRange) {
         this.damageRange = damageRange;
         this.speedRange = speedRange;
         this.knockbackRange = knockbackRange;
@@ -34,36 +33,19 @@ public class ToolComponent implements ItemComponent {
                 section.getFloatList("damage"),
                 section.getFloatList("speed"),
                 section.getFloatList("knockback"),
-                section.getIntegerList("durability")
-        );
-    }
-
-    public List<Float> getDamageRange() {
-        return damageRange;
-    }
-
-    public List<Float> getSpeedRange() {
-        return speedRange;
-    }
-
-    public List<Float> getKnockbackRange() {
-        return knockbackRange;
-    }
-
-    public List<Integer> getDurabilityRange() {
-        return durabilityRange;
+                section.getIntegerList("durability"));
     }
 
     @Override
     public void applyDefaultData(ItemStack item) {
 
         float damage = NumberUtils
-                .roundFloat(NumberUtils.random(this.getDamageRange().get(0), this.getDamageRange().get(1)), 2);
+                .roundFloat(NumberUtils.random(this.damageRange().get(0), this.damageRange().get(1)), 2);
         float speed = NumberUtils
-                .roundFloat(NumberUtils.random(this.getSpeedRange().get(0), this.getSpeedRange().get(1)), 2);
+                .roundFloat(NumberUtils.random(this.speedRange().get(0), this.speedRange().get(1)), 2);
         float knockback = NumberUtils
-                .roundFloat(NumberUtils.random(this.getKnockbackRange().get(0), this.getKnockbackRange().get(1)), 2);
-        int durability = NumberUtils.randomInt(this.getDurabilityRange().get(0), this.getDurabilityRange().get(1));
+                .roundFloat(NumberUtils.random(this.knockbackRange().get(0), this.knockbackRange().get(1)), 2);
+        int durability = NumberUtils.randomInt(this.durabilityRange().get(0), this.durabilityRange().get(1));
 
         ToolData toolData = new ToolData(damage, speed, knockback, durability);
         toolData.apply(item);
@@ -92,8 +74,10 @@ public class ToolComponent implements ItemComponent {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (obj == this)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
         var that = (ToolComponent) obj;
         return Objects.equals(this.damageRange, that.damageRange) &&
                 Objects.equals(this.speedRange, that.speedRange) &&
