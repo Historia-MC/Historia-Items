@@ -1,19 +1,14 @@
 package dev.boooiil.historia.items.item.data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
 import dev.boooiil.historia.items.item.ItemData;
-import io.papermc.paper.datacomponent.DataComponentTypes;
-import io.papermc.paper.datacomponent.item.ItemAttributeModifiers;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -78,33 +73,36 @@ public class ToolData implements ItemData {
         }
 
         protected void applyData(ItemStack stack) {
-                ItemMeta meta = stack.getItemMeta();
 
                 PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT,
-                                this.attackDamage);
+                                this.attackDamage - 1);
                 PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT,
-                                this.attackSpeed);
+                                this.attackSpeed - 4);
                 PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT,
                                 this.knockback);
                 PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER,
                                 this.maxDurability);
 
                 AttributeModifier damageAttr = new AttributeModifier(Main.getNamespacedKey("tool-damage"),
-                                this.attackDamage - 1,
-                                AttributeModifier.Operation.ADD_NUMBER);
+                                this.attackDamage - 1, AttributeModifier.Operation.ADD_NUMBER);
                 AttributeModifier speedAttr = new AttributeModifier(Main.getNamespacedKey("tool-speed"),
-                                this.attackSpeed - 4,
-                                AttributeModifier.Operation.ADD_NUMBER);
+                                this.attackSpeed - 4, AttributeModifier.Operation.ADD_NUMBER);
                 AttributeModifier knockbackAttr = new AttributeModifier(Main.getNamespacedKey("tool-knockback"),
-                                this.knockback,
-                                AttributeModifier.Operation.ADD_NUMBER);
+                                this.knockback, AttributeModifier.Operation.ADD_NUMBER);
 
-                meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, damageAttr);
-                meta.addAttributeModifier(Attribute.ATTACK_SPEED, speedAttr);
-                meta.addAttributeModifier(Attribute.ATTACK_KNOCKBACK, knockbackAttr);
+                ItemMeta meta = stack.getItemMeta();
+                Damageable damageable = (Damageable) meta;
 
-                meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-                stack.setItemMeta(meta);
+                damageable.addAttributeModifier(Attribute.ATTACK_DAMAGE, damageAttr);
+                damageable.addAttributeModifier(Attribute.ATTACK_SPEED, speedAttr);
+                damageable.addAttributeModifier(Attribute.ATTACK_KNOCKBACK, knockbackAttr);
+
+                damageable.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+                damageable.setMaxDamage(this.maxDurability);
+
+                stack.setItemMeta(damageable);
+                // stack.setData(DataComponentTypes.MAX_DAMAGE, this.maxDurability);
 
                 // stack.setData(DataComponentTypes.ATTRIBUTE_MODIFIERS,
                 // ItemAttributeModifiers.itemAttributes()
@@ -133,8 +131,6 @@ public class ToolData implements ItemData {
                 for (Component component : lore) {
 
                         TextComponent textComponent = (TextComponent) component;
-
-                        Logging.debugToConsole(configId, "" + textComponent);
 
                         if (textComponent.content().contains("<tool-damage>")) {
 
@@ -179,4 +175,21 @@ public class ToolData implements ItemData {
                 meta.lore(nLore);
                 stack.setItemMeta(meta);
         }
+
+        public float attackDamage() {
+                return this.attackDamage;
+        }
+
+        public float attackSpeed() {
+                return this.attackSpeed;
+        }
+
+        public float knockback() {
+                return this.knockback;
+        }
+
+        public int maxDurability() {
+                return this.maxDurability;
+        }
+
 }
