@@ -11,7 +11,7 @@ public class LoreConfiguration {
 
     private static YamlConfiguration loreConfiguration;
 
-    private static HashMap<String, List<String>> loreMap = new HashMap<>();
+    private static HashMap<String, HashMap<String, List<String>>> loreMap = new HashMap<>();
 
     static {
         loreConfiguration = FileIO.findYamlConfiguration("component-lore.yml");
@@ -19,13 +19,17 @@ public class LoreConfiguration {
 
     public static void initLoreMap() {
         for (String key : loreConfiguration.getKeys(false)) {
+            HashMap<String, List<String>> innerMap = new HashMap<>();
 
-            loreMap.put(key, loreConfiguration.getStringList(key));
+            innerMap.put("head", loreConfiguration.getStringList(key + ".head"));
+            innerMap.put("attribute", loreConfiguration.getStringList(key + ".attribute"));
+
+            loreMap.put(key, innerMap);
 
         }
     }
 
-    public static List<String> get(String key) {
+    public static HashMap<String, List<String>> get(String key) {
         if (loreMap.containsKey(key)) {
             return loreMap.get(key);
 

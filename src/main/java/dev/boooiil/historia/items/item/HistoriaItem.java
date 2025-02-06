@@ -37,8 +37,7 @@ public class HistoriaItem {
             Material baseMaterial,
             List<Component> lore,
             double weight,
-            Map<String, ItemComponent> components
-    ) {
+            Map<String, ItemComponent> components) {
         this.id = id;
         this.displayName = displayName;
         this.baseMaterial = baseMaterial;
@@ -70,19 +69,35 @@ public class HistoriaItem {
             for (String sLore : loreList) {
                 lore.add(Component.text(sLore));
             }
-        } if (!components.isEmpty()) {
+        }
+        if (!components.isEmpty()) {
 
             for (String key : components.keySet()) {
 
                 if (LoreConfiguration.contains(key)) {
-                    List<String> loreList = LoreConfiguration.get(key);
-                    for (String sLore : loreList) {
+                    lore.add(Component.text("[" + key.toUpperCase() + "]"));
+
+                    HashMap<String, List<String>> cLore = LoreConfiguration.get(key);
+
+                    Logging.debugToConsole(key);
+                    Logging.debugToConsole("" + cLore);
+
+                    for (String sLore : cLore.get("head")) {
                         lore.add(Component.text(sLore));
                     }
+
+                    lore.add(Component.text(""));
+
+                    for (String sLore : cLore.get("attribute")) {
+                        lore.add(Component.text(sLore));
+                    }
+
+                    lore.add(Component.text(""));
+
                 }
             }
 
-            List<String> loreList = LoreConfiguration.get("foot");
+            List<String> loreList = LoreConfiguration.get("weight").get("attribute");
             for (String sLore : loreList) {
                 lore.add(Component.text(sLore));
             }
