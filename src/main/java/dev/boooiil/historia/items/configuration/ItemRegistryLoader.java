@@ -1,10 +1,8 @@
 package dev.boooiil.historia.items.configuration;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import dev.boooiil.historia.items.item.ItemComponent;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
