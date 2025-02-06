@@ -27,6 +27,15 @@ public class WeaponData implements ItemData {
         this.sweeping = sweeping;
     }
 
+    public static WeaponData fromStack(ItemStack stack) {
+
+        float sweeping = PDCUtils
+                .getFromContainer(stack, Main.getNamespacedKey("weapon-sweeping"), PersistentDataType.FLOAT)
+                .orElseThrow();
+
+        return new WeaponData(sweeping);
+    }
+
     @Override
     public void apply(ItemStack stack) {
         writeData(stack);
@@ -72,11 +81,9 @@ public class WeaponData implements ItemData {
 
             TextComponent textComponent = (TextComponent) component;
 
-            Logging.debugToConsole(configId, "" + textComponent);
-
             if (textComponent.content().contains("<weapon-sweeping>")) {
 
-                Logging.debugToConsole(configId, "has damage placeholder.");
+                Logging.debugToConsole(configId, "has sweeping placeholder.");
 
                 nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
                         Placeholder.component("weapon-sweeping",
@@ -91,4 +98,9 @@ public class WeaponData implements ItemData {
         meta.lore(nLore);
         stack.setItemMeta(meta);
     }
+
+    public float sweeping() {
+        return sweeping;
+    }
+
 }
