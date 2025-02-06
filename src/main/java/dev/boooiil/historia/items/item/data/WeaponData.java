@@ -43,11 +43,11 @@ public class WeaponData implements ItemData {
     }
 
     protected void writeData(ItemStack stack) {
-        ItemMeta meta = stack.getItemMeta();
 
         PDCUtils.setInContainer(stack, Main.getNamespacedKey("weapon-sweeping"), PersistentDataType.FLOAT,
                 this.sweeping);
 
+        ItemMeta meta = stack.getItemMeta();
         AttributeModifier sweepingAttr = new AttributeModifier(Main.getNamespacedKey("weapon-sweeping"),
                 this.sweeping,
                 AttributeModifier.Operation.ADD_NUMBER);
