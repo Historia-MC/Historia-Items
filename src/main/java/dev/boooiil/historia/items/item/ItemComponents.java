@@ -1,6 +1,9 @@
 package dev.boooiil.historia.items.item;
 
+import dev.boooiil.historia.items.item.component.ArmorComponent;
 import dev.boooiil.historia.items.item.component.ToolComponent;
+import dev.boooiil.historia.items.item.component.WeaponComponent;
+
 import org.bukkit.configuration.ConfigurationSection;
 import org.jspecify.annotations.NullMarked;
 
@@ -27,5 +30,7 @@ public class ItemComponents {
 
     static {
         register("tool", ToolComponent::fromConfig);
+        register("weapon", WeaponComponent::fromConfig);
+        register("armor", ArmorComponent::fromConfig);
     }
 }
