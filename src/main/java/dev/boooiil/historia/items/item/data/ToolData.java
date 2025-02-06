@@ -29,142 +29,154 @@ import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 public class ToolData implements ItemData {
-    float attackDamage;
-    float attackSpeed;
-    float knockback;
-    int maxDurability;
+        float attackDamage;
+        float attackSpeed;
+        float knockback;
+        int maxDurability;
 
-    public ToolData(float attackDamage, float attackSpeed, float knockback, int maxDurability) {
-        this.attackDamage = attackDamage;
-        this.attackSpeed = attackSpeed;
-        this.knockback = knockback;
-        this.maxDurability = maxDurability;
-    }
-
-    public static ToolData fromStack(ItemStack stack) {
-        float attackDamage = NumberUtils.roundFloat(
-                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT)
-                        .orElse(0f),
-                2);
-
-        float attackSpeed = NumberUtils.roundFloat(
-                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT)
-                        .orElse(0f),
-                2);
-
-        float knockback = NumberUtils.roundFloat(
-                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT)
-                        .orElse(0f),
-                2);
-
-        int maxDurability = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER)
-                .orElse((int) stack.getType().getMaxDurability());
-
-        return new ToolData(attackDamage, attackSpeed, knockback, maxDurability);
-    }
-
-    @Override
-    public void apply(ItemStack stack) {
-        // TODO: apply modified quality and other information to stack
-
-        // should be fine since item is passed as ref
-        applyData(stack);
-        applyLore(stack);
-    }
-
-    protected void applyData(ItemStack stack) {
-        ItemMeta meta = stack.getItemMeta();
-
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT,
-                this.attackDamage);
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT,
-                this.attackSpeed);
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT,
-                this.knockback);
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER,
-                this.maxDurability);
-
-        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        stack.setItemMeta(meta);
-
-        AttributeModifier damageAttr = new AttributeModifier(Main.getNamespacedKey("tool-damage"),
-                this.attackDamage - 1,
-                AttributeModifier.Operation.ADD_NUMBER);
-        AttributeModifier speedAttr = new AttributeModifier(Main.getNamespacedKey("tool-speed"),
-                this.attackSpeed - 4,
-                AttributeModifier.Operation.ADD_NUMBER);
-        AttributeModifier knockbackAttr = new AttributeModifier(Main.getNamespacedKey("tool-knockback"),
-                this.knockback,
-                AttributeModifier.Operation.ADD_NUMBER);
-
-        stack.setData(DataComponentTypes.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.itemAttributes()
-                .addModifier(Attribute.ATTACK_DAMAGE, damageAttr)
-                .addModifier(Attribute.ATTACK_SPEED, speedAttr)
-                .addModifier(Attribute.ATTACK_KNOCKBACK, knockbackAttr)
-        );
-        stack.setData(DataComponentTypes.MAX_DAMAGE, this.maxDurability);
-    }
-
-    protected void applyLore(ItemStack stack) {
-
-        String configId = PDCUtils.getFromContainer(PDCUtils.getContainer(stack), Main.getNamespacedKey("config-id"), PersistentDataType.STRING);
-
-
-        ItemMeta meta = stack.getItemMeta();
-
-
-        if (!meta.hasLore() || meta.lore().isEmpty()) {
-            Logging.debugToConsole(configId, "has no lore, skipping placeholder.");
-            return;
+        public ToolData(float attackDamage, float attackSpeed, float knockback, int maxDurability) {
+                this.attackDamage = attackDamage;
+                this.attackSpeed = attackSpeed;
+                this.knockback = knockback;
+                this.maxDurability = maxDurability;
         }
 
-        List<Component> lore = meta.lore();
-        List<Component> nLore = new ArrayList<>();
+        public static ToolData fromStack(ItemStack stack) {
+                float attackDamage = NumberUtils.roundFloat(
+                                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-damage"),
+                                                PersistentDataType.FLOAT)
+                                                .orElse(0f),
+                                2);
 
-        for (Component component : lore) {
+                float attackSpeed = NumberUtils.roundFloat(
+                                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-speed"),
+                                                PersistentDataType.FLOAT)
+                                                .orElse(0f),
+                                2);
 
-            TextComponent textComponent = (TextComponent) component;
+                float knockback = NumberUtils.roundFloat(
+                                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("tool-knockback"),
+                                                PersistentDataType.FLOAT)
+                                                .orElse(0f),
+                                2);
 
-            Logging.debugToConsole(configId, "" + textComponent);
+                int maxDurability = PDCUtils
+                                .getFromContainer(stack, Main.getNamespacedKey("tool-durability"),
+                                                PersistentDataType.INTEGER)
+                                .orElse((int) stack.getType().getMaxDurability());
 
-            if (textComponent.content().contains("<tool-damage>")) {
-
-                Logging.debugToConsole(configId, "has damage placeholder.");
-
-                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                        Placeholder.component("tool-damage", Component.text(this.attackDamage))));
-                continue;
-            }
-            if (textComponent.content().contains("<tool-speed>")) {
-
-                Logging.debugToConsole(configId, "has speed placeholder.");
-
-                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                        Placeholder.component("tool-speed", Component.text(this.attackSpeed))));
-                continue;
-            }
-            if (textComponent.content().contains("<tool-knockback>")) {
-
-                Logging.debugToConsole(configId, "has knockback placeholder.");
-
-                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                        Placeholder.component("tool-knockback", Component.text(this.knockback))));
-                continue;
-            }
-            if (textComponent.content().contains("<tool-durability>")) {
-
-                Logging.debugToConsole(configId, "has durability placeholder.");
-
-                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                        Placeholder.component("tool-damage", Component.text(this.maxDurability))));
-                continue;
-            }
-
-            nLore.add(component);
-
+                return new ToolData(attackDamage, attackSpeed, knockback, maxDurability);
         }
 
-        meta.lore(nLore);
-        stack.setItemMeta(meta);
-    }
+        @Override
+        public void apply(ItemStack stack) {
+                // TODO: apply modified quality and other information to stack
+
+                // should be fine since item is passed as ref
+                applyData(stack);
+                applyLore(stack);
+        }
+
+        protected void applyData(ItemStack stack) {
+                ItemMeta meta = stack.getItemMeta();
+
+                PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-damage"), PersistentDataType.FLOAT,
+                                this.attackDamage);
+                PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-speed"), PersistentDataType.FLOAT,
+                                this.attackSpeed);
+                PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-knockback"), PersistentDataType.FLOAT,
+                                this.knockback);
+                PDCUtils.setInContainer(stack, Main.getNamespacedKey("tool-durability"), PersistentDataType.INTEGER,
+                                this.maxDurability);
+
+                AttributeModifier damageAttr = new AttributeModifier(Main.getNamespacedKey("tool-damage"),
+                                this.attackDamage - 1,
+                                AttributeModifier.Operation.ADD_NUMBER);
+                AttributeModifier speedAttr = new AttributeModifier(Main.getNamespacedKey("tool-speed"),
+                                this.attackSpeed - 4,
+                                AttributeModifier.Operation.ADD_NUMBER);
+                AttributeModifier knockbackAttr = new AttributeModifier(Main.getNamespacedKey("tool-knockback"),
+                                this.knockback,
+                                AttributeModifier.Operation.ADD_NUMBER);
+
+                meta.addAttributeModifier(Attribute.ATTACK_DAMAGE, damageAttr);
+                meta.addAttributeModifier(Attribute.ATTACK_SPEED, speedAttr);
+                meta.addAttributeModifier(Attribute.ATTACK_KNOCKBACK, knockbackAttr);
+
+                meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                stack.setItemMeta(meta);
+
+                // stack.setData(DataComponentTypes.ATTRIBUTE_MODIFIERS,
+                // ItemAttributeModifiers.itemAttributes()
+                // .addModifier(Attribute.ATTACK_DAMAGE, damageAttr)
+                // .addModifier(Attribute.ATTACK_SPEED, speedAttr)
+                // .addModifier(Attribute.ATTACK_KNOCKBACK, knockbackAttr)
+                // );
+                // stack.setData(DataComponentTypes.MAX_DAMAGE, this.maxDurability);
+        }
+
+        protected void applyLore(ItemStack stack) {
+
+                String configId = PDCUtils.getFromContainer(stack,
+                                Main.getNamespacedKey("config-id"), PersistentDataType.STRING).orElse("");
+
+                ItemMeta meta = stack.getItemMeta();
+
+                if (!meta.hasLore() || meta.lore().isEmpty()) {
+                        Logging.debugToConsole(configId, "has no lore, skipping placeholder.");
+                        return;
+                }
+
+                List<Component> lore = meta.lore();
+                List<Component> nLore = new ArrayList<>();
+
+                for (Component component : lore) {
+
+                        TextComponent textComponent = (TextComponent) component;
+
+                        Logging.debugToConsole(configId, "" + textComponent);
+
+                        if (textComponent.content().contains("<tool-damage>")) {
+
+                                Logging.debugToConsole(configId, "has damage placeholder.");
+
+                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                                                Placeholder.component("tool-damage",
+                                                                Component.text(this.attackDamage))));
+                                continue;
+                        }
+                        if (textComponent.content().contains("<tool-speed>")) {
+
+                                Logging.debugToConsole(configId, "has speed placeholder.");
+
+                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                                                Placeholder.component("tool-speed", Component.text(this.attackSpeed))));
+                                continue;
+                        }
+                        if (textComponent.content().contains("<tool-knockback>")) {
+
+                                Logging.debugToConsole(configId, "has knockback placeholder.");
+
+                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                                                Placeholder.component("tool-knockback",
+                                                                Component.text(this.knockback))));
+                                continue;
+                        }
+                        if (textComponent.content().contains("<tool-durability>")) {
+
+                                Logging.debugToConsole(configId, "has durability placeholder.");
+
+                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
+                                                Placeholder.component("tool-damage",
+                                                                Component.text(this.maxDurability))));
+                                continue;
+                        }
+
+                        nLore.add(component);
+
+                }
+
+                meta.lore(nLore);
+                stack.setItemMeta(meta);
+        }
 }
