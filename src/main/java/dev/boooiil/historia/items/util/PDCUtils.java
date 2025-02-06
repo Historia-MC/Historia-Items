@@ -56,6 +56,8 @@ public class PDCUtils {
 
     public static <T> void setInContainer(PersistentDataContainer container, NamespacedKey key,
             PersistentDataType<T, T> type, T value) {
+
+        Logging.debugToConsole("Setting into container:", "" + key, "" + type.getPrimitiveType(), "" + value);
         container.set(key, type, value);
     }
 
