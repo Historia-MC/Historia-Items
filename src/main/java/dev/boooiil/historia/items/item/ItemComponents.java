@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items.item;
 
 import dev.boooiil.historia.items.item.component.ArmorComponent;
+import dev.boooiil.historia.items.item.component.ExecutorComponent;
 import dev.boooiil.historia.items.item.component.ToolComponent;
 import dev.boooiil.historia.items.item.component.WeaponComponent;
 
@@ -32,5 +33,6 @@ public class ItemComponents {
         register("tool", ToolComponent::fromConfig);
         register("weapon", WeaponComponent::fromConfig);
         register("armor", ArmorComponent::fromConfig);
+        register("executor", ExecutorComponent::fromConfig);
     }
 }
