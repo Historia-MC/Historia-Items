@@ -53,6 +53,7 @@ public class ExecutorData implements ItemData {
                             ec.executables().get(trigger).commands(),
                             ec.executables().get(trigger).cooldown(),
                             uses,
+                            ec.executables().get(trigger).hasElevation(),
                             hasCooldown));
         }
 

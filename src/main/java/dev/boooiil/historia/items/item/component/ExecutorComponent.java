@@ -46,8 +46,9 @@ public class ExecutorComponent implements ItemComponent {
             List<String> commands = triggerSection.getStringList("commands");
             Integer cooldown = triggerSection.getInt("cooldown");
             Integer uses = triggerSection.getInt("uses");
+            boolean hasElevation = triggerSection.getBoolean("elevation");
 
-            executables.put(trigger, new ItemExecutable(commands, cooldown, uses, false));
+            executables.put(trigger, new ItemExecutable(commands, cooldown, uses, hasElevation, false));
 
         }
 
