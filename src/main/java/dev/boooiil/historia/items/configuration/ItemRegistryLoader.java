@@ -2,6 +2,7 @@ package dev.boooiil.historia.items.configuration;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,6 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.util.Logging;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * <p>
@@ -24,19 +26,6 @@ public class ItemRegistryLoader {
 
     /** item configuration registry default constructor */
     private ItemRegistryLoader() {
-    };
-
-    /**
-     * Initialize the YAML configurations within this registry loader. This does not
-     * directly load the configurations into the registry, but utilizes the
-     * {@link ItemRegistryLoader#load()} method after the
-     * configurations are initialized.
-     */
-    public static void initialize() {
-
-        Logging.debugToConsole("Initializing ItemRegistryLoader...");
-
-        load();
 
     }
 
@@ -45,22 +34,22 @@ public class ItemRegistryLoader {
      * the plugin. Other plugins will have to load their own
      * configurations with
      */
-    public static void load() {
-        configurations = FileIO.loadYamlConfigurationsFromPlugins();
-
-        populate();
+    @ApiStatus.Experimental
+    public static void load(Supplier<List<YamlConfiguration>> configSupplier) {
+        Logging.debugToConsole("Initializing ItemRegistryLoader...");
+        configurations = configSupplier.get();
+        populate(configurations);
     }
 
     /**
-     * Reloads the {@link ItemRegistryLoader} by reinitializing the
-     * YamlConfigurations and calling the load method. This will only reload the
-     * configurations provided by THIS plugin. Other plugins will have to handle
-     * their own reloading.
+     * Loads the ItemRegistry with the YamlConfigurations provided by
+     * the plugin. Other plugins will have to load their own
+     * configurations with
      */
-    public static void reload() {
-
-        initialize();
-
+    public static void load() {
+        Logging.debugToConsole("Initializing ItemRegistryLoader...");
+        configurations = FileIO.loadYamlConfigurationsFromPlugins();
+        populate(configurations);
     }
 
     /**
@@ -113,7 +102,7 @@ public class ItemRegistryLoader {
      * 
      * @param type          The type of the configuration to populate the registry
      */
-    public static void populate() {
+    public static void populate(List<YamlConfiguration> configurations) {
 
         for (YamlConfiguration configuration : configurations) {
 

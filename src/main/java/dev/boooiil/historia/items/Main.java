@@ -54,7 +54,7 @@ public class Main extends JavaPlugin {
         FileIO.checkAndSaveResources("items");
 
         LoreConfiguration.initLoreMap();
-        ItemRegistryLoader.initialize();
+        ItemRegistryLoader.load();
 
     }
 
