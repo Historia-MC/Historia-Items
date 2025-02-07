@@ -14,10 +14,8 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
+import dev.boooiil.historia.items.util.KyoriUtils;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
 public class WeaponData implements ItemData {
 
@@ -79,15 +77,12 @@ public class WeaponData implements ItemData {
 
         for (Component component : lore) {
 
-            TextComponent textComponent = (TextComponent) component;
-
-            if (textComponent.content().contains("<weapon-sweeping>")) {
+            if (KyoriUtils.contains(component, "<weapon-sweeping>")) {
 
                 Logging.debugToConsole(configId, "has sweeping placeholder.");
 
-                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                        Placeholder.component("weapon-sweeping",
-                                Component.text(this.sweeping))));
+                nLore.add(KyoriUtils.replaceComponent(component, "weapon-sweeping", this.sweeping));
+
                 continue;
             }
 

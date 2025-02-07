@@ -15,10 +15,8 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
+import dev.boooiil.historia.items.util.KyoriUtils;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 
 public class ArmorData implements ItemData {
 
@@ -95,15 +93,12 @@ public class ArmorData implements ItemData {
 
         for (Component component : lore) {
 
-            TextComponent textComponent = (TextComponent) component;
-
-            if (textComponent.content().contains("<armor-defense>")) {
+            if (KyoriUtils.contains(component, "<armor-defense>")) {
 
                 Logging.debugToConsole(configId, "has defense placeholder.");
 
-                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                        Placeholder.component("armor-defense",
-                                Component.text(this.defense))));
+                nLore.add(KyoriUtils.replaceComponent(component, "armor-defense", this.defense));
+
                 continue;
             }
 

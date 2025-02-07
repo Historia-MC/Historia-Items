@@ -16,10 +16,8 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
+import dev.boooiil.historia.items.util.KyoriUtils;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
@@ -130,41 +128,36 @@ public class ToolData implements ItemData {
 
                 for (Component component : lore) {
 
-                        TextComponent textComponent = (TextComponent) component;
-
-                        if (textComponent.content().contains("<tool-damage>")) {
+                        if (KyoriUtils.contains(component, "<tool-damage>")) {
 
                                 Logging.debugToConsole(configId, "has damage placeholder.");
 
-                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                                                Placeholder.component("tool-damage",
-                                                                Component.text(this.attackDamage))));
+                                nLore.add(KyoriUtils.replaceComponent(component, "tool-damage",
+                                                attackDamage));
                                 continue;
                         }
-                        if (textComponent.content().contains("<tool-speed>")) {
+                        if (KyoriUtils.contains(component, "<tool-speed>")) {
 
                                 Logging.debugToConsole(configId, "has speed placeholder.");
 
-                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                                                Placeholder.component("tool-speed", Component.text(this.attackSpeed))));
+                                nLore.add(KyoriUtils.replaceComponent(component, "tool-speed",
+                                                attackSpeed));
                                 continue;
                         }
-                        if (textComponent.content().contains("<tool-knockback>")) {
+                        if (KyoriUtils.contains(component, "<tool-knockback>")) {
 
                                 Logging.debugToConsole(configId, "has knockback placeholder.");
 
-                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                                                Placeholder.component("tool-knockback",
-                                                                Component.text(this.knockback))));
+                                nLore.add(KyoriUtils.replaceComponent(component, "tool-knockback",
+                                                knockback));
                                 continue;
                         }
-                        if (textComponent.content().contains("<tool-durability>")) {
+                        if (KyoriUtils.contains(component, "<tool-durability>")) {
 
                                 Logging.debugToConsole(configId, "has durability placeholder.");
 
-                                nLore.add(MiniMessage.miniMessage().deserialize(textComponent.content(),
-                                                Placeholder.component("tool-damage",
-                                                                Component.text(this.maxDurability))));
+                                nLore.add(KyoriUtils.replaceComponent(component, "tool-durability",
+                                                maxDurability));
                                 continue;
                         }
 
