@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.item.types;
 
 import dev.boooiil.historia.items.util.Logging;
 
-public enum Actions {
+public enum Triggers {
     RIGHT_CLICK(1),
     LEFT_CLICK(2),
     RIGHT_CLICK_BLOCK(3),
@@ -28,12 +28,12 @@ public enum Actions {
     THROW(23),
     CROUCH(24),
     UNCROUCH(25),
-    UNKNOWN(0); // Default ID for unknown actions
+    UNKNOWN(0); // Default ID for unknown triggers
 
     private final int id;
     private final String lowercase;
 
-    Actions(int id) {
+    Triggers(int id) {
         this.id = id;
         this.lowercase = this.name().toLowerCase();
     }
@@ -51,25 +51,25 @@ public enum Actions {
         return lowercase;
     }
 
-    public static Actions fromId(int id) {
-        for (Actions action : values()) {
-            if (action.id == id) {
-                return action;
+    public static Triggers fromId(int id) {
+        for (Triggers trigger : values()) {
+            if (trigger.id == id) {
+                return trigger;
             }
         }
 
-        Logging.errorToConsole("Tried to get action with id: " + id, "but it did not exist.");
+        Logging.errorToConsole("Tried to get trigger with id: " + id, "but it did not exist.");
         return UNKNOWN;
     }
 
-    public static Actions fromString(String strAction) {
-        for (Actions action : values()) {
-            if (action.lowercase.equals(strAction)) {
-                return action;
+    public static Triggers fromString(String strTrigger) {
+        for (Triggers trigger : values()) {
+            if (trigger.lowercase.equals(strTrigger)) {
+                return trigger;
             }
         }
 
-        Logging.errorToConsole("Tried to get action with string: " + strAction, "but it did not exist.");
+        Logging.errorToConsole("Tried to get trigger with string: " + strTrigger, "but it did not exist.");
         return UNKNOWN;
     }
 }
