@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items.item.component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.configuration.ConfigurationSection;
@@ -8,52 +9,59 @@ import org.bukkit.inventory.ItemStack;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ExecutorData;
-import dev.boooiil.historia.items.item.types.Actions;
+import dev.boooiil.historia.items.item.executor.ItemExecutable;
+import dev.boooiil.historia.items.item.types.Triggers;
 import dev.boooiil.historia.items.util.Logging;
 
 public class ExecutorComponent implements ItemComponent {
 
-    private final List<Actions> actions;
-    private final String command;
+    private HashMap<Triggers, ItemExecutable> executables;
 
-    public ExecutorComponent(List<Actions> actions, String command) {
-        this.actions = actions;
-        this.command = command;
+    public ExecutorComponent(HashMap<Triggers, ItemExecutable> executables) {
+        this.executables = executables;
     }
 
     public static ExecutorComponent fromConfig(ConfigurationSection section) {
-        List<Actions> actions = new ArrayList<>();
-        String command = section.getString("command");
+        HashMap<Triggers, ItemExecutable> executables = new HashMap<>();
+        List<Triggers> triggers = new ArrayList<>();
 
-        for (String sAction : section.getStringList("actions")) {
+        // get valid triggers from the config
+        for (String sTrigger : section.getKeys(false)) {
 
-            Actions action = Actions.fromString(sAction);
+            Triggers trigger = Triggers.fromString(sTrigger);
 
-            if (action == Actions.UNKNOWN) {
-                Logging.errorToConsole("Tried to get action", sAction, "from executor:", command);
+            if (trigger == Triggers.UNKNOWN) {
+                Logging.errorToConsole("Tried to get trigger", sTrigger, "from executor but it does not exist.");
                 continue;
             }
 
-            actions.add(action);
+            triggers.add(trigger);
 
         }
 
-        return new ExecutorComponent(
-                actions, command);
+        for (Triggers trigger : triggers) {
+
+            ConfigurationSection triggerSection = section.getConfigurationSection(trigger.getLowercase());
+
+            List<String> commands = triggerSection.getStringList("commands");
+            Integer cooldown = triggerSection.getInt("cooldown");
+            Integer uses = triggerSection.getInt("uses");
+
+            executables.put(trigger, new ItemExecutable(commands, cooldown, uses, false));
+
+        }
+
+        return new ExecutorComponent(executables);
     }
 
-    public List<Actions> actions() {
-        return this.actions;
-    }
-
-    public String command() {
-        return this.command;
+    public HashMap<Triggers, ItemExecutable> executables() {
+        return this.executables;
     }
 
     @Override
     public void applyDefaultData(ItemStack item) {
 
-        ExecutorData executorData = new ExecutorData(actions, command);
+        ExecutorData executorData = new ExecutorData(executables);
         executorData.apply(item);
 
     }

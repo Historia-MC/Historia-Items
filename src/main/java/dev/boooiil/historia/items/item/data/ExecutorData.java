@@ -1,53 +1,80 @@
 package dev.boooiil.historia.items.item.data;
 
+import java.text.AttributedCharacterIterator.Attribute;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ExecutorCompletionService;
 
+import org.bukkit.Bukkit;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.components.UseCooldownComponent;
 import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.configuration.ItemRegistry;
+import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.item.ItemData;
-import dev.boooiil.historia.items.item.types.Actions;
+import dev.boooiil.historia.items.item.component.ExecutorComponent;
+import dev.boooiil.historia.items.item.executor.ItemExecutable;
+import dev.boooiil.historia.items.item.types.Triggers;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
-import net.kyori.adventure.text.event.HoverEvent.Action;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.UseCooldown;
 
 public class ExecutorData implements ItemData {
 
-    private List<Actions> actions;
-    private String command;
+    private final HashMap<Triggers, ItemExecutable> executables;
 
     public ExecutorData(
-            List<Actions> actions,
-            String command) {
-        this.actions = actions;
-        this.command = command;
-    }
+            HashMap<Triggers, ItemExecutable> executables) {
+        this.executables = executables;
+    };
 
     public static ExecutorData fromStack(ItemStack stack) {
-        List<Actions> actions = new ArrayList<>();
 
-        int[] pdcActions = PDCUtils
-                .getFromContainer(stack, Main.getNamespacedKey("executor-actions"), PersistentDataType.INTEGER_ARRAY)
-                .orElse(new int[] {});
-
-        String command = PDCUtils
-                .getFromContainer(stack, Main.getNamespacedKey("executor-command"), PersistentDataType.STRING)
+        String id = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("config-id"), PersistentDataType.STRING)
                 .orElse("");
 
-        for (int i : pdcActions) {
-            Actions action = Actions.fromId(i);
+        HashMap<Triggers, ItemExecutable> executables = new HashMap<>();
+        HistoriaItem historiaItem = ItemRegistry.get(id);
+        ExecutorComponent ec = (ExecutorComponent) historiaItem.getComponentHolder().get("executor");
+        Set<Triggers> triggers = ec.executables().keySet();
 
-            if (action == Actions.UNKNOWN) {
-                Logging.errorToConsole("Tried to get action with id: " + i, "that did not exist, skipping.");
-                continue;
-            }
+        for (Triggers trigger : triggers) {
 
-            actions.add(action);
+            int uses = PDCUtils.getFromContainer(stack,
+                    Main.getNamespacedKey("executor-" + trigger.getLowercase() + "-uses"), PersistentDataType.INTEGER)
+                    .orElse(1);
+
+            boolean hasCooldown = Main.isTesting ? false : stack.getItemMeta().hasUseCooldown();
+
+            executables.put(
+                    trigger,
+                    new ItemExecutable(
+                            ec.executables().get(trigger).commands(),
+                            ec.executables().get(trigger).cooldown(),
+                            uses,
+                            hasCooldown));
         }
 
-        return new ExecutorData(actions, command);
+        return new ExecutorData(executables);
+    }
+
+    public ItemStack execute(ItemStack item, Triggers trigger) {
+        if (executables.containsKey(trigger)) {
+            ItemExecutable itemExecutable = executables.get(trigger);
+
+            if (!itemExecutable.hasCooldown()) {
+                return itemExecutable.execute(item);
+            }
+        }
+
+        return item;
     }
 
     @Override
@@ -57,20 +84,21 @@ public class ExecutorData implements ItemData {
 
     public void writeData(ItemStack stack) {
 
-        int[] intActions = actions.stream().mapToInt(Actions::getId).toArray();
+        String id = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("config-id"), PersistentDataType.STRING)
+                .orElse("");
 
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("executor-actions"), PersistentDataType.INTEGER_ARRAY,
-                intActions);
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("executor-command"), PersistentDataType.STRING, command);
+        HistoriaItem historiaItem = ItemRegistry.get(id);
+        ExecutorComponent ec = (ExecutorComponent) historiaItem.getComponentHolder().get("executor");
+        Set<Triggers> triggers = ec.executables().keySet();
 
+        for (Triggers trigger : triggers) {
+            PDCUtils.setInContainer(stack, Main.getNamespacedKey("executor-" + trigger.getLowercase() + "-uses"),
+                    PersistentDataType.INTEGER, executables.get(trigger).uses());
+        }
     }
 
-    public List<Actions> actions() {
-        return this.actions;
-    }
-
-    public String command() {
-        return this.command;
+    public HashMap<Triggers, ItemExecutable> executables() {
+        return this.executables;
     }
 
 }
