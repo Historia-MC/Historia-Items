@@ -6,22 +6,22 @@ import java.util.List;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.util.KyoriUtils;
 
 public class ItemExecutable {
     private List<String> commands;
     // ticks
     private int cooldown;
     private int uses;
+    private boolean hasElevation;
     private boolean hasCooldown;
 
     public ItemExecutable(
             List<String> commands,
             int cooldown,
             int uses,
+            boolean hasElevation,
             boolean hasCooldown) {
         this.commands = commands;
         this.cooldown = cooldown;
@@ -34,8 +34,10 @@ public class ItemExecutable {
 
         for (String command : applyCommandPlaceholder(player)) {
 
-            player.performCommand(command);
-
+            if (hasElevation)
+                Main.server().dispatchCommand(Main.server().getConsoleSender(), command);
+            else
+                player.performCommand(command);
         }
 
         this.uses--;
@@ -47,10 +49,8 @@ public class ItemExecutable {
         List<String> nCommands = new ArrayList<>();
 
         for (String command : commands) {
-            String nCommand = ((TextComponent) MiniMessage.miniMessage().deserialize(command,
-                    Placeholder.component("player",
-                            Component.text(player.getName()))))
-                    .content();
+
+            String nCommand = KyoriUtils.replace(command, "player", player.getName());
 
             nCommands.add(nCommand);
         }
@@ -68,6 +68,10 @@ public class ItemExecutable {
 
     public int uses() {
         return this.uses;
+    }
+
+    public boolean hasElevation() {
+        return this.hasElevation;
     }
 
     public boolean hasCooldown() {
