@@ -7,8 +7,9 @@ import dev.boooiil.historia.items.item.data.ArmorData;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.data.ToolData;
 import dev.boooiil.historia.items.item.data.WeaponData;
-import dev.boooiil.historia.items.item.types.Actions;
+import dev.boooiil.historia.items.item.types.Triggers;
 
+import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemStack;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
+
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
@@ -132,18 +134,28 @@ public class PrepareItemCraftHandlerTest {
                         ExecutorData ed = ExecutorData.fromStack(item);
                         ExecutorComponent ec = (ExecutorComponent) historiaItem.getComponentHolder().get(key);
 
-                        for (Actions action : ed.actions()) {
+                        for (Triggers trigger : ed.executables().keySet()) {
 
-                            Logging.debugToConsole("Action:", action.getLowercase());
+                            Logging.debugToConsole("Trigger:", trigger.getLowercase());
 
-                            assert (action != Actions.UNKNOWN);
-                            assert (ec.actions().contains(action));
+                            assert (trigger != Triggers.UNKNOWN);
+                            assert (ec.executables().containsKey(trigger));
+
+                            Logging.debugToConsole("Uses " + ed.executables().get(trigger).uses() + " : "
+                                    + ec.executables().get(trigger).uses());
+                            assert (ed.executables().get(trigger).uses() == ec.executables().get(trigger).uses());
+
+                            Logging.debugToConsole("Cooldown " + ed.executables().get(trigger).cooldown() + " : "
+                                    + ec.executables().get(trigger).cooldown());
+                            assert (ed.executables().get(trigger).cooldown() == ec.executables().get(trigger)
+                                    .cooldown());
+
+                            Logging.debugToConsole("Commands " + ed.executables().get(trigger).commands());
+                            assert (ed.executables().get(trigger).commands()
+                                    .equals(ec.executables().get(trigger).commands()));
 
                         }
 
-                        Logging.debugToConsole("Command:", ed.command());
-
-                        assert (ec.command().equals(ed.command()));
                         break;
 
                 }
