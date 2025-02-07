@@ -6,6 +6,7 @@ import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.events.entity.EntityDamageByEntityListener;
 import dev.boooiil.historia.items.file.FileIO;
 
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
@@ -19,6 +20,7 @@ import dev.boooiil.historia.items.util.Logging;
  */
 public class Main extends JavaPlugin {
 
+    public static boolean isTesting = false;
     /** Singleton instance of the plugin */
     private static JavaPlugin instance;
 
@@ -37,6 +39,13 @@ public class Main extends JavaPlugin {
         instance = this;
 
         Logging.infoToConsole("Plugin has loaded.");
+
+        Logging.infoToConsole("RUNNING VERSION: " + Bukkit.getVersion());
+
+        if (Bukkit.getVersion().contains("MockBukkit")) {
+            System.out.println("RUNNING IN TEST MODE");
+            isTesting = true;
+        }
 
         // Check config files
         // FileIO.checkFiles();
