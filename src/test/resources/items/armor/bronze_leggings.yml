@@ -13,12 +13,17 @@ Light_Bronze_Leggings:
     durability: [70, 125]
 
   executor:
-    command: "/tp %player% 0 0 1"
-    actions:
-      - right_click
-      - sneak_right_click
-      - left_click
-      - sneak_left_click
+    right_click:
+      commands:
+        - /time set day
+      uses: 1
+      cooldown: 1000
+    left_click:
+      commands:
+        - /time set day
+        - /time set night
+      uses: 1
+      cooldown: 500
 
 Moderate_Bronze_Leggings:
   material: GOLDEN_LEGGINGS
