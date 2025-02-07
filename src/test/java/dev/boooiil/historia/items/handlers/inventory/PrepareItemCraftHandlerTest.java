@@ -7,9 +7,9 @@ import dev.boooiil.historia.items.item.data.ArmorData;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.data.ToolData;
 import dev.boooiil.historia.items.item.data.WeaponData;
+import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
 
-import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemStack;
@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
+import org.mockbukkit.mockbukkit.entity.PlayerMock;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.util.Logging;
@@ -131,10 +132,13 @@ public class PrepareItemCraftHandlerTest {
                         break;
 
                     case "executor":
-                        ExecutorData ed = ExecutorData.fromStack(item);
                         ExecutorComponent ec = (ExecutorComponent) historiaItem.getComponentHolder().get(key);
+                        ExecutorData ed = ExecutorData.fromStack(item);
+                        PlayerMock player = server.addPlayer();
 
-                        for (Triggers trigger : ed.executables().keySet()) {
+                        for (Triggers trigger : ec.executables().keySet()) {
+
+                            ItemExecutable executable = ec.executables().get(trigger);
 
                             Logging.debugToConsole("Trigger:", trigger.getLowercase());
 
@@ -142,17 +146,27 @@ public class PrepareItemCraftHandlerTest {
                             assert (ec.executables().containsKey(trigger));
 
                             Logging.debugToConsole("Uses " + ed.executables().get(trigger).uses() + " : "
-                                    + ec.executables().get(trigger).uses());
-                            assert (ed.executables().get(trigger).uses() == ec.executables().get(trigger).uses());
+                                    + executable.uses());
+                            assert (ed.executables().get(trigger).uses() == executable.uses());
 
                             Logging.debugToConsole("Cooldown " + ed.executables().get(trigger).cooldown() + " : "
-                                    + ec.executables().get(trigger).cooldown());
-                            assert (ed.executables().get(trigger).cooldown() == ec.executables().get(trigger)
-                                    .cooldown());
+                                    + executable.cooldown());
+                            assert (ed.executables().get(trigger).cooldown() == executable.cooldown());
 
                             Logging.debugToConsole("Commands " + ed.executables().get(trigger).commands());
-                            assert (ed.executables().get(trigger).commands()
-                                    .equals(ec.executables().get(trigger).commands()));
+                            assert (ed.executables().get(trigger).commands().equals(executable.commands()));
+
+                            ed.execute(player, item, trigger);
+
+                            if (ec.executables().size() > ed.executables().size()) {
+                                Logging.debugToConsole("Executables size changed: " + ec.executables().size() + " -> "
+                                        + ed.executables().size(), "on trigger", trigger.getLowercase());
+                            } else {
+                                for (Triggers executedTrigger : ec.executables().keySet()) {
+                                    assert (ed.executables().get(executedTrigger).uses() < ec.executables().get(trigger)
+                                            .uses());
+                                }
+                            }
 
                         }
 
