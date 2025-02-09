@@ -40,6 +40,7 @@ public abstract class ItemRegistry {
      * @param configuration The configuration to register.
      */
     public static void register(String key, HistoriaItem configuration) {
+        key = key.toLowerCase();
         Logging.debugToConsole("Registering " + key + " to item configuration registry.");
         registry.put(key, configuration);
     }
@@ -50,6 +51,7 @@ public abstract class ItemRegistry {
      * @param key The key to deregister.
      */
     public static void deregister(String key) {
+        key = key.toLowerCase();
         Logging.debugToConsole("Removing " + key + " from item configuration registry.");
         registry.remove(key);
     }
@@ -61,6 +63,7 @@ public abstract class ItemRegistry {
      * @param configuration The new configuration.
      */
     public static void update(String key, HistoriaItem configuration) {
+        key = key.toLowerCase();
         Logging.debugToConsole("Updating " + key + " in item configuration registry.");
         registry.put(key, configuration);
     }
@@ -72,6 +75,7 @@ public abstract class ItemRegistry {
      * @return True if the registry contains the key, false otherwise.
      */
     public static boolean contains(String key) {
+        key = key.toLowerCase();
         return registry.containsKey(key);
     }
 
@@ -110,6 +114,7 @@ public abstract class ItemRegistry {
      * @return The configuration if it exists, null otherwise.
      */
     public static HistoriaItem get(String key) {
+        key = key.toLowerCase();
         Logging.debugToConsole("Obtaining:", key, "from registry.");
         return registry.get(key);
     }
