@@ -2,6 +2,7 @@ package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ItemRegistryLoader;
+import dev.boooiil.historia.items.configuration.RecipeLoader;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.events.entity.EntityDamageByEntityListener;
 import dev.boooiil.historia.items.file.FileIO;
@@ -55,7 +56,7 @@ public class Main extends JavaPlugin {
 
         LoreConfiguration.initLoreMap();
         ItemRegistryLoader.load();
-
+        RecipeLoader.load();
     }
 
     /**

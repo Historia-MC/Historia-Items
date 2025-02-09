@@ -23,12 +23,6 @@
   </distributionManagement>
 
   <repositories>
-
-    <repository>
-      <id>papermc</id>
-      <url>https://repo.papermc.io/repository/maven-public/</url>
-    </repository>
-
     <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
@@ -38,6 +32,11 @@
       <id>historia-releases</id>
       <name>Historia Repository</name>
       <url>https://maven.boobot.org/releases</url>
+    </repository>
+
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
     </repository>
   </repositories>
 
