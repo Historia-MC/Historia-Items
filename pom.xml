@@ -23,6 +23,7 @@
   </distributionManagement>
 
   <repositories>
+
     <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
@@ -38,6 +39,7 @@
       <id>papermc</id>
       <url>https://repo.papermc.io/repository/maven-public/</url>
     </repository>
+
   </repositories>
 
   <dependencies>
@@ -59,7 +61,7 @@
     <dependency>
       <groupId>io.papermc.paper</groupId>
       <artifactId>paper-api</artifactId>
-      <version>1.21.4-R0.1-SNAPSHOT</version>
+      <version>1.21.4-R0.1-20250209.145153-1</version>
       <scope>provided</scope>
     </dependency>
 
