@@ -61,13 +61,13 @@ public class ExecutorComponent implements ItemComponent {
     }
 
     @Override
-    public ExecutorData applyWithDefault() {
+    public ExecutorData apply() {
         return new ExecutorData(executables);
     }
 
     @Override
-    public ExecutorData applyWithQuality(float qualityModifier) {
-        return applyWithDefault();
+    public ExecutorData apply(float qualityModifier) {
+        return apply();
     }
 
     @Override

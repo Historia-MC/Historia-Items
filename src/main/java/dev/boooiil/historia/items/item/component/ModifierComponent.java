@@ -40,13 +40,13 @@ public class ModifierComponent implements ItemComponent {
     }
 
     @Override
-    public ModifierData applyWithDefault() {
+    public ModifierData apply() {
         return new ModifierData(weight, quality);
     }
 
     @Override
-    public ModifierData applyWithQuality(float qualityModifier) {
-        return applyWithDefault();
+    public ModifierData apply(float qualityModifier) {
+        return apply();
     }
 
     @Override

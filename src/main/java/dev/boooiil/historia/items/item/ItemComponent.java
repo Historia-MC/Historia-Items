@@ -10,9 +10,9 @@ public interface ItemComponent {
         return ItemComponents.getConstructor(componentKey).apply(section);
     }
 
-    ItemData applyWithDefault();
+    ItemData apply();
 
-    ItemData applyWithQuality(float qualityModifier);
+    ItemData apply(float qualityModifier);
 
     String getKey();
 }
