@@ -37,14 +37,13 @@ public class ArmorComponent implements ItemComponent {
     }
 
     @Override
-    public void applyDefaultData(ItemStack item) {
+    public ArmorData applyDefaultData() {
 
         float defense = NumberUtils
                 .roundFloat(NumberUtils.random(this.defenseRange().get(0), this.defenseRange().get(1)), 2);
         int durability = NumberUtils.randomInt(this.durabilityRange().get(0), this.durabilityRange().get(1));
 
-        ArmorData armorData = new ArmorData(defense, durability);
-        armorData.apply(item);
+        return new ArmorData(defense, durability);
     }
 
     @Override

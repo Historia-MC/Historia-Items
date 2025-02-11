@@ -6,7 +6,6 @@ import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ToolData;
 import dev.boooiil.historia.items.util.NumberUtils;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
@@ -36,7 +35,7 @@ public class ToolComponent implements ItemComponent {
     }
 
     @Override
-    public void applyDefaultData(ItemStack item) {
+    public ToolData applyDefaultData() {
 
         float damage = NumberUtils
                 .roundFloat(NumberUtils.random(this.damageRange().get(0), this.damageRange().get(1)), 2);
@@ -46,8 +45,7 @@ public class ToolComponent implements ItemComponent {
                 .roundFloat(NumberUtils.random(this.knockbackRange().get(0), this.knockbackRange().get(1)), 2);
         int durability = NumberUtils.randomInt(this.durabilityRange().get(0), this.durabilityRange().get(1));
 
-        ToolData toolData = new ToolData(damage, speed, knockback, durability);
-        toolData.apply(item);
+        return new ToolData(damage, speed, knockback, durability);
     }
 
     @Override

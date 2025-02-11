@@ -41,10 +41,8 @@ public class ModifierComponent implements ItemComponent {
     }
 
     @Override
-    public void applyDefaultData(ItemStack item) {
-
-        ModifierData modifierData = new ModifierData(weight, quality);
-        modifierData.apply(item);
+    public ModifierData applyDefaultData() {
+        return new ModifierData(weight, quality);
     }
 
     @Override

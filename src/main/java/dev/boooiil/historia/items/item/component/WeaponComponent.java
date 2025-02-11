@@ -27,12 +27,11 @@ public final class WeaponComponent implements ItemComponent {
     }
 
     @Override
-    public void applyDefaultData(ItemStack item) {
+    public WeaponData applyDefaultData() {
         float sweeping = NumberUtils
                 .roundFloat(NumberUtils.random(this.sweepingRange().get(0), this.sweepingRange().get(1)), 2);
 
-        WeaponData weaponData = new WeaponData(sweeping);
-        weaponData.apply(item);
+        return new WeaponData(sweeping);
     }
 
     @Override

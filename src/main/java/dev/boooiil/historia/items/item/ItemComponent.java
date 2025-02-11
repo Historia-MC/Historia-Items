@@ -1,7 +1,6 @@
 package dev.boooiil.historia.items.item;
 
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
@@ -11,7 +10,7 @@ public interface ItemComponent {
         return ItemComponents.getConstructor(componentKey).apply(section);
     }
 
-    void applyDefaultData(ItemStack item);
+    ItemData applyDefaultData();
 
     String getKey();
 }

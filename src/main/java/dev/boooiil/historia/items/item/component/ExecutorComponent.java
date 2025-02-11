@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
@@ -62,10 +61,9 @@ public class ExecutorComponent implements ItemComponent {
     }
 
     @Override
-    public void applyDefaultData(ItemStack item) {
+    public ExecutorData applyDefaultData() {
 
-        ExecutorData executorData = new ExecutorData(executables);
-        executorData.apply(item);
+        return new ExecutorData(executables);
 
     }
 
