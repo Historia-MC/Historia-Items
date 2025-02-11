@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
 
 public class ItemExecutable {
@@ -76,6 +77,21 @@ public class ItemExecutable {
 
     public boolean hasCooldown() {
         return this.hasCooldown;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("ItemExecutable{");
+        sb.append(JSONUtils.fromStringList("commands", commands) + ", ");
+        sb.append(JSONUtils.fromValue("uses", this.uses) + ", ");
+        sb.append(JSONUtils.fromValue("cooldown", this.cooldown) + ", ");
+        sb.append(JSONUtils.fromValue("elevated", this.hasElevation) + ", ");
+        sb.append(JSONUtils.fromValue("hasCooldown", this.hasCooldown));
+        sb.append("}");
+
+        return sb.toString();
     }
 
 }

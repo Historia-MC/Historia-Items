@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items.item;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,6 +11,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
+import dev.boooiil.historia.items.util.JSONUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -74,7 +76,7 @@ public class HistoriaItem {
             for (String key : components.keySet()) {
 
                 if (LoreConfiguration.contains(key)) {
-                    lore.add(Component.text("[" + key.toUpperCase() + "]"));
+                    lore.add(Component.text("[" + key.toUpperCase() + "}"));
 
                     HashMap<String, List<String>> cLore = LoreConfiguration.get(key);
 
@@ -184,4 +186,34 @@ public class HistoriaItem {
         // return item;
 
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("HistoriaItem{");
+
+        sb.append(JSONUtils.fromValue("id", id) + ", ");
+        sb.append(JSONUtils.fromValue("displayName", displayName) + ", ");
+        sb.append(JSONUtils.fromValue("baseMaterial", baseMaterial.name().toLowerCase()) + ", ");
+        sb.append(JSONUtils.fromValue("weight", weight) + ", ");
+        sb.append(JSONUtils.fromComponentList("lore", lore) + ", ");
+
+        // start map itr
+        sb.append("\"components\":{");
+        for (Entry<String, ItemComponent> entry : components.entrySet()) {
+            sb.append("\"" + entry.getKey() + "\"");
+            sb.append(":");
+            sb.append(entry.getValue().toString() + ", ");
+        }
+        sb.setLength(sb.length() - 2);
+        sb.append("}");
+        // end map itr
+
+        sb.append("}");
+
+        return sb.toString();
+
+    }
+
 }

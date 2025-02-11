@@ -4,6 +4,7 @@ import java.util.List;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ToolData;
+import dev.boooiil.historia.items.util.JSONUtils;
 import dev.boooiil.historia.items.util.NumberUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jspecify.annotations.NullMarked;
@@ -76,11 +77,17 @@ public class ToolComponent implements ItemComponent {
 
     @Override
     public String toString() {
-        return "ToolComponent[" +
-                "damageRange=" + damageRange + ", " +
-                "speedRange=" + speedRange + ", " +
-                "knockbackRange=" + knockbackRange + ", " +
-                "durabilityRange=" + durabilityRange + ']';
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("ToolComponent{");
+        sb.append(JSONUtils.fromFloatList("damageRange", damageRange));
+        sb.append(JSONUtils.fromFloatList("speedRange", speedRange));
+        sb.append(JSONUtils.fromFloatList("knockbackRange", knockbackRange));
+        sb.append(JSONUtils.fromIntegerList("durabilityRange", durabilityRange));
+        sb.append("}");
+
+        return sb.toString();
     }
 
 }

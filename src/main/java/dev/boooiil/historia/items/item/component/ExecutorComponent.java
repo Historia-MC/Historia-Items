@@ -3,6 +3,7 @@ package dev.boooiil.historia.items.item.component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.jspecify.annotations.NullMarked;
@@ -73,6 +74,33 @@ public class ExecutorComponent implements ItemComponent {
     @Override
     public String getKey() {
         return "executor";
+    }
+
+    @Override
+    public String toString() {
+
+        if (executables.entrySet().size() == 0)
+            return "ExecutorComponent{}";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("ExecutorComponent{");
+
+        // sb.append(JSONUtils.fromMap("executables", executables));
+
+        for (Entry<Triggers, ItemExecutable> entry : executables.entrySet()) {
+            sb.append("\"" + entry.getKey().getLowercase() + "\"");
+            sb.append(":");
+            sb.append(entry.getValue().toString());
+            sb.append(", ");
+        }
+
+        // get rid of trailing ,_
+        sb.setLength(sb.length() - 2);
+
+        sb.append("}");
+
+        return sb.toString();
+
     }
 
 }
