@@ -3,7 +3,6 @@ package dev.boooiil.historia.items.item.component;
 import java.util.List;
 
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
@@ -37,13 +36,18 @@ public class ArmorComponent implements ItemComponent {
     }
 
     @Override
-    public ArmorData applyDefaultData() {
+    public ArmorData applyWithDefault() {
 
         float defense = NumberUtils
                 .roundFloat(NumberUtils.random(this.defenseRange().get(0), this.defenseRange().get(1)), 2);
         int durability = NumberUtils.randomInt(this.durabilityRange().get(0), this.durabilityRange().get(1));
 
         return new ArmorData(defense, durability);
+    }
+
+    @Override
+    public ArmorData applyWithQuality(float qualityModifier) {
+        return applyWithDefault();
     }
 
     @Override

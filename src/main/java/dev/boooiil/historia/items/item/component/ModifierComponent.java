@@ -1,7 +1,6 @@
 package dev.boooiil.historia.items.item.component;
 
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
@@ -41,8 +40,13 @@ public class ModifierComponent implements ItemComponent {
     }
 
     @Override
-    public ModifierData applyDefaultData() {
+    public ModifierData applyWithDefault() {
         return new ModifierData(weight, quality);
+    }
+
+    @Override
+    public ModifierData applyWithQuality(float qualityModifier) {
+        return applyWithDefault();
     }
 
     @Override

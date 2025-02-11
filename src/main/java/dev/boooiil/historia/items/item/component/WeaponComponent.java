@@ -3,7 +3,6 @@ package dev.boooiil.historia.items.item.component;
 import java.util.List;
 
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
@@ -27,11 +26,16 @@ public final class WeaponComponent implements ItemComponent {
     }
 
     @Override
-    public WeaponData applyDefaultData() {
+    public WeaponData applyWithDefault() {
         float sweeping = NumberUtils
                 .roundFloat(NumberUtils.random(this.sweepingRange().get(0), this.sweepingRange().get(1)), 2);
 
         return new WeaponData(sweeping);
+    }
+
+    @Override
+    public WeaponData applyWithQuality(float qualityModifier) {
+        return applyWithDefault();
     }
 
     @Override
