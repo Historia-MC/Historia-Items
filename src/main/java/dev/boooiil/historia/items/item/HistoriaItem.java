@@ -166,7 +166,7 @@ public class HistoriaItem {
         stack.setItemMeta(meta);
 
         for (ItemComponent component : this.components.values()) {
-            ItemData data = component.applyDefaultData();
+            ItemData data = component.applyWithDefault();
             data.apply(stack);
         }
 
