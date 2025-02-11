@@ -47,11 +47,11 @@ public class HistoriaItem {
 
     public static HistoriaItem fromConfig(ConfigurationSection section) {
         Material baseMaterial = Material.valueOf(section.getString("material"));
-        List<Integer> amount = section.getIntegerList("amount");
         String displayName = section.getString("display-name");
         Double weight = section.getDouble("weight");
 
         // TODO: this will need to be changed to an actual unique id key
+        // 11-2-2025 - still not done :pensive:
         String id = section.getString("loc-name");
 
         Map<String, ItemComponent> components = new HashMap<>();
@@ -166,7 +166,8 @@ public class HistoriaItem {
         stack.setItemMeta(meta);
 
         for (ItemComponent component : this.components.values()) {
-            component.applyDefaultData(stack);
+            ItemData data = component.applyDefaultData();
+            data.apply(stack);
         }
 
         return stack;
