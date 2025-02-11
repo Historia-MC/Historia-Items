@@ -47,14 +47,10 @@ public class HistoriaItem implements JSONSerializable {
         this.components = components;
     }
 
-    public static HistoriaItem fromConfig(ConfigurationSection section) {
+    public static HistoriaItem fromConfig(String id, ConfigurationSection section) {
         Material baseMaterial = Material.valueOf(section.getString("material"));
         String displayName = section.getString("display-name");
         Double weight = section.getDouble("weight");
-
-        // TODO: this will need to be changed to an actual unique id key
-        // 11-2-2025 - still not done :pensive:
-        String id = section.getString("loc-name");
 
         Map<String, ItemComponent> components = new HashMap<>();
         for (String key : ItemComponents.allKeys()) {

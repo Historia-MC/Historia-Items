@@ -114,7 +114,7 @@ public class ItemRegistryLoader {
 
                 ConfigurationSection section = configuration.getConfigurationSection(key);
 
-                ItemRegistry.register(key, HistoriaItem.fromConfig(section));
+                ItemRegistry.register(key, HistoriaItem.fromConfig(key, section));
 
             }
 
