@@ -7,10 +7,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.util.JSONUtils;
+import dev.boooiil.historia.core.util.JSONSerializable;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
 
-public class ItemExecutable {
+public class ItemExecutable implements JSONSerializable {
     private List<String> commands;
     // ticks
     private int cooldown;
@@ -83,7 +84,16 @@ public class ItemExecutable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("ItemExecutable{");
+        sb.append("ItemExecutable");
+        sb.append(toJSON());
+
+        return sb.toString();
+    }
+
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
         sb.append(JSONUtils.fromStringList("commands", commands) + ", ");
         sb.append(JSONUtils.fromValue("uses", this.uses) + ", ");
         sb.append(JSONUtils.fromValue("cooldown", this.cooldown) + ", ");
