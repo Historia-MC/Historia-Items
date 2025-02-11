@@ -59,7 +59,7 @@ public class PrepareItemCraftHandlerTest {
 
             HistoriaItem historiaItem = ItemRegistry.get(registeredItem);
 
-            Logging.debugToConsole("Testing item:", historiaItem.getConfigurationId());
+            Logging.debugToConsole(historiaItem.toString());
 
             ItemStack item = historiaItem.createItemStack();
             Logging.debugToConsole(item.getItemMeta().getPersistentDataContainer().getKeys() + "");
@@ -88,11 +88,7 @@ public class PrepareItemCraftHandlerTest {
                         float speed = NumberUtils.roundFloat((float) speedAttr.getAmount(), 2);
                         float knockback = NumberUtils.roundFloat((float) knockbackAttr.getAmount(), 2);
 
-                        Logging.debugToConsole("Damage", td.attackDamage() + " : " + damage);
-                        Logging.debugToConsole("Speed", td.attackSpeed() + " : " + speed);
-                        Logging.debugToConsole("Knockback", td.knockback() + " : " + knockback);
-                        Logging.debugToConsole("Durability",
-                                td.maxDurability() + " : " + toolDamageable.getMaxDamage());
+                        Logging.debugToConsole("Data:", td.toString());
 
                         assert (td.attackDamage() == damage);
                         assert (td.attackSpeed() == speed);
@@ -109,7 +105,7 @@ public class PrepareItemCraftHandlerTest {
 
                         float sweeping = NumberUtils.roundFloat((float) sweepingAttr.getAmount(), 2);
 
-                        Logging.debugToConsole("Damage", wd.sweeping() + " : " + sweeping);
+                        Logging.debugToConsole("Data:", wd.toString());
                         assert (wd.sweeping() == sweeping);
 
                         break;
@@ -123,9 +119,7 @@ public class PrepareItemCraftHandlerTest {
                         Damageable armorDamageable = (Damageable) item.getItemMeta();
                         float defense = NumberUtils.roundFloat((float) defenseAttr.getAmount(), 2);
 
-                        Logging.debugToConsole("Defense", ad.getDefense() + " : " + defense);
-                        Logging.debugToConsole("Durability",
-                                ad.maxDurability() + " : " + armorDamageable.getMaxDamage());
+                        Logging.debugToConsole("Data:", ad.toString());
 
                         assert (ad.getDefense() == defense);
                         assert (ad.maxDurability() == armorDamageable.getMaxDamage());
@@ -140,20 +134,15 @@ public class PrepareItemCraftHandlerTest {
 
                             ItemExecutable executable = ec.executables().get(trigger);
 
-                            Logging.debugToConsole("Trigger:", trigger.getLowercase());
+                            Logging.debugToConsole("Executable:", executable.toString());
 
                             assert (trigger != Triggers.UNKNOWN);
                             assert (ec.executables().containsKey(trigger));
 
-                            Logging.debugToConsole("Uses " + ed.executables().get(trigger).uses() + " : "
-                                    + executable.uses());
                             assert (ed.executables().get(trigger).uses() == executable.uses());
 
-                            Logging.debugToConsole("Cooldown " + ed.executables().get(trigger).cooldown() + " : "
-                                    + executable.cooldown());
                             assert (ed.executables().get(trigger).cooldown() == executable.cooldown());
 
-                            Logging.debugToConsole("Commands " + ed.executables().get(trigger).commands());
                             assert (ed.executables().get(trigger).commands().equals(executable.commands()));
 
                             ed.execute(player, item, trigger);
