@@ -3,7 +3,6 @@ package dev.boooiil.historia.items.item.component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.jspecify.annotations.NullMarked;
@@ -12,6 +11,7 @@ import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.Logging;
 
 @NullMarked
@@ -79,28 +79,32 @@ public class ExecutorComponent implements ItemComponent {
     @Override
     public String toString() {
 
-        if (executables.entrySet().size() == 0)
+        if (executables.size() == 0)
             return "ExecutorComponent{}";
 
         StringBuilder sb = new StringBuilder();
-        sb.append("ExecutorComponent{");
 
-        // sb.append(JSONUtils.fromMap("executables", executables));
-
-        for (Entry<Triggers, ItemExecutable> entry : executables.entrySet()) {
-            sb.append("\"" + entry.getKey().getLowercase() + "\"");
-            sb.append(":");
-            sb.append(entry.getValue().toString());
-            sb.append(", ");
-        }
-
-        // get rid of trailing ,_
-        sb.setLength(sb.length() - 2);
-
+        sb.append("ExecutorComponent");
+        sb.append("{");
+        sb.append(JSONUtils.fromMapAsString("executables", executables));
         sb.append("}");
 
         return sb.toString();
 
+    }
+
+    @Override
+    public String toJSON() {
+
+        if (executables.size() == 0)
+            return "{}";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        sb.append(JSONUtils.fromMapAsJSON("executables", executables));
+        sb.append("}");
+
+        return sb.toString();
     }
 
 }

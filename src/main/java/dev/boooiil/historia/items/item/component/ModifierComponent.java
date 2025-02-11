@@ -7,7 +7,7 @@ import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ModifierData;
 import dev.boooiil.historia.items.item.types.Qualities;
 import dev.boooiil.historia.items.item.types.Weights;
-import dev.boooiil.historia.items.util.JSONUtils;
+import dev.boooiil.historia.core.util.JSONUtils;
 
 @NullMarked
 public class ModifierComponent implements ItemComponent {
@@ -59,7 +59,17 @@ public class ModifierComponent implements ItemComponent {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("ModifierComponent{");
+        sb.append("ModifierComponent");
+        sb.append(toJSON());
+
+        return sb.toString();
+    }
+
+    @Override
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
         sb.append(JSONUtils.fromValue("weight", weight.lowercase()));
         sb.append(JSONUtils.fromValue("quality", quality.lowercase()));
         sb.append("}");

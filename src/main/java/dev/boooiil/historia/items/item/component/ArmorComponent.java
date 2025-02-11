@@ -7,7 +7,7 @@ import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ArmorData;
-import dev.boooiil.historia.items.util.JSONUtils;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.NumberUtils;
 
 @NullMarked
@@ -61,7 +61,18 @@ public class ArmorComponent implements ItemComponent {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("ArmorComponent{");
+        sb.append("ArmorComponent");
+        sb.append(toJSON());
+
+        return sb.toString();
+    }
+
+    @Override
+    public String toJSON() {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
         sb.append(JSONUtils.fromFloatList("defenseRange", defenseRange) + ", ");
         sb.append(JSONUtils.fromIntegerList("durabilityRange", durabilityRange));
         sb.append("}");

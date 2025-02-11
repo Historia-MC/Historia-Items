@@ -15,6 +15,7 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
 import net.kyori.adventure.text.Component;
 
@@ -116,5 +117,28 @@ public class ArmorData implements ItemData {
 
     public int maxDurability() {
         return maxDurability;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("ArmorData");
+        sb.append(toJSON());
+
+        return sb.toString();
+    }
+
+    @Override
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
+        sb.append(JSONUtils.fromValue("defense", defense) + ", ");
+        sb.append(JSONUtils.fromValue("maxDurability", maxDurability));
+
+        sb.append("}");
+
+        return sb.toString();
     }
 }

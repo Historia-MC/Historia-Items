@@ -14,6 +14,7 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
 import net.kyori.adventure.text.Component;
 
@@ -98,4 +99,24 @@ public class WeaponData implements ItemData {
         return sweeping;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("WeaponData");
+        sb.append(toJSON());
+
+        return sb.toString();
+    }
+
+    @Override
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
+        sb.append(JSONUtils.fromValue("sweep", sweeping));
+        sb.append("}");
+
+        return sb.toString();
+    }
 }

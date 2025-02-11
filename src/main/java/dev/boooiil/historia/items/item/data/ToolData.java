@@ -16,6 +16,7 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
 import net.kyori.adventure.text.Component;
 import org.jspecify.annotations.NullMarked;
@@ -183,6 +184,30 @@ public class ToolData implements ItemData {
 
         public int maxDurability() {
                 return this.maxDurability;
+        }
+
+        @Override
+        public String toString() {
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("ToolData{");
+                sb.append(toJSON());
+
+                return sb.toString();
+        }
+
+        @Override
+        public String toJSON() {
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("{");
+                sb.append(JSONUtils.fromValue("attackDamage", attackDamage) + ", ");
+                sb.append(JSONUtils.fromValue("attackSpeed", attackSpeed) + ", ");
+                sb.append(JSONUtils.fromValue("knockback", knockback) + ", ");
+                sb.append(JSONUtils.fromValue("maxDurability", maxDurability));
+                sb.append("}");
+
+                return sb.toString();
         }
 
 }

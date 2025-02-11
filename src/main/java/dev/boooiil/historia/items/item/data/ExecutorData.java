@@ -1,7 +1,6 @@
 package dev.boooiil.historia.items.item.data;
 
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -14,6 +13,7 @@ import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.item.component.ExecutorComponent;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
 
 public class ExecutorData implements ItemData {
@@ -118,21 +118,29 @@ public class ExecutorData implements ItemData {
     public String toString() {
 
         if (executables.entrySet().size() == 0)
-            return "ExecutorComponent{]";
+            return "ExecutorComponent{}";
 
         StringBuilder sb = new StringBuilder();
-        sb.append("ExecutorComponent{");
 
-        for (Entry<Triggers, ItemExecutable> entry : executables.entrySet()) {
-            sb.append(entry.getKey().getLowercase());
-            sb.append("=");
-            sb.append(entry.getValue().toString());
-            sb.append(", ");
-        }
+        sb.append("ExecutorComponent");
+        sb.append("{");
+        sb.append(JSONUtils.fromMapAsString("executables", executables));
+        sb.append("}");
 
-        // get rid of trailing ,_
-        sb.setLength(sb.length() - 2);
+        return sb.toString();
 
+    }
+
+    @Override
+    public String toJSON() {
+
+        if (executables.entrySet().size() == 0)
+            return "{}";
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
+        sb.append(JSONUtils.fromMapAsJSON("executables", executables));
         sb.append("}");
 
         return sb.toString();

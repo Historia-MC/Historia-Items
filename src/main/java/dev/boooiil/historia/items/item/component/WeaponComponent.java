@@ -7,7 +7,7 @@ import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.WeaponData;
-import dev.boooiil.historia.items.util.JSONUtils;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.NumberUtils;
 
 @NullMarked
@@ -49,7 +49,17 @@ public final class WeaponComponent implements ItemComponent {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("WeaponComponent{");
+        sb.append("WeaponComponent");
+        sb.append(toJSON());
+
+        return sb.toString();
+    }
+
+    @Override
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
         sb.append(JSONUtils.fromFloatList("sweepRange", sweepingRange));
         sb.append("}");
 

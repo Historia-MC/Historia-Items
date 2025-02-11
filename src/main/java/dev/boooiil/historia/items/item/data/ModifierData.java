@@ -11,6 +11,7 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.item.types.Qualities;
 import dev.boooiil.historia.items.item.types.Weights;
+import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
@@ -111,8 +112,24 @@ public class ModifierData implements ItemData {
 
     @Override
     public String toString() {
-        return "ModifierData[" +
-                "weight=" + weight.lowercase() + ", " +
-                "quality=" + quality.lowercase() + ']';
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("ModifierData");
+        sb.append(toJSON());
+
+        return sb.toString();
+    }
+
+    @Override
+    public String toJSON() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("{");
+        sb.append(JSONUtils.fromValue("weight", weight.lowercase()) + ", ");
+        sb.append(JSONUtils.fromValue("quality", quality.lowercase()));
+
+        sb.append("}");
+
+        return sb.toString();
     }
 }
