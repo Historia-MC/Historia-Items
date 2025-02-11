@@ -26,7 +26,7 @@ public class ExecutorData implements ItemData {
 
     public static ExecutorData fromStack(ItemStack stack) {
 
-        String id = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("config-id"), PersistentDataType.STRING)
+        String id = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("item-id"), PersistentDataType.STRING)
                 .orElse("");
 
         HashMap<Triggers, ItemExecutable> executables = new HashMap<>();

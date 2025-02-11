@@ -114,7 +114,7 @@ public class ToolData implements ItemData {
         protected void applyLore(ItemStack stack) {
 
                 String configId = PDCUtils.getFromContainer(stack,
-                                Main.getNamespacedKey("config-id"), PersistentDataType.STRING).orElse("");
+                                Main.getNamespacedKey("item-id"), PersistentDataType.STRING).orElse("");
 
                 ItemMeta meta = stack.getItemMeta();
 

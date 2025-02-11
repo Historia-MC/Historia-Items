@@ -158,7 +158,7 @@ public class HistoriaItem {
         ItemMeta meta = stack.getItemMeta();
         TextComponent textComponent = Component.text(getDisplayName());
 
-        PDCUtils.setInContainer(meta, Main.getNamespacedKey("config-id"),
+        PDCUtils.setInContainer(meta, Main.getNamespacedKey("item-id"),
                 PersistentDataType.STRING, id);
 
         meta.displayName(textComponent);
