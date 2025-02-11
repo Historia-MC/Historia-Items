@@ -22,13 +22,15 @@ public class RecipeLoader {
         shaped.setIngredient('$', Material.STICK);
 
         Bukkit.addRecipe(shaped);
+
     }
 
     static RecipeChoice.PredicateChoice customTypeChoice(String id) {
-        NamespacedKey idKey = Main.getNamespacedKey("config-id");
+        NamespacedKey idKey = Main.getNamespacedKey("item-id");
 
         Predicate<ItemStack> predicate = stack -> {
-            boolean isCustom = stack.hasItemMeta() && stack.getItemMeta().getPersistentDataContainer().has(idKey, PersistentDataType.STRING);
+            boolean isCustom = stack.hasItemMeta()
+                    && stack.getItemMeta().getPersistentDataContainer().has(idKey, PersistentDataType.STRING);
             if (isCustom) {
                 String stackId = stack.getItemMeta().getPersistentDataContainer().get(idKey, PersistentDataType.STRING);
                 return stackId.equals(id);

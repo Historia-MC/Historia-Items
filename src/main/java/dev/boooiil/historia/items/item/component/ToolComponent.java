@@ -1,7 +1,6 @@
 package dev.boooiil.historia.items.item.component;
 
 import java.util.List;
-import java.util.Objects;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ToolData;
@@ -70,24 +69,6 @@ public class ToolComponent implements ItemComponent {
 
     public List<Integer> durabilityRange() {
         return durabilityRange;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this)
-            return true;
-        if (obj == null || obj.getClass() != this.getClass())
-            return false;
-        var that = (ToolComponent) obj;
-        return Objects.equals(this.damageRange, that.damageRange) &&
-                Objects.equals(this.speedRange, that.speedRange) &&
-                Objects.equals(this.knockbackRange, that.knockbackRange) &&
-                Objects.equals(this.durabilityRange, that.durabilityRange);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(damageRange, speedRange, knockbackRange, durabilityRange);
     }
 
     @Override

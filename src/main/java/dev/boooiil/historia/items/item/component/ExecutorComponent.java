@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.ExecutorData;
@@ -13,6 +14,7 @@ import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
 import dev.boooiil.historia.items.util.Logging;
 
+@NullMarked
 public class ExecutorComponent implements ItemComponent {
 
     private HashMap<Triggers, ItemExecutable> executables;

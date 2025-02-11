@@ -1,15 +1,16 @@
 package dev.boooiil.historia.items.item.component;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.data.WeaponData;
 import dev.boooiil.historia.items.util.NumberUtils;
 
+@NullMarked
 public final class WeaponComponent implements ItemComponent {
     private final List<Float> sweepingRange;
 
@@ -37,21 +38,6 @@ public final class WeaponComponent implements ItemComponent {
     @Override
     public String getKey() {
         return "weapon";
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this)
-            return true;
-        if (obj == null || obj.getClass() != this.getClass())
-            return false;
-        var that = (WeaponComponent) obj;
-        return Objects.equals(this.sweepingRange, that.sweepingRange);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(sweepingRange);
     }
 
     @Override
