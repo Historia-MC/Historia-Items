@@ -54,6 +54,31 @@ public class PDCUtils {
 
     }
 
+    public static <C, T> Optional<T> getFromComplexContainer(PersistentDataContainer container, NamespacedKey key,
+            PersistentDataType<C, T> type) {
+        if (container.has(key)) {
+            return Optional.ofNullable(container.get(key, type));
+        } else
+            return Optional.empty();
+    }
+
+    public static <C, T> Optional<T> getFromComplexContainer(ItemMeta itemMeta, NamespacedKey key,
+            PersistentDataType<C, T> type) {
+        return getFromComplexContainer(getContainer(itemMeta), key, type);
+    }
+
+    public static <C, T> Optional<T> getFromComplexContainer(ItemStack item, NamespacedKey key,
+            PersistentDataType<C, T> type) {
+
+        if (item.hasItemMeta()) {
+            return getFromComplexContainer(getContainer(item).get(), key, type);
+        } else {
+            Logging.debugToConsole("Tried to obtain data from the data container for", item.getType().name(),
+                    "but it did not have any meta.");
+            return Optional.empty();
+        }
+    }
+
     public static <T> void setInContainer(PersistentDataContainer container, NamespacedKey key,
             PersistentDataType<T, T> type, T value) {
 
@@ -72,6 +97,28 @@ public class PDCUtils {
         ItemMeta meta = item.getItemMeta();
 
         setInContainer(meta, key, type, value);
+
+        item.setItemMeta(meta);
+    }
+
+    public static <C, T> void setInComplexContainer(PersistentDataContainer container, NamespacedKey key,
+            PersistentDataType<C, T> type, T value) {
+
+        Logging.debugToConsole("Setting into container:", "" + key, "" + type.getPrimitiveType(), "" + value);
+        container.set(key, type, value);
+    }
+
+    public static <C, T> void setInComplexContainer(ItemMeta itemMeta, NamespacedKey key,
+            PersistentDataType<C, T> type, T value) {
+        setInComplexContainer(getContainer(itemMeta), key, type, value);
+    }
+
+    public static <C, T> void setInComplexContainer(ItemStack item, NamespacedKey key,
+            PersistentDataType<C, T> type, T value) {
+
+        ItemMeta meta = item.getItemMeta();
+
+        setInComplexContainer(meta, key, type, value);
 
         item.setItemMeta(meta);
     }
