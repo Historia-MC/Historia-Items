@@ -22,6 +22,8 @@ import dev.boooiil.historia.items.util.PDCUtils;
 
 public class ExecutorData implements ItemData {
 
+    public static final PersistentDataType<PersistentDataContainer, ExecutorData> DATA_TYPE = new ExecutorData.DataType();
+
     // private String id;
     private final HashMap<Triggers, ItemExecutable> executables;
 
@@ -34,7 +36,7 @@ public class ExecutorData implements ItemData {
     public static ExecutorData fromStack(ItemStack stack) {
 
         return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("executor-data"),
-                ExecutorData.asPersistentDataType()).orElse(new ExecutorData(new HashMap<>()));
+                ExecutorData.DATA_TYPE).orElse(new ExecutorData(new HashMap<>()));
 
     }
 
@@ -77,7 +79,7 @@ public class ExecutorData implements ItemData {
     public void writeData(ItemStack stack) {
 
         PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("executor-data"),
-                ExecutorData.asPersistentDataType(), this);
+                ExecutorData.DATA_TYPE, this);
     }
 
     public String id() {
@@ -121,13 +123,7 @@ public class ExecutorData implements ItemData {
 
     }
 
-    public static PersistentDataType<PersistentDataContainer, ExecutorData> asPersistentDataType() {
-
-        return new ArmorDataType();
-
-    }
-
-    public static class ArmorDataType implements PersistentDataType<PersistentDataContainer, ExecutorData> {
+    private static class DataType implements PersistentDataType<PersistentDataContainer, ExecutorData> {
 
         @Override
         public @NotNull ExecutorData fromPrimitive(@NotNull PersistentDataContainer container,
@@ -149,7 +145,7 @@ public class ExecutorData implements ItemData {
             for (NamespacedKey key : triggerContainer.getKeys()) {
                 Triggers trigger = Triggers.fromString(key.asMinimalString());
 
-                ItemExecutable executable = container.get(key, ItemExecutable.asPersistentDataType());
+                ItemExecutable executable = container.get(key, ItemExecutable.DATA_TYPE);
 
                 executables.put(trigger, executable);
             }
@@ -177,7 +173,7 @@ public class ExecutorData implements ItemData {
             for (Triggers trigger : data.executables().keySet()) {
 
                 triggerContainer.set(Main.getNamespacedKey(trigger.getLowercase()),
-                        ItemExecutable.asPersistentDataType(), data.executables.get(trigger));
+                        ItemExecutable.DATA_TYPE, data.executables.get(trigger));
 
             }
 

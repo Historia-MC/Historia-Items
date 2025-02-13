@@ -22,6 +22,8 @@ import net.kyori.adventure.text.Component;
 
 public class ModifierData implements ItemData {
 
+    public static final PersistentDataType<PersistentDataContainer, ModifierData> DATA_TYPE = new ModifierData.DataType();
+
     // private String id;
     private Weights weight;
     private Qualities quality;
@@ -38,7 +40,7 @@ public class ModifierData implements ItemData {
     public static ModifierData fromStack(ItemStack stack) {
 
         return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("modifier-data"),
-                ModifierData.asPersistentDataType()).orElse(new ModifierData(Weights.LIGHT, Qualities.POOR));
+                ModifierData.DATA_TYPE).orElse(new ModifierData(Weights.LIGHT, Qualities.POOR));
 
     }
 
@@ -51,7 +53,7 @@ public class ModifierData implements ItemData {
     protected void writeData(ItemStack stack) {
 
         PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("modifier-data"),
-                ModifierData.asPersistentDataType(), this);
+                ModifierData.DATA_TYPE, this);
 
     }
 
@@ -133,13 +135,7 @@ public class ModifierData implements ItemData {
         return sb.toString();
     }
 
-    public static PersistentDataType<PersistentDataContainer, ModifierData> asPersistentDataType() {
-
-        return new ModifierDataType();
-
-    }
-
-    public static class ModifierDataType implements PersistentDataType<PersistentDataContainer, ModifierData> {
+    private static class DataType implements PersistentDataType<PersistentDataContainer, ModifierData> {
 
         @Override
         public @NotNull ModifierData fromPrimitive(@NotNull PersistentDataContainer container,

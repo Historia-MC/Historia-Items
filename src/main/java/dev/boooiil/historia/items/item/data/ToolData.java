@@ -30,6 +30,8 @@ import org.jspecify.annotations.NullMarked;
 @NullMarked
 public class ToolData implements ItemData {
 
+        public static final PersistentDataType<PersistentDataContainer, ToolData> DATA_TYPE = new ToolData.DataType();
+
         // private String id;
         private float attackDamage;
         private float attackSpeed;
@@ -67,7 +69,7 @@ public class ToolData implements ItemData {
         public static ToolData fromStack(ItemStack stack) {
 
                 return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("tool-data"),
-                                ToolData.asPersistentDataType()).orElse(new ToolData(0, 0, 0, 1));
+                                ToolData.DATA_TYPE).orElse(new ToolData(0, 0, 0, 1));
 
         }
 
@@ -95,7 +97,7 @@ public class ToolData implements ItemData {
         protected void applyData(ItemStack stack) {
 
                 PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("tool-data"),
-                                ToolData.asPersistentDataType(), this);
+                                ToolData.DATA_TYPE, this);
 
                 AttributeModifier damageAttr = new AttributeModifier(Main.getNamespacedKey("tool-damage"),
                                 this.attackDamage - 1, AttributeModifier.Operation.ADD_NUMBER);
@@ -269,14 +271,7 @@ public class ToolData implements ItemData {
                 return sb.toString();
         }
 
-        public static PersistentDataType<PersistentDataContainer, ToolData> asPersistentDataType() {
-
-                return new ToolDataType();
-
-        }
-
-        public static class ToolDataType implements PersistentDataType<PersistentDataContainer, ToolData> {
-
+        private static class DataType implements PersistentDataType<PersistentDataContainer, ToolData> {
                 @Override
                 public @NotNull ToolData fromPrimitive(@NotNull PersistentDataContainer container,
                                 @NotNull PersistentDataAdapterContext adapterContext) {

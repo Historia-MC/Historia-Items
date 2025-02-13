@@ -24,6 +24,8 @@ import net.kyori.adventure.text.Component;
 
 public class ArmorData implements ItemData {
 
+    public static final PersistentDataType<PersistentDataContainer, ArmorData> DATA_TYPE = new ArmorData.DataType();
+
     // private String id;
     private float defense;
     private int maxDurability;
@@ -40,7 +42,7 @@ public class ArmorData implements ItemData {
     public static ArmorData fromStack(ItemStack stack) {
 
         return PDCUtils
-                .getFromComplexContainer(stack, Main.getNamespacedKey("armor-data"), ArmorData.asPersistentDataType())
+                .getFromComplexContainer(stack, Main.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE)
                 .orElse(new ArmorData(0, 1));
     }
 
@@ -52,7 +54,7 @@ public class ArmorData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("armor-data"), ArmorData.asPersistentDataType(),
+        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE,
                 this);
 
         AttributeModifier defenseAttr = new AttributeModifier(Main.getNamespacedKey("armor-defense"),
@@ -143,13 +145,7 @@ public class ArmorData implements ItemData {
         return sb.toString();
     }
 
-    public static PersistentDataType<PersistentDataContainer, ArmorData> asPersistentDataType() {
-
-        return new ArmorDataType();
-
-    }
-
-    public static class ArmorDataType implements PersistentDataType<PersistentDataContainer, ArmorData> {
+    private static class DataType implements PersistentDataType<PersistentDataContainer, ArmorData> {
 
         @Override
         public @NotNull ArmorData fromPrimitive(@NotNull PersistentDataContainer container,

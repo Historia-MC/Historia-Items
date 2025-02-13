@@ -3,6 +3,7 @@ package dev.boooiil.historia.items.item.executor;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.boooiil.historia.items.item.data.WeaponData;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,6 +19,9 @@ import dev.boooiil.historia.items.util.KyoriUtils;
 import dev.boooiil.historia.items.util.Logging;
 
 public class ItemExecutable implements JSONSerializable {
+
+    public static final PersistentDataType<PersistentDataContainer, ItemExecutable> DATA_TYPE = new ItemExecutable.DataType();
+
     private List<String> commands;
     // ticks
     private int cooldown;
@@ -110,13 +114,7 @@ public class ItemExecutable implements JSONSerializable {
         return sb.toString();
     }
 
-    public static PersistentDataType<PersistentDataContainer, ItemExecutable> asPersistentDataType() {
-
-        return new ItemExecutableType();
-
-    }
-
-    public static class ItemExecutableType implements PersistentDataType<PersistentDataContainer, ItemExecutable> {
+    private static class DataType implements PersistentDataType<PersistentDataContainer, ItemExecutable> {
 
         @Override
         public @NotNull ItemExecutable fromPrimitive(@NotNull PersistentDataContainer container,

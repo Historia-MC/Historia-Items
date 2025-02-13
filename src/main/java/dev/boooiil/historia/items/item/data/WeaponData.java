@@ -24,6 +24,8 @@ import net.kyori.adventure.text.Component;
 
 public class WeaponData implements ItemData {
 
+    public static final PersistentDataType<PersistentDataContainer, WeaponData> DATA_TYPE = new WeaponData.DataType();
+
     // private String id;
     private float sweeping;
 
@@ -37,7 +39,7 @@ public class WeaponData implements ItemData {
     public static WeaponData fromStack(ItemStack stack) {
 
         return PDCUtils
-                .getFromComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.asPersistentDataType())
+                .getFromComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.DATA_TYPE)
                 .orElse(new WeaponData(0));
     }
 
@@ -49,7 +51,7 @@ public class WeaponData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.asPersistentDataType(),
+        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.DATA_TYPE,
                 this);
 
         ItemMeta meta = stack.getItemMeta();
@@ -130,13 +132,7 @@ public class WeaponData implements ItemData {
         return sb.toString();
     }
 
-    public static PersistentDataType<PersistentDataContainer, WeaponData> asPersistentDataType() {
-
-        return new WeaponDataType();
-
-    }
-
-    public static class WeaponDataType implements PersistentDataType<PersistentDataContainer, WeaponData> {
+    private static class DataType implements PersistentDataType<PersistentDataContainer, WeaponData> {
 
         @Override
         public @NotNull WeaponData fromPrimitive(@NotNull PersistentDataContainer container,
