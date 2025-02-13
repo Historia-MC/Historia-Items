@@ -2,6 +2,7 @@ package dev.boooiil.historia.items.item.data;
 
 import java.util.HashMap;
 
+import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -11,10 +12,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
-import dev.boooiil.historia.items.configuration.ItemRegistry;
-import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.item.ItemData;
-import dev.boooiil.historia.items.item.component.ExecutorComponent;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
 import dev.boooiil.historia.core.util.JSONUtils;
@@ -125,6 +123,8 @@ public class ExecutorData implements ItemData {
 
     private static class DataType implements PersistentDataType<PersistentDataContainer, ExecutorData> {
 
+        private static final NamespacedKey EXECUTABLES_KEY = Main.getNamespacedKey("executables");
+
         @Override
         public @NotNull ExecutorData fromPrimitive(@NotNull PersistentDataContainer container,
                 @NotNull PersistentDataAdapterContext adapterContext) {
@@ -139,13 +139,13 @@ public class ExecutorData implements ItemData {
 
             // for (String key : container.getKeys())
 
-            PersistentDataContainer triggerContainer = container.get(Main.getNamespacedKey("triggers"),
-                    PersistentDataType.TAG_CONTAINER);
+            PersistentDataContainer executablesContainer = container.get(EXECUTABLES_KEY, PersistentDataType.TAG_CONTAINER);
 
-            for (NamespacedKey key : triggerContainer.getKeys()) {
-                Triggers trigger = Triggers.fromString(key.asMinimalString());
+            for (NamespacedKey key : executablesContainer.getKeys()) {
+                Triggers trigger = Triggers.fromString(key.getKey());
 
-                ItemExecutable executable = container.get(key, ItemExecutable.DATA_TYPE);
+                Logging.debugToConsole("loading key: " + key);
+                ItemExecutable executable = executablesContainer.get(key, ItemExecutable.DATA_TYPE);
 
                 executables.put(trigger, executable);
             }
@@ -168,16 +168,14 @@ public class ExecutorData implements ItemData {
                 @NotNull PersistentDataAdapterContext adapterContext) {
 
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
-            PersistentDataContainer triggerContainer = adapterContext.newPersistentDataContainer();
+            PersistentDataContainer executablesContainer = adapterContext.newPersistentDataContainer();
 
             for (Triggers trigger : data.executables().keySet()) {
-
-                triggerContainer.set(Main.getNamespacedKey(trigger.getLowercase()),
+                executablesContainer.set(Main.getNamespacedKey(trigger.getLowercase()),
                         ItemExecutable.DATA_TYPE, data.executables.get(trigger));
-
             }
 
-            container.set(Main.getNamespacedKey("triggers"), PersistentDataType.TAG_CONTAINER, triggerContainer);
+            container.set(EXECUTABLES_KEY, PersistentDataType.TAG_CONTAINER, executablesContainer);
 
             return container;
         }

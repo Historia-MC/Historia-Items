@@ -3,7 +3,7 @@ package dev.boooiil.historia.items.item.executor;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.boooiil.historia.items.item.data.WeaponData;
+import dev.boooiil.historia.items.util.Logging;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -16,8 +16,9 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.core.util.JSONSerializable;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
-import dev.boooiil.historia.items.util.Logging;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class ItemExecutable implements JSONSerializable {
 
     public static final PersistentDataType<PersistentDataContainer, ItemExecutable> DATA_TYPE = new ItemExecutable.DataType();
@@ -114,23 +115,22 @@ public class ItemExecutable implements JSONSerializable {
         return sb.toString();
     }
 
+    @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ItemExecutable> {
+
+        private static final NamespacedKey COMMANDS_KEY = Main.getNamespacedKey("commands");
+        private static final NamespacedKey USES_KEY = Main.getNamespacedKey("uses");
+        private static final NamespacedKey COOLDOWN_KEY = Main.getNamespacedKey("cooldown");
+        private static final NamespacedKey ELEVATED_KEY = Main.getNamespacedKey("elevated");
 
         @Override
         public @NotNull ItemExecutable fromPrimitive(@NotNull PersistentDataContainer container,
                 @NotNull PersistentDataAdapterContext adapterContext) {
 
-            List<String> commands = new ArrayList<>();
-            PersistentDataContainer commandContainer = container.get(Main.getNamespacedKey("commands"),
-                    PersistentDataType.TAG_CONTAINER);
-
-            for (NamespacedKey key : commandContainer.getKeys()) {
-                commands.add(container.get(key, PersistentDataType.STRING));
-            }
-
-            int uses = container.get(Main.getNamespacedKey("uses"), PersistentDataType.INTEGER);
-            int cooldown = container.get(Main.getNamespacedKey("cooldown"), PersistentDataType.INTEGER);
-            boolean elevated = container.get(Main.getNamespacedKey("elevated"), PersistentDataType.BOOLEAN);
+            List<String> commands = container.get(COMMANDS_KEY, PersistentDataType.LIST.listTypeFrom(STRING));
+            int uses = container.get(USES_KEY, PersistentDataType.INTEGER);
+            int cooldown = container.get(COOLDOWN_KEY, PersistentDataType.INTEGER);
+            boolean elevated = container.get(ELEVATED_KEY, PersistentDataType.BOOLEAN);
 
             return new ItemExecutable(commands, cooldown, uses, elevated, false);
         }
@@ -150,16 +150,8 @@ public class ItemExecutable implements JSONSerializable {
                 @NotNull PersistentDataAdapterContext adapterContext) {
 
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
-            PersistentDataContainer commandContainer = adapterContext.newPersistentDataContainer();
 
-            for (int i = 0; i < data.commands().size(); i++) {
-
-                commandContainer.set(Main.getNamespacedKey("command_" + i), PersistentDataType.STRING,
-                        data.commands().get(i));
-            }
-
-            container.set(Main.getNamespacedKey("commands"),
-                    PersistentDataType.TAG_CONTAINER, commandContainer);
+            container.set(Main.getNamespacedKey("commands"), PersistentDataType.LIST.listTypeFrom(STRING), data.commands);
             container.set(Main.getNamespacedKey("uses"), PersistentDataType.INTEGER, data.uses());
             container.set(Main.getNamespacedKey("cooldown"), PersistentDataType.INTEGER, data.cooldown());
             container.set(Main.getNamespacedKey("elevated"), PersistentDataType.BOOLEAN, data.hasElevation());
