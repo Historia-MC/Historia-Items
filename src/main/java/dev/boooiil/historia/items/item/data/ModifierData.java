@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataAdapterContext;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
@@ -19,27 +22,23 @@ import net.kyori.adventure.text.Component;
 
 public class ModifierData implements ItemData {
 
+    // private String id;
     private Weights weight;
     private Qualities quality;
 
     public ModifierData(
+            // String id,
             Weights weight,
             Qualities quality) {
+        // this.id = id;
         this.weight = weight;
         this.quality = quality;
     }
 
     public static ModifierData fromStack(ItemStack stack) {
 
-        Weights weight = Weights.fromString(
-                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("modifier-weight"), PersistentDataType.STRING)
-                        .orElse(""));
-
-        Qualities quality = Qualities.fromString(
-                PDCUtils.getFromContainer(stack, Main.getNamespacedKey("modifier-quality"), PersistentDataType.STRING)
-                        .orElse(""));
-
-        return new ModifierData(weight, quality);
+        return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("modifier-data"),
+                ModifierData.asPersistentDataType()).orElse(new ModifierData(Weights.LIGHT, Qualities.POOR));
 
     }
 
@@ -51,11 +50,8 @@ public class ModifierData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("modifier-weight"), PersistentDataType.STRING,
-                this.weight.lowercase());
-
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("modifier-quality"), PersistentDataType.STRING,
-                this.quality.lowercase());
+        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("modifier-data"),
+                ModifierData.asPersistentDataType(), this);
 
     }
 
@@ -102,6 +98,10 @@ public class ModifierData implements ItemData {
         stack.setItemMeta(meta);
     }
 
+    public String id() {
+        throw new UnsupportedOperationException("Not implemented.");
+    }
+
     public Weights weight() {
         return this.weight;
     }
@@ -131,5 +131,47 @@ public class ModifierData implements ItemData {
         sb.append("}");
 
         return sb.toString();
+    }
+
+    public static PersistentDataType<PersistentDataContainer, ModifierData> asPersistentDataType() {
+
+        return new ModifierDataType();
+
+    }
+
+    public static class ModifierDataType implements PersistentDataType<PersistentDataContainer, ModifierData> {
+
+        @Override
+        public @NotNull ModifierData fromPrimitive(@NotNull PersistentDataContainer container,
+                @NotNull PersistentDataAdapterContext adapterContext) {
+
+            Weights weight = Weights
+                    .fromString(container.get(Main.getNamespacedKey("weight"), PersistentDataType.STRING));
+            Qualities quality = Qualities
+                    .fromString(container.get(Main.getNamespacedKey("quality"), PersistentDataType.STRING));
+            return new ModifierData(weight, quality);
+        }
+
+        @Override
+        public @NotNull Class<ModifierData> getComplexType() {
+            return ModifierData.class;
+        }
+
+        @Override
+        public @NotNull Class<PersistentDataContainer> getPrimitiveType() {
+            return PersistentDataContainer.class;
+        }
+
+        @Override
+        public @NotNull PersistentDataContainer toPrimitive(@NotNull ModifierData data,
+                @NotNull PersistentDataAdapterContext adapterContext) {
+
+            PersistentDataContainer container = adapterContext.newPersistentDataContainer();
+
+            container.set(Main.getNamespacedKey("weight"), PersistentDataType.STRING, data.weight.lowercase());
+            container.set(Main.getNamespacedKey("quality"), PersistentDataType.STRING, data.quality().lowercase());
+
+            return container;
+        }
     }
 }

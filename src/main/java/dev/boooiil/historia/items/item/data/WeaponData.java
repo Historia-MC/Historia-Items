@@ -8,7 +8,10 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataAdapterContext;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
@@ -20,19 +23,21 @@ import net.kyori.adventure.text.Component;
 
 public class WeaponData implements ItemData {
 
+    // private String id;
     private float sweeping;
 
-    public WeaponData(float sweeping) {
+    public WeaponData(
+            // String id,
+            float sweeping) {
+        // this.id = id;
         this.sweeping = sweeping;
     }
 
     public static WeaponData fromStack(ItemStack stack) {
 
-        float sweeping = PDCUtils
-                .getFromContainer(stack, Main.getNamespacedKey("weapon-sweeping"), PersistentDataType.FLOAT)
-                .orElseThrow();
-
-        return new WeaponData(sweeping);
+        return PDCUtils
+                .getFromComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.asPersistentDataType())
+                .orElse(new WeaponData(0));
     }
 
     @Override
@@ -95,6 +100,10 @@ public class WeaponData implements ItemData {
         stack.setItemMeta(meta);
     }
 
+    public String id() {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
     public float sweeping() {
         return sweeping;
     }
@@ -118,5 +127,45 @@ public class WeaponData implements ItemData {
         sb.append("}");
 
         return sb.toString();
+    }
+
+    public static PersistentDataType<PersistentDataContainer, WeaponData> asPersistentDataType() {
+
+        return new WeaponDataType();
+
+    }
+
+    public static class WeaponDataType implements PersistentDataType<PersistentDataContainer, WeaponData> {
+
+        @Override
+        public @NotNull WeaponData fromPrimitive(@NotNull PersistentDataContainer container,
+                @NotNull PersistentDataAdapterContext adapterContext) {
+
+            float sweeping = container.get(Main.getNamespacedKey("sweeping"), PersistentDataType.FLOAT);
+
+            return new WeaponData(sweeping);
+        }
+
+        @Override
+        public @NotNull Class<WeaponData> getComplexType() {
+            return WeaponData.class;
+        }
+
+        @Override
+        public @NotNull Class<PersistentDataContainer> getPrimitiveType() {
+            return PersistentDataContainer.class;
+        }
+
+        @Override
+        public @NotNull PersistentDataContainer toPrimitive(@NotNull WeaponData data,
+                @NotNull PersistentDataAdapterContext adapterContext) {
+
+            PersistentDataContainer container = adapterContext.newPersistentDataContainer();
+
+            container.set(Main.getNamespacedKey("sweeping"), PersistentDataType.FLOAT,
+                    data.sweeping());
+
+            return container;
+        }
     }
 }

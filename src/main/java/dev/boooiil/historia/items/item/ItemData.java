@@ -9,5 +9,4 @@ import dev.boooiil.historia.core.util.JSONSerializable;
 @NullMarked
 public interface ItemData extends JSONSerializable {
     void apply(ItemStack stack);
-
 }

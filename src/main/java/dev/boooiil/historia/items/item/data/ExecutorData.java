@@ -2,9 +2,13 @@ package dev.boooiil.historia.items.item.data;
 
 import java.util.HashMap;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataAdapterContext;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.configuration.ItemRegistry;
@@ -18,47 +22,20 @@ import dev.boooiil.historia.items.util.PDCUtils;
 
 public class ExecutorData implements ItemData {
 
+    // private String id;
     private final HashMap<Triggers, ItemExecutable> executables;
 
     public ExecutorData(
+            // String id,
             HashMap<Triggers, ItemExecutable> executables) {
         this.executables = executables;
     };
 
     public static ExecutorData fromStack(ItemStack stack) {
 
-        String id = PDCUtils.getFromContainer(stack, Main.getNamespacedKey("item-id"), PersistentDataType.STRING)
-                .orElse("");
+        return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("executor-data"),
+                ExecutorData.asPersistentDataType()).orElse(new ExecutorData(new HashMap<>()));
 
-        HashMap<Triggers, ItemExecutable> executables = new HashMap<>();
-        HistoriaItem historiaItem = ItemRegistry.get(id);
-        ExecutorComponent ec = (ExecutorComponent) historiaItem.getComponentHolder().get("executor");
-
-        int[] triggerIDs = PDCUtils
-                .getFromContainer(stack, Main.getNamespacedKey("executor-triggers"), PersistentDataType.INTEGER_ARRAY)
-                .orElse(new int[0]);
-
-        for (int triggerId : triggerIDs) {
-
-            Triggers trigger = Triggers.fromId(triggerId);
-
-            int uses = PDCUtils.getFromContainer(stack,
-                    Main.getNamespacedKey("executor-" + trigger.getLowercase() + "-uses"), PersistentDataType.INTEGER)
-                    .orElse(1);
-
-            boolean hasCooldown = Main.isTesting ? false : stack.getItemMeta().hasUseCooldown();
-
-            executables.put(
-                    trigger,
-                    new ItemExecutable(
-                            ec.executables().get(trigger).commands(),
-                            ec.executables().get(trigger).cooldown(),
-                            uses,
-                            ec.executables().get(trigger).hasElevation(),
-                            hasCooldown));
-        }
-
-        return new ExecutorData(executables);
     }
 
     public void execute(Player player, ItemStack item, Triggers trigger) {
@@ -99,15 +76,12 @@ public class ExecutorData implements ItemData {
 
     public void writeData(ItemStack stack) {
 
-        int[] triggerIDs = executables.keySet().stream().mapToInt(Triggers::getId).toArray();
+        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("executor-data"),
+                ExecutorData.asPersistentDataType(), this);
+    }
 
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("executor-triggers"), PersistentDataType.INTEGER_ARRAY,
-                triggerIDs);
-
-        for (Triggers trigger : executables.keySet()) {
-            PDCUtils.setInContainer(stack, Main.getNamespacedKey("executor-" + trigger.getLowercase() + "-uses"),
-                    PersistentDataType.INTEGER, executables.get(trigger).uses());
-        }
+    public String id() {
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     public HashMap<Triggers, ItemExecutable> executables() {
@@ -147,4 +121,69 @@ public class ExecutorData implements ItemData {
 
     }
 
+    public static PersistentDataType<PersistentDataContainer, ExecutorData> asPersistentDataType() {
+
+        return new ArmorDataType();
+
+    }
+
+    public static class ArmorDataType implements PersistentDataType<PersistentDataContainer, ExecutorData> {
+
+        @Override
+        public @NotNull ExecutorData fromPrimitive(@NotNull PersistentDataContainer container,
+                @NotNull PersistentDataAdapterContext adapterContext) {
+
+            HashMap<Triggers, ItemExecutable> executables = new HashMap<>();
+
+            // I was thinking about making ItemExecutable also be a persistent data
+            // container type
+            // so that we could just store
+            // PDC.add(<TRIGGER_STR, ItemExecutableType, ItemExecutable);
+            // and then iterate over the container keys if possible.
+
+            // for (String key : container.getKeys())
+
+            PersistentDataContainer triggerContainer = container.get(Main.getNamespacedKey("triggers"),
+                    PersistentDataType.TAG_CONTAINER);
+
+            for (NamespacedKey key : triggerContainer.getKeys()) {
+                Triggers trigger = Triggers.fromString(key.asMinimalString());
+
+                ItemExecutable executable = container.get(key, ItemExecutable.asPersistentDataType());
+
+                executables.put(trigger, executable);
+            }
+
+            return new ExecutorData(executables);
+        }
+
+        @Override
+        public @NotNull Class<ExecutorData> getComplexType() {
+            return ExecutorData.class;
+        }
+
+        @Override
+        public @NotNull Class<PersistentDataContainer> getPrimitiveType() {
+            return PersistentDataContainer.class;
+        }
+
+        @Override
+        public @NotNull PersistentDataContainer toPrimitive(@NotNull ExecutorData data,
+                @NotNull PersistentDataAdapterContext adapterContext) {
+
+            PersistentDataContainer container = adapterContext.newPersistentDataContainer();
+            PersistentDataContainer triggerContainer = adapterContext.newPersistentDataContainer();
+
+            for (Triggers trigger : data.executables().keySet()) {
+
+                triggerContainer.set(Main.getNamespacedKey(trigger.getLowercase()),
+                        ItemExecutable.asPersistentDataType(), data.executables.get(trigger));
+
+            }
+
+            container.set(Main.getNamespacedKey("triggers"), PersistentDataType.TAG_CONTAINER, triggerContainer);
+
+            return container;
+        }
+    }
 }
