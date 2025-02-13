@@ -15,6 +15,7 @@ import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.core.util.JSONSerializable;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
+import dev.boooiil.historia.items.util.Logging;
 
 public class ItemExecutable implements JSONSerializable {
     private List<String> commands;
@@ -153,7 +154,8 @@ public class ItemExecutable implements JSONSerializable {
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
             PersistentDataContainer commandContainer = adapterContext.newPersistentDataContainer();
 
-            for (int i = 0; i < data.commands().size(); i--) {
+            for (int i = 0; i < data.commands().size(); i++) {
+
                 commandContainer.set(Main.getNamespacedKey("command_" + i), PersistentDataType.STRING,
                         data.commands().get(i));
             }

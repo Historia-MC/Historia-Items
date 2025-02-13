@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.NumberUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
@@ -48,8 +49,8 @@ public class WeaponData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInContainer(stack, Main.getNamespacedKey("weapon-sweeping"), PersistentDataType.FLOAT,
-                this.sweeping);
+        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.asPersistentDataType(),
+                this);
 
         ItemMeta meta = stack.getItemMeta();
         AttributeModifier sweepingAttr = new AttributeModifier(Main.getNamespacedKey("weapon-sweeping"),
@@ -143,7 +144,8 @@ public class WeaponData implements ItemData {
 
             float sweeping = container.get(Main.getNamespacedKey("sweeping"), PersistentDataType.FLOAT);
 
-            return new WeaponData(sweeping);
+            return new WeaponData(
+                    NumberUtils.roundFloat(sweeping, 2));
         }
 
         @Override

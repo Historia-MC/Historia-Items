@@ -288,7 +288,11 @@ public class ToolData implements ItemData {
                         int durability = container.get(Main.getNamespacedKey("durability"),
                                         PersistentDataType.INTEGER);
 
-                        return new ToolData(damage, speed, knockback, durability);
+                        return new ToolData(
+                                        NumberUtils.roundFloat(damage, 2),
+                                        NumberUtils.roundFloat(speed, 2),
+                                        NumberUtils.roundFloat(knockback, 2),
+                                        durability);
                 }
 
                 @Override

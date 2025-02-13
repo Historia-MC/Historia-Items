@@ -10,6 +10,8 @@ import dev.boooiil.historia.items.item.data.WeaponData;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemStack;
@@ -64,7 +66,7 @@ public class PrepareItemCraftHandlerTest {
             ItemStack item = historiaItem.createItemStack();
             Logging.debugToConsole(item.getItemMeta().getPersistentDataContainer().getKeys() + "");
 
-            assert (item.hasItemMeta());
+            assertEquals(item.hasItemMeta(), true);
 
             ItemMeta meta = item.getItemMeta();
 
@@ -90,10 +92,10 @@ public class PrepareItemCraftHandlerTest {
 
                         Logging.debugToConsole("Data:", td.toString());
 
-                        assert (td.attackDamage() == damage);
-                        assert (td.attackSpeed() == speed);
-                        assert (td.knockback() == knockback);
-                        assert (td.maxDurability() == toolDamageable.getMaxDamage());
+                        assertEquals(td.attackDamage(), damage);
+                        assertEquals(td.attackSpeed(), speed);
+                        assertEquals(td.knockback(), knockback);
+                        assertEquals(td.maxDurability(), toolDamageable.getMaxDamage());
                         break;
 
                     case "weapon":
@@ -106,7 +108,7 @@ public class PrepareItemCraftHandlerTest {
                         float sweeping = NumberUtils.roundFloat((float) sweepingAttr.getAmount(), 2);
 
                         Logging.debugToConsole("Data:", wd.toString());
-                        assert (wd.sweeping() == sweeping);
+                        assertEquals(wd.sweeping(), sweeping);
 
                         break;
 
@@ -121,8 +123,8 @@ public class PrepareItemCraftHandlerTest {
 
                         Logging.debugToConsole("Data:", ad.toString());
 
-                        assert (ad.getDefense() == defense);
-                        assert (ad.maxDurability() == armorDamageable.getMaxDamage());
+                        assertEquals(ad.getDefense(), defense);
+                        assertEquals(ad.maxDurability(), armorDamageable.getMaxDamage());
                         break;
 
                     case "executor":
@@ -136,14 +138,14 @@ public class PrepareItemCraftHandlerTest {
 
                             Logging.debugToConsole("Executable:", executable.toString());
 
-                            assert (trigger != Triggers.UNKNOWN);
-                            assert (ec.executables().containsKey(trigger));
+                            assertEquals(trigger != Triggers.UNKNOWN, true);
+                            assertEquals(ec.executables().containsKey(trigger), true);
 
-                            assert (ed.executables().get(trigger).uses() == executable.uses());
+                            assertEquals(ed.executables().get(trigger).uses(), executable.uses());
 
-                            assert (ed.executables().get(trigger).cooldown() == executable.cooldown());
+                            assertEquals(ed.executables().get(trigger).cooldown(), executable.cooldown());
 
-                            assert (ed.executables().get(trigger).commands().equals(executable.commands()));
+                            assertEquals(ed.executables().get(trigger).commands(), executable.commands());
 
                             ed.execute(player, item, trigger);
 
@@ -152,8 +154,10 @@ public class PrepareItemCraftHandlerTest {
                                         + ed.executables().size(), "on trigger", trigger.getLowercase());
                             } else {
                                 for (Triggers executedTrigger : ec.executables().keySet()) {
-                                    assert (ed.executables().get(executedTrigger).uses() < ec.executables().get(trigger)
-                                            .uses());
+                                    assertEquals(
+                                            ed.executables().get(executedTrigger).uses() < ec.executables().get(trigger)
+                                                    .uses(),
+                                            true);
                                 }
                             }
 
