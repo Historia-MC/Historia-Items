@@ -124,8 +124,7 @@ public class ItemExecutable implements JSONSerializable {
         private static final NamespacedKey ELEVATED_KEY = Main.getNamespacedKey("elevated");
 
         @Override
-        public @NotNull ItemExecutable fromPrimitive(@NotNull PersistentDataContainer container,
-                @NotNull PersistentDataAdapterContext adapterContext) {
+        public ItemExecutable fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
 
             List<String> commands = container.get(COMMANDS_KEY, PersistentDataType.LIST.listTypeFrom(STRING));
             int uses = container.get(USES_KEY, PersistentDataType.INTEGER);
@@ -136,25 +135,24 @@ public class ItemExecutable implements JSONSerializable {
         }
 
         @Override
-        public @NotNull Class<ItemExecutable> getComplexType() {
+        public Class<ItemExecutable> getComplexType() {
             return ItemExecutable.class;
         }
 
         @Override
-        public @NotNull Class<PersistentDataContainer> getPrimitiveType() {
+        public Class<PersistentDataContainer> getPrimitiveType() {
             return PersistentDataContainer.class;
         }
 
         @Override
-        public @NotNull PersistentDataContainer toPrimitive(@NotNull ItemExecutable data,
-                @NotNull PersistentDataAdapterContext adapterContext) {
+        public PersistentDataContainer toPrimitive(ItemExecutable data, PersistentDataAdapterContext adapterContext) {
 
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
 
-            container.set(Main.getNamespacedKey("commands"), PersistentDataType.LIST.listTypeFrom(STRING), data.commands);
-            container.set(Main.getNamespacedKey("uses"), PersistentDataType.INTEGER, data.uses());
-            container.set(Main.getNamespacedKey("cooldown"), PersistentDataType.INTEGER, data.cooldown());
-            container.set(Main.getNamespacedKey("elevated"), PersistentDataType.BOOLEAN, data.hasElevation());
+            container.set(COMMANDS_KEY, PersistentDataType.LIST.listTypeFrom(STRING), data.commands);
+            container.set(USES_KEY, PersistentDataType.INTEGER, data.uses());
+            container.set(COOLDOWN_KEY, PersistentDataType.INTEGER, data.cooldown());
+            container.set(ELEVATED_KEY, PersistentDataType.BOOLEAN, data.hasElevation());
 
             return container;
         }

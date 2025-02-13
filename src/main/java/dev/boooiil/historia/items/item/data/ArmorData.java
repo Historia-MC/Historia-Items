@@ -3,6 +3,7 @@ package dev.boooiil.historia.items.item.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemFlag;
@@ -21,6 +22,7 @@ import dev.boooiil.historia.items.util.PDCUtils;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
 import net.kyori.adventure.text.Component;
+import org.jspecify.annotations.NullMarked;
 
 public class ArmorData implements ItemData {
 
@@ -145,38 +147,38 @@ public class ArmorData implements ItemData {
         return sb.toString();
     }
 
+    @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ArmorData> {
 
-        @Override
-        public @NotNull ArmorData fromPrimitive(@NotNull PersistentDataContainer container,
-                @NotNull PersistentDataAdapterContext adapterContext) {
+        private static final NamespacedKey DEFENSE_KEY = Main.getNamespacedKey("defense");
+        private static final NamespacedKey DURABILITY_KEY = Main.getNamespacedKey("durability");
 
-            float defense = container.get(Main.getNamespacedKey("defense"), PersistentDataType.FLOAT);
-            int maxDurability = container.get(Main.getNamespacedKey("durability"), PersistentDataType.INTEGER);
+        @Override
+        public ArmorData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
+
+            float defense = container.get(DEFENSE_KEY, PersistentDataType.FLOAT);
+            int maxDurability = container.get(DURABILITY_KEY, PersistentDataType.INTEGER);
 
             return new ArmorData(defense, maxDurability);
         }
 
         @Override
-        public @NotNull Class<ArmorData> getComplexType() {
+        public Class<ArmorData> getComplexType() {
             return ArmorData.class;
         }
 
         @Override
-        public @NotNull Class<PersistentDataContainer> getPrimitiveType() {
+        public Class<PersistentDataContainer> getPrimitiveType() {
             return PersistentDataContainer.class;
         }
 
         @Override
-        public @NotNull PersistentDataContainer toPrimitive(@NotNull ArmorData data,
-                @NotNull PersistentDataAdapterContext adapterContext) {
+        public PersistentDataContainer toPrimitive(ArmorData data, PersistentDataAdapterContext adapterContext) {
 
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
 
-            container.set(Main.getNamespacedKey("defense"), PersistentDataType.FLOAT,
-                    data.getDefense());
-
-            container.set(Main.getNamespacedKey("durability"), PersistentDataType.INTEGER, data.maxDurability());
+            container.set(DEFENSE_KEY, PersistentDataType.FLOAT, data.getDefense());
+            container.set(DURABILITY_KEY, PersistentDataType.INTEGER, data.maxDurability());
 
             return container;
         }

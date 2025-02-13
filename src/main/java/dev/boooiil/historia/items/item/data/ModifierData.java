@@ -3,6 +3,7 @@ package dev.boooiil.historia.items.item.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataAdapterContext;
@@ -19,6 +20,7 @@ import dev.boooiil.historia.items.util.KyoriUtils;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
 import net.kyori.adventure.text.Component;
+import org.jspecify.annotations.NullMarked;
 
 public class ModifierData implements ItemData {
 
@@ -135,37 +137,40 @@ public class ModifierData implements ItemData {
         return sb.toString();
     }
 
+    @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ModifierData> {
 
+        private static final NamespacedKey WEIGHT_KEY = Main.getNamespacedKey("weight");
+        private static final NamespacedKey QUALITY_KEY = Main.getNamespacedKey("quality");
+
         @Override
-        public @NotNull ModifierData fromPrimitive(@NotNull PersistentDataContainer container,
-                @NotNull PersistentDataAdapterContext adapterContext) {
+        public ModifierData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
 
             Weights weight = Weights
-                    .fromString(container.get(Main.getNamespacedKey("weight"), PersistentDataType.STRING));
+                    .fromString(container.get(WEIGHT_KEY, PersistentDataType.STRING));
             Qualities quality = Qualities
-                    .fromString(container.get(Main.getNamespacedKey("quality"), PersistentDataType.STRING));
+                    .fromString(container.get(QUALITY_KEY, PersistentDataType.STRING));
+
             return new ModifierData(weight, quality);
         }
 
         @Override
-        public @NotNull Class<ModifierData> getComplexType() {
+        public Class<ModifierData> getComplexType() {
             return ModifierData.class;
         }
 
         @Override
-        public @NotNull Class<PersistentDataContainer> getPrimitiveType() {
+        public Class<PersistentDataContainer> getPrimitiveType() {
             return PersistentDataContainer.class;
         }
 
         @Override
-        public @NotNull PersistentDataContainer toPrimitive(@NotNull ModifierData data,
-                @NotNull PersistentDataAdapterContext adapterContext) {
+        public PersistentDataContainer toPrimitive(ModifierData data, PersistentDataAdapterContext adapterContext) {
 
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
 
-            container.set(Main.getNamespacedKey("weight"), PersistentDataType.STRING, data.weight.lowercase());
-            container.set(Main.getNamespacedKey("quality"), PersistentDataType.STRING, data.quality().lowercase());
+            container.set(WEIGHT_KEY, PersistentDataType.STRING, data.weight.lowercase());
+            container.set(QUALITY_KEY, PersistentDataType.STRING, data.quality().lowercase());
 
             return container;
         }

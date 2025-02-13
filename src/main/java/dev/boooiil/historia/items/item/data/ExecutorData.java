@@ -17,6 +17,7 @@ import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
+import org.jspecify.annotations.NullMarked;
 
 public class ExecutorData implements ItemData {
 
@@ -121,26 +122,17 @@ public class ExecutorData implements ItemData {
 
     }
 
+    @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ExecutorData> {
 
         private static final NamespacedKey EXECUTABLES_KEY = Main.getNamespacedKey("executables");
 
         @Override
-        public @NotNull ExecutorData fromPrimitive(@NotNull PersistentDataContainer container,
-                @NotNull PersistentDataAdapterContext adapterContext) {
-
-            HashMap<Triggers, ItemExecutable> executables = new HashMap<>();
-
-            // I was thinking about making ItemExecutable also be a persistent data
-            // container type
-            // so that we could just store
-            // PDC.add(<TRIGGER_STR, ItemExecutableType, ItemExecutable);
-            // and then iterate over the container keys if possible.
-
-            // for (String key : container.getKeys())
+        public ExecutorData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
 
             PersistentDataContainer executablesContainer = container.get(EXECUTABLES_KEY, PersistentDataType.TAG_CONTAINER);
 
+            HashMap<Triggers, ItemExecutable> executables = new HashMap<>();
             for (NamespacedKey key : executablesContainer.getKeys()) {
                 Triggers trigger = Triggers.fromString(key.getKey());
 
@@ -154,18 +146,17 @@ public class ExecutorData implements ItemData {
         }
 
         @Override
-        public @NotNull Class<ExecutorData> getComplexType() {
+        public Class<ExecutorData> getComplexType() {
             return ExecutorData.class;
         }
 
         @Override
-        public @NotNull Class<PersistentDataContainer> getPrimitiveType() {
+        public Class<PersistentDataContainer> getPrimitiveType() {
             return PersistentDataContainer.class;
         }
 
         @Override
-        public @NotNull PersistentDataContainer toPrimitive(@NotNull ExecutorData data,
-                @NotNull PersistentDataAdapterContext adapterContext) {
+        public PersistentDataContainer toPrimitive(ExecutorData data, PersistentDataAdapterContext adapterContext) {
 
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
             PersistentDataContainer executablesContainer = adapterContext.newPersistentDataContainer();
