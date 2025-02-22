@@ -11,3 +11,16 @@ Light_Tin_Boots:
   armor:
     defense: [0.5, 1.5]
     durability: [60, 90]
+
+  executor:
+    right_click:
+      commands:
+        - /time set day
+      uses: 1
+      cooldown: 1000
+    left_click:
+      commands:
+        - /time set day
+        - /time set night
+      uses: 1
+      cooldown: 500

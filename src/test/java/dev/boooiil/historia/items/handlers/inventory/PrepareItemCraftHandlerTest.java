@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
 import org.mockbukkit.mockbukkit.entity.PlayerMock;
+import org.mockbukkit.mockbukkit.world.ChunkMock;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.util.Logging;
@@ -92,8 +93,8 @@ public class PrepareItemCraftHandlerTest {
 
                         Logging.debugToConsole("Data:", td.toString());
 
-                        assertEquals(td.attackDamage(), damage);
-                        assertEquals(td.attackSpeed(), speed);
+                        assertEquals(td.damage(), damage);
+                        assertEquals(td.speed(), speed);
                         assertEquals(td.knockback(), knockback);
                         assertEquals(td.maxDurability(), toolDamageable.getMaxDamage());
                         break;
