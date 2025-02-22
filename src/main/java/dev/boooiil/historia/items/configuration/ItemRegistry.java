@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.jspecify.annotations.NullMarked;
+
 import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.util.Logging;
 
@@ -18,6 +20,7 @@ import dev.boooiil.historia.items.util.Logging;
  * and get item configurations from the registry.
  * </p>
  */
+@NullMarked
 public abstract class ItemRegistry {
 
     /** The item configuration registry. */
