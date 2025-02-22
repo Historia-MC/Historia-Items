@@ -12,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
@@ -140,7 +139,8 @@ public class WeaponData implements ItemData {
         private static final NamespacedKey SWEEPING_KEY = Main.getNamespacedKey("sweeping");
 
         @Override
-        public WeaponData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
+        public WeaponData fromPrimitive(PersistentDataContainer container,
+                PersistentDataAdapterContext adapterContext) {
 
             float sweeping = container.get(SWEEPING_KEY, PersistentDataType.FLOAT);
 

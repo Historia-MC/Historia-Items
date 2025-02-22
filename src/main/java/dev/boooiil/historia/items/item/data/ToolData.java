@@ -18,7 +18,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NullMarked;
 
 import java.util.ArrayList;
@@ -31,31 +30,32 @@ import java.util.List;
 public class ToolData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ToolData> DATA_TYPE = new ToolData.DataType();
+    public static final NamespacedKey DATA_KEY = Main.getNamespacedKey("tool-data");
 
     // private String id;
-    private float attackDamage;
-    private float attackSpeed;
+    private float damage;
+    private float speed;
     private float knockback;
     private int maxDurability;
 
     /**
      * Constructor for ToolData class.
      *
-     * @param attackDamage  Attack damage of the tool.
-     * @param attackSpeed   Attack speed of the tool.
+     * @param damage        Attack damage of the tool.
+     * @param speed         Attack speed of the tool.
      * @param knockback     Knockback of the tool.
      * @param maxDurability Max durability of the tool.
      */
 
     public ToolData(
             // String id,
-            float attackDamage,
-            float attackSpeed,
+            float damage,
+            float speed,
             float knockback,
             int maxDurability) {
         // this.id = id;
-        this.attackDamage = attackDamage;
-        this.attackSpeed = attackSpeed;
+        this.damage = damage;
+        this.speed = speed;
         this.knockback = knockback;
         this.maxDurability = maxDurability;
     }
@@ -68,8 +68,8 @@ public class ToolData implements ItemData {
      */
     public static ToolData fromStack(ItemStack stack) {
 
-        return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("tool-data"),
-                ToolData.DATA_TYPE).orElse(new ToolData(0, 0, 0, 1));
+        return PDCUtils.getFromComplexContainer(stack, ToolData.DATA_KEY, ToolData.DATA_TYPE)
+                .orElse(new ToolData(0, 0, 0, 1));
 
     }
 
@@ -96,13 +96,12 @@ public class ToolData implements ItemData {
 
     protected void applyData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("tool-data"),
-                ToolData.DATA_TYPE, this);
+        PDCUtils.setInComplexContainer(stack, ToolData.DATA_KEY, ToolData.DATA_TYPE, this);
 
         AttributeModifier damageAttr = new AttributeModifier(Main.getNamespacedKey("tool-damage"),
-                this.attackDamage - 1, AttributeModifier.Operation.ADD_NUMBER);
+                this.damage - 1, AttributeModifier.Operation.ADD_NUMBER);
         AttributeModifier speedAttr = new AttributeModifier(Main.getNamespacedKey("tool-speed"),
-                this.attackSpeed - 4, AttributeModifier.Operation.ADD_NUMBER);
+                this.speed - 4, AttributeModifier.Operation.ADD_NUMBER);
         AttributeModifier knockbackAttr = new AttributeModifier(Main.getNamespacedKey("tool-knockback"),
                 this.knockback, AttributeModifier.Operation.ADD_NUMBER);
 
@@ -156,7 +155,7 @@ public class ToolData implements ItemData {
                 Logging.debugToConsole(configId, "has damage placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "tool-damage",
-                        attackDamage));
+                        damage));
                 continue;
             }
             if (KyoriUtils.contains(component, "<tool-speed>")) {
@@ -164,7 +163,7 @@ public class ToolData implements ItemData {
                 Logging.debugToConsole(configId, "has speed placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "tool-speed",
-                        attackSpeed));
+                        speed));
                 continue;
             }
             if (KyoriUtils.contains(component, "<tool-knockback>")) {
@@ -206,8 +205,8 @@ public class ToolData implements ItemData {
      *
      * @return The attack damage of the item.
      */
-    public float attackDamage() {
-        return this.attackDamage;
+    public float damage() {
+        return this.damage;
     }
 
     /**
@@ -215,8 +214,8 @@ public class ToolData implements ItemData {
      *
      * @return The attack speed of the item.
      */
-    public float attackSpeed() {
-        return this.attackSpeed;
+    public float speed() {
+        return this.speed;
     }
 
     /**
@@ -262,8 +261,8 @@ public class ToolData implements ItemData {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
-        sb.append(JSONUtils.fromValue("attackDamage", attackDamage) + ", ");
-        sb.append(JSONUtils.fromValue("attackSpeed", attackSpeed) + ", ");
+        sb.append(JSONUtils.fromValue("damage", damage) + ", ");
+        sb.append(JSONUtils.fromValue("speed", speed) + ", ");
         sb.append(JSONUtils.fromValue("knockback", knockback) + ", ");
         sb.append(JSONUtils.fromValue("maxDurability", maxDurability));
         sb.append("}");
@@ -278,7 +277,7 @@ public class ToolData implements ItemData {
         private static final NamespacedKey SPEED_KEY = Main.getNamespacedKey("speed");
         private static final NamespacedKey KNOCKBACK_KEY = Main.getNamespacedKey("knockback");
         private static final NamespacedKey DURABILITY_KEY = Main.getNamespacedKey("durability");
-            
+
         @Override
         public ToolData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
 
@@ -309,8 +308,8 @@ public class ToolData implements ItemData {
 
             PersistentDataContainer container = adapterContext.newPersistentDataContainer();
 
-            container.set(DAMAGE_KEY, PersistentDataType.FLOAT, data.attackDamage() - 1);
-            container.set(SPEED_KEY, PersistentDataType.FLOAT, data.attackSpeed() - 4);
+            container.set(DAMAGE_KEY, PersistentDataType.FLOAT, data.damage() - 1);
+            container.set(SPEED_KEY, PersistentDataType.FLOAT, data.speed() - 4);
             container.set(KNOCKBACK_KEY, PersistentDataType.FLOAT, data.knockback());
             container.set(DURABILITY_KEY, PersistentDataType.INTEGER, data.maxDurability());
 

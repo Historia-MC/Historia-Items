@@ -9,7 +9,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
@@ -22,6 +21,7 @@ import org.jspecify.annotations.NullMarked;
 public class ExecutorData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ExecutorData> DATA_TYPE = new ExecutorData.DataType();
+    public static final NamespacedKey KEY = Main.getNamespacedKey("executor-data");
 
     // private String id;
     private final HashMap<Triggers, ItemExecutable> executables;
@@ -34,9 +34,13 @@ public class ExecutorData implements ItemData {
 
     public static ExecutorData fromStack(ItemStack stack) {
 
-        return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("executor-data"),
+        return PDCUtils.getFromComplexContainer(stack, ExecutorData.KEY,
                 ExecutorData.DATA_TYPE).orElse(new ExecutorData(new HashMap<>()));
 
+    }
+
+    public static ExecutorData defaults() {
+        return new ExecutorData(new HashMap<>());
     }
 
     public void execute(Player player, ItemStack item, Triggers trigger) {
@@ -128,9 +132,11 @@ public class ExecutorData implements ItemData {
         private static final NamespacedKey EXECUTABLES_KEY = Main.getNamespacedKey("executables");
 
         @Override
-        public ExecutorData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
+        public ExecutorData fromPrimitive(PersistentDataContainer container,
+                PersistentDataAdapterContext adapterContext) {
 
-            PersistentDataContainer executablesContainer = container.get(EXECUTABLES_KEY, PersistentDataType.TAG_CONTAINER);
+            PersistentDataContainer executablesContainer = container.get(EXECUTABLES_KEY,
+                    PersistentDataType.TAG_CONTAINER);
 
             HashMap<Triggers, ItemExecutable> executables = new HashMap<>();
             for (NamespacedKey key : executablesContainer.getKeys()) {

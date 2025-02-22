@@ -9,7 +9,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.item.ItemData;
@@ -144,7 +143,8 @@ public class ModifierData implements ItemData {
         private static final NamespacedKey QUALITY_KEY = Main.getNamespacedKey("quality");
 
         @Override
-        public ModifierData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
+        public ModifierData fromPrimitive(PersistentDataContainer container,
+                PersistentDataAdapterContext adapterContext) {
 
             Weights weight = Weights
                     .fromString(container.get(WEIGHT_KEY, PersistentDataType.STRING));
