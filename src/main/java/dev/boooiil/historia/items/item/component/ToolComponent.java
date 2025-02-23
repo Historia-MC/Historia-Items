@@ -36,7 +36,7 @@ public class ToolComponent implements ItemComponent {
     }
 
     @Override
-    public ToolData apply() {
+    public ToolData data() {
 
         float damage = NumberUtils
                 .roundFloat(NumberUtils.random(this.damageRange().get(0), this.damageRange().get(1)), 2);
@@ -50,8 +50,8 @@ public class ToolComponent implements ItemComponent {
     }
 
     @Override
-    public ToolData apply(float qualityModifier) {
-        return apply();
+    public ToolData data(float qualityModifier) {
+        return data();
     }
 
     @Override

@@ -41,13 +41,13 @@ public class ModifierComponent implements ItemComponent {
     }
 
     @Override
-    public ModifierData apply() {
+    public ModifierData data() {
         return new ModifierData(weight, quality);
     }
 
     @Override
-    public ModifierData apply(float qualityModifier) {
-        return apply();
+    public ModifierData data(float qualityModifier) {
+        return data();
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import dev.boooiil.historia.items.registry.ItemRegistry;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 

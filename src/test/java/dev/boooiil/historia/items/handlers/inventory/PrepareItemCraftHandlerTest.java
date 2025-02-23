@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.handlers.inventory;
 
-import dev.boooiil.historia.items.configuration.ItemRegistry;
+import dev.boooiil.historia.items.registry.ItemRegistry;
 import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.item.component.ExecutorComponent;
 import dev.boooiil.historia.items.item.data.ArmorData;
@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
 import org.mockbukkit.mockbukkit.entity.PlayerMock;
-import org.mockbukkit.mockbukkit.world.ChunkMock;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.util.Logging;

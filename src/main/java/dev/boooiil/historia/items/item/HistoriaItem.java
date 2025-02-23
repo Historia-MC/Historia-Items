@@ -2,6 +2,7 @@ package dev.boooiil.historia.items.item;
 
 import java.util.*;
 
+import dev.boooiil.historia.items.registry.ItemComponentRegistry;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
@@ -53,10 +54,11 @@ public class HistoriaItem implements JSONSerializable {
         Double weight = section.getDouble("weight");
 
         Map<String, ItemComponent> components = new HashMap<>();
-        for (String key : ItemComponents.allKeys()) {
+        for (String key : ItemComponentRegistry.keySet()) {
             if (section.contains(key)) {
+                ItemComponentType<?> type = ItemComponentRegistry.get(key);
                 ConfigurationSection componentSection = section.getConfigurationSection(key);
-                components.put(key, ItemComponent.fromConfig(key, componentSection));
+                components.put(key, type.fromConfig(componentSection));
             }
         }
 
@@ -164,7 +166,7 @@ public class HistoriaItem implements JSONSerializable {
         stack.setItemMeta(meta);
 
         for (ItemComponent component : this.components.values()) {
-            ItemData data = component.apply();
+            ItemData data = component.data();
             data.apply(stack);
         }
 

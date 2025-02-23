@@ -27,7 +27,7 @@ public final class WeaponComponent implements ItemComponent {
     }
 
     @Override
-    public WeaponData apply() {
+    public WeaponData data() {
         float sweeping = NumberUtils
                 .roundFloat(NumberUtils.random(this.sweepingRange().get(0), this.sweepingRange().get(1)), 2);
 
@@ -35,8 +35,8 @@ public final class WeaponComponent implements ItemComponent {
     }
 
     @Override
-    public WeaponData apply(float qualityModifier) {
-        return apply();
+    public WeaponData data(float qualityModifier) {
+        return data();
     }
 
     @Override
