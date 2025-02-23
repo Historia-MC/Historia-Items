@@ -12,6 +12,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
 
+import dev.boooiil.historia.items.registry.ItemComponentRegistry;
 import dev.boooiil.historia.items.registry.ItemRegistry;
 
 @NullMarked
@@ -63,14 +64,13 @@ public class HistoriaItemData {
         return ItemRegistry.get(id);
     }
 
-    @Nullable
     public <C, T extends ItemData> ItemData getData(
             NamespacedKey key,
-            PersistentDataType<C, T> type,
-            Supplier<T> defaults) {
+            PersistentDataType<C, T> type) {
 
         if (!hasData(key)) {
-            return defaults.get();
+            String regKey = key.getKey().replace("-data", "");
+            return ItemComponentRegistry.get(regKey).getData();
         }
 
         return stack.getItemMeta().getPersistentDataContainer().get(key, type);
