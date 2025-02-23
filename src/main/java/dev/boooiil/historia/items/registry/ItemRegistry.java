@@ -1,4 +1,4 @@
-package dev.boooiil.historia.items.configuration;
+package dev.boooiil.historia.items.registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;

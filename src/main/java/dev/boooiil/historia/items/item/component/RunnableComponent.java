@@ -29,13 +29,13 @@ public class RunnableComponent implements ItemComponent {
     }
 
     @Override
-    public RunnableData apply() {
+    public RunnableData data() {
         return new RunnableData(this.ticks, this.command, this.permission);
     }
 
     @Override
-    public RunnableData apply(float qualityModifier) {
-        return apply();
+    public RunnableData data(float qualityModifier) {
+        return data();
     }
 
     @Override

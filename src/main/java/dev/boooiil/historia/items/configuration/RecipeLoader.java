@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.registry.ItemRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

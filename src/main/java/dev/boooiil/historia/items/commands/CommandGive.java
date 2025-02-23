@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.commands;
 
-import dev.boooiil.historia.items.configuration.ItemRegistry;
+import dev.boooiil.historia.items.registry.ItemRegistry;
 import dev.boooiil.historia.items.item.HistoriaItem;
 
 import net.kyori.adventure.text.Component;

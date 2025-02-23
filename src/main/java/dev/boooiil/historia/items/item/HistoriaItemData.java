@@ -12,7 +12,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
 
-import dev.boooiil.historia.items.configuration.ItemRegistry;
+import dev.boooiil.historia.items.registry.ItemRegistry;
 
 @NullMarked
 public class HistoriaItemData {

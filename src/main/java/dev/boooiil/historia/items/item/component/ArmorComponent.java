@@ -37,7 +37,7 @@ public class ArmorComponent implements ItemComponent {
     }
 
     @Override
-    public ArmorData apply() {
+    public ArmorData data() {
 
         float defense = NumberUtils
                 .roundFloat(NumberUtils.random(this.defenseRange().get(0), this.defenseRange().get(1)), 2);
@@ -47,8 +47,8 @@ public class ArmorComponent implements ItemComponent {
     }
 
     @Override
-    public ArmorData apply(float qualityModifier) {
-        return apply();
+    public ArmorData data(float qualityModifier) {
+        return data();
     }
 
     @Override
