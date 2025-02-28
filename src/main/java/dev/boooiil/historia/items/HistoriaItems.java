@@ -16,7 +16,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 
 /**
  * The Main class is responsible for initializing the Historia plugin.
@@ -43,9 +43,9 @@ public class HistoriaItems extends JavaPlugin {
 
         instance = this;
 
-        Logging.infoToConsole("Plugin has loaded.");
+        HILogger.infoToConsole("Plugin has loaded.");
 
-        Logging.infoToConsole("RUNNING VERSION: " + Bukkit.getVersion());
+        HILogger.infoToConsole("RUNNING VERSION: " + Bukkit.getVersion());
 
         if (Bukkit.getVersion().contains("MockBukkit")) {
             System.out.println("RUNNING IN TEST MODE");
@@ -75,7 +75,7 @@ public class HistoriaItems extends JavaPlugin {
         registerCommand("give", new CommandGive());
         registerEvent(new EntityDamageByEntityListener());
 
-        Logging.infoToConsole("Plugin Enabled.");
+        HILogger.infoToConsole("Plugin Enabled.");
 
     }
 

@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.registry;
 
 import dev.boooiil.historia.items.item.ItemComponent;
 import dev.boooiil.historia.items.item.ItemComponentType;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -12,7 +12,7 @@ public abstract class ItemComponentRegistry {
 
     public static void register(String key, ItemComponentType<? extends ItemComponent> componentType) {
         key = key.toLowerCase();
-        Logging.debugToConsole("Registering " + key + " to item component type registry.");
+        HILogger.debugToConsole("Registering " + key + " to item component type registry.");
         registry.put(key, componentType);
     }
 
@@ -23,7 +23,7 @@ public abstract class ItemComponentRegistry {
 
     public static ItemComponentType<? extends ItemComponent> get(String key) {
         key = key.toLowerCase();
-        Logging.debugToConsole("Obtaining:", key, "from registry.");
+        HILogger.debugToConsole("Obtaining:", key, "from registry.");
         return registry.get(key);
     }
 

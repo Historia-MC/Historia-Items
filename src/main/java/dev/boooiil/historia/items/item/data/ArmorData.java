@@ -16,7 +16,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import dev.boooiil.historia.items.util.PDCUtils;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
@@ -85,7 +85,7 @@ public class ArmorData implements ItemData {
         ItemMeta meta = stack.getItemMeta();
 
         if (!meta.hasLore() || meta.lore().isEmpty()) {
-            Logging.debugToConsole("Armor has no lore, skipping placeholder.");
+            HILogger.debugToConsole("Armor has no lore, skipping placeholder.");
             return;
         }
 
@@ -96,7 +96,7 @@ public class ArmorData implements ItemData {
 
             if (KyoriUtils.contains(component, "<armor-defense>")) {
 
-                Logging.debugToConsole("Armor has defense placeholder.");
+                HILogger.debugToConsole("Armor has defense placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "armor-defense", this.defense));
 

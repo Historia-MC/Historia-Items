@@ -15,7 +15,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import dev.boooiil.historia.items.util.NumberUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
 import dev.boooiil.historia.core.util.JSONUtils;
@@ -78,7 +78,7 @@ public class WeaponData implements ItemData {
         ItemMeta meta = stack.getItemMeta();
 
         if (!meta.hasLore() || meta.lore().isEmpty()) {
-            Logging.debugToConsole(configId, "has no lore, skipping placeholder.");
+            HILogger.debugToConsole(configId, "has no lore, skipping placeholder.");
             return;
         }
 
@@ -89,7 +89,7 @@ public class WeaponData implements ItemData {
 
             if (KyoriUtils.contains(component, "<weapon-sweeping>")) {
 
-                Logging.debugToConsole(configId, "has sweeping placeholder.");
+                HILogger.debugToConsole(configId, "has sweeping placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "weapon-sweeping", this.sweeping));
 

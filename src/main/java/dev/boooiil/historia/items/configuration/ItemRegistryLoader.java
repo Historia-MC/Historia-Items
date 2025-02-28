@@ -10,7 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.file.FileIO;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
@@ -37,7 +37,7 @@ public class ItemRegistryLoader {
      */
     @ApiStatus.Experimental
     public static void load(Supplier<List<YamlConfiguration>> configSupplier) {
-        Logging.debugToConsole("Initializing ItemRegistryLoader...");
+        HILogger.debugToConsole("Initializing ItemRegistryLoader...");
         configurations = configSupplier.get();
         populate(configurations);
     }
@@ -48,7 +48,7 @@ public class ItemRegistryLoader {
      * configurations with
      */
     public static void load() {
-        Logging.debugToConsole("Initializing ItemRegistryLoader...");
+        HILogger.debugToConsole("Initializing ItemRegistryLoader...");
         configurations = FileIO.loadYamlConfigurationsFromPlugins();
         populate(configurations);
     }
@@ -111,7 +111,7 @@ public class ItemRegistryLoader {
 
             for (String key : keys) {
 
-                Logging.debugToConsole("Key", key);
+                HILogger.debugToConsole("Key", key);
 
                 ConfigurationSection section = configuration.getConfigurationSection(key);
 

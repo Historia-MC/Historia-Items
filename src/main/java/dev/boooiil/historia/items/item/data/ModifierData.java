@@ -16,7 +16,7 @@ import dev.boooiil.historia.items.item.types.Qualities;
 import dev.boooiil.historia.items.item.types.Weights;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import dev.boooiil.historia.items.util.PDCUtils;
 import net.kyori.adventure.text.Component;
 import org.jspecify.annotations.NullMarked;
@@ -66,7 +66,7 @@ public class ModifierData implements ItemData {
         ItemMeta meta = stack.getItemMeta();
 
         if (!meta.hasLore() || meta.lore().isEmpty()) {
-            Logging.debugToConsole(configId, "has no lore, skipping placeholder.");
+            HILogger.debugToConsole(configId, "has no lore, skipping placeholder.");
             return;
         }
 
@@ -77,7 +77,7 @@ public class ModifierData implements ItemData {
 
             if (KyoriUtils.contains(component, "<modifier-weight>")) {
 
-                Logging.debugToConsole(configId, "has modifier weight placeholder.");
+                HILogger.debugToConsole(configId, "has modifier weight placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "modifier-weight", this.weight.getDisplayName()));
 
@@ -86,7 +86,7 @@ public class ModifierData implements ItemData {
 
             if (KyoriUtils.contains(component, "<modifier-quality>")) {
 
-                Logging.debugToConsole(configId, "has modifier quality placeholder.");
+                HILogger.debugToConsole(configId, "has modifier quality placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "modifier-quality", this.quality.getDisplayName()));
 

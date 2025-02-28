@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.file;
 
 import dev.boooiil.historia.items.HistoriaItems;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -214,14 +214,14 @@ public class FileIO {
      */
     public static void checkFiles() {
 
-        Logging.infoToConsole("Checking existence and version of config files.");
+        HILogger.infoToConsole("Checking existence and version of config files.");
 
         for (String fileName : configFileNames) {
             File diskFile = new File(HistoriaItems.plugin().getDataFolder(), fileName);
 
             if (!diskFile.exists()) {
-                Logging.infoToConsole("Missing config file: " + fileName + " has been saved to disk from resources.");
-                Logging.infoToConsole("Location: " + diskFile.getAbsolutePath());
+                HILogger.infoToConsole("Missing config file: " + fileName + " has been saved to disk from resources.");
+                HILogger.infoToConsole("Location: " + diskFile.getAbsolutePath());
                 HistoriaItems.plugin().saveResource(fileName, false);
                 continue;
             }
@@ -233,13 +233,13 @@ public class FileIO {
             int jarVersion = jarConfig.getInt("version");
 
             if (diskVersion < jarVersion) {
-                Logging.infoToConsole("Outdated config file (" + diskVersion + "): " + fileName
+                HILogger.infoToConsole("Outdated config file (" + diskVersion + "): " + fileName
                         + " has been replaced on disk by the newer version " + jarVersion + ".");
                 HistoriaItems.plugin().saveResource(fileName, true);
             }
         }
 
-        Logging.infoToConsole("Completed checks of existence and version of config files.");
+        HILogger.infoToConsole("Completed checks of existence and version of config files.");
 
     }
 
@@ -304,7 +304,7 @@ public class FileIO {
 
         if (find(HistoriaItems.plugin().getDataFolder().listFiles(), check)) {
 
-            Logging.debugToConsole("Obtained file from external directory: ",
+            HILogger.debugToConsole("Obtained file from external directory: ",
                     HistoriaItems.plugin().getDataFolder().getPath() + "\\" + check.getKey());
 
             File file = new File(HistoriaItems.plugin().getDataFolder().getPath(), check.getKey());
@@ -314,7 +314,7 @@ public class FileIO {
 
         else {
 
-            Logging.debugToConsole("Obtained file from internal directory: " + check.getKey());
+            HILogger.debugToConsole("Obtained file from internal directory: " + check.getKey());
 
             InputStream is = FileIO.class.getClassLoader().getResourceAsStream(check.getKey());
 

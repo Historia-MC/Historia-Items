@@ -3,7 +3,7 @@ package dev.boooiil.historia.items.item.executor;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

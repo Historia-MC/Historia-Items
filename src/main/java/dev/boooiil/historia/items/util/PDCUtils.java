@@ -16,7 +16,7 @@ public class PDCUtils {
         if (item.hasItemMeta()) {
             return Optional.of(getContainer(item.getItemMeta()));
         } else {
-            Logging.debugToConsole("Tried to obtain the data container for", item.getType().name(),
+            HILogger.debugToConsole("Tried to obtain the data container for", item.getType().name(),
                     "but it did not have any meta.");
 
             // cannot guarantee that every item passed through here is going to have a meta
@@ -47,7 +47,7 @@ public class PDCUtils {
         if (item.hasItemMeta()) {
             return getFromContainer(getContainer(item).get(), key, type);
         } else {
-            Logging.debugToConsole("Tried to obtain data from the data container for", item.getType().name(),
+            HILogger.debugToConsole("Tried to obtain data from the data container for", item.getType().name(),
                     "but it did not have any meta.");
             return Optional.empty();
         }
@@ -73,7 +73,7 @@ public class PDCUtils {
         if (item.hasItemMeta()) {
             return getFromComplexContainer(getContainer(item).get(), key, type);
         } else {
-            Logging.debugToConsole("Tried to obtain data from the data container for", item.getType().name(),
+            HILogger.debugToConsole("Tried to obtain data from the data container for", item.getType().name(),
                     "but it did not have any meta.");
             return Optional.empty();
         }
@@ -82,7 +82,7 @@ public class PDCUtils {
     public static <T> void setInContainer(PersistentDataContainer container, NamespacedKey key,
             PersistentDataType<T, T> type, T value) {
 
-        Logging.debugToConsole("Setting into container:", "" + key, "" + type.getPrimitiveType(), "" + value);
+        HILogger.debugToConsole("Setting into container:", "" + key, "" + type.getPrimitiveType(), "" + value);
         container.set(key, type, value);
     }
 
@@ -104,7 +104,7 @@ public class PDCUtils {
     public static <C, T> void setInComplexContainer(PersistentDataContainer container, NamespacedKey key,
             PersistentDataType<C, T> type, T value) {
 
-        Logging.debugToConsole("Setting into container:", "" + key, "" + type.getPrimitiveType(), "" + value);
+        HILogger.debugToConsole("Setting into container:", "" + key, "" + type.getPrimitiveType(), "" + value);
         container.set(key, type, value);
     }
 

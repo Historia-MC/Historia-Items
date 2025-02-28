@@ -26,7 +26,7 @@ import org.mockbukkit.mockbukkit.ServerMock;
 import org.mockbukkit.mockbukkit.entity.PlayerMock;
 
 import dev.boooiil.historia.items.HistoriaItems;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import dev.boooiil.historia.items.util.NumberUtils;
 
 public class PrepareItemCraftHandlerTest {
@@ -61,10 +61,10 @@ public class PrepareItemCraftHandlerTest {
 
             HistoriaItem historiaItem = HistoriaItems.ITEM_REGISTRY.get(registeredItem);
 
-            Logging.debugToConsole(historiaItem.toString());
+            HILogger.debugToConsole(historiaItem.toString());
 
             ItemStack item = historiaItem.createItemStack();
-            Logging.debugToConsole(item.getItemMeta().getPersistentDataContainer().getKeys() + "");
+            HILogger.debugToConsole(item.getItemMeta().getPersistentDataContainer().getKeys() + "");
 
             assertEquals(item.hasItemMeta(), true);
 
@@ -90,7 +90,7 @@ public class PrepareItemCraftHandlerTest {
                         float speed = NumberUtils.roundFloat((float) speedAttr.getAmount(), 2);
                         float knockback = NumberUtils.roundFloat((float) knockbackAttr.getAmount(), 2);
 
-                        Logging.debugToConsole("Data:", td.toString());
+                        HILogger.debugToConsole("Data:", td.toString());
 
                         assertEquals(td.damage(), damage);
                         assertEquals(td.speed(), speed);
@@ -107,7 +107,7 @@ public class PrepareItemCraftHandlerTest {
 
                         float sweeping = NumberUtils.roundFloat((float) sweepingAttr.getAmount(), 2);
 
-                        Logging.debugToConsole("Data:", wd.toString());
+                        HILogger.debugToConsole("Data:", wd.toString());
                         assertEquals(wd.sweeping(), sweeping);
 
                         break;
@@ -121,7 +121,7 @@ public class PrepareItemCraftHandlerTest {
                         Damageable armorDamageable = (Damageable) item.getItemMeta();
                         float defense = NumberUtils.roundFloat((float) defenseAttr.getAmount(), 2);
 
-                        Logging.debugToConsole("Data:", ad.toString());
+                        HILogger.debugToConsole("Data:", ad.toString());
 
                         assertEquals(ad.getDefense(), defense);
                         assertEquals(ad.maxDurability(), armorDamageable.getMaxDamage());
@@ -136,7 +136,7 @@ public class PrepareItemCraftHandlerTest {
 
                             ItemExecutable executable = ec.executables().get(trigger);
 
-                            Logging.debugToConsole("Executable:", executable.toString());
+                            HILogger.debugToConsole("Executable:", executable.toString());
 
                             assertEquals(trigger != Triggers.UNKNOWN, true);
                             assertEquals(ec.executables().containsKey(trigger), true);
@@ -150,7 +150,7 @@ public class PrepareItemCraftHandlerTest {
                             ed.execute(player, item, trigger);
 
                             if (ec.executables().size() > ed.executables().size()) {
-                                Logging.debugToConsole("Executables size changed: " + ec.executables().size() + " -> "
+                                HILogger.debugToConsole("Executables size changed: " + ec.executables().size() + " -> "
                                         + ed.executables().size(), "on trigger", trigger.getLowercase());
                             } else {
                                 for (Triggers executedTrigger : ec.executables().keySet()) {

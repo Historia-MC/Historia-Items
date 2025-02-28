@@ -39,7 +39,7 @@ public class Construct {
             List<String> lore) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+        HILogger.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " loc-name: "
                 + localizedName + " lore: " + lore);
 
@@ -73,7 +73,7 @@ public class Construct {
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+        HILogger.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " loc-name: "
                 + localizedName);
 
@@ -137,7 +137,7 @@ public class Construct {
      */
     public static ItemStack itemStack(Material material, int amount, String displayName, List<Component> lore) {
 
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+        HILogger.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " lore: " + lore);
 
         ItemStack item = new ItemStack(material, amount);

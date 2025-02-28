@@ -4,7 +4,7 @@ import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.KyoriUtils;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import dev.boooiil.historia.items.util.NumberUtils;
 import dev.boooiil.historia.items.util.PDCUtils;
 import net.kyori.adventure.text.Component;
@@ -141,7 +141,7 @@ public class ToolData implements ItemData {
         ItemMeta meta = stack.getItemMeta();
 
         if (!meta.hasLore() || meta.lore().isEmpty()) {
-            Logging.debugToConsole(configId, "has no lore, skipping placeholder.");
+            HILogger.debugToConsole(configId, "has no lore, skipping placeholder.");
             return;
         }
 
@@ -152,7 +152,7 @@ public class ToolData implements ItemData {
 
             if (KyoriUtils.contains(component, "<tool-damage>")) {
 
-                Logging.debugToConsole(configId, "has damage placeholder.");
+                HILogger.debugToConsole(configId, "has damage placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "tool-damage",
                         damage));
@@ -160,7 +160,7 @@ public class ToolData implements ItemData {
             }
             if (KyoriUtils.contains(component, "<tool-speed>")) {
 
-                Logging.debugToConsole(configId, "has speed placeholder.");
+                HILogger.debugToConsole(configId, "has speed placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "tool-speed",
                         speed));
@@ -168,7 +168,7 @@ public class ToolData implements ItemData {
             }
             if (KyoriUtils.contains(component, "<tool-knockback>")) {
 
-                Logging.debugToConsole(configId, "has knockback placeholder.");
+                HILogger.debugToConsole(configId, "has knockback placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "tool-knockback",
                         knockback));
@@ -176,7 +176,7 @@ public class ToolData implements ItemData {
             }
             if (KyoriUtils.contains(component, "<tool-durability>")) {
 
-                Logging.debugToConsole(configId, "has durability placeholder.");
+                HILogger.debugToConsole(configId, "has durability placeholder.");
 
                 nLore.add(KyoriUtils.replaceComponent(component, "tool-durability",
                         maxDurability));

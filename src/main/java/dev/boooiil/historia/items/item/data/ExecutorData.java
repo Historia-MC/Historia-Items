@@ -2,7 +2,7 @@ package dev.boooiil.historia.items.item.data;
 
 import java.util.HashMap;
 
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -142,7 +142,7 @@ public class ExecutorData implements ItemData {
             for (NamespacedKey key : executablesContainer.getKeys()) {
                 Triggers trigger = Triggers.fromString(key.getKey());
 
-                Logging.debugToConsole("loading key: " + key);
+                HILogger.debugToConsole("loading key: " + key);
                 ItemExecutable executable = executablesContainer.get(key, ItemExecutable.DATA_TYPE);
 
                 executables.put(trigger, executable);

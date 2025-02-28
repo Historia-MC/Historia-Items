@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 
 public class EntityDamageByEntityListener implements Listener {
 
@@ -15,8 +15,8 @@ public class EntityDamageByEntityListener implements Listener {
         Entity attacker = event.getDamager();
         Entity defender = event.getEntity();
 
-        Logging.debugToConsole(attacker.getName(), defender.getName());
-        Logging.debugToConsole(attacker.getName(), "attacked with " + event.getDamage(), "damage.");
+        HILogger.debugToConsole(attacker.getName(), defender.getName());
+        HILogger.debugToConsole(attacker.getName(), "attacked with " + event.getDamage(), "damage.");
 
     }
 }

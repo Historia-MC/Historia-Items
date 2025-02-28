@@ -12,7 +12,7 @@ import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
 import dev.boooiil.historia.core.util.JSONUtils;
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 
 @NullMarked
 public class ExecutorComponent implements ItemComponent {
@@ -33,7 +33,7 @@ public class ExecutorComponent implements ItemComponent {
             Triggers trigger = Triggers.fromString(sTrigger);
 
             if (trigger == Triggers.UNKNOWN) {
-                Logging.errorToConsole("Tried to get trigger", sTrigger, "from executor but it does not exist.");
+                HILogger.errorToConsole("Tried to get trigger", sTrigger, "from executor but it does not exist.");
                 continue;
             }
 

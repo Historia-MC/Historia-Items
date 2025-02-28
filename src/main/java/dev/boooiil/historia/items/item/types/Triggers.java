@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.item.types;
 
-import dev.boooiil.historia.items.util.Logging;
+import dev.boooiil.historia.items.util.HILogger;
 
 public enum Triggers {
     RIGHT_CLICK(1),
@@ -58,7 +58,7 @@ public enum Triggers {
             }
         }
 
-        Logging.errorToConsole("Tried to get trigger with id: " + id, "but it did not exist.");
+        HILogger.errorToConsole("Tried to get trigger with id: " + id, "but it did not exist.");
         return UNKNOWN;
     }
 
@@ -69,7 +69,7 @@ public enum Triggers {
             }
         }
 
-        Logging.errorToConsole("Tried to get trigger with string: " + strTrigger, "but it did not exist.");
+        HILogger.errorToConsole("Tried to get trigger with string: " + strTrigger, "but it did not exist.");
         return UNKNOWN;
     }
 }
