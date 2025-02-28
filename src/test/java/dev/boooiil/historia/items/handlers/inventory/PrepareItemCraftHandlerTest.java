@@ -25,14 +25,14 @@ import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
 import org.mockbukkit.mockbukkit.entity.PlayerMock;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
 
 public class PrepareItemCraftHandlerTest {
 
     private ServerMock server;
-    private Main plugin;
+    private HistoriaItems plugin;
 
     @BeforeEach
     public void setUp() {
@@ -40,7 +40,7 @@ public class PrepareItemCraftHandlerTest {
         server = MockBukkit.mock();
         System.out.println("Loading plugin...");
         try {
-            plugin = MockBukkit.load(Main.class);
+            plugin = MockBukkit.load(HistoriaItems.class);
             MockBukkit.load(dev.boooiil.historia.core.HistoriaCore.class);
         } catch (Exception e) {
             e.printStackTrace();

@@ -11,14 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.item.data.ArmorData;
 
 public class ArmorComponentTest {
 
     private static ServerMock server;
-    private static Main plugin;
+    private static HistoriaItems plugin;
     YamlConfiguration configuration = FileIO.findYamlConfiguration("bronze_boots.yml");
     ConfigurationSection item_root = configuration.getConfigurationSection("Light_Bronze_Boots");
     ConfigurationSection component_root = item_root.getConfigurationSection("armor");
@@ -30,7 +30,7 @@ public class ArmorComponentTest {
         server = MockBukkit.mock();
         System.out.println("Loading plugin...");
         try {
-            plugin = MockBukkit.load(Main.class);
+            plugin = MockBukkit.load(HistoriaItems.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.core.util.JSONSerializable;
 import dev.boooiil.historia.core.util.JSONUtils;
@@ -158,7 +158,7 @@ public class HistoriaItem implements JSONSerializable {
         ItemMeta meta = stack.getItemMeta();
         TextComponent textComponent = Component.text(getDisplayName());
 
-        PDCUtils.setInContainer(meta, Main.getNamespacedKey("item-id"),
+        PDCUtils.setInContainer(meta, HistoriaItems.getNamespacedKey("item-id"),
                 PersistentDataType.STRING, id);
 
         meta.displayName(textComponent);

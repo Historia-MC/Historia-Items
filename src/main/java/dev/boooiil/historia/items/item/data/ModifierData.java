@@ -10,7 +10,7 @@ import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.item.types.Qualities;
 import dev.boooiil.historia.items.item.types.Weights;
@@ -40,7 +40,7 @@ public class ModifierData implements ItemData {
 
     public static ModifierData fromStack(ItemStack stack) {
 
-        return PDCUtils.getFromComplexContainer(stack, Main.getNamespacedKey("modifier-data"),
+        return PDCUtils.getFromComplexContainer(stack, HistoriaItems.getNamespacedKey("modifier-data"),
                 ModifierData.DATA_TYPE).orElse(new ModifierData(Weights.LIGHT, Qualities.POOR));
 
     }
@@ -53,7 +53,7 @@ public class ModifierData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("modifier-data"),
+        PDCUtils.setInComplexContainer(stack, HistoriaItems.getNamespacedKey("modifier-data"),
                 ModifierData.DATA_TYPE, this);
 
     }
@@ -61,7 +61,7 @@ public class ModifierData implements ItemData {
     protected void writeLore(ItemStack stack) {
 
         String configId = PDCUtils.getFromContainer(stack,
-                Main.getNamespacedKey("item-id"), PersistentDataType.STRING).orElse("");
+                HistoriaItems.getNamespacedKey("item-id"), PersistentDataType.STRING).orElse("");
 
         ItemMeta meta = stack.getItemMeta();
 
@@ -139,8 +139,8 @@ public class ModifierData implements ItemData {
     @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ModifierData> {
 
-        private static final NamespacedKey WEIGHT_KEY = Main.getNamespacedKey("weight");
-        private static final NamespacedKey QUALITY_KEY = Main.getNamespacedKey("quality");
+        private static final NamespacedKey WEIGHT_KEY = HistoriaItems.getNamespacedKey("weight");
+        private static final NamespacedKey QUALITY_KEY = HistoriaItems.getNamespacedKey("quality");
 
         @Override
         public ModifierData fromPrimitive(PersistentDataContainer container,

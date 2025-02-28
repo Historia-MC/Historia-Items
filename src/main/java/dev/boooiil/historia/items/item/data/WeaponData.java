@@ -13,7 +13,7 @@ import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.NumberUtils;
@@ -40,7 +40,7 @@ public class WeaponData implements ItemData {
     public static WeaponData fromStack(ItemStack stack) {
 
         return PDCUtils
-                .getFromComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.DATA_TYPE)
+                .getFromComplexContainer(stack, HistoriaItems.getNamespacedKey("weapon-data"), WeaponData.DATA_TYPE)
                 .orElse(new WeaponData(0));
     }
 
@@ -52,11 +52,11 @@ public class WeaponData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("weapon-data"), WeaponData.DATA_TYPE,
+        PDCUtils.setInComplexContainer(stack, HistoriaItems.getNamespacedKey("weapon-data"), WeaponData.DATA_TYPE,
                 this);
 
         ItemMeta meta = stack.getItemMeta();
-        AttributeModifier sweepingAttr = new AttributeModifier(Main.getNamespacedKey("weapon-sweeping"),
+        AttributeModifier sweepingAttr = new AttributeModifier(HistoriaItems.getNamespacedKey("weapon-sweeping"),
                 this.sweeping,
                 AttributeModifier.Operation.ADD_NUMBER);
 
@@ -73,7 +73,7 @@ public class WeaponData implements ItemData {
     protected void writeLore(ItemStack stack) {
 
         String configId = PDCUtils.getFromContainer(stack,
-                Main.getNamespacedKey("item-id"), PersistentDataType.STRING).orElse("");
+                HistoriaItems.getNamespacedKey("item-id"), PersistentDataType.STRING).orElse("");
 
         ItemMeta meta = stack.getItemMeta();
 
@@ -136,7 +136,7 @@ public class WeaponData implements ItemData {
     @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, WeaponData> {
 
-        private static final NamespacedKey SWEEPING_KEY = Main.getNamespacedKey("sweeping");
+        private static final NamespacedKey SWEEPING_KEY = HistoriaItems.getNamespacedKey("sweeping");
 
         @Override
         public WeaponData fromPrimitive(PersistentDataContainer container,

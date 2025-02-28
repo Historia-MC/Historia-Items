@@ -10,7 +10,7 @@ import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
@@ -21,7 +21,7 @@ import org.jspecify.annotations.NullMarked;
 public class ExecutorData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ExecutorData> DATA_TYPE = new ExecutorData.DataType();
-    public static final NamespacedKey KEY = Main.getNamespacedKey("executor-data");
+    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("executor-data");
 
     // private String id;
     private final HashMap<Triggers, ItemExecutable> executables;
@@ -81,7 +81,7 @@ public class ExecutorData implements ItemData {
 
     public void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("executor-data"),
+        PDCUtils.setInComplexContainer(stack, HistoriaItems.getNamespacedKey("executor-data"),
                 ExecutorData.DATA_TYPE, this);
     }
 
@@ -129,7 +129,7 @@ public class ExecutorData implements ItemData {
     @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ExecutorData> {
 
-        private static final NamespacedKey EXECUTABLES_KEY = Main.getNamespacedKey("executables");
+        private static final NamespacedKey EXECUTABLES_KEY = HistoriaItems.getNamespacedKey("executables");
 
         @Override
         public ExecutorData fromPrimitive(PersistentDataContainer container,
@@ -168,7 +168,7 @@ public class ExecutorData implements ItemData {
             PersistentDataContainer executablesContainer = adapterContext.newPersistentDataContainer();
 
             for (Triggers trigger : data.executables().keySet()) {
-                executablesContainer.set(Main.getNamespacedKey(trigger.getLowercase()),
+                executablesContainer.set(HistoriaItems.getNamespacedKey(trigger.getLowercase()),
                         ItemExecutable.DATA_TYPE, data.executables.get(trigger));
             }
 

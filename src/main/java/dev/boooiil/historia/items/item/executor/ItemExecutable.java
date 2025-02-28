@@ -12,7 +12,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.core.util.JSONSerializable;
 import dev.boooiil.historia.core.util.JSONUtils;
 import dev.boooiil.historia.items.util.KyoriUtils;
@@ -48,7 +48,7 @@ public class ItemExecutable implements JSONSerializable {
         for (String command : applyCommandPlaceholder(player)) {
 
             if (hasElevation)
-                Main.server().dispatchCommand(Main.server().getConsoleSender(), command);
+                HistoriaItems.server().dispatchCommand(HistoriaItems.server().getConsoleSender(), command);
             else
                 player.performCommand(command);
         }
@@ -118,10 +118,10 @@ public class ItemExecutable implements JSONSerializable {
     @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ItemExecutable> {
 
-        private static final NamespacedKey COMMANDS_KEY = Main.getNamespacedKey("commands");
-        private static final NamespacedKey USES_KEY = Main.getNamespacedKey("uses");
-        private static final NamespacedKey COOLDOWN_KEY = Main.getNamespacedKey("cooldown");
-        private static final NamespacedKey ELEVATED_KEY = Main.getNamespacedKey("elevated");
+        private static final NamespacedKey COMMANDS_KEY = HistoriaItems.getNamespacedKey("commands");
+        private static final NamespacedKey USES_KEY = HistoriaItems.getNamespacedKey("uses");
+        private static final NamespacedKey COOLDOWN_KEY = HistoriaItems.getNamespacedKey("cooldown");
+        private static final NamespacedKey ELEVATED_KEY = HistoriaItems.getNamespacedKey("elevated");
 
         @Override
         public ItemExecutable fromPrimitive(PersistentDataContainer container,

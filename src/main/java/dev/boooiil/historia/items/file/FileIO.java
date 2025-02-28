@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.file;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.util.Logging;
 
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -37,7 +37,7 @@ public class FileIO {
      */
 
     public static void checkAndSaveResources(String resourcePath) {
-        URL resourceURL = Main.class.getClassLoader().getResource(resourcePath);
+        URL resourceURL = HistoriaItems.class.getClassLoader().getResource(resourcePath);
         if (resourceURL == null) {
             System.out.println("Resource path not found: " + resourcePath);
             return;
@@ -61,7 +61,7 @@ public class FileIO {
 
     private static void scanJarResources(String resourcePath) {
         try {
-            URL jarURL = Main.class.getProtectionDomain().getCodeSource().getLocation();
+            URL jarURL = HistoriaItems.class.getProtectionDomain().getCodeSource().getLocation();
             JarURLConnection jarConnection = (JarURLConnection) new URL("jar:" + jarURL + "!/").openConnection();
             JarFile jarFile = jarConnection.getJarFile();
 
@@ -103,14 +103,14 @@ public class FileIO {
     }
 
     private static void processFile(String resourcePath) {
-        File pluginFile = new File(Main.plugin().getDataFolder(), resourcePath);
+        File pluginFile = new File(HistoriaItems.plugin().getDataFolder(), resourcePath);
         if (!pluginFile.exists()) {
-            Main.plugin().saveResource(resourcePath, false);
+            HistoriaItems.plugin().saveResource(resourcePath, false);
             System.out.println("Saved missing resource: " + resourcePath + " to "
                     + pluginFile);
         } else {
             if (isVersionMismatch(pluginFile, resourcePath)) {
-                Main.plugin().saveResource(resourcePath, true);
+                HistoriaItems.plugin().saveResource(resourcePath, true);
                 System.out.println("Updated resource due to version mismatch: " + resourcePath);
             } else {
                 System.out.println("File is up to date: " + resourcePath);
@@ -120,7 +120,7 @@ public class FileIO {
 
     private static boolean isVersionMismatch(File pluginFile, String resourcePath) {
         YamlConfiguration existingConfig = YamlConfiguration.loadConfiguration(pluginFile);
-        InputStream resourceStream = Main.plugin().getResource(resourcePath);
+        InputStream resourceStream = HistoriaItems.plugin().getResource(resourcePath);
 
         if (resourceStream == null) {
             return false; // If resource doesn't exist in JAR, assume no update is needed
@@ -153,7 +153,7 @@ public class FileIO {
      * @return a list of YamlConfiguration objects for each YML file found
      */
     public static List<YamlConfiguration> loadYamlConfigurationsFromPlugins() {
-        File pluginsDirectory = Main.plugin().getDataFolder(); // Path to the 'plugins' folder
+        File pluginsDirectory = HistoriaItems.plugin().getDataFolder(); // Path to the 'plugins' folder
         List<YamlConfiguration> configurations = new ArrayList<>();
 
         // Check if the plugins directory exists
@@ -217,17 +217,17 @@ public class FileIO {
         Logging.infoToConsole("Checking existence and version of config files.");
 
         for (String fileName : configFileNames) {
-            File diskFile = new File(Main.plugin().getDataFolder(), fileName);
+            File diskFile = new File(HistoriaItems.plugin().getDataFolder(), fileName);
 
             if (!diskFile.exists()) {
                 Logging.infoToConsole("Missing config file: " + fileName + " has been saved to disk from resources.");
                 Logging.infoToConsole("Location: " + diskFile.getAbsolutePath());
-                Main.plugin().saveResource(fileName, false);
+                HistoriaItems.plugin().saveResource(fileName, false);
                 continue;
             }
 
             YamlConfiguration diskConfig = yamlFromSource(diskFile);
-            YamlConfiguration jarConfig = yamlFromSource(Main.plugin().getResource(fileName));
+            YamlConfiguration jarConfig = yamlFromSource(HistoriaItems.plugin().getResource(fileName));
 
             int diskVersion = diskConfig.getInt("version");
             int jarVersion = jarConfig.getInt("version");
@@ -235,7 +235,7 @@ public class FileIO {
             if (diskVersion < jarVersion) {
                 Logging.infoToConsole("Outdated config file (" + diskVersion + "): " + fileName
                         + " has been replaced on disk by the newer version " + jarVersion + ".");
-                Main.plugin().saveResource(fileName, true);
+                HistoriaItems.plugin().saveResource(fileName, true);
             }
         }
 
@@ -302,12 +302,12 @@ public class FileIO {
 
         YamlConfiguration config;
 
-        if (find(Main.plugin().getDataFolder().listFiles(), check)) {
+        if (find(HistoriaItems.plugin().getDataFolder().listFiles(), check)) {
 
             Logging.debugToConsole("Obtained file from external directory: ",
-                    Main.plugin().getDataFolder().getPath() + "\\" + check.getKey());
+                    HistoriaItems.plugin().getDataFolder().getPath() + "\\" + check.getKey());
 
-            File file = new File(Main.plugin().getDataFolder().getPath(), check.getKey());
+            File file = new File(HistoriaItems.plugin().getDataFolder().getPath(), check.getKey());
 
             config = YamlConfiguration.loadConfiguration(file);
         }
@@ -336,7 +336,7 @@ public class FileIO {
      * @return YamlConfiguration object if found, otherwise null
      */
     public static YamlConfiguration findYamlConfiguration(String fileName) {
-        File pluginsDirectory = Main.plugin().getDataFolder(); // Path to the 'plugins' folder
+        File pluginsDirectory = HistoriaItems.plugin().getDataFolder(); // Path to the 'plugins' folder
 
         // Validate that the plugins directory exists
         if (!pluginsDirectory.exists() || !pluginsDirectory.isDirectory()) {

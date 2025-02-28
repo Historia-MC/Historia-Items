@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
 import org.mockbukkit.mockbukkit.entity.PlayerMock;
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 
 public class HistoriaItemRegistryTest {
 
@@ -21,7 +21,7 @@ public class HistoriaItemRegistryTest {
         server = MockBukkit.mock();
         System.out.println("Loading plugin...");
         try {
-            MockBukkit.load(Main.class);
+            MockBukkit.load(HistoriaItems.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

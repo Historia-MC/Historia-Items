@@ -14,7 +14,7 @@ import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.Logging;
 import dev.boooiil.historia.items.util.PDCUtils;
@@ -43,7 +43,7 @@ public class ArmorData implements ItemData {
     public static ArmorData fromStack(ItemStack stack) {
 
         return PDCUtils
-                .getFromComplexContainer(stack, Main.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE)
+                .getFromComplexContainer(stack, HistoriaItems.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE)
                 .orElse(new ArmorData(0, 1));
     }
 
@@ -55,10 +55,10 @@ public class ArmorData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, Main.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE,
+        PDCUtils.setInComplexContainer(stack, HistoriaItems.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE,
                 this);
 
-        AttributeModifier defenseAttr = new AttributeModifier(Main.getNamespacedKey("armor-defense"),
+        AttributeModifier defenseAttr = new AttributeModifier(HistoriaItems.getNamespacedKey("armor-defense"),
                 this.defense, AttributeModifier.Operation.ADD_NUMBER);
 
         ItemMeta meta = stack.getItemMeta();
@@ -149,8 +149,8 @@ public class ArmorData implements ItemData {
     @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ArmorData> {
 
-        private static final NamespacedKey DEFENSE_KEY = Main.getNamespacedKey("defense");
-        private static final NamespacedKey DURABILITY_KEY = Main.getNamespacedKey("durability");
+        private static final NamespacedKey DEFENSE_KEY = HistoriaItems.getNamespacedKey("defense");
+        private static final NamespacedKey DURABILITY_KEY = HistoriaItems.getNamespacedKey("durability");
 
         @Override
         public ArmorData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {

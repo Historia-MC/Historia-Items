@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.configuration.general.GeneralConfiguration;
 import net.kyori.adventure.text.Component;
 
@@ -19,7 +19,7 @@ public class Logging {
     private static final String announcePrefix = "§7[§9Announcement§7] ";
     // private static final String debugPrefix = "§7[§cDebug§7] ";
 
-    private static final Logger logger = Main.plugin().getLogger();
+    private static final Logger logger = HistoriaItems.plugin().getLogger();
 
     // It's a private constructor that throws an error if someone tries to
     // instantiate the class.
@@ -53,7 +53,7 @@ public class Logging {
      */
     public static void infoToServer(String message) {
 
-        Main.server().sendMessage(Component.text(announcePrefix + "§7" + message));
+        HistoriaItems.server().sendMessage(Component.text(announcePrefix + "§7" + message));
 
     }
 
@@ -113,7 +113,7 @@ public class Logging {
      */
     public static void warnToServer(String message) {
 
-        Main.server().sendMessage(Component.text(announcePrefix + "§6" + message));
+        HistoriaItems.server().sendMessage(Component.text(announcePrefix + "§6" + message));
 
     }
 
@@ -158,7 +158,7 @@ public class Logging {
      */
     public static void errorToServer(String message) {
 
-        Main.server().sendMessage(Component.text(announcePrefix + "§6" + message));
+        HistoriaItems.server().sendMessage(Component.text(announcePrefix + "§6" + message));
 
     }
 

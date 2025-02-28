@@ -1,6 +1,6 @@
 package dev.boooiil.historia.items.configuration;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.registry.ItemRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -22,7 +22,8 @@ public final class RecipeLoader {
 
     public static void load() {
         // EXAMPLE
-        final ShapedRecipe shaped = new ShapedRecipe(Main.getNamespacedKey("example"), new ItemStack(Material.PUMPKIN));
+        final ShapedRecipe shaped = new ShapedRecipe(HistoriaItems.getNamespacedKey("example"),
+                new ItemStack(Material.PUMPKIN));
         shaped.shape(" # ", "#$#", " # ");
 
         shaped.setIngredient('#', customTypeChoice("Common_Light_Bronze_Ingot"));
@@ -33,7 +34,7 @@ public final class RecipeLoader {
     }
 
     static RecipeChoice.PredicateChoice customTypeChoice(String id) {
-        NamespacedKey idKey = Main.getNamespacedKey("item-id");
+        NamespacedKey idKey = HistoriaItems.getNamespacedKey("item-id");
 
         Predicate<ItemStack> predicate = stack -> {
             boolean isCustom = stack.hasItemMeta()

@@ -1,7 +1,7 @@
 package dev.boooiil.historia.items.item.data;
 
 import dev.boooiil.historia.core.util.JSONUtils;
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.KyoriUtils;
 import dev.boooiil.historia.items.util.Logging;
@@ -30,7 +30,7 @@ import java.util.List;
 public class ToolData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ToolData> DATA_TYPE = new ToolData.DataType();
-    public static final NamespacedKey DATA_KEY = Main.getNamespacedKey("tool-data");
+    public static final NamespacedKey DATA_KEY = HistoriaItems.getNamespacedKey("tool-data");
 
     // private String id;
     private float damage;
@@ -98,11 +98,11 @@ public class ToolData implements ItemData {
 
         PDCUtils.setInComplexContainer(stack, ToolData.DATA_KEY, ToolData.DATA_TYPE, this);
 
-        AttributeModifier damageAttr = new AttributeModifier(Main.getNamespacedKey("tool-damage"),
+        AttributeModifier damageAttr = new AttributeModifier(HistoriaItems.getNamespacedKey("tool-damage"),
                 this.damage - 1, AttributeModifier.Operation.ADD_NUMBER);
-        AttributeModifier speedAttr = new AttributeModifier(Main.getNamespacedKey("tool-speed"),
+        AttributeModifier speedAttr = new AttributeModifier(HistoriaItems.getNamespacedKey("tool-speed"),
                 this.speed - 4, AttributeModifier.Operation.ADD_NUMBER);
-        AttributeModifier knockbackAttr = new AttributeModifier(Main.getNamespacedKey("tool-knockback"),
+        AttributeModifier knockbackAttr = new AttributeModifier(HistoriaItems.getNamespacedKey("tool-knockback"),
                 this.knockback, AttributeModifier.Operation.ADD_NUMBER);
 
         ItemMeta meta = stack.getItemMeta();
@@ -136,7 +136,7 @@ public class ToolData implements ItemData {
     protected void applyLore(ItemStack stack) {
 
         String configId = PDCUtils.getFromContainer(stack,
-                Main.getNamespacedKey("item-id"), PersistentDataType.STRING).orElse("");
+                HistoriaItems.getNamespacedKey("item-id"), PersistentDataType.STRING).orElse("");
 
         ItemMeta meta = stack.getItemMeta();
 
@@ -273,10 +273,10 @@ public class ToolData implements ItemData {
     @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, ToolData> {
 
-        private static final NamespacedKey DAMAGE_KEY = Main.getNamespacedKey("damage");
-        private static final NamespacedKey SPEED_KEY = Main.getNamespacedKey("speed");
-        private static final NamespacedKey KNOCKBACK_KEY = Main.getNamespacedKey("knockback");
-        private static final NamespacedKey DURABILITY_KEY = Main.getNamespacedKey("durability");
+        private static final NamespacedKey DAMAGE_KEY = HistoriaItems.getNamespacedKey("damage");
+        private static final NamespacedKey SPEED_KEY = HistoriaItems.getNamespacedKey("speed");
+        private static final NamespacedKey KNOCKBACK_KEY = HistoriaItems.getNamespacedKey("knockback");
+        private static final NamespacedKey DURABILITY_KEY = HistoriaItems.getNamespacedKey("durability");
 
         @Override
         public ToolData fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {

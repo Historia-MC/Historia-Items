@@ -1,11 +1,13 @@
 package dev.boooiil.historia.items;
 
+import dev.boooiil.historia.core.registry.Registry;
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ItemRegistryLoader;
 import dev.boooiil.historia.items.configuration.RecipeLoader;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.events.entity.EntityDamageByEntityListener;
 import dev.boooiil.historia.items.file.FileIO;
+import dev.boooiil.historia.items.item.HistoriaItem;
 
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -19,7 +21,9 @@ import dev.boooiil.historia.items.util.Logging;
 /**
  * The Main class is responsible for initializing the Historia plugin.
  */
-public class Main extends JavaPlugin {
+public class HistoriaItems extends JavaPlugin {
+
+    public static final Registry<HistoriaItem> ITEM_REGISTRY = new Registry<>();
 
     public static boolean isTesting = false;
     /** Singleton instance of the plugin */
@@ -28,7 +32,7 @@ public class Main extends JavaPlugin {
     /**
      * Default constructor for the Main class.
      */
-    public Main() {
+    public HistoriaItems() {
     }
 
     /**
@@ -111,7 +115,7 @@ public class Main extends JavaPlugin {
      */
     public static void disable() {
 
-        plugin().getServer().getPluginManager().disablePlugin(Main.plugin());
+        plugin().getServer().getPluginManager().disablePlugin(HistoriaItems.plugin());
 
     }
 

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockbukkit.mockbukkit.ServerMock;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
@@ -24,7 +24,7 @@ import dev.boooiil.historia.items.item.types.Triggers;
 public class ExecutorComponentTest {
 
     private static ServerMock server;
-    private static Main plugin;
+    private static HistoriaItems plugin;
     YamlConfiguration configuration = FileIO.findYamlConfiguration("bronze_leggings.yml");
     ConfigurationSection item_root = configuration.getConfigurationSection("Light_Bronze_Leggings");
     ConfigurationSection component_root = item_root.getConfigurationSection("executor");
@@ -37,7 +37,7 @@ public class ExecutorComponentTest {
         System.out.println("Loading plugin...");
         try {
             MockBukkit.load(dev.boooiil.historia.core.HistoriaCore.class);
-            plugin = MockBukkit.load(Main.class);
+            plugin = MockBukkit.load(HistoriaItems.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,7 +7,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.ItemData;
 import dev.boooiil.historia.items.util.PDCUtils;
 import dev.boooiil.historia.core.util.JSONUtils;
@@ -16,7 +16,7 @@ public class RunnableData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, RunnableData> DATA_TYPE = new RunnableData.DataType();
 
-    public static final NamespacedKey KEY = Main.getNamespacedKey("runnable-data");
+    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("runnable-data");
 
     private int ticks;
     private String command;
@@ -46,9 +46,9 @@ public class RunnableData implements ItemData {
     @NullMarked
     private static class DataType implements PersistentDataType<PersistentDataContainer, RunnableData> {
 
-        private static final NamespacedKey TICKS_KEY = Main.getNamespacedKey("ticks");
-        private static final NamespacedKey COMMAND_KEY = Main.getNamespacedKey("command");
-        private static final NamespacedKey PERMISSION_KEY = Main.getNamespacedKey("permission");
+        private static final NamespacedKey TICKS_KEY = HistoriaItems.getNamespacedKey("ticks");
+        private static final NamespacedKey COMMAND_KEY = HistoriaItems.getNamespacedKey("command");
+        private static final NamespacedKey PERMISSION_KEY = HistoriaItems.getNamespacedKey("permission");
 
         @Override
         public RunnableData fromPrimitive(PersistentDataContainer container,
