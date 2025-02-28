@@ -12,18 +12,18 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
 
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.registry.ItemComponentRegistry;
-import dev.boooiil.historia.items.registry.ItemRegistry;
 
 @NullMarked
 public class HistoriaItemData {
 
-    private final String id;
+    private final NamespacedKey id;
     private final List<NamespacedKey> itemData;
     private final ItemStack stack;
 
     public HistoriaItemData(
-            String id,
+            NamespacedKey id,
             List<NamespacedKey> itemData,
             ItemStack stack) {
         this.id = id;
@@ -49,7 +49,7 @@ public class HistoriaItemData {
 
         }
 
-        return new HistoriaItemData(id, itemData, stack);
+        return new HistoriaItemData(HistoriaItems.getNamespacedKey(id), itemData, stack);
     }
 
     public boolean isHistoriaItem() {
@@ -61,7 +61,7 @@ public class HistoriaItemData {
     }
 
     public HistoriaItem getHistoriaItem() {
-        return ItemRegistry.get(id);
+        return HistoriaItems.ITEM_REGISTRY.get(id);
     }
 
     public <C, T extends ItemData> ItemData getData(

@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import dev.boooiil.historia.items.registry.ItemRegistry;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import dev.boooiil.historia.items.item.HistoriaItem;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.util.Logging;
 import org.jetbrains.annotations.ApiStatus;
@@ -115,7 +115,8 @@ public class ItemRegistryLoader {
 
                 ConfigurationSection section = configuration.getConfigurationSection(key);
 
-                ItemRegistry.register(key, HistoriaItem.fromConfig(key, section));
+                HistoriaItems.ITEM_REGISTRY.register(HistoriaItems.getNamespacedKey(key),
+                        HistoriaItem.fromConfig(key, section));
 
             }
 

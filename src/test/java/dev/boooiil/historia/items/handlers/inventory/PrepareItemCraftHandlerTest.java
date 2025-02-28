@@ -1,6 +1,5 @@
 package dev.boooiil.historia.items.handlers.inventory;
 
-import dev.boooiil.historia.items.registry.ItemRegistry;
 import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.item.component.ExecutorComponent;
 import dev.boooiil.historia.items.item.data.ArmorData;
@@ -12,6 +11,7 @@ import dev.boooiil.historia.items.item.types.Triggers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemStack;
@@ -57,9 +57,9 @@ public class PrepareItemCraftHandlerTest {
 
     @Test
     public void validateItems() {
-        for (String registeredItem : ItemRegistry.allKeys()) {
+        for (NamespacedKey registeredItem : HistoriaItems.ITEM_REGISTRY.allKeys()) {
 
-            HistoriaItem historiaItem = ItemRegistry.get(registeredItem);
+            HistoriaItem historiaItem = HistoriaItems.ITEM_REGISTRY.get(registeredItem);
 
             Logging.debugToConsole(historiaItem.toString());
 

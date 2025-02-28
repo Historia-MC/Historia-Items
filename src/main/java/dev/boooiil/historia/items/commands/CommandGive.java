@@ -1,10 +1,11 @@
 package dev.boooiil.historia.items.commands;
 
-import dev.boooiil.historia.items.registry.ItemRegistry;
+import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.HistoriaItem;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -55,7 +56,7 @@ public class CommandGive implements TabExecutor {
         }
 
         Player player = Bukkit.getPlayer(args[0]);
-        HistoriaItem historiaItem = ItemRegistry.get(args[1]);
+        HistoriaItem historiaItem = HistoriaItems.ITEM_REGISTRY.get(HistoriaItems.getNamespacedKey(args[1]));
 
         if (historiaItem == null) {
             sender.sendMessage("Invalid item name.");
@@ -75,7 +76,8 @@ public class CommandGive implements TabExecutor {
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
+            @NotNull String label, @NotNull String[] args) {
         if (args.length == 1) {
             return Bukkit.getServer().getOnlinePlayers().stream()
                     .map(Player::getName)
@@ -84,8 +86,9 @@ public class CommandGive implements TabExecutor {
         }
 
         if (args.length == 2) {
-            return ItemRegistry.allKeys().stream()
-                    .filter(key -> key.toLowerCase().startsWith(args[1].toLowerCase()))
+            return HistoriaItems.ITEM_REGISTRY.allKeys().stream()
+                    .map(NamespacedKey::getKey)
+                    .filter(key -> key.startsWith(args[1].toLowerCase()))
                     .toList();
         }
 

@@ -1,7 +1,6 @@
 package dev.boooiil.historia.items.configuration;
 
 import dev.boooiil.historia.items.HistoriaItems;
-import dev.boooiil.historia.items.registry.ItemRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -26,14 +25,14 @@ public final class RecipeLoader {
                 new ItemStack(Material.PUMPKIN));
         shaped.shape(" # ", "#$#", " # ");
 
-        shaped.setIngredient('#', customTypeChoice("Common_Light_Bronze_Ingot"));
+        shaped.setIngredient('#', customTypeChoice(HistoriaItems.getNamespacedKey("Common_Light_Bronze_Ingot")));
         shaped.setIngredient('$', Material.STICK);
 
         Bukkit.addRecipe(shaped);
 
     }
 
-    static RecipeChoice.PredicateChoice customTypeChoice(String id) {
+    static RecipeChoice.PredicateChoice customTypeChoice(NamespacedKey id) {
         NamespacedKey idKey = HistoriaItems.getNamespacedKey("item-id");
 
         Predicate<ItemStack> predicate = stack -> {
@@ -41,16 +40,16 @@ public final class RecipeLoader {
                     && stack.getItemMeta().getPersistentDataContainer().has(idKey, PersistentDataType.STRING);
             if (isCustom) {
                 String stackId = stack.getItemMeta().getPersistentDataContainer().get(idKey, PersistentDataType.STRING);
-                return stackId.equals(id);
+                return stackId.equals(id.getKey());
             }
-            return stack.getType().equals(Material.getMaterial(id));
+            return stack.getType().equals(Material.getMaterial(id.getKey()));
         };
 
         ItemStack stack;
-        if (ItemRegistry.contains(id)) {
-            stack = ItemRegistry.get(id).createItemStack();
+        if (HistoriaItems.ITEM_REGISTRY.contains(id)) {
+            stack = HistoriaItems.ITEM_REGISTRY.get(id).createItemStack();
         } else {
-            stack = ItemStack.of(Material.getMaterial(id));
+            stack = ItemStack.of(Material.getMaterial(id.getKey()));
         }
 
         return RecipeChoice.predicateChoice(predicate, stack);
