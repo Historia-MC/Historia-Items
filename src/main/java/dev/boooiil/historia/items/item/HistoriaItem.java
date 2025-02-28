@@ -196,7 +196,7 @@ public class HistoriaItem implements JSONSerializable {
         sb.append(JSONUtils.fromValue("baseMaterial", baseMaterial.name().toLowerCase()) + ", ");
         sb.append(JSONUtils.fromValue("weight", weight) + ", ");
         sb.append(JSONUtils.fromComponentList("lore", lore) + ", ");
-        sb.append(JSONUtils.fromMapAsString("components", components));
+        sb.append(JSONUtils.fromMap("components", components, true));
         sb.append("}");
 
         return sb.toString();
@@ -213,7 +213,7 @@ public class HistoriaItem implements JSONSerializable {
         sb.append(JSONUtils.fromValue("baseMaterial", baseMaterial.name().toLowerCase()) + ", ");
         sb.append(JSONUtils.fromValue("weight", weight) + ", ");
         sb.append(JSONUtils.fromComponentList("lore", lore) + ", ");
-        sb.append(JSONUtils.fromMapAsJSON("components", components));
+        sb.append(JSONUtils.fromMap("components", components));
         sb.append("}");
 
         return sb.toString();

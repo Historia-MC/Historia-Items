@@ -12,7 +12,13 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.function.Predicate;
 
-public class RecipeLoader {
+import javax.annotation.processing.Generated;
+
+public final class RecipeLoader {
+
+    @Generated(value = "Static Utility")
+    private RecipeLoader() {
+    }
 
     public static void load() {
         // EXAMPLE

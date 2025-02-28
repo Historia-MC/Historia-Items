@@ -60,7 +60,7 @@ public final class WeaponComponent implements ItemComponent {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
-        sb.append(JSONUtils.fromFloatList("sweepRange", sweepingRange));
+        sb.append(JSONUtils.fromList("sweepRange", sweepingRange));
         sb.append("}");
 
         return sb.toString();

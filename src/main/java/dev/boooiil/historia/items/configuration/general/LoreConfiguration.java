@@ -3,11 +3,13 @@ package dev.boooiil.historia.items.configuration.general;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.processing.Generated;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import dev.boooiil.historia.items.file.FileIO;
 
-public class LoreConfiguration {
+public final class LoreConfiguration {
 
     private static YamlConfiguration loreConfiguration;
 
@@ -15,6 +17,10 @@ public class LoreConfiguration {
 
     static {
         loreConfiguration = FileIO.findYamlConfiguration("component-lore.yml");
+    }
+
+    @Generated(value = "Static Utility")
+    private LoreConfiguration() {
     }
 
     public static void initLoreMap() {

@@ -86,7 +86,7 @@ public class ExecutorComponent implements ItemComponent {
 
         sb.append("ExecutorComponent");
         sb.append("{");
-        sb.append(JSONUtils.fromMapAsString("executables", executables));
+        sb.append(JSONUtils.fromMap("executables", executables, true));
         sb.append("}");
 
         return sb.toString();
@@ -101,7 +101,7 @@ public class ExecutorComponent implements ItemComponent {
 
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        sb.append(JSONUtils.fromMapAsJSON("executables", executables));
+        sb.append(JSONUtils.fromMap("executables", executables));
         sb.append("}");
 
         return sb.toString();

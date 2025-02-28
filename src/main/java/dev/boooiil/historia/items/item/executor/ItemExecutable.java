@@ -105,7 +105,7 @@ public class ItemExecutable implements JSONSerializable {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
-        sb.append(JSONUtils.fromStringList("commands", commands) + ", ");
+        sb.append(JSONUtils.fromList("commands", commands) + ", ");
         sb.append(JSONUtils.fromValue("uses", this.uses) + ", ");
         sb.append(JSONUtils.fromValue("cooldown", this.cooldown) + ", ");
         sb.append(JSONUtils.fromValue("elevated", this.hasElevation) + ", ");
@@ -124,7 +124,8 @@ public class ItemExecutable implements JSONSerializable {
         private static final NamespacedKey ELEVATED_KEY = Main.getNamespacedKey("elevated");
 
         @Override
-        public ItemExecutable fromPrimitive(PersistentDataContainer container, PersistentDataAdapterContext adapterContext) {
+        public ItemExecutable fromPrimitive(PersistentDataContainer container,
+                PersistentDataAdapterContext adapterContext) {
 
             List<String> commands = container.get(COMMANDS_KEY, PersistentDataType.LIST.listTypeFrom(STRING));
             int uses = container.get(USES_KEY, PersistentDataType.INTEGER);

@@ -3,6 +3,7 @@ package dev.boooiil.historia.items.item.component;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -16,7 +17,6 @@ import org.mockbukkit.mockbukkit.ServerMock;
 
 import dev.boooiil.historia.items.Main;
 import dev.boooiil.historia.items.file.FileIO;
-import dev.boooiil.historia.items.item.data.ArmorData;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
@@ -96,6 +96,8 @@ public class ExecutorComponentTest {
     @Test
     void testToJSON() {
 
+        assertEquals("{}", new ExecutorComponent(new HashMap<>()).toJSON());
+
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
@@ -114,7 +116,9 @@ public class ExecutorComponentTest {
             sb.setLength(sb.length() - 2);
             sb.append("], ");
             sb.append("\"uses\":" + executables.getValue().uses() + ", ");
-            sb.append("\"cooldown\":" + executables.getValue().cooldown());
+            sb.append("\"cooldown\":" + executables.getValue().cooldown() + ", ");
+            sb.append("\"elevated\":" + executables.getValue().hasElevation() + ", ");
+            sb.append("\"hasCooldown\":" + executables.getValue().hasCooldown());
             sb.append("}, ");
 
         }
@@ -130,5 +134,37 @@ public class ExecutorComponentTest {
     @Test
     void testToString() {
 
+        assertEquals("ExecutorComponent{}", new ExecutorComponent(new HashMap<>()).toString());
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("ExecutorComponent{");
+        sb.append("\"executables\":");
+        sb.append("{");
+
+        for (Entry<Triggers, ItemExecutable> executables : component.executables().entrySet()) {
+
+            sb.append("\"" + executables.getKey().getLowercase() + "\":ItemExecutable{");
+            sb.append("\"commands\":[");
+
+            for (String command : executables.getValue().commands()) {
+                sb.append("\"" + command + "\", ");
+            }
+
+            sb.setLength(sb.length() - 2);
+            sb.append("], ");
+            sb.append("\"uses\":" + executables.getValue().uses() + ", ");
+            sb.append("\"cooldown\":" + executables.getValue().cooldown() + ", ");
+            sb.append("\"elevated\":" + executables.getValue().hasElevation() + ", ");
+            sb.append("\"hasCooldown\":" + executables.getValue().hasCooldown());
+            sb.append("}, ");
+
+        }
+
+        sb.setLength(sb.length() - 2);
+        sb.append("}");
+        sb.append("}");
+
+        assertEquals(sb.toString(), component.toString());
     }
 }

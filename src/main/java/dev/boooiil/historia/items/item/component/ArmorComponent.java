@@ -73,8 +73,8 @@ public class ArmorComponent implements ItemComponent {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
-        sb.append(JSONUtils.fromFloatList("defenseRange", defenseRange) + ", ");
-        sb.append(JSONUtils.fromIntegerList("durabilityRange", durabilityRange));
+        sb.append(JSONUtils.fromList("defenseRange", defenseRange) + ", ");
+        sb.append(JSONUtils.fromList("durabilityRange", durabilityRange));
         sb.append("}");
 
         return sb.toString();
