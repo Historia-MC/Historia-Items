@@ -53,7 +53,7 @@ public class HistoriaItemData {
     }
 
     public boolean isHistoriaItem() {
-        return this.id != null && !this.id.equals("");
+        return this.id != null && this.id != HistoriaItems.getNamespacedKey("");
     }
 
     public boolean hasData(NamespacedKey key) {
