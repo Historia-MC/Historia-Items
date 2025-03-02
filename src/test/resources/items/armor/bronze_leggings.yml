@@ -25,6 +25,10 @@ Light_Bronze_Leggings:
       uses: 1
       cooldown: 500
 
+  enchant:
+    unbreaking: 1
+    protection: 1
+
 Moderate_Bronze_Leggings:
   material: GOLDEN_LEGGINGS
   amount: 1
