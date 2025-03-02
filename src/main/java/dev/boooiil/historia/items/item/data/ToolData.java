@@ -30,7 +30,7 @@ import java.util.List;
 public class ToolData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ToolData> DATA_TYPE = new ToolData.DataType();
-    public static final NamespacedKey DATA_KEY = HistoriaItems.getNamespacedKey("tool-data");
+    public static final NamespacedKey DATA_KEY = HistoriaItems.getNamespacedKey("tool");
 
     // private String id;
     private float damage;

@@ -16,7 +16,7 @@ public class RunnableData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, RunnableData> DATA_TYPE = new RunnableData.DataType();
 
-    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("runnable-data");
+    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("runnable");
 
     private int ticks;
     private String command;

@@ -39,10 +39,12 @@ public class HistoriaItemData {
                 id = container.get(key, PersistentDataType.STRING);
             }
 
-            else if (s_key.endsWith("-data")) {
+            // else if (s_key.endsWith("-data")) {
+            // itemData.add(key);
+            // }
+            else {
                 itemData.add(key);
             }
-
         }
 
         return new HistoriaItemData(HistoriaItems.getNamespacedKey(id), itemData, stack);

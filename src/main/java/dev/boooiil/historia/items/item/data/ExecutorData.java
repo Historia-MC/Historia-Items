@@ -21,7 +21,7 @@ import org.jspecify.annotations.NullMarked;
 public class ExecutorData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ExecutorData> DATA_TYPE = new ExecutorData.DataType();
-    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("executor-data");
+    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("executor");
 
     // private String id;
     private final HashMap<Triggers, ItemExecutable> executables;
@@ -81,7 +81,7 @@ public class ExecutorData implements ItemData {
 
     public void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, HistoriaItems.getNamespacedKey("executor-data"),
+        PDCUtils.setInComplexContainer(stack, ExecutorData.KEY,
                 ExecutorData.DATA_TYPE, this);
     }
 
