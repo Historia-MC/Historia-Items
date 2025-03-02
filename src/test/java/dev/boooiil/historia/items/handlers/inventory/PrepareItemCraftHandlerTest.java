@@ -70,9 +70,9 @@ public class PrepareItemCraftHandlerTest {
 
             ItemMeta meta = item.getItemMeta();
 
-            for (String key : historiaItem.getComponentHolder().keySet()) {
+            for (NamespacedKey key : historiaItem.getComponentHolder().keySet()) {
 
-                switch (key) {
+                switch (key.getKey()) {
                     case "tool":
                         ToolData td = ToolData.fromStack(item);
 
