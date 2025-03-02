@@ -23,8 +23,8 @@ import dev.boooiil.historia.items.item.types.Triggers;
 
 public class ExecutorComponentTest {
 
-    private static ServerMock server;
-    private static HistoriaItems plugin;
+    static ServerMock server;
+    static HistoriaItems plugin;
     YamlConfiguration configuration = FileIO.findYamlConfiguration("bronze_leggings.yml");
     ConfigurationSection item_root = configuration.getConfigurationSection("Light_Bronze_Leggings");
     ConfigurationSection component_root = item_root.getConfigurationSection("executor");

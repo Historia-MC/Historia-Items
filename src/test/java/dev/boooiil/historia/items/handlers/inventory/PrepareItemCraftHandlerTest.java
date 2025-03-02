@@ -32,7 +32,7 @@ import dev.boooiil.historia.items.util.NumberUtils;
 public class PrepareItemCraftHandlerTest {
 
     private ServerMock server;
-    private HistoriaItems plugin;
+    HistoriaItems plugin;
 
     @BeforeEach
     public void setUp() {

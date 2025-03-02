@@ -17,8 +17,8 @@ import dev.boooiil.historia.items.item.data.ArmorData;
 
 public class ArmorComponentTest {
 
-    private static ServerMock server;
-    private static HistoriaItems plugin;
+    static ServerMock server;
+    static HistoriaItems plugin;
     YamlConfiguration configuration = FileIO.findYamlConfiguration("bronze_boots.yml");
     ConfigurationSection item_root = configuration.getConfigurationSection("Light_Bronze_Boots");
     ConfigurationSection component_root = item_root.getConfigurationSection("armor");
