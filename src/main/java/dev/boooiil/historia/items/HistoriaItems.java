@@ -6,6 +6,17 @@ import dev.boooiil.historia.items.configuration.ItemRegistryLoader;
 import dev.boooiil.historia.items.configuration.RecipeLoader;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.events.entity.EntityDamageByEntityListener;
+import dev.boooiil.historia.items.events.entity.EntityDropItemListener;
+import dev.boooiil.historia.items.events.entity.EntityInteractListener;
+import dev.boooiil.historia.items.events.entity.EntityPickupItemListener;
+import dev.boooiil.historia.items.events.entity.EntityToggleSwimListener;
+import dev.boooiil.historia.items.events.entity.ProjectileLaunchListener;
+import dev.boooiil.historia.items.events.inventory.InventoryCloseListener;
+import dev.boooiil.historia.items.events.inventory.InventoryOpenListener;
+import dev.boooiil.historia.items.events.player.PlayerItemConsumeListener;
+import dev.boooiil.historia.items.events.player.PlayerSwapHandItemsListener;
+import dev.boooiil.historia.items.events.player.PlayerToggleSneakListener;
+import dev.boooiil.historia.items.events.player.PlayerToggleSprintListener;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.item.HistoriaItem;
 import dev.boooiil.historia.items.item.ItemComponent;
@@ -76,7 +87,20 @@ public class HistoriaItems extends JavaPlugin {
         this.saveDefaultConfig();
 
         registerCommand("give", new CommandGive());
+
         registerEvent(new EntityDamageByEntityListener());
+        registerEvent(new EntityDropItemListener());
+        registerEvent(new EntityInteractListener());
+        registerEvent(new EntityPickupItemListener());
+        registerEvent(new EntityToggleSwimListener());
+        registerEvent(new ProjectileLaunchListener());
+        registerEvent(new InventoryCloseListener());
+        registerEvent(new InventoryOpenListener());
+        // registerEvent(new PlayerInteractListener());
+        registerEvent(new PlayerItemConsumeListener());
+        registerEvent(new PlayerSwapHandItemsListener());
+        registerEvent(new PlayerToggleSneakListener());
+        registerEvent(new PlayerToggleSprintListener());
 
         HILogger.infoToConsole("Plugin Enabled.");
 
