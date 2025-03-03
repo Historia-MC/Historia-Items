@@ -233,6 +233,8 @@ public class ExecutorTriggerHandler {
 
     public static void executeAction(EntityInteractEvent event) {
 
+        // TODO: This will probably fire PlayerInteractEvent as well.
+
         if (!(event.getEntity() instanceof HumanEntity)) {
             return;
         }
@@ -301,6 +303,7 @@ public class ExecutorTriggerHandler {
     public static void execute(HumanEntity humanEntity, ItemStack item, Triggers trigger) {
 
         if (item == null || item.getType() == Material.AIR || !item.hasItemMeta()) {
+            HILogger.debugToConsole("Item is null or air or has no item meta.");
             return;
         }
 
@@ -309,6 +312,7 @@ public class ExecutorTriggerHandler {
         boolean hasExecutor = historiaItemData.hasData(EXECUTOR_KEY);
 
         if (!hasExecutor) {
+            HILogger.debugToConsole("Item has no executor.");
             return;
         }
 
