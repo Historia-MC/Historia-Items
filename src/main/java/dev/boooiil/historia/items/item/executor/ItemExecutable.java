@@ -14,6 +14,7 @@ import org.bukkit.persistence.PersistentDataType;
 import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.core.util.JSONSerializable;
 import dev.boooiil.historia.core.util.JSONUtils;
+import dev.boooiil.historia.items.util.HILogger;
 import dev.boooiil.historia.items.util.KyoriUtils;
 import org.jspecify.annotations.NullMarked;
 
@@ -44,6 +45,9 @@ public class ItemExecutable implements JSONSerializable {
 
     public ItemStack execute(HumanEntity humanEntity, ItemStack item) {
 
+        HILogger.debugToConsole("Executing commands for " + humanEntity.getName(),
+                "with item " + KyoriUtils.content(item.getItemMeta().displayName()));
+
         for (String command : applyCommandPlaceholder(humanEntity)) {
 
             if (hasElevation || !(humanEntity instanceof Player))
@@ -52,7 +56,7 @@ public class ItemExecutable implements JSONSerializable {
                 ((Player) humanEntity).performCommand(command);
         }
 
-        this.uses--;
+        this.uses -= 1;
 
         return item;
     }
