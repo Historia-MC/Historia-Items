@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataAdapterContext;
@@ -41,14 +42,14 @@ public class ItemExecutable implements JSONSerializable {
 
     }
 
-    public ItemStack execute(Player player, ItemStack item) {
+    public ItemStack execute(HumanEntity humanEntity, ItemStack item) {
 
-        for (String command : applyCommandPlaceholder(player)) {
+        for (String command : applyCommandPlaceholder(humanEntity)) {
 
-            if (hasElevation)
+            if (hasElevation || !(humanEntity instanceof Player))
                 HistoriaItems.server().dispatchCommand(HistoriaItems.server().getConsoleSender(), command);
             else
-                player.performCommand(command);
+                ((Player) humanEntity).performCommand(command);
         }
 
         this.uses--;
@@ -56,12 +57,12 @@ public class ItemExecutable implements JSONSerializable {
         return item;
     }
 
-    private List<String> applyCommandPlaceholder(Player player) {
+    private List<String> applyCommandPlaceholder(HumanEntity humanEntity) {
         List<String> nCommands = new ArrayList<>();
 
         for (String command : commands) {
 
-            String nCommand = KyoriUtils.replace(command, "player", player.getName());
+            String nCommand = KyoriUtils.replace(command, "player", humanEntity.getName());
 
             nCommands.add(nCommand);
         }

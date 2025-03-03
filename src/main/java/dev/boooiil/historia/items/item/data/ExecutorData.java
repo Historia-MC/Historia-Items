@@ -3,8 +3,10 @@ package dev.boooiil.historia.items.item.data;
 import java.util.HashMap;
 
 import dev.boooiil.historia.items.util.HILogger;
+import dev.boooiil.historia.items.util.KyoriUtils;
+
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -43,18 +45,18 @@ public class ExecutorData implements ItemData {
         return new ExecutorData(new HashMap<>());
     }
 
-    public void execute(Player player, ItemStack item, Triggers trigger) {
+    public void execute(HumanEntity humanEntity, ItemStack item, Triggers trigger) {
         if (executables.containsKey(trigger)) {
             ItemExecutable itemExecutable = executables.get(trigger);
 
             // if not on cooldown
             if (!itemExecutable.hasCooldown()) {
 
-                itemExecutable.execute(player, item);
+                itemExecutable.execute(humanEntity, item);
 
                 // set cooldown
                 if (itemExecutable.uses() > 0) {
-                    player.setCooldown(item, itemExecutable.cooldown());
+                    humanEntity.setCooldown(item, itemExecutable.cooldown());
                     writeData(item);
                 }
 
@@ -63,13 +65,20 @@ public class ExecutorData implements ItemData {
                     executables.remove(trigger);
 
                     if (executables.keySet().isEmpty()) {
-                        player.getInventory().remove(item);
+                        humanEntity.getInventory().remove(item);
                     } else {
 
                     }
 
                 }
             }
+        }
+
+        else {
+            HILogger.errorToConsole(
+                    "Player " + humanEntity.getName() + " tried to execute trigger " + trigger + " on item "
+                            + KyoriUtils.content(item.getItemMeta().displayName()) + " but no executable was found.");
+            HILogger.errorToConsole("Possible executables: " + executables.keySet());
         }
 
     }
