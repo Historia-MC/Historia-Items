@@ -62,14 +62,19 @@ public class HistoriaItemData {
         return HistoriaItems.ITEM_REGISTRY.get(id);
     }
 
-    public <C, T extends ItemData> ItemData getData(
+    public ItemStack getStack() {
+        return stack;
+    }
+
+    public <C, T extends ItemData> T getData(
             NamespacedKey key,
             PersistentDataType<C, T> type) {
 
         if (!hasData(key)) {
-            String s_regKey = key.getKey().replace("-data", "");
-            NamespacedKey regKey = NamespacedKey.fromString(key.getNamespace() + ":" + s_regKey);
-            return HistoriaItems.COMPONENT_REGISTRY.get(regKey).getData();
+            String s_regKey = key.getKey();
+            NamespacedKey regKey = new NamespacedKey(key.getNamespace(), s_regKey);
+            Object itemData = HistoriaItems.COMPONENT_REGISTRY.get(regKey).getData();
+            return type.getComplexType().cast(itemData);
         }
 
         return stack.getItemMeta().getPersistentDataContainer().get(key, type);
