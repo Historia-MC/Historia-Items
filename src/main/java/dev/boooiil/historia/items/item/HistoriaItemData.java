@@ -10,6 +10,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.HistoriaItems;
+import dev.boooiil.historia.items.util.HILogger;
 
 @NullMarked
 public class HistoriaItemData {
@@ -28,6 +29,11 @@ public class HistoriaItemData {
     }
 
     public static HistoriaItemData fromStack(ItemStack stack) {
+
+        if (stack == null || stack.getItemMeta() == null) {
+            return new HistoriaItemData(HistoriaItems.getNamespacedKey("invalid"), new ArrayList<>(), stack);
+        }
+
         PersistentDataContainer container = stack.getItemMeta().getPersistentDataContainer();
         String id = "";
         List<NamespacedKey> itemData = new ArrayList<>();
@@ -51,7 +57,7 @@ public class HistoriaItemData {
     }
 
     public boolean isHistoriaItem() {
-        return this.id != null && this.id != HistoriaItems.getNamespacedKey("");
+        return this.id != null && this.id != HistoriaItems.getNamespacedKey("invalid");
     }
 
     public boolean hasData(NamespacedKey key) {
@@ -71,6 +77,7 @@ public class HistoriaItemData {
             PersistentDataType<C, T> type) {
 
         if (!hasData(key)) {
+            HILogger.debugToConsole("No data found for key " + key.toString(), "creating one...");
             String s_regKey = key.getKey();
             NamespacedKey regKey = new NamespacedKey(key.getNamespace(), s_regKey);
             Object itemData = HistoriaItems.COMPONENT_REGISTRY.get(regKey).getData();
