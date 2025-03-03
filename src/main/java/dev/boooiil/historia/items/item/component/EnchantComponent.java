@@ -1,11 +1,6 @@
 package dev.boooiil.historia.items.item.component;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import javax.annotation.RegEx;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;

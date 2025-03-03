@@ -18,8 +18,7 @@ import dev.boooiil.historia.core.util.JSONUtils;
 public class EnchantData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, EnchantData> DATA_TYPE = new EnchantData.DataType();
-
-    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("runnable-data");
+    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("enchant");
 
     private HashMap<Enchantment, Integer> enchantments;
 

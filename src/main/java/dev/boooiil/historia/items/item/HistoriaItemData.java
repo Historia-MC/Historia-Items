@@ -2,9 +2,6 @@ package dev.boooiil.historia.items.item;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
-
-import javax.annotation.Nullable;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +10,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
 
 import dev.boooiil.historia.items.HistoriaItems;
-import dev.boooiil.historia.items.registry.ItemComponentRegistry;
 
 @NullMarked
 public class HistoriaItemData {
@@ -43,10 +39,12 @@ public class HistoriaItemData {
                 id = container.get(key, PersistentDataType.STRING);
             }
 
-            else if (s_key.endsWith("-data")) {
+            // else if (s_key.endsWith("-data")) {
+            // itemData.add(key);
+            // }
+            else {
                 itemData.add(key);
             }
-
         }
 
         return new HistoriaItemData(HistoriaItems.getNamespacedKey(id), itemData, stack);
@@ -69,8 +67,9 @@ public class HistoriaItemData {
             PersistentDataType<C, T> type) {
 
         if (!hasData(key)) {
-            String regKey = key.getKey().replace("-data", "");
-            return ItemComponentRegistry.get(regKey).getData();
+            String s_regKey = key.getKey().replace("-data", "");
+            NamespacedKey regKey = NamespacedKey.fromString(key.getNamespace() + ":" + s_regKey);
+            return HistoriaItems.COMPONENT_REGISTRY.get(regKey).getData();
         }
 
         return stack.getItemMeta().getPersistentDataContainer().get(key, type);

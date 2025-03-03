@@ -26,6 +26,7 @@ import org.jspecify.annotations.NullMarked;
 public class ArmorData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ArmorData> DATA_TYPE = new ArmorData.DataType();
+    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("armor");
 
     // private String id;
     private float defense;
@@ -43,7 +44,7 @@ public class ArmorData implements ItemData {
     public static ArmorData fromStack(ItemStack stack) {
 
         return PDCUtils
-                .getFromComplexContainer(stack, HistoriaItems.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE)
+                .getFromComplexContainer(stack, ArmorData.KEY, ArmorData.DATA_TYPE)
                 .orElse(new ArmorData(0, 1));
     }
 
@@ -55,8 +56,7 @@ public class ArmorData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, HistoriaItems.getNamespacedKey("armor-data"), ArmorData.DATA_TYPE,
-                this);
+        PDCUtils.setInComplexContainer(stack, ArmorData.KEY, ArmorData.DATA_TYPE, this);
 
         AttributeModifier defenseAttr = new AttributeModifier(HistoriaItems.getNamespacedKey("armor-defense"),
                 this.defense, AttributeModifier.Operation.ADD_NUMBER);

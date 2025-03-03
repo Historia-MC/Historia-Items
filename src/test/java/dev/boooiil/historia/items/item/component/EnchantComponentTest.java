@@ -18,12 +18,10 @@ import org.mockbukkit.mockbukkit.ServerMock;
 import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.item.data.EnchantData;
-import dev.boooiil.historia.items.item.executor.ItemExecutable;
-import dev.boooiil.historia.items.item.types.Triggers;
 
 public class EnchantComponentTest {
-    private static ServerMock server;
-    private static HistoriaItems plugin;
+    static ServerMock server;
+    static HistoriaItems plugin;
     YamlConfiguration configuration = FileIO.findYamlConfiguration("bronze_leggings.yml");
     ConfigurationSection item_root = configuration.getConfigurationSection("Light_Bronze_Leggings");
     ConfigurationSection component_root = item_root.getConfigurationSection("enchant");

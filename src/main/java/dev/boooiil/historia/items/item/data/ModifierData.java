@@ -24,6 +24,7 @@ import org.jspecify.annotations.NullMarked;
 public class ModifierData implements ItemData {
 
     public static final PersistentDataType<PersistentDataContainer, ModifierData> DATA_TYPE = new ModifierData.DataType();
+    public static final NamespacedKey KEY = HistoriaItems.getNamespacedKey("modifier");
 
     // private String id;
     private Weights weight;
@@ -40,8 +41,8 @@ public class ModifierData implements ItemData {
 
     public static ModifierData fromStack(ItemStack stack) {
 
-        return PDCUtils.getFromComplexContainer(stack, HistoriaItems.getNamespacedKey("modifier-data"),
-                ModifierData.DATA_TYPE).orElse(new ModifierData(Weights.LIGHT, Qualities.POOR));
+        return PDCUtils.getFromComplexContainer(stack, ModifierData.KEY, ModifierData.DATA_TYPE)
+                .orElse(new ModifierData(Weights.LIGHT, Qualities.POOR));
 
     }
 
@@ -53,7 +54,7 @@ public class ModifierData implements ItemData {
 
     protected void writeData(ItemStack stack) {
 
-        PDCUtils.setInComplexContainer(stack, HistoriaItems.getNamespacedKey("modifier-data"),
+        PDCUtils.setInComplexContainer(stack, ModifierData.KEY,
                 ModifierData.DATA_TYPE, this);
 
     }

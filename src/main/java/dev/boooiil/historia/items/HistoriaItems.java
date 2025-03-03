@@ -8,6 +8,8 @@ import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.items.events.entity.EntityDamageByEntityListener;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.item.HistoriaItem;
+import dev.boooiil.historia.items.item.ItemComponent;
+import dev.boooiil.historia.items.item.ItemComponentType;
 
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -24,6 +26,7 @@ import dev.boooiil.historia.items.util.HILogger;
 public class HistoriaItems extends JavaPlugin {
 
     public static final Registry<HistoriaItem> ITEM_REGISTRY = new Registry<>();
+    public static final Registry<ItemComponentType<? extends ItemComponent>> COMPONENT_REGISTRY = new Registry<>();
 
     public static boolean isTesting = false;
     /** Singleton instance of the plugin */
