@@ -29,7 +29,7 @@ import dev.boooiil.historia.items.item.HistoriaItemData;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.types.Triggers;
 
-public class ExecutorTriggerListener {
+public class ExecutorTriggerHandler {
 
     private static NamespacedKey EXECUTOR_KEY = HistoriaItems.getNamespacedKey("executor");
 
