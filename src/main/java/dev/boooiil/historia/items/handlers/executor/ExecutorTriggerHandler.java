@@ -1,33 +1,35 @@
 package dev.boooiil.historia.items.handlers.executor;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDropItemEvent;
-import org.bukkit.event.entity.EntityInteractEvent;
-import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.entity.EntityToggleSwimEvent;
-import org.bukkit.event.entity.ProjectileLaunchEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
-import org.bukkit.event.player.PlayerToggleSprintEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent; // DONE
+import org.bukkit.event.entity.EntityDropItemEvent; // DONE
+import org.bukkit.event.entity.EntityInteractEvent; // DONE
+import org.bukkit.event.entity.EntityPickupItemEvent; // DONE
+import org.bukkit.event.entity.EntityToggleSwimEvent; // DONE
+import org.bukkit.event.entity.ProjectileLaunchEvent; // DONE
+import org.bukkit.event.inventory.InventoryCloseEvent; // DONE
+import org.bukkit.event.inventory.InventoryOpenEvent; // DONE
+import org.bukkit.event.player.PlayerInteractEvent; // DONE
+import org.bukkit.event.player.PlayerItemConsumeEvent; // DONE
+import org.bukkit.event.player.PlayerSwapHandItemsEvent; // DONE
+import org.bukkit.event.player.PlayerToggleSneakEvent; // DONE
+import org.bukkit.event.player.PlayerToggleSprintEvent; // DONE
 import org.bukkit.inventory.ItemStack;
 
-import com.destroystokyo.paper.event.player.PlayerJumpEvent;
+import com.destroystokyo.paper.event.player.PlayerJumpEvent; // DONE
 import com.sk89q.worldguard.bukkit.event.block.PlaceBlockEvent;
 
 import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.item.HistoriaItemData;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.types.Triggers;
+import dev.boooiil.historia.items.util.HILogger;
 
 public class ExecutorTriggerHandler {
 
@@ -155,6 +157,11 @@ public class ExecutorTriggerHandler {
     }
 
     public static void executeAction(PlaceBlockEvent event) {
+
+        if (!Bukkit.getPluginManager().isPluginEnabled("WorldGuard")) {
+            HILogger.errorToConsole("WorldGuard is not enabled. Cannot execute PlaceBlockEvent.");
+            return;
+        }
 
         Player player = event.getCause().getFirstPlayer();
 
