@@ -54,23 +54,42 @@ public class ExecutorData implements ItemData {
 
                 itemExecutable.execute(humanEntity, item);
 
-                // set cooldown
-                if (itemExecutable.uses() > 0) {
-                    humanEntity.setCooldown(item, itemExecutable.cooldown());
-                    writeData(item);
-                }
-
-                // remove trigger from item
-                else {
+                if (itemExecutable.uses() <= 0) {
+                    HILogger.debugToConsole("Removing trigger " + trigger + " from item "
+                            + KyoriUtils.content(item.getItemMeta().displayName()));
                     executables.remove(trigger);
 
                     if (executables.keySet().isEmpty()) {
+                        HILogger.debugToConsole("Removing item "
+                                + KyoriUtils.content(item.getItemMeta().displayName()));
                         humanEntity.getInventory().remove(item);
-                    } else {
 
+                        return; // data does not need to be written
                     }
-
                 }
+
+                // set cooldown
+                if (itemExecutable.uses() > 0) {
+                    HILogger.debugToConsole(
+                            "Setting cooldown for item " + KyoriUtils.content(item.getItemMeta().displayName())
+                                    + " to " + itemExecutable.cooldown());
+
+                    // MockBukkit@1.21.4 Unimplemented
+                    if (!HistoriaItems.isTesting) {
+                        humanEntity.setCooldown(item, itemExecutable.cooldown());
+                    }
+                    System.out.println(this.toString());
+                }
+
+                HILogger.debugToConsole("before",
+                        item.getItemMeta().getPersistentDataContainer().get(HistoriaItems.getNamespacedKey("executor"),
+                                ExecutorData.DATA_TYPE).toString());
+
+                writeData(item);
+
+                HILogger.debugToConsole("after",
+                        item.getItemMeta().getPersistentDataContainer().get(HistoriaItems.getNamespacedKey("executor"),
+                                ExecutorData.DATA_TYPE).toString());
             }
         }
 
