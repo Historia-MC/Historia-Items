@@ -45,59 +45,66 @@ public class ExecutorData implements ItemData {
         return new ExecutorData(new HashMap<>());
     }
 
-    public void execute(HumanEntity humanEntity, ItemStack item, Triggers trigger) {
-        if (executables.containsKey(trigger)) {
-            ItemExecutable itemExecutable = executables.get(trigger);
+    public void execute(HumanEntity humanEntity, Integer slot, ItemStack item, Triggers trigger) {
 
-            // if not on cooldown
-            if (!itemExecutable.hasCooldown()) {
+        HILogger.debugToConsole("Found executor item in slot " + slot + " for player " + humanEntity.getName());
 
-                itemExecutable.execute(humanEntity, item);
-
-                if (itemExecutable.uses() <= 0) {
-                    HILogger.debugToConsole("Removing trigger " + trigger + " from item "
-                            + KyoriUtils.content(item.getItemMeta().displayName()));
-                    executables.remove(trigger);
-
-                    if (executables.keySet().isEmpty()) {
-                        HILogger.debugToConsole("Removing item "
-                                + KyoriUtils.content(item.getItemMeta().displayName()));
-                        humanEntity.getInventory().remove(item);
-
-                        return; // data does not need to be written
-                    }
-                }
-
-                // set cooldown
-                if (itemExecutable.uses() > 0) {
-                    HILogger.debugToConsole(
-                            "Setting cooldown for item " + KyoriUtils.content(item.getItemMeta().displayName())
-                                    + " to " + itemExecutable.cooldown());
-
-                    // MockBukkit@1.21.4 Unimplemented
-                    if (!HistoriaItems.isTesting) {
-                        humanEntity.setCooldown(item, itemExecutable.cooldown());
-                    }
-                    System.out.println(this.toString());
-                }
-
-                HILogger.debugToConsole("before",
-                        item.getItemMeta().getPersistentDataContainer().get(HistoriaItems.getNamespacedKey("executor"),
-                                ExecutorData.DATA_TYPE).toString());
-
-                writeData(item);
-
-                HILogger.debugToConsole("after",
-                        item.getItemMeta().getPersistentDataContainer().get(HistoriaItems.getNamespacedKey("executor"),
-                                ExecutorData.DATA_TYPE).toString());
-            }
-        }
-
-        else {
+        // returns if no trigger
+        if (!executables.containsKey(trigger)) {
             HILogger.errorToConsole(
                     "Player " + humanEntity.getName() + " tried to execute trigger " + trigger + " on item "
                             + KyoriUtils.content(item.getItemMeta().displayName()) + " but no executable was found.");
             HILogger.errorToConsole("Possible executables: " + executables.keySet());
+            return;
+        }
+
+        ItemExecutable itemExecutable = executables.get(trigger);
+
+        // if not on cooldown
+        if (!itemExecutable.hasCooldown()) {
+
+            itemExecutable.execute(humanEntity, item);
+
+            // returns if keys are empty
+            if (itemExecutable.uses() <= 0) {
+                HILogger.debugToConsole("Removing trigger " + trigger + " from item "
+                        + KyoriUtils.content(item.getItemMeta().displayName()));
+                executables.remove(trigger);
+
+                // returns
+                if (executables.keySet().isEmpty()) {
+                    HILogger.debugToConsole("Removing item "
+                            + KyoriUtils.content(item.getItemMeta().displayName()));
+                    humanEntity.getInventory().remove(item);
+
+                    return; // data does not need to be written
+                }
+            }
+
+            // set cooldown
+            if (itemExecutable.uses() > 0) {
+                HILogger.debugToConsole(
+                        "Setting cooldown for item " + KyoriUtils.content(item.getItemMeta().displayName())
+                                + " to " + itemExecutable.cooldown());
+
+                // MockBukkit@1.21.4 Unimplemented
+                if (!HistoriaItems.isTesting) {
+                    humanEntity.setCooldown(item, itemExecutable.cooldown());
+                }
+                System.out.println(this.toString());
+            }
+
+            HILogger.debugToConsole("before",
+                    item.getItemMeta().getPersistentDataContainer().get(HistoriaItems.getNamespacedKey("executor"),
+                            ExecutorData.DATA_TYPE).toString());
+
+            writeData(item);
+
+            humanEntity.getInventory().setItem(slot, item);
+
+            HILogger.debugToConsole("after",
+                    item.getItemMeta().getPersistentDataContainer().get(HistoriaItems.getNamespacedKey("executor"),
+                            ExecutorData.DATA_TYPE).toString());
         }
 
     }
