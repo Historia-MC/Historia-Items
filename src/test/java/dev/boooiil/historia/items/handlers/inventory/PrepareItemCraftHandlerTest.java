@@ -147,7 +147,7 @@ public class PrepareItemCraftHandlerTest {
 
                             assertEquals(ed.executables().get(trigger).commands(), executable.commands());
 
-                            ed.execute(player, item, trigger);
+                            ed.execute(player, 0, item, trigger);
 
                             if (ec.executables().size() > ed.executables().size()) {
                                 HILogger.debugToConsole("Executables size changed: " + ec.executables().size() + " -> "
