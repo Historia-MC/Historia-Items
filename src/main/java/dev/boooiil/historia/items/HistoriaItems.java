@@ -36,8 +36,8 @@ import dev.boooiil.historia.items.util.HILogger;
  */
 public class HistoriaItems extends JavaPlugin {
 
-    public static final Registry<HistoriaItem> ITEM_REGISTRY = new Registry<>();
-    public static final Registry<ItemComponentType<? extends ItemComponent>> COMPONENT_REGISTRY = new Registry<>();
+    public static Registry<HistoriaItem> ITEM_REGISTRY;
+    public static Registry<ItemComponentType<? extends ItemComponent>> COMPONENT_REGISTRY;
 
     public static boolean isTesting = false;
     /** Singleton instance of the plugin */
@@ -71,6 +71,25 @@ public class HistoriaItems extends JavaPlugin {
 
         FileIO.checkAndSaveResources("config.yml");
         FileIO.checkAndSaveResources("items");
+
+        ITEM_REGISTRY = Registry
+                .get(
+                        Registry.registryHolder.register(getNamespacedKey("items"),
+                                new Registry<>(HistoriaItem.class)),
+                        getNamespacedKey("items"),
+                        HistoriaItem.class);
+
+        COMPONENT_REGISTRY = Registry
+                .get(
+                        Registry.registryHolder.register(getNamespacedKey("components"), Registry
+                                .of(new Registry.TypeToken<ItemComponentType<? extends ItemComponent>>() {
+                                })),
+                        getNamespacedKey("components"),
+                        new Registry.TypeToken<ItemComponentType<? extends ItemComponent>>() {
+                        }.getType());
+
+        assert ITEM_REGISTRY != null : "ITEM_REGISTRY is null";
+        assert COMPONENT_REGISTRY != null : "COMPONENT_REGISTRY is null";
 
         LoreConfiguration.initLoreMap();
         ItemRegistryLoader.load();
