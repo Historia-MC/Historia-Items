@@ -86,6 +86,7 @@ public class ExecutorTriggerHandlerTest {
     static ServerMock server;
     static HistoriaItems plugin;
     static Player player;
+
     final NamespacedKey EXECUTOR_KEY = HistoriaItems.getNamespacedKey("executor");
 
     HistoriaItem historiaItem1 = HistoriaItems.ITEM_REGISTRY.get(HistoriaItems.getNamespacedKey("Light_Bronze_Boots"));
