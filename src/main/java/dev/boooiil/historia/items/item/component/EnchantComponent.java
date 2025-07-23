@@ -1,6 +1,7 @@
 package dev.boooiil.historia.items.item.component;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -66,7 +67,17 @@ public class EnchantComponent implements ItemComponent {
 
         sb.append("EnchantComponent");
         sb.append("{");
-        sb.append(JSONUtils.fromMap("enchantments", enchantments));
+        sb.append("\"enchantments\":");
+        sb.append("{");
+
+        for (Entry<Enchantment, Integer> enchants : enchantments.entrySet()) {
+
+            sb.append(JSONUtils.fromValue(enchants.getKey().getKey().getKey(), enchants.getValue()));
+            sb.append(", ");
+
+        }
+        sb.setLength(sb.length() - 2);
+        sb.append("}");
         sb.append("}");
 
         return sb.toString();
@@ -79,7 +90,17 @@ public class EnchantComponent implements ItemComponent {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
-        sb.append(JSONUtils.fromMap("enchantments", enchantments));
+        sb.append("\"enchantments\":");
+        sb.append("{");
+
+        for (Entry<Enchantment, Integer> enchants : enchantments.entrySet()) {
+
+            sb.append(JSONUtils.fromValue(enchants.getKey().getKey().getKey(), enchants.getValue()));
+            sb.append(", ");
+
+        }
+        sb.setLength(sb.length() - 2);
+        sb.append("}");
         sb.append("}");
 
         return sb.toString();
