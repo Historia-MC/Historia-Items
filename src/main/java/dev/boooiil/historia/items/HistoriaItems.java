@@ -1,6 +1,9 @@
 package dev.boooiil.historia.items;
 
 import dev.boooiil.historia.core.registry.Registry;
+import dev.boooiil.historia.core.registry.RegistryHolder;
+import dev.boooiil.historia.core.registry.TypeToken;
+import dev.boooiil.historia.core.HistoriaCore;
 import dev.boooiil.historia.items.commands.CommandGive;
 import dev.boooiil.historia.items.configuration.ItemRegistryLoader;
 import dev.boooiil.historia.items.configuration.RecipeLoader;
@@ -74,20 +77,26 @@ public class HistoriaItems extends JavaPlugin {
 
         Registry<HistoriaItem> itemRegistry = new Registry<>(HistoriaItem.class);
         Registry<ItemComponentType<? extends ItemComponent>> componentRegistry = Registry.of(
-                new Registry.TypeToken<ItemComponentType<? extends ItemComponent>>() {
+                new TypeToken<ItemComponentType<? extends ItemComponent>>() {
                 });
 
-        ITEM_REGISTRY = Registry
+        ITEM_REGISTRY = RegistryHolder
                 .get(
-                        Registry.registryHolder.register(getNamespacedKey("items"), itemRegistry),
+                        // Register the item registry into core's registry system.
+                        // The register method returns the registry object
+                        // so we can use it as an argument for the get method.
+                        // This avoids us having to register it initially, and then
+                        // having to get it again for the typing.
+                        HistoriaCore.registryHolder.register(getNamespacedKey("items"), itemRegistry),
                         getNamespacedKey("items"),
                         HistoriaItem.class);
 
-        COMPONENT_REGISTRY = Registry
+        COMPONENT_REGISTRY = RegistryHolder
                 .get(
-                        Registry.registryHolder.register(getNamespacedKey("components"), componentRegistry),
+                        HistoriaCore.registryHolder
+                                .register(getNamespacedKey("components"), componentRegistry),
                         getNamespacedKey("components"),
-                        new Registry.TypeToken<ItemComponentType<? extends ItemComponent>>() {
+                        new TypeToken<ItemComponentType<? extends ItemComponent>>() {
                         }.getType());
 
         assert ITEM_REGISTRY != null : "ITEM_REGISTRY is null";
