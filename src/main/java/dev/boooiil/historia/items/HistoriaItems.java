@@ -72,18 +72,20 @@ public class HistoriaItems extends JavaPlugin {
         FileIO.checkAndSaveResources("config.yml");
         FileIO.checkAndSaveResources("items");
 
+        Registry<HistoriaItem> itemRegistry = new Registry<>(HistoriaItem.class);
+        Registry<ItemComponentType<? extends ItemComponent>> componentRegistry = Registry.of(
+                new Registry.TypeToken<ItemComponentType<? extends ItemComponent>>() {
+                });
+
         ITEM_REGISTRY = Registry
                 .get(
-                        Registry.registryHolder.register(getNamespacedKey("items"),
-                                new Registry<>(HistoriaItem.class)),
+                        Registry.registryHolder.register(getNamespacedKey("items"), itemRegistry),
                         getNamespacedKey("items"),
                         HistoriaItem.class);
 
         COMPONENT_REGISTRY = Registry
                 .get(
-                        Registry.registryHolder.register(getNamespacedKey("components"), Registry
-                                .of(new Registry.TypeToken<ItemComponentType<? extends ItemComponent>>() {
-                                })),
+                        Registry.registryHolder.register(getNamespacedKey("components"), componentRegistry),
                         getNamespacedKey("components"),
                         new Registry.TypeToken<ItemComponentType<? extends ItemComponent>>() {
                         }.getType());
