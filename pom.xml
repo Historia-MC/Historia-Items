@@ -52,9 +52,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.mockbukkit.mockbukkit</groupId>
-      <artifactId>mockbukkit-v1.21</artifactId>
-      <version>4.31.1</version>
+      <groupId>com.github.MockBukkit</groupId>
+      <artifactId>MockBukkit</artifactId>
+      <version>4.33.0</version>
       <scope>test</scope>
     </dependency>
 
