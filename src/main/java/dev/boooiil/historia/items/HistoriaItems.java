@@ -102,6 +102,7 @@ public class HistoriaItems extends JavaPlugin {
         assert ITEM_REGISTRY != null : "ITEM_REGISTRY is null";
         assert COMPONENT_REGISTRY != null : "COMPONENT_REGISTRY is null";
 
+        ItemComponentType.registerComponents();
         LoreConfiguration.initLoreMap();
         ItemRegistryLoader.load();
         RecipeLoader.load();

@@ -29,7 +29,7 @@ public class ItemComponentType<T extends ItemComponent> {
                 return defaultData.get();
         }
 
-        static {
+        public static void registerComponents() {
                 HistoriaItems.COMPONENT_REGISTRY.register(
                                 HistoriaItems.getNamespacedKey("tool"),
                                 new ItemComponentType<>(
