@@ -13,6 +13,7 @@ import dev.boooiil.historia.items.HistoriaItems;
 import dev.boooiil.historia.items.configuration.general.LoreConfiguration;
 import dev.boooiil.historia.core.util.JSONSerializable;
 import dev.boooiil.historia.core.util.JSONUtils;
+import dev.boooiil.historia.items.util.HILogger;
 import dev.boooiil.historia.items.util.PDCUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -53,9 +54,16 @@ public class HistoriaItem implements JSONSerializable {
         String displayName = section.getString("display-name");
         Double weight = section.getDouble("weight");
 
+        HILogger.debugToConsole(baseMaterial.toString(), displayName, weight.toString(),
+                section.getKeys(false).toString());
+
+        HILogger.debugToConsole("COMPONENT_REGISTRY KEYS:", HistoriaItems.COMPONENT_REGISTRY.allKeys().toString());
+
         Map<NamespacedKey, ItemComponent> components = new HashMap<>();
         for (NamespacedKey key : HistoriaItems.COMPONENT_REGISTRY.allKeys()) {
+            HILogger.debugToConsole("Checking", id.getKey(), " for component:", key.getKey());
             if (section.contains(key.getKey())) {
+                HILogger.debugToConsole(displayName, "has a component of type", key.getKey());
                 ItemComponentType<?> type = HistoriaItems.COMPONENT_REGISTRY.get(key);
                 ConfigurationSection componentSection = section.getConfigurationSection(key.getKey());
                 components.put(key, type.fromConfig(componentSection));

@@ -61,14 +61,17 @@ public class PrepareItemCraftHandlerTest {
 
             HistoriaItem historiaItem = HistoriaItems.ITEM_REGISTRY.get(registeredItem);
 
-            HILogger.debugToConsole(historiaItem.toString());
+            HILogger.debugToConsole("item:", historiaItem.toString());
 
-            ItemStack item = historiaItem.createItemStack();
+            ItemStack item = historiaItem.createItemStack(); // logs "setting into container..."
             HILogger.debugToConsole(item.getItemMeta().getPersistentDataContainer().getKeys() + "");
 
             assertEquals(item.hasItemMeta(), true);
 
             ItemMeta meta = item.getItemMeta();
+
+            HILogger.debugToConsole(historiaItem.getConfigurationId().getKey(), "components:",
+                    historiaItem.getComponentHolder().toString());
 
             for (NamespacedKey key : historiaItem.getComponentHolder().keySet()) {
 

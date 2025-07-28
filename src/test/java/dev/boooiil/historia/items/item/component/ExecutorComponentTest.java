@@ -20,6 +20,7 @@ import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.item.data.ExecutorData;
 import dev.boooiil.historia.items.item.executor.ItemExecutable;
 import dev.boooiil.historia.items.item.types.Triggers;
+import dev.boooiil.historia.items.util.HILogger;
 
 public class ExecutorComponentTest {
 
@@ -54,7 +55,7 @@ public class ExecutorComponentTest {
     @Test
     void testApply() {
         ExecutorData data = component.data();
-
+        HILogger.debugToConsole("ExecutorComponentTest", "data", data.toJSON());
         assertEquals(data.executables(), component.executables());
     }
 
