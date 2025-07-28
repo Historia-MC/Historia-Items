@@ -28,7 +28,7 @@ public final class RecipeLoader {
         shaped.setIngredient('#', customTypeChoice(HistoriaItems.getNamespacedKey("Common_Light_Bronze_Ingot")));
         shaped.setIngredient('$', Material.STICK);
 
-        Bukkit.addRecipe(shaped);
+        // Bukkit.addRecipe(shaped);
 
     }
 
