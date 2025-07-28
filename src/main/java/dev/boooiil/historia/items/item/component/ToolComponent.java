@@ -91,9 +91,9 @@ public class ToolComponent implements ItemComponent {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{");
-        sb.append(JSONUtils.fromList("damageRange", damageRange));
-        sb.append(JSONUtils.fromList("speedRange", speedRange));
-        sb.append(JSONUtils.fromList("knockbackRange", knockbackRange));
+        sb.append(JSONUtils.fromList("damageRange", damageRange) + ", ");
+        sb.append(JSONUtils.fromList("speedRange", speedRange) + ", ");
+        sb.append(JSONUtils.fromList("knockbackRange", knockbackRange) + ", ");
         sb.append(JSONUtils.fromList("durabilityRange", durabilityRange));
         sb.append("}");
 

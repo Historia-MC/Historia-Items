@@ -84,7 +84,7 @@ public class HistoriaItem implements JSONSerializable {
                 String s_key = key.getKey();
 
                 if (LoreConfiguration.contains(s_key)) {
-                    lore.add(Component.text("[" + s_key.toUpperCase() + "}"));
+                    lore.add(Component.text("[" + s_key.toUpperCase() + "]"));
 
                     HashMap<String, List<String>> cLore = LoreConfiguration.get(s_key);
 
