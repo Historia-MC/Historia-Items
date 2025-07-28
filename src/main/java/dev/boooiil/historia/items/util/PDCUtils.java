@@ -104,7 +104,7 @@ public class PDCUtils {
     public static <C, T> void setInComplexContainer(PersistentDataContainer container, NamespacedKey key,
             PersistentDataType<C, T> type, T value) {
 
-        HILogger.debugToConsole("Setting into container:", "" + key, "" + type.getPrimitiveType(), "" + value);
+        HILogger.debugToConsole("Setting into complex container:", "" + key, "" + type.getPrimitiveType(), "" + value);
         container.set(key, type, value);
     }
 

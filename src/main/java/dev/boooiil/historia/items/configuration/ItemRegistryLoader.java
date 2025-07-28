@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -113,10 +114,11 @@ public class ItemRegistryLoader {
 
                 HILogger.debugToConsole("Key", key);
 
+                NamespacedKey namespacedKey = HistoriaItems.getNamespacedKey(key);
                 ConfigurationSection section = configuration.getConfigurationSection(key);
 
-                HistoriaItems.ITEM_REGISTRY.register(HistoriaItems.getNamespacedKey(key),
-                        HistoriaItem.fromConfig(HistoriaItems.getNamespacedKey(key), section));
+                HistoriaItems.ITEM_REGISTRY.register(namespacedKey,
+                        HistoriaItem.fromConfig(namespacedKey, section));
 
             }
 
