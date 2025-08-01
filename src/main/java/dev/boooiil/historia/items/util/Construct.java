@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import dev.boooiil.historia.items.Main;
+import dev.boooiil.historia.items.HistoriaItems;
 import net.kyori.adventure.text.Component;
 
 /**
@@ -39,7 +39,7 @@ public class Construct {
             List<String> lore) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+        HILogger.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " loc-name: "
                 + localizedName + " lore: " + lore);
 
@@ -73,7 +73,7 @@ public class Construct {
     public static ItemStack itemStack(String material, int amount, String displayName, String localizedName) {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+        HILogger.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " loc-name: "
                 + localizedName);
 
@@ -105,11 +105,12 @@ public class Construct {
 
         // LOGGING TO BE REMOVED AFTER PUBLISH
 
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
-                + " lore: " + lore);
+        // Logging.debugToConsole("material: " + material + " amount: " + amount + "
+        // display-name: " + displayName
+        // + " lore: " + lore);
 
         ItemStack item = new ItemStack(material, amount);
-        ItemMeta meta = Main.server().getItemFactory().getItemMeta(material);
+        ItemMeta meta = HistoriaItems.server().getItemFactory().getItemMeta(material);
 
         List<Component> loreComponent = new ArrayList<>();
         Component nameComponent = Component.text(displayName);
@@ -136,7 +137,7 @@ public class Construct {
      */
     public static ItemStack itemStack(Material material, int amount, String displayName, List<Component> lore) {
 
-        Logging.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
+        HILogger.debugToConsole("material: " + material + " amount: " + amount + " display-name: " + displayName
                 + " lore: " + lore);
 
         ItemStack item = new ItemStack(material, amount);

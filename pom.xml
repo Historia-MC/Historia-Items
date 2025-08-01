@@ -11,24 +11,18 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>18</maven.compiler.source>
-    <maven.compiler.target>18</maven.compiler.target>
-    <powermock.version>2.0.2</powermock.version>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
   </properties>
 
   <distributionManagement>
     <repository>
       <id>historia-repo</id>
-      <url>http://boooiil.sytes.net:1200/releases</url>
+      <url>https://maven.boobot.org/releases</url>
     </repository>
   </distributionManagement>
 
   <repositories>
-
-    <repository>
-      <id>papermc</id>
-      <url>https://repo.papermc.io/repository/maven-public/</url>
-    </repository>
 
     <repository>
       <id>jitpack.io</id>
@@ -38,8 +32,14 @@
     <repository>
       <id>historia-releases</id>
       <name>Historia Repository</name>
-      <url>http://boooiil.sytes.net:1200/releases</url>
+      <url>https://maven.boobot.org/releases</url>
     </repository>
+
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
+
   </repositories>
 
   <dependencies>
@@ -47,21 +47,21 @@
     <dependency>
       <groupId>org.yaml</groupId>
       <artifactId>snakeyaml</artifactId>
-      <version>2.0</version>
+      <version>1.33</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>com.github.seeseemelk</groupId>
-      <artifactId>MockBukkit-v1.19</artifactId>
-      <version>3.1.0</version>
+      <groupId>com.github.MockBukkit</groupId>
+      <artifactId>MockBukkit</artifactId>
+      <version>4.33.0</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>io.papermc.paper</groupId>
       <artifactId>paper-api</artifactId>
-      <version>1.19.4-R0.1-SNAPSHOT</version>
+      <version>1.21.4-R0.1-20250209.145153-1</version>
       <scope>provided</scope>
     </dependency>
 
@@ -89,8 +89,16 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.36</version>
+      <version>2.0.6</version>
     </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.11</version>
+      <scope>test</scope>
+    </dependency>
+
 
   </dependencies>
 
@@ -154,8 +162,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
         <configuration>
-          <source>18</source>
-          <target>18</target>
+          <source>21</source>
+          <target>21</target>
         </configuration>
       </plugin>
 
@@ -183,6 +191,7 @@
         <directory>${project.basedir}/src/main/resources</directory>
         <includes>
           <include>*.yml</include>
+          <include>*/**</include>
         </includes>
       </resource>
     </resources>

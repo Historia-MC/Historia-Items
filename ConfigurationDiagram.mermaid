@@ -1,0 +1,177 @@
+classDiagram
+
+
+    class BaseItemConfiguration {
+        #String id
+        #List<String> recipeShape
+        #List<String> recipeItems
+        #List<String> proficiencies
+        #boolean isShaped
+        #int amount
+        #String displayName
+        #ItemType itemType
+        #List<String> lore
+
+        +BaseItemConfiguration()
+        +getRecipeItems() : List<String>
+        +getRecipeShape() : List<String>
+        +isValidRecipe(List<String> inputItems, List<String> inputShape) : boolean
+        +isShapeDependent() : boolean
+        +canCraft(String) : boolean
+        +getMaterial() : Material
+        +getAmount() : int
+        +getDisplayName() : String
+        +getItemType() : ItemType
+        +getLore() : List<String>
+        +getId() : String
+        +toString() : String
+        +fromConfigurationSection(ConfigurationSection)$ : BaseItemConfiguration
+    }
+
+    
+    class ArmorConfiguration {
+
+        -Weight weight
+        -Integer weightValue
+
+        -List<Double> defenceRange
+        -List<Integer> durabilityRange
+
+        +ArmorConfiguration(ConfigurationSection)
+
+        +getWeight() : Weight
+        +getWeightValue() : Integer
+        +getRandomDefenceValue() : Double
+        +getRandomDurabilityValue() : Integer
+        +getMinDefenceValue() : Double
+        +getMaxDefenceValue() : Double
+        +getMinDurabilityValue() : Integer
+        +getMaxDurabilityValue() : Integer
+        +fromConfigurationSection(ConfigurationSection)$ : ArmorConfiguration
+
+    }
+
+    BaseItemConfiguration <|-- ArmorConfiguration
+
+    class CustomConfiguration {
+
+        +CustomConfiguration(ConfigurationSection)
+
+        +fromConfigurationSection(ConfigurationSection)$ : CustomConfiguration
+
+    }
+
+    BaseItemConfiguration <|-- CustomConfiguration
+
+    class ToolConfiguration {
+
+        -Weight weight
+        -Integer weightValue
+
+        -List<Double> damageRange
+        -List<Double> speedRange
+        -List<Double> knockbackRange
+        -List<Integer> durabilityRange
+
+        +ToolConfiguration(ConfigurationSection)
+
+        +getWeight() : Weight
+        +getWeightValue() : Integer
+        +getRandomDamageValue(): Double
+        +getRandomDurabilityValue() : Integer
+        +getRandomKnockbackValue() : Double
+        +getRandomSpeedValue() : Double
+        +getMinDamageValue() : Double
+        +getMaxDamageValue() : Double
+        +getMinDurabilityValue() : Integer
+        +getMaxDurabilityValue() : Integer
+        +getMinKnockbackValue() : Double
+        +getMaxKnockbackValue() : Double
+        +getMinSpeedValue() : Double
+        +getMaxSpeedValue() : Double
+        +fromConfigurationSection(ConfigurationSection)$ : ToolConfiguration
+
+    }
+
+    BaseItemConfiguration <|-- ToolConfiguration
+
+    class WeaponConfiguration {
+
+        -Weight weight
+        -Integer weightValue
+
+        -List<Double> damageRange
+        -List<Double> speedRange
+        -List<Double> knockbackRange
+        -List<Integer> durabilityRange
+
+        +WeaponConfiguration(ConfigurationSection)
+
+        +getWeight() : Weight
+        +getWeightValue() : Integer
+        +getRandomDamageValue(): Double
+        +getRandomDurabilityValue() : Integer
+        +getRandomKnockbackValue() : Double
+        +getRandomSpeedValue() : Double
+        +getMinDamageValue() : Double
+        +getMaxDamageValue() : Double
+        +getMinDurabilityValue() : Integer
+        +getMaxDurabilityValue() : Integer
+        +getMinKnockbackValue() : Double
+        +getMaxKnockbackValue() : Double
+        +getMinSpeedValue() : Double
+        +getMaxSpeedValue() : Double
+        +fromConfigurationSection(ConfigurationSection)$ : WeaponConfiguration
+
+    }
+
+    BaseItemConfiguration <|-- WeaponConfiguration
+
+    class ItemConfigurationRegistry {
+    
+        #HashMap<String, BaseItemConfiguration> registry$
+
+        +ItemConfigurationRegistry()
+
+        +register(String, BaseItemConfiguration)$ : void
+        +deregister(String)$ : void
+        +update(String, BaseItemConfiguration)$ : void
+        +contains(String)$ : boolean
+        +getTyped(String)$ : BaseItemConfiguration
+        +get(String)$ : BaseItemConfiguration
+
+    }
+
+    ArmorConfiguration --o ItemConfigurationRegistryLoader
+    CustomConfiguration --o ItemConfigurationRegistryLoader
+    ToolConfiguration --o ItemConfigurationRegistryLoader
+    WeaponConfiguration --o ItemConfigurationRegistryLoader
+
+    class ItemConfigurationRegistryLoader {
+    
+        -YamlConfiguration armorYAMLConfiguration$
+        -YamlConfiguration customYAMLConfiguration$
+        -YamlConfiguration toolYAMLConfiguration$
+        -YamlConfiguration weaponYAMLConfiguration$
+
+        -ItemConfigurationRegistryLoader()
+
+        +initialize()$ : void
+        +load()$ : void
+        +reload()$ : void
+        +populate(YamlConfiguration, BaseConfiguration) : void
+    
+    }
+
+    ItemConfigurationRegistryLoader --> ItemConfigurationRegistry : Registers
+
+    class CraftedItemConfigurationRegistry {
+    
+        +getAllShapes()$ : List<List<String>>
+        +getAllMatchingShape(List<String>)$ : List<BaseItemConfiguration>
+        +getAllMatchingMaterials(List<String>)$ : List<BaseItemConfiguration>
+        +getTyped(List<String>, List<String>)$ : BaseItemConfiguration
+    
+    }
+
+    ItemConfigurationRegistry <|-- CraftedItemConfigurationRegistry

@@ -163,7 +163,7 @@ SADDLE:
       - ""
 
   requireShape: true
-  recipe-items: ["TANNED_LEATHER", "LEAD"]
+  recipe-items: ["LIGHT_LEATHER", "LEAD"]
   recipe-shape: ["AAA", "B B", "   "]
   canCraft: [Huntsman]
 
