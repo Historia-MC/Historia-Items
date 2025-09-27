@@ -1,4 +1,4 @@
-main: dev.boooiil.historia.items.Main
+main: dev.boooiil.historia.items.HistoriaItems
 name: Historia-Items
 description: Historia Custom Item Plugin
 api-version: 1.19

@@ -1,21 +1,21 @@
 package dev.boooiil.historia.items.commands;
 
-import dev.boooiil.historia.items.configuration.ItemConfigurationRegistry;
-import dev.boooiil.historia.items.configuration.crafted.BaseItemConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.armor.ArmorConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.custom.CustomConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.tool.ToolConfiguration;
-import dev.boooiil.historia.items.configuration.crafted.weapon.WeaponConfiguration;
-import dev.boooiil.historia.items.crafted.armor.Armor;
-import dev.boooiil.historia.items.crafted.custom.Custom;
-import dev.boooiil.historia.items.crafted.tool.Tool;
-import dev.boooiil.historia.items.crafted.weapon.Weapon;
+import dev.boooiil.historia.items.HistoriaItems;
+import dev.boooiil.historia.items.item.HistoriaItem;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * <p>
@@ -34,9 +34,9 @@ import org.bukkit.entity.Player;
  * @see Player
  * @see Bukkit
  * @see BaseItemConfiguration
- * @see ItemConfigurationRegistry
+ * @see ItemRegistry
  */
-public class CommandGive implements CommandExecutor {
+public class CommandGive implements TabExecutor {
 
     /** command give default constructor */
     public CommandGive() {
@@ -45,7 +45,6 @@ public class CommandGive implements CommandExecutor {
     @Override
     // It's a method that is called when a command is executed.
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         if (args.length > 2) {
             sender.sendMessage("Syntax: /give <player> <item name>");
             return false;
@@ -57,40 +56,42 @@ public class CommandGive implements CommandExecutor {
         }
 
         Player player = Bukkit.getPlayer(args[0]);
-        BaseItemConfiguration baseConfiguration = ItemConfigurationRegistry.get(args[1]);
+        HistoriaItem historiaItem = HistoriaItems.ITEM_REGISTRY.get(HistoriaItems.getNamespacedKey(args[1]));
 
-        if (baseConfiguration == null) {
+        if (historiaItem == null) {
             sender.sendMessage("Invalid item name.");
             return false;
         }
 
-        switch (baseConfiguration.getItemType()) {
-            case WEAPON:
-                WeaponConfiguration weaponConfiguration = (WeaponConfiguration) baseConfiguration;
-                Weapon weapon = new Weapon(weaponConfiguration);
-                player.getInventory().addItem(weapon.getItemStack());
-                break;
-            case ARMOR:
-                ArmorConfiguration armorConfiguration = (ArmorConfiguration) baseConfiguration;
-                Armor armor = new Armor(armorConfiguration);
-                player.getInventory().addItem(armor.getItemStack());
-                break;
-            case CUSTOM:
-                CustomConfiguration customConfiguration = (CustomConfiguration) baseConfiguration;
-                Custom custom = new Custom(customConfiguration);
-                player.getInventory().addItem(custom.getItemStack());
-                break;
-            case TOOL:
-                ToolConfiguration toolConfiguration = (ToolConfiguration) baseConfiguration;
-                Tool tool = new Tool(toolConfiguration);
-                player.getInventory().addItem(tool.getItemStack());
-                break;
-            default:
-                sender.sendMessage("Invalid item name.");
-                return false;
+        ItemStack stack = historiaItem.createItemStack();
+        player.getInventory().addItem(stack);
+
+        Component message = Component.text("Gave " + stack.getAmount() + " ")
+                .append(stack.displayName())
+                .append(Component.text(" to "))
+                .append(Component.text(player.getName()).hoverEvent(player));
+
+        player.sendMessage(message);
+        return true;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
+            @NotNull String label, @NotNull String[] args) {
+        if (args.length == 1) {
+            return Bukkit.getServer().getOnlinePlayers().stream()
+                    .map(Player::getName)
+                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
+                    .toList();
         }
 
-        return false;
+        if (args.length == 2) {
+            return HistoriaItems.ITEM_REGISTRY.allKeys().stream()
+                    .map(NamespacedKey::getKey)
+                    .filter(key -> key.startsWith(args[1].toLowerCase()))
+                    .toList();
+        }
 
+        return null;
     }
 }

@@ -3,12 +3,14 @@ package dev.boooiil.historia.items.configuration.general;
 import dev.boooiil.historia.items.file.FileIO;
 import dev.boooiil.historia.items.file.FileKeys;
 
+import javax.annotation.processing.Generated;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
  * It's a class that grabs the configuration file and stores it in a variable.
  */
-public class GeneralConfiguration {
+public final class GeneralConfiguration {
 
     /** The configuration file. */
     public static YamlConfiguration configuration;
@@ -21,9 +23,7 @@ public class GeneralConfiguration {
         debug = configuration.getBoolean("debug");
     }
 
-    /**
-     * Default constructor for the GeneralConfiguration class.
-     */
-    GeneralConfiguration() {
+    @Generated(value = "Static Utility")
+    private GeneralConfiguration() {
     }
 }
